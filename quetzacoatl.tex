@@ -1,0 +1,409 @@
+\documentclass[$if(fontSize)$$fontSize$, $endif$$if(language)$$language$,$else$english,$endif$$if(paperSize)$$paperSize$,$else$ a4paper,$endif$$if(classOptions)$$classOptions$,$endif$$if(twoSided)$twosided,$endif$$if(titlepage)$titlepage$endif$]{$if(documentClass)$$documentClass$$else$article$endif$}
+% This is ugly, but if I have it spaced out, pandoc doesn't like it much.
+
+% Keep pandoc from getting mad
+\providecommand{\tightlist}{%
+  \setlength{\itemsep}{0pt}\setlength{\parskip}{0pt}}
+
+\usepackage{calc}
+
+\usepackage{amsmath}
+
+\usepackage{soul}
+
+\usepackage{siunitx}
+
+% Set main typeface
+$if(customType)$
+	$customType$
+	% This is set by manually inputting \usepackage{mathspec/fontspec},
+	% \setmainfont{foo}, etc.
+
+	$else$
+
+	\usepackage{mathspec}
+
+	\setallmainfonts[
+		Path = {/home/ian/.pandoc/quetzacoatl/typefaces/xcharter/},
+		Extension = {.otf},
+		UprightFont = {*-Roman},
+		ItalicFont = {*-Italic},
+		BoldFont = {*-Bold},
+		BoldItalicFont = {*-BoldItalic}
+		]
+		{XCharter}
+	
+	%\setmathfont(Greek)[
+		%Path = {/home/ian/.pandoc/quetzacoatl/typefaces/XCharter/},
+		%Extension = {.otf},
+		%UprightFont = {*-Roman},
+		%ItalicFont = {*-Italic},
+		%BoldFont = {*-Bold},
+		%BoldItalicFont = {*-BoldItalic}
+		%]
+		%{XCharter}
+
+	\setmathfrak[
+		Path = {/home/ian/.pandoc/quetzacoatl/typefaces/xcharter/},
+		Extension = {.otf},
+		UprightFont = {*-Roman},
+		ItalicFont = {*-Italic},
+		BoldFont = {*-Bold},
+		BoldItalicFont = {*-BoldItalic}
+		]
+		{XCharter}
+
+	\setsansfont[
+		Path= {/home/ian/.pandoc/quetzacoatl/typefaces/sourceSansPro/},
+		Extension = {.ttf},
+		UprightFont = {*-Regular},
+		ItalicFont = {*-Italic},
+		BoldFont = {*-SemiBold},
+		BoldItalicFont = {*-SemiBoldItalic}
+		]
+		{SourceSansPro}
+
+	\newfontfamily\titletype[
+		Path = {/home/ian/.pandoc/quetzacoatl/typefaces/sourceSansPro/},
+		Extension = {.ttf},
+		UprightFont = {*-Bold},
+		ItalicFont = {*-BoldItalic},
+		BoldFont = {*-Black},
+		BoldItalicFont = {*-BlackItalic}
+		]
+		{SourceSansPro}
+
+	\setmonofont[
+	Path = {/home/ian/.pandoc/quetzacoatl/typefaces/juliaMono/},
+		Extension = {.ttf},
+		UprightFont = {*-Regular},
+		ItalicFont = {*-RegularItalic},
+		BoldFont = {*-Bold},
+		BoldItalicFont = {*-BoldItalic},
+		Scale = 0.875,
+		]
+		{JuliaMono}
+
+$endif$
+
+\usepackage{indentfirst}
+
+\usepackage{endnotes}
+
+$if(useEndnotes)$
+\let\footnote=\endnote
+
+\renewcommand\footnoterule{\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}}
+
+\def\enoteheading{\par\kern1\baselineskip%
+		  \footnoterule%
+                  \kern1\baselineskip}
+
+$endif$
+
+$if(language)$
+
+	\usepackage{polyglossia}
+	\setmainlanguage{$language$}
+
+$else$
+
+	\usepackage{polyglossia}
+	\setmainlanguage{english}
+
+$endif$
+
+
+$if(fullpage)$
+\usepackage{fullpage}
+$endif$
+$if(lineno)$
+  \usepackage[modulo]{lineno}
+  \linenumbers
+$endif$
+
+\usepackage{fancyhdr}
+$if(fancyHdr)$
+	$fancyHdr$
+	$else$
+	\pagestyle{plain}
+$endif$
+
+\usepackage{setspace}
+$if(linestretch)$
+	\setstretch{$linestretch$}
+	$else$
+	\setstretch{1.25}
+$endif$
+
+$if(draft)$
+	\usepackage{draftwatermark}
+$endif$
+
+\usepackage{longtable,booktabs,array}
+\usepackage{multirow}
+
+\usepackage[dvipsnames]{xcolor}
+\usepackage{colortbl}
+\definecolor{table-row-color}{HTML}{F5F5F5}
+\definecolor{table-rule-color}{HTML}{999999}
+
+%\arrayrulecolor{black!40}
+\arrayrulecolor{table-rule-color}     % color of \toprule, \midrule, \bottomrule
+\setlength\heavyrulewidth{0.3ex}      % thickness of \toprule, \bottomrule
+\renewcommand{\arraystretch}{1.3}     % spacing (padding)
+
+
+% \usepackage{bm}
+
+\usepackage{upquote}
+
+$if(geometry)$
+\usepackage[$for(geometry)$$geometry$$sep$,$endfor$]{geometry}
+$else$
+\usepackage[hmargin=2 in]{geometry}
+$endif$
+
+% Taken from Eisvogel, ln. 312--339
+% https://github.com/Wandmalfarbe/pandoc-latex-template/blob/master/eisvogel.tex
+
+$if(listings)$
+	\usepackage{listings}
+	\newcommand{\passthrough}[1]{#1}
+	\lstset{defaultdialect=[5.3]Lua}
+	\lstset{defaultdialect=[x86masm]Assembler}
+$endif$
+
+$if(listingsNoPageBreak)$
+	\usepackage{etoolbox}
+	\BeforeBeginEnvironment{lstlisting}{\par\noindent\begin{minipage}{\linewidth}}
+	\AfterEndEnvironment{lstlisting}{\end{minipage}\par\addvspace{\topskip}}
+$endif$
+
+$if(lhs)$
+	\lstnewenvironment{code}{\lstset{language=Haskell,basicstyle=\small\ttfamily}}{}
+$endif$
+
+$if(highlighting-macros)$
+	$highlighting-macros$
+
+% Workaround/bugfix from jannick0.
+% See https://github.com/jgm/pandoc/issues/4302#issuecomment-360669013)
+% or https://github.com/Wandmalfarbe/pandoc-latex-template/issues/2
+%
+% Redefine the verbatim environment 'Highlighting' to break long lines (with
+% the help of fvextra). Redefinition is necessary because it is unlikely that
+% pandoc includes fvextra in the default template.
+	\usepackage{fvextra}
+	\DefineVerbatimEnvironment{Highlighting}{Verbatim}{breaklines,
+	fontsize=$if(codeBlockFontSize)$$codeBlockFontSize$$else$
+	\small$endif$,commandchars=\\\{\}}
+
+$endif$
+
+% Also taken from Eisvogel
+
+\usepackage{graphicx}
+
+\makeatletter
+\def\maxwidth{\ifdim\Gin@nat@width>\linewidth\linewidth\else\Gin@nat@width\fi}
+\def\maxheight{\ifdim\Gin@nat@height>\textheight\textheight\else\Gin@nat@height\fi}
+\makeatother
+% Scale images if necessary, so that they will not overflow the page
+% margins by default, and it is still possible to overwrite the defaults
+% using explicit options in \includegraphics[width, height, ...]{}
+\setkeys{Gin}{width=\maxwidth,height=\maxheight,keepaspectratio}
+% Set default figure placement to htbp
+\makeatletter
+\def\fps@figure{htbp}
+\makeatother
+
+$if(linksAsNotes)$
+	% Make links footnotes instead of hotlinks:
+	\DeclareRobustCommand{\href}[2]{#2\footnote{\url{#1}}}
+$endif$
+
+\usepackage[unicode=true]{hyperref}
+
+\hypersetup{breaklinks=true,
+            bookmarks=true,
+            pdfauthor={$author-meta$},
+            pdftitle={$title-meta$},
+            colorlinks=true,
+            citecolor=$if(citecolor)$$citecolor$$else$black$endif$,
+            urlcolor=$if(urlcolor)$$urlcolor$$else$black$endif$,
+            linkcolor=$if(linkcolor)$$linkcolor$$else$black$endif$,
+            pdfborder={0 0 0}}
+\urlstyle{same}  % don't use monospace font for urls
+
+\setlength{\emergencystretch}{3em}  % prevent overfull lines
+$if(numberSections)$
+\setcounter{secnumdepth}{5}
+$else$
+\setcounter{secnumdepth}{0}
+$endif$
+$if(verbatim-in-note)$
+\VerbatimFootnotes % allows verbatim text in footnotes
+$endif$
+
+$if(title)$
+	\title{$title$$if(subtitle)$\\\vspace{0.5em}{\large $subtitle$}$endif$}
+$endif$
+
+$if(author)$
+	\author{$for(author)$$author$$sep$ \and $endfor$}
+$endif$
+
+$if(date)$
+	\date{$date$}
+$endif$
+
+$for(header-includes)$
+$header-includes$
+$endfor$
+
+\usepackage{titlesec}
+
+$if(numberSections)$
+	\setcounter{secnumdepth}{5}
+$else$
+	\setcounter{secnumdepth}{0}
+$endif$
+
+\newcommand{\periodafter}[2]{#1{#2.}}
+
+
+$if(sansSections)$
+
+\titleformat{\section}{\titletype\centering\normalsize}{\thesection.}{0.5em}{}
+
+\titleformat{\subsection}{\sffamily\bfseries\normalsize}{\thesubsection.}{0.5em}{}
+
+%\titleformat{\subsubsection}[runin]{\sffamily\normalsize}{\thesubsubsection.}{0.5em}{\periodafter}{}
+
+\titleformat{\subsubsection}[runin]{\sffamily\normalsize}{\thesubsubsection.}{0em}{\periodafter}{}
+
+\titleformat{\paragraph}{\titletype\bfseries\small}{\theparagraph}{1em}{}
+
+\titleformat{\subparagraph}{\titletype\bfseries\small}{\thesubparagraph}{1em}{}
+
+\titleformat{\subsubparagraph}{\titletype\sffamily\itshape\small}{\thesubsubparagraph}{1em}{}
+
+
+$else$
+
+\titleformat{\section}{\centering\bfseries\normalsize}{\thesection.}{0.5em}{}
+
+\titleformat{\subsection}{\bfseries\normalsize}{\thesubsection.}{0.5em}{}
+
+\titleformat{\subsubsection}[runin]{\sffamily\bfseries\normalsize}{\thesubsubsection.}{0.5em}{\periodafter}
+
+\titleformat{\paragraph}{\bfseries\small}{\theparagraph}{1em}{}
+
+\titleformat{\subparagraph}{\sffamily\bfseries\small}{\thesubparagraph}{1em}{}
+
+\titleformat{\subsubparagraph}{\bfseries\sffamily\itshape\small}{\thesubsubparagraph}{1em}{}
+
+$endif$
+
+$if(sansTitle)$
+
+\titleformat{\title}{\titletype\centering\bfseries\normalsize}{\thetitle.}{0.5em}{\MakeUppercase}
+
+$endif$
+
+\definecolor{caption-color}{HTML}{777777}
+%
+% blockquote
+%
+\definecolor{blockquote-border}{RGB}{221,221,221}
+\definecolor{blockquote-text}{RGB}{0,0,0}
+\usepackage{mdframed}
+\newmdenv[rightline=false,bottomline=false,topline=false,linewidth=3pt,linecolor=blockquote-border,skipabove=\parskip,font=\sffamily\small]{customblockquote}
+\renewenvironment{quote}{\begin{customblockquote}\list{}{\rightmargin=0em\leftmargin=0em}%
+\item\relax\color{blockquote-text}\ignorespaces}{\unskip\unskip\endlist\end{customblockquote}}
+
+$if(parIndent)$
+	\setlength{\parindent}{$parIndent$}
+	$else$
+	\setlength{\parindent}{0.75em}
+$endif$
+
+$if(raggedLines)$
+	\raggedright
+$endif$
+
+\newcommand{\dinkus}{\begin{center}* * *\end{center}}
+
+\widowpenalty=2000
+\clubpenalty=2000
+
+$if(parSpacing)$
+	\setlength{\parskip}{$parSpacing$}
+$else$
+	\setlength{\parskip}{0cm plus 1mm minus 1mm}
+$endif$
+
+\usepackage{lipsum}
+
+\usepackage{datetime2}
+
+\usepackage{tikz}
+
+\usepackage{multicol}
+
+% !!!ALWAYS MAKE SURE THIS IS LOADED *LAST*!!!
+
+$if(includeAtPreamble)$
+$includeAtPreamble$
+$endif$
+
+\begin{document}
+
+$if(title)$
+	\maketitle
+$endif$
+
+$if(abstract)$
+\begin{abstract}
+	$abstract$
+\end{abstract}
+$endif$
+
+$for(include-before)$
+$include-before$
+
+$endfor$
+$if(toc)$
+{
+\hypersetup{linkcolor=black}
+\setcounter{tocdepth}{$toc-depth$}
+\tableofcontents
+}
+$endif$
+
+$body$
+
+$for(include-after)$
+$include-after$
+
+$endfor$
+
+$if(include-at-end)$
+$include-at-end$
+$endif$
+
+$if(useEndnotes)$
+\renewcommand{\notesname}{~}
+
+%\begin{center}
+%\rule{0.5\linewidth}{\linethickness}
+%\end{center}
+
+
+	%\vspace{-12mm}
+\def\enotesize{\normalsize}
+\theendnotes
+$endif$
+
+\end{document}

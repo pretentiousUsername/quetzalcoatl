@@ -1,0 +1,3 @@
+[submodule "src/typefaces/juliamono"]
+	path = src/typefaces/juliamono
+	url = https://github.com/cormullion/juliamono.git
