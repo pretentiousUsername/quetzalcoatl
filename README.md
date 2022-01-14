@@ -10,15 +10,17 @@ overall it's useable.
 
 More work is needed, but, for now, it works.
 
-## Dependencies
 
-* Make a custom titlepage.
+## Dependencies
 
 * TeXlive or MikeTeX (a full installation is expected, but not necessary)
 
 * Pandoc
 
+
 ## TODO
+
+* Make a custom titlepage.
 
 * ~~Fix the overall geometry of the output pdf---it feels a bit fishy for
 whatever reason.~~
