@@ -5,7 +5,7 @@
 The original pandoc template is, by most respects, *passable*, but not
 exactly great; it's mediocre at best. So, I went ahead and made a template
 for myself. It's nothing fancy---there isn't any beamer functionality or
-anything build into it, and I'm yet to define a color palette for it---but
+anything built into it, and I'm yet to define a color palette for it---but
 overall it's useable.
 
 More work is needed, but, for now, it works.
