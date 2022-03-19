@@ -13,11 +13,76 @@
 
 \usepackage{siunitx}
 
+$if(customTitle)$
+$if(sansTitle)$
+\makeatletter
+\def\@maketitle{%
+  \newpage
+  \null
+  \vskip 2em%
+  \begin{flushleft}%
+  \let \footnote \thanks
+    {\LARGE \textsf \@title \par}%
+    \vskip 0.5em%
+  \end{flushleft}
+  \begin{flushright}
+    {\large
+      \lineskip .5em%
+      \begin{tabular}[t]{c}%
+        \textsf \@author
+      \end{tabular}\par}%
+    \vskip 1em%
+    {\large \textsf \@date}%
+  \end{flushright}%
+  \par
+  \vskip 1.5em}
+\makeatother
+$else$
+\makeatletter
+\def\@maketitle{%
+  \newpage
+  \null
+  \vskip 2em%
+  \begin{flushleft}%
+  \let \footnote \thanks
+    {\LARGE \@title \par}%
+    \vskip 1.5em%
+  \end{flushleft}
+  \begin{flushright}
+    {\large
+      \lineskip .5em%
+      \begin{tabular}[t]{c}%
+        \@author
+      \end{tabular}\par}%
+    \vskip 1em%
+    {\large \@date}%
+  \end{flushright}%
+  \par
+  \vskip 1.5em}
+\makeatother
+
+$endif$
+$endif$
+
 % Set main typeface
 $if(customType)$
 	$customType$
+	\usepackage{mathspec}
 	% This is set by manually inputting \usepackage{mathspec/fontspec},
 	% \setmainfont{foo}, etc.
+
+	$endif$
+	\usepackage{mathspec}
+	$if(sans)$
+	\setallmainfonts[
+		Path= {/home/ian/.pandoc/quetzacoatl/typefaces/Noto_Sans/},
+		Extension = {.ttf},
+		UprightFont = {*-Regular},
+		ItalicFont = {*-Italic},
+		BoldFont = {*-Bold},
+		BoldItalicFont = {*-BoldItalic}
+		]
+		{NotoSans}
 
 	$else$
 
@@ -54,24 +119,24 @@ $if(customType)$
 		{XCharter}
 
 	\setsansfont[
-		Path= {/home/ian/.pandoc/quetzacoatl/typefaces/sourceSansPro/},
+		Path= {/home/ian/.pandoc/quetzacoatl/typefaces/Noto_Sans/},
 		Extension = {.ttf},
 		UprightFont = {*-Regular},
 		ItalicFont = {*-Italic},
-		BoldFont = {*-SemiBold},
-		BoldItalicFont = {*-SemiBoldItalic}
+		BoldFont = {*-Bold},
+		BoldItalicFont = {*-BoldItalic}
 		]
-		{SourceSansPro}
+		{NotoSans}
 
 	\newfontfamily\titletype[
-		Path = {/home/ian/.pandoc/quetzacoatl/typefaces/sourceSansPro/},
+		Path = {/home/ian/.pandoc/quetzacoatl/typefaces/Noto_Sans/},
 		Extension = {.ttf},
 		UprightFont = {*-Bold},
 		ItalicFont = {*-BoldItalic},
-		BoldFont = {*-Black},
-		BoldItalicFont = {*-BlackItalic}
+		BoldFont = {*-Bold},
+		BoldItalicFont = {*-BoldItalic}
 		]
-		{SourceSansPro}
+		{NotoSans}
 
 	\setmonofont[
 	Path = {/home/ian/.pandoc/quetzacoatl/typefaces/juliaMono/},
@@ -231,9 +296,10 @@ $endif$
             pdftitle={$title-meta$},
             colorlinks=true,
             citecolor=$if(citecolor)$$citecolor$$else$black$endif$,
-            urlcolor=$if(urlcolor)$$urlcolor$$else$black$endif$,
+            urlcolor=$if(urlColor)$$urlColor$$else$black$endif$,
             linkcolor=$if(linkcolor)$$linkcolor$$else$black$endif$,
             pdfborder={0 0 0}}
+%\def\UrlBreaks{\do\/\do-}
 \urlstyle{same}  % don't use monospace font for urls
 
 \setlength{\emergencystretch}{3em}  % prevent overfull lines
@@ -247,7 +313,7 @@ $if(verbatim-in-note)$
 $endif$
 
 $if(title)$
-	\title{$title$$if(subtitle)$\\\vspace{0.5em}{\large $subtitle$}$endif$}
+	\title{$title$$if(subtitle)$\\\vspace{-0.5em}{\large $subtitle$}$endif$}
 $endif$
 
 $if(author)$
@@ -292,11 +358,17 @@ $if(sansSections)$
 
 $else$
 
-\titleformat{\section}{\centering\bfseries\normalsize}{\thesection.}{0.5em}{}
+%\titleformat{\section}{\centering\bfseries\normalsize}{\thesection.}{0.5em}{}
 
-\titleformat{\subsection}{\bfseries\normalsize}{\thesubsection.}{0.5em}{}
+%\titleformat{\section}{\bfseries\Large}{\thesection.}{0.5em}{}
+\titleformat{\section}{\bfseries\Large}{\thesection.}{0.25em}{}
 
-\titleformat{\subsubsection}[runin]{\sffamily\bfseries\normalsize}{\thesubsubsection.}{0.5em}{\periodafter}
+%\titleformat{\subsection}{\bfseries\normalsize}{\thesubsection.}{0.5em}{}
+\titleformat{\subsection}{\bfseries\normalsize}{\thesubsection.}{0.25em}{}
+
+%\titleformat{\subsubsection}[runin]{\sffamily\bfseries\normalsize}{\thesubsubsection.}{0.5em}{\periodafter}
+%\titleformat{\subsubsection}[runin]{\sffamily\bfseries\normalsize}{\thesubsubsection. }{0.25em}{}[~ \textsf{|}]
+\titleformat{\subsubsection}[runin]{\sffamily\bfseries\normalsize}{}{0.25em}{}[~ \textsf{|}]
 
 \titleformat{\paragraph}{\bfseries\small}{\theparagraph}{1em}{}
 
@@ -319,7 +391,7 @@ $endif$
 \definecolor{blockquote-border}{RGB}{221,221,221}
 \definecolor{blockquote-text}{RGB}{0,0,0}
 \usepackage{mdframed}
-\newmdenv[rightline=false,bottomline=false,topline=false,linewidth=3pt,linecolor=blockquote-border,skipabove=\parskip,font=\sffamily\small]{customblockquote}
+\newmdenv[rightline=false,bottomline=false,topline=false,linewidth=3pt,linecolor=blockquote-border,skipabove=1em,font=\sffamily\small]{customblockquote}
 \renewenvironment{quote}{\begin{customblockquote}\list{}{\rightmargin=0em\leftmargin=0em}%
 \item\relax\color{blockquote-text}\ignorespaces}{\unskip\unskip\endlist\end{customblockquote}}
 
@@ -349,8 +421,34 @@ $endif$
 \usepackage{datetime2}
 
 \usepackage{tikz}
+\usetikzlibrary{positioning}
+\usetikzlibrary{shapes.geometric}
 
 \usepackage{multicol}
+
+% Taken from the default template
+$if(csl-refs)$
+\newlength{\cslhangindent}
+\setlength{\cslhangindent}{1.5em}
+\newlength{\csllabelwidth}
+\setlength{\csllabelwidth}{3em}
+\newenvironment{CSLReferences}[2] % #1 hanging-ident, #2 entry spacing
+ {% don't indent paragraphs
+  \setlength{\parindent}{0pt}
+  % turn on hanging indent if param 1 is 1
+  \ifodd #1 \everypar{\setlength{\hangindent}{\cslhangindent}}\ignorespaces\fi
+  % set entry spacing
+  \ifnum #2 > 0
+  \setlength{\parskip}{#2\baselineskip}
+  \fi
+ }%
+ {}
+\usepackage{calc}
+\newcommand{\CSLBlock}[1]{#1\hfill\break}
+\newcommand{\CSLLeftMargin}[1]{\parbox[t]{\csllabelwidth}{#1}}
+\newcommand{\CSLRightInline}[1]{\parbox[t]{\linewidth - \csllabelwidth}{#1}\break}
+\newcommand{\CSLIndent}[1]{\hspace{\cslhangindent}#1}
+$endif$
 
 % !!!ALWAYS MAKE SURE THIS IS LOADED *LAST*!!!
 
@@ -359,22 +457,21 @@ $includeAtPreamble$
 $endif$
 
 \begin{document}
-
 $if(title)$
 	\maketitle
 $endif$
 
 $if(abstract)$
-\begin{abstract}
-	$abstract$
-\end{abstract}
+	\begin{abstract}
+		$abstract$
+	\end{abstract}
 $endif$
 
 $for(include-before)$
 $include-before$
 
 $endfor$
-$if(toc)$
+$if(tableOfContents)$
 {
 \hypersetup{linkcolor=black}
 \setcounter{tocdepth}{$toc-depth$}
