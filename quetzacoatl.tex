@@ -13,6 +13,8 @@
 
 \usepackage{siunitx}
 
+\usepackage[runin]{abstract}
+
 $if(customTitle)$
 $if(sansTitle)$
 \makeatletter
@@ -132,7 +134,8 @@ $if(customType)$
 		UprightFont = {*-Regular},
 		ItalicFont = {*-Italic},
 		BoldFont = {*-Bold},
-		BoldItalicFont = {*-BoldItalic}
+		BoldItalicFont = {*-BoldItalic},
+		Scale = 0.925
 		]
 		{NotoSans}
 
@@ -349,34 +352,23 @@ $endif$
 
 $if(sansSections)$
 
-\titleformat{\section}{\titletype\centering\normalsize}{\thesection.}{0.5em}{}
-
-\titleformat{\subsection}{\sffamily\bfseries\normalsize}{\thesubsection.}{0.5em}{}
-
-%\titleformat{\subsubsection}[runin]{\sffamily\normalsize}{\thesubsubsection.}{0.5em}{\periodafter}{}
-
-\titleformat{\subsubsection}[runin]{\sffamily\normalsize}{\thesubsubsection.}{0em}{\periodafter}{}
-
-\titleformat{\paragraph}{\titletype\bfseries\small}{\theparagraph}{1em}{}
-
-\titleformat{\subparagraph}{\titletype\bfseries\small}{\thesubparagraph}{1em}{}
-
-\titleformat{\subsubparagraph}{\titletype\sffamily\itshape\small}{\thesubsubparagraph}{1em}{}
-
+\titleformat{\section}{\bfseries\large\titletype}{\thesection.}{0.25em}{}
+\titleformat{\subsection}{\bfseries\normalsize\titletype}{\thesubsection.}{0.25em}{}
+\titleformat{\subsubsection}[runin]{\sffamily\bfseries\normalsize}{}{0.25em}{\periodafter}
 
 $else$
 
 %\titleformat{\section}{\centering\bfseries\normalsize}{\thesection.}{0.5em}{}
 
 %\titleformat{\section}{\bfseries\Large}{\thesection.}{0.5em}{}
-\titleformat{\section}{\bfseries\Large}{\thesection.}{0.25em}{}
+\titleformat{\section}{\bfseries\large}{\thesection.}{0.25em}{}
 
 %\titleformat{\subsection}{\bfseries\normalsize}{\thesubsection.}{0.5em}{}
 \titleformat{\subsection}{\bfseries\normalsize}{\thesubsection.}{0.25em}{}
 
 %\titleformat{\subsubsection}[runin]{\sffamily\bfseries\normalsize}{\thesubsubsection.}{0.5em}{\periodafter}
 %\titleformat{\subsubsection}[runin]{\sffamily\bfseries\normalsize}{\thesubsubsection. }{0.25em}{}[~ \textsf{|}]
-\titleformat{\subsubsection}[runin]{\sffamily\bfseries\normalsize}{}{0.25em}{}[~ \textsf{|}]
+\titleformat{\subsubsection}[runin]{\sffamily\bfseries\normalsize}{\thesubsubsection.}{0.25em}{\periodafter}
 
 \titleformat{\paragraph}{\bfseries\small}{\theparagraph}{1em}{}
 
@@ -470,9 +462,18 @@ $if(title)$
 $endif$
 
 $if(abstract)$
+\renewcommand\abstractname{Abstract.}
+\begin{center}
+	\rule[-2em]{0.835\linewidth}{0.05em}
+\end{center}
+
 	\begin{abstract}
 		$abstract$
 	\end{abstract}
+
+\begin{center}
+	\rule[1.5em]{0.835\linewidth}{0.05em}
+\end{center}
 $endif$
 
 $for(include-before)$
