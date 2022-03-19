@@ -67,12 +67,11 @@ $endif$
 % Set main typeface
 $if(customType)$
 	$customType$
-	\usepackage{mathspec}
 	% This is set by manually inputting \usepackage{mathspec/fontspec},
 	% \setmainfont{foo}, etc.
 
 	$endif$
-	\usepackage{mathspec}
+	%\usepackage{mathspec}
 	$if(sans)$
 	\setallmainfonts[
 		Path= {/home/ian/.pandoc/quetzacoatl/typefaces/Noto_Sans/},
@@ -86,9 +85,10 @@ $if(customType)$
 
 	$else$
 
-	\usepackage{mathspec}
+	\usepackage{fontspec}
+	\usepackage{unicode-math}
 
-	\setallmainfonts[
+	\setmainfont[
 		Path = {/home/ian/.pandoc/quetzacoatl/typefaces/xcharter/},
 		Extension = {.otf},
 		UprightFont = {*-Roman},
@@ -97,6 +97,14 @@ $if(customType)$
 		BoldItalicFont = {*-BoldItalic}
 		]
 		{XCharter}
+
+	\setmathfont[
+		Path = {/home/ian/.pandoc/quetzacoatl/typefaces/xcharter/},
+		Extension = {.otf},
+		]
+		{XCharter-Math}
+
+	
 	
 	%\setmathfont(Greek)[
 		%Path = {/home/ian/.pandoc/quetzacoatl/typefaces/XCharter/},
@@ -108,15 +116,15 @@ $if(customType)$
 		%]
 		%{XCharter}
 
-	\setmathfrak[
-		Path = {/home/ian/.pandoc/quetzacoatl/typefaces/xcharter/},
-		Extension = {.otf},
-		UprightFont = {*-Roman},
-		ItalicFont = {*-Italic},
-		BoldFont = {*-Bold},
-		BoldItalicFont = {*-BoldItalic}
-		]
-		{XCharter}
+	%\setmathfrak[
+		%Path = {/home/ian/.pandoc/quetzacoatl/typefaces/xcharter/},
+		%Extension = {.otf},
+		%UprightFont = {*-Roman},
+		%ItalicFont = {*-Italic},
+		%BoldFont = {*-Bold},
+		%BoldItalicFont = {*-BoldItalic}
+		%]
+		%{XCharter}
 
 	\setsansfont[
 		Path= {/home/ian/.pandoc/quetzacoatl/typefaces/Noto_Sans/},

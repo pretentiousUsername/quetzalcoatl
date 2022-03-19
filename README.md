@@ -25,7 +25,14 @@ More work is needed, but, for now, it works.
 * ~~Fix the overall geometry of the output pdf---it feels a bit fishy for
 whatever reason.~~
 
-* Work on an XCharter otf mathfont. (*Kill me.*)
+* ~~Work on an XCharter otf mathfont. (*Kill me.*)~~
+
+> In some good news, an [XCharter math typeface][xcMath] has *finally*
+> been made---and I didn't even have to do anything. Huge thanks to
+> Daniel Flipo for his work on the typeface. It's not perfect yet, but
+> it's a dramatic improvement from what I previously had to work with.
+
+[xcMath]: https://ctan.org/tex-archive/fonts/xcharter-math
 
 * Fix spacing issues with the quotes and tables.
 
