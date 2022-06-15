@@ -237,8 +237,8 @@ $if(fancyHdr)$
 $endif$
 
 \usepackage{setspace}
-$if(linestretch)$
-	\setstretch{$linestretch$}
+$if(lineStretch)$
+	\setstretch{$lineStretch$}
 	$else$
 	\setstretch{1.25}
 $endif$
@@ -345,12 +345,15 @@ $endif$
 \urlstyle{same}  % don't use monospace font for urls
 
 \setlength{\emergencystretch}{3em}  % prevent overfull lines
-$if(numberSections)$
-\setcounter{secnumdepth}{5}
-$else$
-\setcounter{secnumdepth}{0}
-$endif$
-$if(verbatim-in-note)$
+
+% No clue why I put in numberSections twice
+%$if(numberSections)$
+%\setcounter{secnumdepth}{5}
+%$else$
+%\setcounter{secnumdepth}{0}
+%$endif$
+
+$if(verbatimInNote)$
 \VerbatimFootnotes % allows verbatim text in footnotes
 $endif$
 
@@ -366,8 +369,8 @@ $if(date)$
 	\date{$date$}
 $endif$
 
-$for(header-includes)$
-$header-includes$
+$for(headerIncludes)$
+$headerIncludes$
 $endfor$
 
 \usepackage{titlesec}
