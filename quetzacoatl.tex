@@ -75,8 +75,12 @@ $if(customType)$
 	$endif$
 	%\usepackage{mathspec}
 	$if(sans)$
-	\setallmainfonts[
-		Path= {/home/ian/.pandoc/quetzacoatl/typefaces/Noto_Sans/},
+
+	\usepackage{fontspec}
+	\usepackage{unicode-math}
+
+	\setmainfont[
+		Path = {/home/ian/.pandoc/quetzacoatl/typefaces/Noto_Sans/},
 		Extension = {.ttf},
 		UprightFont = {*-Regular},
 		ItalicFont = {*-Italic},
@@ -84,6 +88,33 @@ $if(customType)$
 		BoldItalicFont = {*-BoldItalic}
 		]
 		{NotoSans}
+
+	\setmathfont[
+		Path = {/home/ian/.pandoc/quetzacoatl/typefaces/Noto_Sans/},
+		Extension = {.otf},
+		]
+		{NotoSansMath-Regular}
+
+	\setsansfont[
+		Path = {/home/ian/.pandoc/quetzacoatl/typefaces/xcharter/},
+		Extension = {.otf},
+		UprightFont = {*-Roman},
+		ItalicFont = {*-Italic},
+		BoldFont = {*-Bold},
+		BoldItalicFont = {*-BoldItalic}
+		]
+		{XCharter}
+
+	\setmonofont[
+	Path = {/home/ian/.pandoc/quetzacoatl/typefaces/juliaMono/},
+		Extension = {.ttf},
+		UprightFont = {*-Regular},
+		ItalicFont = {*-RegularItalic},
+		BoldFont = {*-Bold},
+		BoldItalicFont = {*-BoldItalic},
+		Scale = 0.875,
+		]
+		{JuliaMono}
 
 	$else$
 
@@ -361,7 +392,7 @@ $else$
 %\titleformat{\section}{\centering\bfseries\normalsize}{\thesection.}{0.5em}{}
 
 %\titleformat{\section}{\bfseries\Large}{\thesection.}{0.5em}{}
-\titleformat{\section}{\bfseries\large}{\thesection.}{0.25em}{}
+\titleformat{\section}{\bfseries\normalsize\centering}{\thesection.}{0.25em}{}
 
 %\titleformat{\subsection}{\bfseries\normalsize}{\thesubsection.}{0.5em}{}
 \titleformat{\subsection}{\bfseries\normalsize}{\thesubsection.}{0.25em}{}

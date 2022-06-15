@@ -1,5 +1,4 @@
 # Quetzalcoatl
-
 > A pandoc template for everyday typesetting.
 
 The original pandoc template is, by most respects, *passable*, but not
@@ -10,16 +9,13 @@ overall it's useable.
 
 More work is needed, but, for now, it works.
 
-
 ## Dependencies
-
 * TeXlive or MikeTeX (a full installation is expected, but not necessary)
 
 * Pandoc
 
 
 ## TODO
-
 * Make a custom titlepage.
 
 * ~~Fix the overall geometry of the output pdf---it feels a bit fishy for
