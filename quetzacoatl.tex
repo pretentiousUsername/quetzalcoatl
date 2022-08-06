@@ -80,20 +80,14 @@ $if(customType)$
 	\usepackage{unicode-math}
 
 	\setmainfont[
-		Path = {/home/ian/.pandoc/quetzacoatl/typefaces/Noto_Sans/},
-		Extension = {.ttf},
+		Path = {/home/ian/.pandoc/quetzacoatl/typefaces/Inter/},
+		Extension = {.otf},
 		UprightFont = {*-Regular},
 		ItalicFont = {*-Italic},
 		BoldFont = {*-Bold},
 		BoldItalicFont = {*-BoldItalic}
 		]
-		{NotoSans}
-
-	\setmathfont[
-		Path = {/home/ian/.pandoc/quetzacoatl/typefaces/Noto_Sans/},
-		Extension = {.otf},
-		]
-		{NotoSansMath-Regular}
+		{Inter}
 
 	\setsansfont[
 		Path = {/home/ian/.pandoc/quetzacoatl/typefaces/xcharter/},
@@ -160,25 +154,28 @@ $if(customType)$
 		%{XCharter}
 
 	\setsansfont[
-		Path= {/home/ian/.pandoc/quetzacoatl/typefaces/Noto_Sans/},
-		Extension = {.ttf},
+		Path= {/home/ian/.pandoc/quetzacoatl/typefaces/Inter/},
+		Extension = {.otf},
 		UprightFont = {*-Regular},
 		ItalicFont = {*-Italic},
 		BoldFont = {*-Bold},
 		BoldItalicFont = {*-BoldItalic},
+		RawFeature = {+cv08, +cv01, +cv07, +cv10},
 		Scale = 0.925
 		]
-		{NotoSans}
+		{Inter}
 
 	\newfontfamily\titletype[
-		Path = {/home/ian/.pandoc/quetzacoatl/typefaces/Noto_Sans/},
-		Extension = {.ttf},
+		Path = {/home/ian/.pandoc/quetzacoatl/typefaces/Inter/},
+		Extension = {.otf},
 		UprightFont = {*-Bold},
 		ItalicFont = {*-BoldItalic},
-		BoldFont = {*-Bold},
-		BoldItalicFont = {*-BoldItalic}
+		BoldFont = {*-Black},
+		BoldItalicFont = {*-BlackItalic},
+		RawFeature = {+cv08, +cv01, +cv07, +cv10},
 		]
-		{NotoSans}
+		{Inter}
+
 
 	\setmonofont[
 	Path = {/home/ian/.pandoc/quetzacoatl/typefaces/juliaMono/},
@@ -432,7 +429,7 @@ $endif$
 $if(parIndent)$
 	\setlength{\parindent}{$parIndent$}
 	$else$
-	\setlength{\parindent}{0.75em}
+	\setlength{\parindent}{1.0em}
 $endif$
 
 $if(raggedLines)$
@@ -496,13 +493,13 @@ $if(title)$
 $endif$
 
 $if(abstract)$
-\renewcommand\abstractname{Abstract.}
+\renewcommand\abstractname{\sffamily Abstract.}
 \begin{center}
 	\rule[-2em]{0.835\linewidth}{0.05em}
 \end{center}
 
 	\begin{abstract}
-		$abstract$
+		\noindent $abstract$
 	\end{abstract}
 
 \begin{center}

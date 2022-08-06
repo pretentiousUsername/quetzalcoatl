@@ -10,6 +10,7 @@ abstract:
 numberSections: true
 sansSections: true
 customTitle: true
+sansTitle: true
 bibliography: ref.bib
 csl: /home/ian/.pandoc/csl/chicago_note.csl
 ---
@@ -28,21 +29,28 @@ occasion; the typeface also benefits from not being anywhere near as
 overused as, say, Times---and, unlike Computer Modern, can be read for an
 extended period of time.
 
-In a supporting role are two other nice typefaces, \textsf{Noto Sans} and
+In a supporting role are two other nice typefaces, \textsf{Inter} and
 \texttt{Julia Mono}.
 
 `{\sffamily`{=latex}
- Noto Sans, developed by the folks over at Google, is a rather nice
-sans-serif typeface. I especially love the fact they gave the *I* two
-serifs on the top and bottom---it's amazing how few typefaces actually
-do that, and how much it hurts their overall readability.
 
-Despite being made for a whole other family of typefaces---Noto in
-general was made to achieve a visual hegemony at Google---Noto Sans works
-very well with Charter. That said, Noto Sans is no substitute for
-Frutiger, which I would have loved to include in this template, but 
-intellectual property laws---as they always do---get in the way of good 
-design.
+For a while I was under the impression that I had to settle on a mediocre
+sans serif typeface, but I was wrong---I found Inter. I *love* this
+typeface so much. Even if it's not the exact design elegance of Frutiger,
+I absolutely adore this typeface's customizability and general readability.
+There are a few features here that are sorely missing from other typefaces,
+such as an optional serif in the uppercase *I*, curve in the lowercase *l*,
+and even configurable numbers.
+
+Inter works surprisingly well with Charter. I was actually caught off guard
+at first how well they work together. There are a few things that I would
+do differently, like give the *t* a slant, at the top, and make the dots
+on *i* and *j* square rather than round, but those aspects are negligible;
+despite the changes I would make, Inter is so perfect that I'm more than
+content to use it as-is. Honestly, I think this could be the age's new
+Frutiger---and I don't say that lightly. All it needs is a *proper fuggin'
+italic*.
+
 `}`{=latex}
 
 `{\ttfamily`{=latex}
