@@ -15,6 +15,46 @@ bibliography: ref.bib
 csl: /home/ian/.pandoc/csl/chicago_note.csl
 ---
 
+# A manifesto (of sorts)
+Typesetting is art, both in the sense that is beautiful, and that it is 
+useful. Beauty is of course in the eye of the beholder---it is derived
+from many things; while *The Fountain* is a urinal, and not a Baroque
+painting, its use in demonstrating the hypocrisy in the wider avant-garde
+art world was beautiful in and of itself. In essence, the beauty derived
+from the function of the object---that is much of art in and of itself.
+What is aesthetically beautiful---what we find easy on the eyes---is
+culturally defined.
+
+For most people, that works perfectly, but typesetters are not so lucky. 
+Typography's beauty doesn't derive from process, message, or raw 
+aesthetics---it is instead from how easy a document can be read, and 
+whether or not the style matches the medium and purpose. If I were to 
+print a document, with *massive* comic sans, on printer paper that says 
+"***DO YOU'RE BEST :))))***," and handed it out to everyone in my 
+neighborhood, people would find it ridiculous; if I were to print that in 
+Garamond, and place it in a book a thousand times *a-la The Shining*, 
+people would think I'm a serial killer. If I put it on a poster, in bright 
+Frutiger or Helveitca, give it some contrasting colors, and hang it up in 
+some bar in a gentrified part of New York of Philadelphia, people would 
+call it graphic design---if I'm lucky, they'd call it art.
+
+![Behold: the dude.](img/theDude.pdf)
+
+To make good typesetting, you need to know your purpose. This template is
+designed to do two things: make your information look decent, and make it 
+readable. If you're not writing "***DO YOU'rE BESt***" a thousand times, 
+you're on route to making something good. Not only is this designed to
+make whatever you're writing look good, it's also trying to make it as
+timeless as possible. I avoided design trends---I avoided those puffy
+serif fonts, such as [New Spirit][ns], and a variety of other attention
+grabbing gimmicks I find to be, rather than useful, annoying.
+
+This template was created for a simple reason: I'm sick and tired of
+Computer Modern and Times (New Roman).
+
+[ns]: https://fonts.adobe.com/fonts/new-spirit
+
+
 # Modern typesetting for the modern type
 Much like in writing, the golden rule everyone teaches you is
 *readability*---many times it is a typographer's job to break that down, 

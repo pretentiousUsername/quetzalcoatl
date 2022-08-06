@@ -74,44 +74,6 @@ $if(customType)$
 
 	$endif$
 	%\usepackage{mathspec}
-	$if(sans)$
-
-	\usepackage{fontspec}
-	\usepackage{unicode-math}
-
-	\setmainfont[
-		Path = {/home/ian/.pandoc/quetzacoatl/typefaces/Inter/},
-		Extension = {.otf},
-		UprightFont = {*-Regular},
-		ItalicFont = {*-Italic},
-		BoldFont = {*-Bold},
-		BoldItalicFont = {*-BoldItalic}
-		]
-		{Inter}
-
-	\setsansfont[
-		Path = {/home/ian/.pandoc/quetzacoatl/typefaces/xcharter/},
-		Extension = {.otf},
-		UprightFont = {*-Roman},
-		ItalicFont = {*-Italic},
-		BoldFont = {*-Bold},
-		BoldItalicFont = {*-BoldItalic}
-		]
-		{XCharter}
-
-	\setmonofont[
-	Path = {/home/ian/.pandoc/quetzacoatl/typefaces/juliaMono/},
-		Extension = {.ttf},
-		UprightFont = {*-Regular},
-		ItalicFont = {*-RegularItalic},
-		BoldFont = {*-Bold},
-		BoldItalicFont = {*-BoldItalic},
-		Scale = 0.875,
-		]
-		{JuliaMono}
-
-	$else$
-
 	\usepackage{fontspec}
 	\usepackage{unicode-math}
 
@@ -160,8 +122,8 @@ $if(customType)$
 		ItalicFont = {*-Italic},
 		BoldFont = {*-Bold},
 		BoldItalicFont = {*-BoldItalic},
-		RawFeature = {+cv08, +cv01, +cv07, +cv10},
-		Scale = 0.925
+		RawFeature = {+cv08, +cv01, +cv07, +cv10, +case},
+		Scale = 0.925,
 		]
 		{Inter}
 
@@ -170,9 +132,10 @@ $if(customType)$
 		Extension = {.otf},
 		UprightFont = {*-Bold},
 		ItalicFont = {*-BoldItalic},
-		BoldFont = {*-Black},
-		BoldItalicFont = {*-BlackItalic},
-		RawFeature = {+cv08, +cv01, +cv07, +cv10},
+		BoldFont = {*-ExtraBold},
+		BoldItalicFont = {*-ExtraBoldItalic},
+		RawFeature = {+cv08, +cv01, +cv07, +cv10, +case},
+		Scale = 0.925,
 		]
 		{Inter}
 
@@ -187,8 +150,6 @@ $if(customType)$
 		Scale = 0.875,
 		]
 		{JuliaMono}
-
-$endif$
 
 \usepackage{indentfirst}
 
@@ -317,10 +278,16 @@ $endif$
 % margins by default, and it is still possible to overwrite the defaults
 % using explicit options in \includegraphics[width, height, ...]{}
 \setkeys{Gin}{width=\maxwidth,height=\maxheight,keepaspectratio}
-% Set default figure placement to htbp
+%% Set default figure placement to htbp
+% Set default figure placement to t
 \makeatletter
-\def\fps@figure{htbp}
+%\def\fps@figure{htbp}
+\def\fps@figure{t}
 \makeatother
+
+% Change figure title
+\usepackage[figurename={Figure}, font={small}, labelfont={sf, bf},%
+labelsep={period}, justification={raggedright}]{caption}
 
 $if(linksAsNotes)$
 	% Make links footnotes instead of hotlinks:
@@ -387,6 +354,12 @@ $if(sansSections)$
 \titleformat{\subsection}{\bfseries\normalsize\titletype}{\thesubsection.}{0.25em}{}
 \titleformat{\subsubsection}[runin]{\sffamily\bfseries\normalsize}{}{0.25em}{\periodafter}
 
+\titlespacing\section{0pt}{12pt plus 2pt minus 2pt}{3pt plus 2pt minus 2pt}
+\titlespacing\subsection{0pt}{12pt plus 2pt minus 2pt}%
+{3pt plus 2pt minus 2pt}
+\titlespacing\subsubsection{-0.27em}{12pt plus 2pt minus 2pt}%
+{4pt plus 2pt minus 2pt}
+
 $else$
 
 %\titleformat{\section}{\centering\bfseries\normalsize}{\thesection.}{0.5em}{}
@@ -433,7 +406,10 @@ $if(parIndent)$
 $endif$
 
 $if(raggedLines)$
-	\raggedright
+	\usepackage[none]{hyphenat}
+	\usepackage{ragged2e}
+	\setlength\RaggedRightParindent{1.0em}
+	\RaggedRight	
 $endif$
 
 \newcommand{\dinkus}{\begin{center}* * *\end{center}}
@@ -494,12 +470,13 @@ $endif$
 
 $if(abstract)$
 \renewcommand\abstractname{\sffamily Abstract.}
+\setlength{\absparindent}{0.51em}
 \begin{center}
 	\rule[-2em]{0.835\linewidth}{0.05em}
 \end{center}
 
 	\begin{abstract}
-		\noindent $abstract$
+		$abstract$
 	\end{abstract}
 
 \begin{center}
