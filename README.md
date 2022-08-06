@@ -34,7 +34,7 @@ More work is needed, but, for now, it works.
 | `headerIncludes` | put stuff in the header | text |
 | `sansTitle` | makes the title sans serif | `true` or `false` |
 | `parIndent` | sets the paragraph indentation | float |
-| `raggedLines` | Uses ragged instead of justified paragraphs |`EXPERIMENTAL - DON'T USE`|
+| `raggedLines` | Uses ragged instead of justified paragraphs | `true` or `false` |
 | `parSpacing` | sets the length between paragraphs | float |
 | `includeAtPreamble` | put whatever you want in the preamble | TeX code |
 | `abstract` | your document abstract | text |
