@@ -13,6 +13,7 @@ customTitle: true
 sansTitle: true
 bibliography: ref.bib
 csl: /home/ian/.pandoc/csl/chicago_note.csl
+useEndnotes: true
 ---
 
 # A manifesto (of sorts)

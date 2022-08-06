@@ -153,9 +153,10 @@ $if(customType)$
 
 \usepackage{indentfirst}
 
-\usepackage{endnotes}
 
 $if(useEndnotes)$
+\usepackage{endnotes}
+
 \let\footnote=\endnote
 
 \renewcommand\footnoterule{\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}}
@@ -164,7 +165,10 @@ $if(useEndnotes)$
 		  \footnoterule%
                   \kern1\baselineskip}
 
+\renewcommand{\theendnote}{[\arabic{endnote}]}
+
 $endif$
+
 
 $if(language)$
 
@@ -518,6 +522,7 @@ $if(useEndnotes)$
 	%\vspace{-12mm}
 \def\enotesize{\normalsize}
 \theendnotes
+%\endgroup
 $endif$
 
 \end{document}
