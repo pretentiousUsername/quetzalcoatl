@@ -13,10 +13,13 @@
 
 \usepackage{siunitx}
 
+$if(titlepage)$
+$else$
 \usepackage[runin]{abstract}
+$endif$
 
-$if(customTitle)$
-$if(sansTitle)$
+$if(defaultTitle)$
+$else$
 \makeatletter
 \def\@maketitle{%
   \newpage
@@ -39,31 +42,6 @@ $if(sansTitle)$
   \par
   \vskip 1.5em}
 \makeatother
-$else$
-\makeatletter
-\def\@maketitle{%
-  \newpage
-  \null
-  \vskip 2em%
-  \begin{flushleft}%
-  \let \footnote \thanks
-    {\LARGE \@title \par}%
-    \vskip 1.5em%
-  \end{flushleft}
-  \begin{flushright}
-    {\large
-      \lineskip .5em%
-      \begin{tabular}[t]{c}%
-        \@author
-      \end{tabular}\par}%
-    \vskip 1em%
-    {\large \@date}%
-  \end{flushright}%
-  \par
-  \vskip 1.5em}
-\makeatother
-
-$endif$
 $endif$
 
 % Set main typeface
@@ -122,7 +100,7 @@ $if(customType)$
 		ItalicFont = {*-Italic},
 		BoldFont = {*-Bold},
 		BoldItalicFont = {*-BoldItalic},
-		RawFeature = {+cv08, +cv01, +cv07, +cv10, +case},
+		RawFeature = {+cv08, +cv01, +cv07, +cv10, +case, +zero},
 		Scale = 0.925,
 		]
 		{Inter}
@@ -134,7 +112,7 @@ $if(customType)$
 		ItalicFont = {*-BoldItalic},
 		BoldFont = {*-ExtraBold},
 		BoldItalicFont = {*-ExtraBoldItalic},
-		RawFeature = {+cv08, +cv01, +cv07, +cv10, +case},
+		RawFeature = {+cv08, +cv01, +cv07, +cv10, +case, +zero},
 		Scale = 0.925,
 		]
 		{Inter}
@@ -352,7 +330,6 @@ $endif$
 \newcommand{\periodafter}[2]{#1{#2.}}
 
 
-$if(sansSections)$
 
 \titleformat{\section}{\bfseries\large\titletype}{\thesection.}{0.25em}{}
 \titleformat{\subsection}{\bfseries\normalsize\titletype}{\thesubsection.}{0.25em}{}
@@ -364,8 +341,7 @@ $if(sansSections)$
 \titlespacing\subsubsection{-0.27em}{12pt plus 2pt minus 2pt}%
 {4pt plus 2pt minus 2pt}
 
-$else$
-
+$if(journalSections)$
 %\titleformat{\section}{\centering\bfseries\normalsize}{\thesection.}{0.5em}{}
 
 %\titleformat{\section}{\bfseries\Large}{\thesection.}{0.5em}{}
@@ -383,12 +359,6 @@ $else$
 \titleformat{\subparagraph}{\sffamily\bfseries\small}{\thesubparagraph}{1em}{}
 
 \titleformat{\subsubparagraph}{\bfseries\sffamily\itshape\small}{\thesubsubparagraph}{1em}{}
-
-$endif$
-
-$if(sansTitle)$
-
-\titleformat{\title}{\titletype\centering\bfseries\normalsize}{\thetitle.}{0.5em}{\MakeUppercase}
 
 $endif$
 
@@ -461,6 +431,12 @@ $if(csl-refs)$
 \newcommand{\CSLIndent}[1]{\hspace{\cslhangindent}#1}
 $endif$
 
+$if(ruleColor)$
+\definecolor{ruleColor}{HTML}{$ruleColor$}
+$else$
+\definecolor{ruleColor}{HTML}{2c5dbf}
+$endif$
+
 % !!!ALWAYS MAKE SURE THIS IS LOADED *LAST*!!!
 
 $if(includeAtPreamble)$
@@ -468,13 +444,61 @@ $includeAtPreamble$
 $endif$
 
 \begin{document}
-$if(title)$
+
+$if(titlepage)$
+
+
+\begin{titlepage}
+
+$if(reportNo)$
+{\color{ruleColor} \noindent\large\textsf{$reportNo$}}
+$else$
+%\vskip \heightof{\large\textsf{1234}}
+\vspace*{\heightof{\large\textsf{1234}}}
+$endif$
+
+$if(institution)$
+{\noindent\color{ruleColor}%
+\rule{\textwidth-\widthof{\large\textsf{$institution$}} - {1.25 em}}%
+{\heightof{\large\textsf{$institution$}}}% 
+\hspace{0.25 em} {\large\textsf{$institution$}}}
+$else$
+{\noindent\color{ruleColor}\rule{\textwidth}%
+{\heightof{\large\textsf{1234}}}}
+$endif$
+
+\vspace*{5 cm}
+
+\begin{flushleft}
+{\Huge\textsf{$title$}}
+\end{flushleft}
+
+
+\begin{flushright}
+	{\huge \textsf{$author$}} \\
+
+	\vspace{0.5cm}
+
+	{\huge\textsf{$date$}}
+\end{flushright}
+
+\end{titlepage}
+$elseif(title)$
 	\maketitle
 $endif$
 
 $if(abstract)$
+
 \renewcommand\abstractname{\sffamily Abstract.}
+%\setlength{\absparindent}{0.51em}
+
+$if(titlepage)$
+	\begin{abstract}
+		$abstract$
+	\end{abstract}
+$else$
 \setlength{\absparindent}{0.51em}
+
 \begin{center}
 	\rule[-2em]{0.835\linewidth}{0.05em}
 \end{center}
@@ -487,6 +511,7 @@ $if(abstract)$
 	\rule[1.5em]{0.835\linewidth}{0.05em}
 \end{center}
 $endif$
+$endif$
 
 $for(include-before)$
 $include-before$
@@ -498,6 +523,8 @@ $if(tableOfContents)$
 \setcounter{tocdepth}{$toc-depth$}
 \tableofcontents
 }
+
+\noindent\rule{\linewidth}{0.05em}
 $endif$
 
 $body$

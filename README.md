@@ -15,7 +15,7 @@ More work is needed, but, for now, it works.
 | `paperSize` | changes paper size | Standard paper sizes |
 | `twoSided` | makes the page double-sided | `true` or `false` |
 | `titlepage` | adds a titlepage | `true` or `false` |
-| `customTitle` | uses a custom title fomat (by yours truly) | `true` or `false` |
+| `defaultTitle` | uses default LaTeX title for documents without a titlepage | `true` or `false` |
 | `customType` | uses custom typefaces input by the user | see `quetzacoatl.tex` |
 | `useEndnotes` | use endnotes instead of footnotes | `true` or `false` |
 | `language` | sets the documents language | name of a language (defaults to English) |
@@ -34,11 +34,14 @@ More work is needed, but, for now, it works.
 | `headerIncludes` | put stuff in the header | text |
 | `sansTitle` | makes the title sans serif | `true` or `false` |
 | `parIndent` | sets the paragraph indentation | float |
-| `raggedLines` | Uses ragged instead of justified paragraphs | `true` or `false` |
+| `raggedLines` | uses ragged instead of justified paragraphs | `true` or `false` |
 | `parSpacing` | sets the length between paragraphs | float |
 | `includeAtPreamble` | put whatever you want in the preamble | TeX code |
 | `abstract` | your document abstract | text |
 | `tableOfContents` | include table of contents in your document | `true` or `false` |
+| `ruleColor` | color of the horizontal rule on the titlepage | HTML color code |
+| `reportNo` | text on top of the horizontal rule---generally thought to be a report number for cataloging purposes | text |
+| `institution` | text on the side of the horizontal rule---generally thought to be the institution | text |
 
 
 
@@ -47,9 +50,14 @@ More work is needed, but, for now, it works.
 
 * Pandoc
 
+* XeTeX
+
 
 ## TODO
-* Make a custom titlepage.
+* ~~Make a custom titlepage.~~
+
+> That's done for now, but I'm not sure if I'm happy with the results.
+> I'll just have to see if I want to keep it or not.
 
 * ~~Fix the overall geometry of the output pdf---it feels a bit fishy for
 whatever reason.~~

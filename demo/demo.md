@@ -8,12 +8,14 @@ abstract:
  about what the whole paper is about. Good luck trying to get anything out
  of this, nerd! `\textsf{Sans!}`{=latex}
 numberSections: true
-sansSections: true
-customTitle: true
-sansTitle: true
 bibliography: ref.bib
 csl: /home/ian/.pandoc/csl/chicago_note.csl
 useEndnotes: true
+reportNo: WTF-420-\LaTeX
+institution: Ducky Fooniversity
+titlepage: true
+tableOfContents: true
+raggedLines: false
 ---
 
 # A manifesto (of sorts)
