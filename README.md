@@ -42,6 +42,7 @@ More work is needed, but, for now, it works.
 | `ruleColor` | color of the horizontal rule on the titlepage | HTML color code |
 | `reportNo` | text on top of the horizontal rule---generally thought to be a report number for cataloging purposes | text |
 | `institution` | text on the side of the horizontal rule---generally thought to be the institution | text |
+| `sansDefault` | set the body text to a sans font | `true` or `false` |
 
 
 

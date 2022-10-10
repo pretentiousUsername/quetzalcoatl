@@ -100,9 +100,8 @@ italic*.
 Juilia Mono, on the other hand, is a simple---though feature rather
 complete---monospaced typeface. It has, unlike many other monospaced
 typefaces, *italic*, **bold**, and ***bold-italic*** built in, along with
-a *ton* of unicode characters. Though, as you can probably tell, the
-dashes leave something left to be desired---I'll make some modifications
-to them at some point.
+a *ton* of unicode characters. I found a way to hack the dashes---it's
+not pretty though, and I decided not to use it.
 
 With all of that put together, Julia Mono could be used to typeset entire
 documents---though I'm not sure if doing all that with a monospaced 

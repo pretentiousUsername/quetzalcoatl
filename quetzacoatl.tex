@@ -9,6 +9,13 @@
 
 \usepackage{amsmath}
 
+% fix spacing around \left( and \right) commands. Taken from
+% https://tex.stackexchange.com/questions/2607/spacing-around-left-and-right 
+\let\originalleft\left
+\let\originalright\right
+\renewcommand{\left}{\mathopen{}\mathclose\bgroup\originalleft}
+\renewcommand{\right}{\aftergroup\egroup\originalright}
+
 \usepackage{soul}
 
 \usepackage{siunitx}
@@ -33,11 +40,12 @@ $else$
   \begin{flushright}
     {\large
       \lineskip .5em%
-      \begin{tabular}[t]{c}%
-        \textsf \@author
+      \begin{tabular}[t]{r}%
+        \noindent \textsf \@author \\
+	\textsf \@date
       \end{tabular}\par}%
-    \vskip 1em%
-    {\large \textsf \@date}%
+    %\vskip 1em%
+    %{\large \textsf \@date}%
   \end{flushright}%
   \par
   \vskip 1.5em}
@@ -129,6 +137,10 @@ $if(customType)$
 		]
 		{JuliaMono}
 
+$if(sansBody)$
+	\renewcommand{\familydefault}{\sfdefault}
+$endif$
+
 \usepackage{indentfirst}
 
 
@@ -159,6 +171,7 @@ $else$
 	\setmainlanguage{english}
 
 $endif$
+
 
 
 $if(fullpage)$
@@ -194,6 +207,12 @@ $endif$
 \usepackage{colortbl}
 \definecolor{table-row-color}{HTML}{F5F5F5}
 \definecolor{table-rule-color}{HTML}{999999}
+
+$if(ruleColor)$
+\definecolor{ruleColor}{HTML}{$ruleColor$}
+$else$
+\definecolor{ruleColor}{HTML}{2c5dbf}
+$endif$
 
 %\arrayrulecolor{black!40}
 \arrayrulecolor{table-rule-color}     % color of \toprule, \midrule, \bottomrule
@@ -251,6 +270,11 @@ $endif$
 % Also taken from Eisvogel
 
 \usepackage{graphicx}
+\DeclareGraphicsExtensions{.png,.pdf}
+
+$if(graphicsPath)$
+\graphicspath{$graphicsPath$}
+$endif$
 
 \makeatletter
 \def\maxwidth{\ifdim\Gin@nat@width>\linewidth\linewidth\else\Gin@nat@width\fi}
@@ -283,9 +307,9 @@ $endif$
             pdfauthor={$author-meta$},
             pdftitle={$title-meta$},
             colorlinks=true,
-            citecolor=$if(citecolor)$$citecolor$$else$black$endif$,
-            urlcolor=$if(urlColor)$$urlColor$$else$black$endif$,
-            linkcolor=$if(linkcolor)$$linkcolor$$else$black$endif$,
+            citecolor=$if(citeColor)$$citeColor$$else$black$endif$,
+            urlcolor=$if(urlColor)$$urlColor$$else$ruleColor$endif$,
+            linkcolor=$if(linkColor)$$linkColor$$else$black$endif$,
             pdfborder={0 0 0}}
 %\def\UrlBreaks{\do\/\do-}
 \urlstyle{same}  % don't use monospace font for urls
@@ -330,11 +354,19 @@ $endif$
 \newcommand{\periodafter}[2]{#1{#2.}}
 
 
+\titleformat{\chapter}{\huge\sffamily}{{\color{ruleColor}\thechapter \hspace{0.75pt}  \rule{1.5pt}{\heightof{\sffamily{1234}}}} \hspace{0.5pt}}{0.0em}{}
 
+$if(serifSections)$
+\titleformat{\section}{\bfseries\large\rmfamily}{\thesection.}{0.25em}{}
+\titleformat{\subsection}{\normalsize\rmfamily}{\thesubsection.}{0.25em}{}
+\titleformat{\subsubsection}[runin]{\rmfamily\bfseries\normalsize}{}{0.25em}{\periodafter}
+
+$else$
 \titleformat{\section}{\bfseries\large\titletype}{\thesection.}{0.25em}{}
-\titleformat{\subsection}{\bfseries\normalsize\titletype}{\thesubsection.}{0.25em}{}
+\titleformat{\subsection}{\normalsize\titletype}{\thesubsection.}{0.25em}{}
 \titleformat{\subsubsection}[runin]{\sffamily\bfseries\normalsize}{}{0.25em}{\periodafter}
 
+$endif$
 \titlespacing\section{0pt}{12pt plus 2pt minus 2pt}{3pt plus 2pt minus 2pt}
 \titlespacing\subsection{0pt}{12pt plus 2pt minus 2pt}%
 {3pt plus 2pt minus 2pt}
@@ -370,19 +402,26 @@ $endif$
 \definecolor{blockquote-text}{RGB}{0,0,0}
 \usepackage{mdframed}
 \newmdenv[rightline=false,bottomline=false,topline=false,linewidth=3pt,linecolor=blockquote-border,skipabove=1em,font=\sffamily\small]{customblockquote}
-\renewenvironment{quote}{\begin{customblockquote}\list{}{\rightmargin=0em\leftmargin=0em}%
-\item\relax\color{blockquote-text}\ignorespaces}{\unskip\unskip\endlist\end{customblockquote}}
+\renewenvironment{quote}{\begin{customblockquote}\vspace{-0.5cm}{\rightmargin=0em\leftmargin=0em}%
+\item\relax\color{blockquote-text}\ignorespaces}{\unskip\unskip\end{customblockquote}}
 
 $if(parIndent)$
 	\setlength{\parindent}{$parIndent$}
 	$else$
-	\setlength{\parindent}{1.0em}
+	\setlength{\parindent}{1.25em}
 $endif$
+
+\usepackage{ragged2e}
+
+$if(parIndent)$
+		\setlength\RaggedRightParindent{$parIndent$}
+	$else$
+		\setlength\RaggedRightParindent{1.25em}
+	$endif$
 
 $if(raggedLines)$
 	\usepackage[none]{hyphenat}
-	\usepackage{ragged2e}
-	\setlength\RaggedRightParindent{1.0em}
+	%\usepackage{ragged2e}
 	\RaggedRight	
 $endif$
 
@@ -402,6 +441,16 @@ $endif$
 \usepackage{datetime2}
 
 \usepackage{tikz}
+
+$if(circuitDiagrams)$
+\usepackage{xstring}
+	$if(circuitStyle)$
+		\usepackage[siunitx, $circuitStyle$]{circuitikz}
+	$else$
+		\usepackage[siunitx, european]{circuitikz}
+	$endif$
+$endif$
+
 \usetikzlibrary{positioning}
 \usetikzlibrary{shapes.geometric}
 
@@ -431,11 +480,10 @@ $if(csl-refs)$
 \newcommand{\CSLIndent}[1]{\hspace{\cslhangindent}#1}
 $endif$
 
-$if(ruleColor)$
-\definecolor{ruleColor}{HTML}{$ruleColor$}
-$else$
-\definecolor{ruleColor}{HTML}{2c5dbf}
-$endif$
+% foo
+%\if\texttt1
+	%\let\emdash{\emdash\emdash}
+%\fi
 
 % !!!ALWAYS MAKE SURE THIS IS LOADED *LAST*!!!
 
@@ -471,16 +519,32 @@ $endif$
 
 \begin{flushleft}
 {\Huge\textsf{$title$}}
+
+$if(subtitle)$
+\vspace*{0.25 cm}
+{\Large\textsf{$subtitle$}}
+\vspace*{\heightof{\Large\textsf{$subtitle$}}}
+$else$
+\vspace*{0.25 cm}
+\vspace*{\heightof{\Large\textsf{1234}}}
+$endif$
 \end{flushleft}
 
 
 \begin{flushright}
-	{\huge \textsf{$author$}} \\
+	{\Large \textsf{$author$}} \\
 
 	\vspace{0.5cm}
 
-	{\huge\textsf{$date$}}
+	{\Large\textsf{$date$}}
 \end{flushright}
+
+$if(logo)$
+\begin{figure}[b]
+\includegraphics%
+$if(logoWidth)$[width=$logoWidth$]$endif${$logo$}
+\end{figure}
+$endif$
 
 \end{titlepage}
 $elseif(title)$
@@ -492,6 +556,7 @@ $if(abstract)$
 \renewcommand\abstractname{\sffamily Abstract.}
 %\setlength{\absparindent}{0.51em}
 
+% possible spaghetti incoming
 $if(titlepage)$
 	\begin{abstract}
 		$abstract$
