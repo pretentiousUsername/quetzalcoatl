@@ -1,4 +1,11 @@
-\documentclass[$if(fontSize)$$fontSize$, $endif$$if(language)$$language$,$else$english,$endif$$if(paperSize)$$paperSize$,$else$ a4paper,$endif$$if(classOptions)$$classOptions$,$endif$$if(twoSided)$twosided,$endif$$if(titlepage)$titlepage$endif$]{$if(documentClass)$$documentClass$$else$article$endif$}
+\documentclass[$if(fontSize)$$fontSize$,% $endif$%
+	$if(language)$$language$,$else$english,$endif$%
+	$if(paperSize)$$paperSize$,$else$ a4paper,%
+	$endif$$if(classOptions)$$classOptions$,$endif$%
+	$if(twoSided)$twosided,$endif$%
+	$if(titlepage)$titlepage,$endif$%
+	$if(centerEqs)$$else$fleqn$endif$]{$if(documentClass)$%
+		$documentClass$$else$article$endif$}
 % This is ugly, but if I have it spaced out, pandoc doesn't like it much.
 
 % Keep pandoc from getting mad
@@ -602,6 +609,7 @@ $endfor$
 $if(include-at-end)$
 $include-at-end$
 $endif$
+
 
 $if(useEndnotes)$
 \renewcommand{\notesname}{~}
