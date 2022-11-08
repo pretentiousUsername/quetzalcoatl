@@ -60,9 +60,9 @@ Computer Modern and Times (New Roman). I see a lot of good scientists
 typesetting their documents in Computer Modern---and if they're using Word,
 Times New Roman---and I have to just ask *why*? The backbone of modern
 science---the [arXiv](https://arxiv.org)---puts all of its documents in
-plain LaTeX. (Either that, or they're horribly typeset in MS Word.) That's
-fine, but I think it can be done better. If you're going to be making
-non-choices, then you might as well make them look nice and print well.
+plain `{\LaTeX}`{=latex}. (Either that, or they're horribly typeset in MS
+Word.) That's fine, but I think it can be done better. If you're going to be 
+making non-choices, then you might as well make them look nice and print well.
 
 [ns]: https://fonts.adobe.com/fonts/new-spirit
 
@@ -120,12 +120,12 @@ know---I'll try it out some time.
 
 ## Math typesetting
 Now we can have some fun with typesetting equations. Obviously, since this
-is a LaTeX template, it's for people that---at least likely---do 
+is a `{\LaTeX}`{=latex} template, it's for people that---at least likely---do 
 *something* with math. There are a few areas that I can test this out in,
 so, without further ado, I'll get to making some stuff.
 
 
-### Physics
+### Physics.
 Let's start with the Linblad master equation, a fine
 choice for starters,[@manzano_short_2020]
 $$ \begin{aligned}
@@ -152,7 +152,9 @@ $$ \phi(r) = \frac{1}{4\pi\epsilon_0} \int \frac{n(r')}
 Which, all things considered, is rather useful.
 
 
-### Synthesizer stuff
+
+
+### Synthesizer stuff.
 The transfer function for a realistic, $N$-pole Moog transistor ladder 
 filter was derived by @dangelo_generalized_2014 as
 $$ H(s) = - \prod_{u = 0}^{N - 1} \frac{
@@ -166,13 +168,33 @@ in that D'Angelo and Valimaki's transfer function is about the *poles* of
 the transfer function, rather than the (normalized) cutoff frequency.
 
 
-### Some thoughts
+### Some thoughts.
 I really like that there's an otf math typeface for XCharter, but I can
 say for certain that I'm *not* a fan of the sum or product signs---they
 feel just a *bit* too thin and piddly. I think it would be better if they
 were stretched out form of the sigma ($\Sigma$) and pi ($\Pi$) characters,
 they would look much better. Conversely, the integral, partial derivative 
 symbol, and the rest all look great.
+
+
+
+#### Some other thoughts.
+I really like having the ability to just press a few buttons and immediately
+get the document typeset. Pandoc really is an excellent package. I also really
+appreciate the work put in for all the typefaces I'm using now, and the amount
+of work people have done to make `{\TeX}`{=latex} not only useable, but *good*.
+
+Of course, Knuth and Lamport should get a lot of the credit for that, but there 
+are so many other people. Javier Bezos, I think, is one of many unsung 
+`{\TeX}`{=latex} heroes
+
+
+#### Anor Londo adventure
+I keep writing things---dumb things---into this markdown file, and eventually
+my fingers will grow tired---but still, for now, I persevere. My fingers
+will grow tired, my mind weary, but never will the indomitable flame of
+good typography be snuffed out within me---as long as I live, I will
+rekindle the flame.
 
 ## Code!
 This has some pretty decent, albeit incomplete, code typesetting. For
@@ -190,16 +212,16 @@ In this template I have some pretty nice looking block quotes.
 
 However, for some reason, whenever I put in block quotes, it makes the
 rules near the abstract act a bit funny. I have no idea why it does
-that---perhaps it is one of TeX's great mysteries.^[Look at me, Ma! I'm
-in an footnote!]
+that---perhaps it is one of `{\TeX}`{=latex}'s great mysteries.^[Look at me, 
+Ma! I'm in an footnote!]
 
 
 # Wrapping this up a bit
 \lipsum[1]
 
-I would like to thank all the people that have suffered through \TeX's
-bullshit---from the overfull hboxes to the arcane syntax---you have all
-made this accursed template possible.
+I would like to thank all the people that have suffered through 
+`{\TeX}`{=latex}'s bullshit---from the overfull hboxes to the arcane
+syntax---you have all made this accursed template possible.
 
 
 # References

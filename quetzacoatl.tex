@@ -234,7 +234,7 @@ $endif$
 $if(geometry)$
 \usepackage[$for(geometry)$$geometry$$sep$,$endfor$]{geometry}
 $else$
-\usepackage[hmargin=2 in]{geometry}
+\usepackage[hmargin=2 in, marginparsep=0.0 in]{geometry}
 $endif$
 
 % Taken from Eisvogel, ln. 312--339
@@ -360,6 +360,11 @@ $endif$
 
 \newcommand{\periodafter}[2]{#1{#2.}}
 
+% taken from https://tex.stackexchange.com/questions/523000/titlesec-right-justified-section-number-in-margin
+\newcommand{\marginsecnumber}[1]{%
+  \makebox[0pt][r]{#1\hspace{6pt}}%
+}
+
 
 \titleformat{\chapter}{\huge\sffamily}{{\color{ruleColor}\thechapter \hspace{0.75pt}  \rule{1.5pt}{\heightof{\sffamily{1234}}}} \hspace{0.5pt}}{0.0em}{}
 
@@ -369,16 +374,41 @@ $if(serifSections)$
 \titleformat{\subsubsection}[runin]{\rmfamily\bfseries\normalsize}{}{0.25em}{\periodafter}
 
 $else$
-\titleformat{\section}{\bfseries\large\titletype}{\thesection.}{0.25em}{}
-\titleformat{\subsection}{\normalsize\titletype}{\thesubsection.}{0.25em}{}
-\titleformat{\subsubsection}[runin]{\sffamily\bfseries\normalsize}{}{0.25em}{\periodafter}
+\titleformat{\section}%
+{\bfseries\large\titletype}%
+{\thesection.}{0.25em}{}
+
+\titleformat{\subsection}%
+{\normalsize\bfseries\sffamily}%
+{\thesubsection.}{0.25em}{}
+
+%\titleformat{\subsubsection}[runin]{\sffamily\bfseries\normalsize}{}{0.25em}{\periodafter}
+
+\titleformat{\subsubsection}[runin]%
+{\sffamily\bfseries\normalsize}%
+{\thesubsubsection.}{0.25em}{}
+
+\titleformat{\paragraph}[wrap]%
+{\sffamily\small\filright}%
+{}{0.0em}{}
+
 
 $endif$
 \titlespacing\section{0pt}{12pt plus 2pt minus 2pt}{3pt plus 2pt minus 2pt}
+
 \titlespacing\subsection{0pt}{12pt plus 2pt minus 2pt}%
 {3pt plus 2pt minus 2pt}
-\titlespacing\subsubsection{-0.27em}{12pt plus 2pt minus 2pt}%
+%\titlespacing\subsubsection{-0.27em}{12pt plus 2pt minus 2pt}%
+%{4pt plus 2pt minus 2pt}
+
+
+\titlespacing\subsubsection{0em}{12pt plus 2pt minus 2pt}%
 {4pt plus 2pt minus 2pt}
+
+\titlespacing\paragraph{8em}{8pt plus 2pt minus 2pt}%
+{4pt plus 2pt minus 2pt}
+
+%\titlespacing*{\subsubsection}{-\marginparsep}{*3.25}{*1.5}%
 
 $if(journalSections)$
 %\titleformat{\section}{\centering\bfseries\normalsize}{\thesection.}{0.5em}{}
