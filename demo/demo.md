@@ -156,11 +156,11 @@ Which, all things considered, is rather useful.
 
 ### Synthesizer stuff.
 The transfer function for a realistic, $N$-pole Moog transistor ladder 
-filter was derived by @dangelo_generalized_2014 as
+filter was derived by D'Angelo and Valimaki[@dangelo_generalized_2014] as
 $$ H(s) = - \prod_{u = 0}^{N - 1} \frac{
 \left( \frac{I_\text{ctl}}{4 C V_T} \right)^N}{s + \frac{I_\text{ctl}}{
 4 C V_T} \left(1 - \sqrt[N]{k} e^{i\pi (2 u + 1) / N} \right) } \,,$$
-which is different from @stinchcombe_analysis_2008,
+which is different from, Stinchcombe's result[@stinchcombe_analysis_2008]
 $$ H(s) = \frac{1}{(s + 1)^4 + k} \,. $$
 Both of these are technically correct---as they're both derived from a
 linearized analysis of the Moog ladder filter---the key difference is
@@ -186,7 +186,9 @@ of work people have done to make `{\TeX}`{=latex} not only useable, but *good*.
 
 Of course, Knuth and Lamport should get a lot of the credit for that, but there 
 are so many other people. Javier Bezos, I think, is one of many unsung 
-`{\TeX}`{=latex} heroes
+`{\TeX}`{=latex} heroes---just for writing the `titlesec` package alone he 
+deserves more clout. Though, how much clout can you *really* get for doing
+something good with a nerd's typesetting language?
 
 
 #### Anor Londo adventure

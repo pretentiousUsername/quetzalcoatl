@@ -1,0 +1,55 @@
+%%
+\ProvidesFile{TS1XCharter-OsF.fd}
+    [2020/05/25 (msharpe)  Font definitions for TS1/XCharter-OsF.]
+
+\expandafter\ifx\csname XCharter@scale\endcsname\relax
+    \let\XCharter@@scale\@empty
+\else
+    \edef\XCharter@@scale{s*[\csname XCharter@scale\endcsname]}%
+\fi
+
+\expandafter\ifx\csname XCharter@altone\endcsname\relax
+    \let\XCharter@@altone\@empty
+\else
+    \edef\XCharter@@altone{\XCharter@altone}%
+\fi
+
+\DeclareFontFamily{TS1}{XCharter-OsF}{}
+
+\DeclareFontShape{TS1}{XCharter-OsF}{b}{it}{
+      <-> \XCharter@@scale XCharter\XCharter@@altone-BoldItalic-ts1
+}{}
+
+\DeclareFontShape{TS1}{XCharter-OsF}{b}{sl}{
+      <-> \XCharter@@scale XCharter\XCharter@@altone-BoldSlanted-ts1
+}{}
+
+\DeclareFontShape{TS1}{XCharter-OsF}{b}{n}{
+      <-> \XCharter@@scale XCharter\XCharter@@altone-Bold-ts1
+}{}
+
+\DeclareFontShape{TS1}{XCharter-OsF}{m}{n}{
+      <-> \XCharter@@scale XCharter\XCharter@@altone-Roman-ts1
+}{}
+
+\DeclareFontShape{TS1}{XCharter-OsF}{m}{sl}{
+      <-> \XCharter@@scale XCharter\XCharter@@altone-Slanted-ts1
+}{}
+
+\DeclareFontShape{TS1}{XCharter-OsF}{m}{it}{
+      <-> \XCharter@@scale XCharter\XCharter@@altone-Italic-ts1
+}{}
+
+\DeclareFontShape{TS1}{XCharter-OsF}{bx}{it}{
+      <-> ssub * XCharter-OsF/b/it
+}{}
+
+\DeclareFontShape{TS1}{XCharter-OsF}{bx}{sl}{
+      <-> ssub * XCharter-OsF/b/sl
+}{}
+
+\DeclareFontShape{TS1}{XCharter-OsF}{bx}{n}{
+      <-> ssub * XCharter-OsF/b/n
+}{}
+
+\endinput

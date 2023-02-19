@@ -1,0 +1,55 @@
+%%
+\ProvidesFile{TS1XCharter-LF.fd}
+    [2020/05/25 (msharpe)  Font definitions for TS1/XCharter-LF.]
+
+\expandafter\ifx\csname XCharter@scale\endcsname\relax
+    \let\XCharter@@scale\@empty
+\else
+    \edef\XCharter@@scale{s*[\csname XCharter@scale\endcsname]}%
+\fi
+
+\expandafter\ifx\csname XCharter@altone\endcsname\relax
+    \let\XCharter@@altone\@empty
+\else
+    \edef\XCharter@@altone{\XCharter@altone}%
+\fi
+
+\DeclareFontFamily{TS1}{XCharter-LF}{}
+
+\DeclareFontShape{TS1}{XCharter-LF}{b}{it}{
+      <-> \XCharter@@scale XCharter\XCharter@@altone-BoldItalic-ts1
+}{}
+
+\DeclareFontShape{TS1}{XCharter-LF}{b}{sl}{
+      <-> \XCharter@@scale XCharter\XCharter@@altone-BoldSlanted-ts1
+}{}
+
+\DeclareFontShape{TS1}{XCharter-LF}{b}{n}{
+      <-> \XCharter@@scale XCharter\XCharter@@altone-Bold-ts1
+}{}
+
+\DeclareFontShape{TS1}{XCharter-LF}{m}{n}{
+      <-> \XCharter@@scale XCharter\XCharter@@altone-Roman-ts1
+}{}
+
+\DeclareFontShape{TS1}{XCharter-LF}{m}{sl}{
+      <-> \XCharter@@scale XCharter\XCharter@@altone-Slanted-ts1
+}{}
+
+\DeclareFontShape{TS1}{XCharter-LF}{m}{it}{
+      <-> \XCharter@@scale XCharter\XCharter@@altone-Italic-ts1
+}{}
+
+\DeclareFontShape{TS1}{XCharter-LF}{bx}{it}{
+      <-> ssub * XCharter-LF/b/it
+}{}
+
+\DeclareFontShape{TS1}{XCharter-LF}{bx}{sl}{
+      <-> ssub * XCharter-LF/b/sl
+}{}
+
+\DeclareFontShape{TS1}{XCharter-LF}{bx}{n}{
+      <-> ssub * XCharter-LF/b/n
+}{}
+
+\endinput
