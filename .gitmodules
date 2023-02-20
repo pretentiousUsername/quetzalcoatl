@@ -1,3 +1,6 @@
 [submodule "src/typefaces/juliamono"]
 	path = src/typefaces/juliamono
 	url = https://github.com/cormullion/juliamono.git
+[submodule "fonts/source-serif"]
+	path = fonts/source-serif
+	url = https://github.com/adobe-fonts/source-serif
