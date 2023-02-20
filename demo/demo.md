@@ -6,7 +6,7 @@ abstract:
  This is my abstract for this document. It is a summary of
  everything in the document---though it does not *really* tell you much
  about what the whole paper is about. Good luck trying to get anything out
- of this, nerd!
+ of this, nerd! (just a paranthesis)
 numberSections: true
 bibliography: ref.bib
 csl: /home/ian/.pandoc/csl/natureBox.csl
