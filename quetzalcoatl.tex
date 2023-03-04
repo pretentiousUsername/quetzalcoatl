@@ -14,6 +14,11 @@
 \usepackage{amsmath}
 \usepackage{amssymb}
 
+% I just found out about this package. Huge thanks to Sergio C. de la Barrera
+% for working on it.
+\usepackage{physics} % use the [notrig] option if you don't want trig functions
+\usepackage{linop}
+
 \usepackage{enumerate}
 % Keep pandoc from getting mad
 \providecommand{\tightlist}{%
@@ -26,13 +31,16 @@
 
 \usepackage{calc}
 
-% Include some ISO math symbols
 
-\newcommand*\diff{\mathop{}\!\mathup{d}} % stolen from https://tex.stackexchange.com/questions/425098/which-opentype-math-fonts-are-available
+% NEW MATH COMMANDS
+
+% Include some ISO math symbols
 
 \newcommand\ii{\mathup{i}}
 
 \newcommand\ee{\mathup{e}}
+
+
 
 % fix spacing around \left( and \right) commands. Taken from
 % https://tex.stackexchange.com/questions/2607/spacing-around-left-and-right 

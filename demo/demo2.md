@@ -114,10 +114,10 @@ $$ A(k, \omega) = \ii \left[ G^>(k, \omega) - G^<(k, \omega) \right]$$
 Maybe there's an equation we can use from Freerick's *Transport in Multilayer
 Nanostructures*?
 $$ G_{ii} (z) = \int \frac{A_{ii}(\omega')}{z - \omega'} d\omega' \,. $$
-$$ \frac{\partial G_{i j}(\tau)}{\partial \tau} = -\theta(\tau)\langle
-\left[\hat{\mathcal{H}} - \mu N, c_i(\tau)\right]c_j^\dagger(0) \rangle
-+ \theta(\tau) \langle c_j^\dagger(0) \left[\hat{\mathcal{H}} - \mu N, 
-c_i(\tau) \right] \rangle \,. $$ {#eq:hubbardG}
+$$ \frac{\partial G_{i j}(\tau)}{\partial \tau} = -\theta(\tau)\left<
+\left[\hat{\mathcal{H}} - \mu N, c_i(\tau)\right]c_j^\dagger(0) \right>
++ \theta(\tau) \left< c_j^\dagger(0) \left[\hat{\mathcal{H}} - \mu N, 
+c_i(\tau) \right] \right> \,. $$ {#eq:hubbardG}
 
 
 ## The *LaTeX Companion* gauntlet
