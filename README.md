@@ -12,6 +12,8 @@ More work is needed, but, for now, it works.
 ## List of parameters
 | Parameter | Function | Value |
 |:----------|:---------|:------|
+| `stixFonts` | uses StixTwo for the serif font | `true` or `false` |
+| `notoSans` | uses Noto Sans for the sans-serif font | `true` or `false` |
 | `paperSize` | changes paper size | Standard paper sizes |
 | `twoSided` | makes the page double-sided | `true` or `false` |
 | `titlepage` | adds a titlepage | `true` or `false` |
@@ -72,8 +74,10 @@ whatever reason.~~
 
 [xcMath]: https://ctan.org/tex-archive/fonts/xcharter-math
 
-* Fix spacing issues with the quotes and tables.
+* ~~Fix spacing issues with the quotes and tables.~~
 
-* Write comprehensive documentation covering each variable/feature of the
-template.
+> I hope that part's done.
+
+* ~~Write comprehensive documentation covering each variable/feature of the
+template.~~
 

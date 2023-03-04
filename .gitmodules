@@ -4,3 +4,6 @@
 [submodule "fonts/source-serif"]
 	path = fonts/source-serif
 	url = https://github.com/adobe-fonts/source-serif
+[submodule "fonts/stixfonts"]
+	path = fonts/stixfonts
+	url = https://github.com/stipub/stixfonts

@@ -11,13 +11,28 @@
 % DO NOT include a slash after your fontDir is set
 \def\fontDir{/home/ian/.pandoc/quetzalcoatl/fonts}
 
+\usepackage{amsmath}
+\usepackage{amssymb}
+
+\usepackage{enumerate}
 % Keep pandoc from getting mad
 \providecommand{\tightlist}{%
   \setlength{\itemsep}{0pt}\setlength{\parskip}{0pt}}
 
+\renewcommand{\labelenumii}{\arabic{enumi}.\arabic{enumii}.}
+\renewcommand{\labelenumiii}{\arabic{enumi}.\arabic{enumii}.\arabic{enumiii}.}
+\renewcommand{\labelenumiv}{%
+    \arabic{enumi}.\arabic{enumii}.\arabic{enumiii}.\arabic{enumiv}.}
+
 \usepackage{calc}
 
-\usepackage{amsmath}
+% Include some ISO math symbols
+
+\newcommand*\diff{\mathop{}\!\mathup{d}} % stolen from https://tex.stackexchange.com/questions/425098/which-opentype-math-fonts-are-available
+
+\newcommand\ii{\mathup{i}}
+
+\newcommand\ee{\mathup{e}}
 
 % fix spacing around \left( and \right) commands. Taken from
 % https://tex.stackexchange.com/questions/2607/spacing-around-left-and-right 
@@ -29,6 +44,7 @@
 \usepackage{soul}
 
 \usepackage{siunitx}
+
 
 $if(titlepage)$
 $else$
@@ -76,6 +92,38 @@ $if(customType)$
 	\usepackage{fontspec}
 	\usepackage{unicode-math}
 
+	%\newfontfamily\symbolFont[
+		%Extension = {.otf},
+		%Path = {\fontDir/fdsymbol/},
+		%UprightFont = {*-Regular},
+	%]{FdSymbol}
+
+	$if(stixFonts)$
+	\setmainfont[
+		Path = {\fontDir/stix2/},
+		Extension = {.otf},
+		UprightFont = {*-Regular},
+		ItalicFont = {*-Italic},
+		BoldFont = {*-Bold},
+		BoldItalicFont = {*-BoldItalic},
+		RawFeature = {+case}
+		]
+		{StixTwoText}
+
+	\setmathfont[
+		Path = {\fontDir/stix2/},
+		Extension = {.otf},
+		RawFeature = {+ss15},
+		]
+		{StixTwoMath-Regular}
+
+	% Heavenly father, forgive me, for I know not what I do.
+	\newfontfamily\symbolFont[
+		Extension = {.otf},
+		Path = {\fontDir/stix2/},
+	]{StixTwoMath-Regular}
+
+	$else$
 	\setmainfont[
 		Path = {\fontDir/xcharter/},
 		Extension = {.otf},
@@ -92,30 +140,35 @@ $if(customType)$
 		]
 		{XCharter-Math}
 
-	%\usepackage[otfmath]{XCharter}
-
+	\newfontfamily\symbolFont[
+		Extension = {.otf},
+		Path = {\fontDir/xcharter/},
+	]{XCharter-Math}
+	$endif$
 	
-	
-	%\setmathfont(Greek)[
-		%Path = {/home/ian/.pandoc/quetzacoatl/typefaces/XCharter/},
-		%Extension = {.otf},
-		%UprightFont = {*-Roman},
-		%ItalicFont = {*-Italic},
-		%BoldFont = {*-Bold},
-		%BoldItalicFont = {*-BoldItalic}
-		%]
-		%{XCharter}
+	$if(notoSans)$
+	\setsansfont[
+		Path= {\fontDir/notoSans/},
+		Extension = {.ttf},
+		UprightFont = {*-Regular},
+		ItalicFont = {*-Italic},
+		BoldFont = {*-Bold},
+		BoldItalicFont = {*-BoldItalic},
+		Scale = 0.925
+		]
+		{NotoSans}
 
-	%\setmathfrak[
-		%Path = {/home/ian/.pandoc/quetzacoatl/typefaces/xcharter/},
-		%Extension = {.otf},
-		%UprightFont = {*-Roman},
-		%ItalicFont = {*-Italic},
-		%BoldFont = {*-Bold},
-		%BoldItalicFont = {*-BoldItalic}
-		%]
-		%{XCharter}
-
+	\newfontfamily\titletype[
+		Path = {\fontDir/notoSans/},
+		Extension = {.ttf},
+		UprightFont = {*-Bold},
+		ItalicFont = {*-BoldItalic},
+		BoldFont = {*-ExtraBold},
+		BoldItalicFont = {*-ExtraBoldItalic},
+		Scale = 0.925
+		]
+		{NotoSans}
+	$else$
 	\setsansfont[
 		Path= {\fontDir/Inter/},
 		Extension = {.otf},
@@ -139,6 +192,7 @@ $if(customType)$
 		Scale = 0.925,
 		]
 		{Inter}
+	$endif$
 
 
 	\setmonofont[
@@ -155,6 +209,12 @@ $if(customType)$
 $if(sansBody)$
 	\renewcommand{\familydefault}{\sfdefault}
 $endif$
+
+% Set itemize symbols
+\renewcommand{\labelitemi}{\symbolFont{▪}}
+\renewcommand{\labelitemii}{\symbolFont{▹}}
+\renewcommand{\labelitemiii}{\symbolFont{•}}
+\renewcommand{\labelitemiv}{\symbolFont{⟶}}
 
 \usepackage{indentfirst}
 
@@ -244,7 +304,7 @@ $endif$
 $if(geometry)$
 \usepackage[$for(geometry)$$geometry$$sep$,$endfor$]{geometry}
 $else$
-\usepackage[hmargin=2 in, marginparsep=0.0 in]{geometry}
+\usepackage[hmargin=2in, marginparsep=0.0 in]{geometry}
 $endif$
 
 % Taken from Eisvogel, ln. 312--339
@@ -625,9 +685,18 @@ $elseif(title)$
 	\maketitle
 $endif$
 
+\newmdenv[rightline=false, leftline=false]{abstractBox}
+\renewcommand\abstractname{\sffamily Abstract}
+
 $if(abstract)$
 
-\renewcommand\abstractname{\sffamily Abstract.}
+
+    %$if(titlepage)$
+    %\renewcommand\abstractname{\sffamily Abstract}
+    %$else$
+    %\renewcommand\abstractname{\sffamily Abstract.}
+    %$endif$
+
 %\setlength{\absparindent}{0.51em}
 
 % possible spaghetti incoming
@@ -638,17 +707,14 @@ $if(titlepage)$
 $else$
 \setlength{\absparindent}{0.51em}
 
-\begin{center}
-	\rule[-2em]{0.835\linewidth}{0.05em}
-\end{center}
 
 	\begin{abstract}
+	\begin{abstractBox} % sometimes we have happy little accidents
 		$abstract$
+	\end{abstractBox}
 	\end{abstract}
 
-\begin{center}
-	\rule[1.5em]{0.835\linewidth}{0.05em}
-\end{center}
+
 $endif$
 $endif$
 
