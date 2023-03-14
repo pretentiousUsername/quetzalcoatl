@@ -121,7 +121,7 @@ know---I'll try it out some time.
 Let's go over some facts:
 
 #. I am the coolest person to *ever* live---my body temperature is just barely
-   \qty{1}{\kelvin}
+   1 K.
 #. I am very cold. Please get me a blanket.
     #. If I don't get a blanket I will continue to be cold.
     #. If you're already grabbing me a blanket, would you get me some hot

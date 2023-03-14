@@ -91,16 +91,15 @@ have a long f. Watch---*fuck*!
 Here's some math typesetting stuff. For starters I'll just write down the
 Linblad equation, a nice bit of physics for open quantum systems,
 $$ \begin{aligned}
-\frac{\partial \rho(r, t)}{\partial t} = 
+\pdv{\rho(r, t)}{t} = 
 & \sum_j \gamma_j \left( L_j \rho(r, t) L_j^\dagger
-- \frac{1}{2} \left\{ L_j L_j^\dagger, \rho(r, t) \right\} \right) \\
-& - i \left[ H, \rho(r, t) \right] \,. \end{aligned} $$ {#eq:linblad}
+- \frac{1}{2} \acomm{L_j L_j^\dagger}{\rho(r, t)} \right) \\
+& - i \comm{H}{\rho(r, t)} \,. \end{aligned} $$ {#eq:linblad}
 Does $v = \nu$? How do $g$, $u$, $v$ and *v*, $w$, and $z$ look? This is
 slightly unrelated to the Linblad equation, since it's classical, but I'm the
 God of this document, so I'll also write down the Boltzmann equation,
-$$\frac{\partial f}{\partial t} + \frac{\partial H}{\partial\mathbf{p}}
-\cdot \nabla f + \frac{\partial H}{\partial\mathbf{r}} \cdot \frac{\partial f}
-{\partial\mathbf{p}} = \left( \frac{\partial f}{\partial t} 
+$$\pdv{f}{t} + \pdv{H}{\mathbf{p}} \cdot \nabla f + \pdv{H}{\mathbf{r}} \cdot 
+\pdv{f}{\mathbf{p}} = \left( \pdv{f}{t}
 \right)_{\text{coll}} \,. $$ {#eq:boltzmann}
 
 
@@ -114,10 +113,11 @@ $$ A(k, \omega) = \ii \left[ G^>(k, \omega) - G^<(k, \omega) \right]$$
 Maybe there's an equation we can use from Freerick's *Transport in Multilayer
 Nanostructures*?
 $$ G_{ii} (z) = \int \frac{A_{ii}(\omega')}{z - \omega'} d\omega' \,. $$
-$$ \frac{\partial G_{i j}(\tau)}{\partial \tau} = -\theta(\tau)\left<
-\left[\hat{\mathcal{H}} - \mu N, c_i(\tau)\right]c_j^\dagger(0) \right>
-+ \theta(\tau) \left< c_j^\dagger(0) \left[\hat{\mathcal{H}} - \mu N, 
-c_i(\tau) \right] \right> \,. $$ {#eq:hubbardG}
+$$\begin{aligned}
+\pdv{G_{i j}(\tau)}{\tau} &=  \theta(\tau) \expval{c_j^\dagger(0) \comm{\hat{\mathcal{H}} - \mu N}{c_i(\tau)} } \\
+& -\theta(\tau)\expval{
+\comm{\hat{\mathcal{H}} - \mu N}{c_i(\tau)} c_j^\dagger(0) }\,.
+\end{aligned}$$ {#eq:hubbardG}
 
 
 ## The *LaTeX Companion* gauntlet
@@ -137,11 +137,11 @@ $$
     = \sum_{k=1}^m n(\gamma;a_k)\oint(f;a_k)\,.
 $$
 First some large operators both in text: $\iiint_{Q}f(x,y,z)
-\diff x \diff y \diff z$ and 
+\dd{x} \dd{y} \dd{z}$ and 
 $\prod_{\gamma\in\Gamma_{\bar{C}}}\partial(\tilde{X}_\gamma)$; and also on 
 display
 $$
-    \iiiint_{Q}f(w,x,y,z) \diff w \diff x \diff y \diff z
+    \iiiint_{Q}f(w,x,y,z) \dd{w} \dd{x} \dd{y} \dd{z}
     \leq
     \oint_{\partial Q} f'\Biggl(\max\Biggl\{
     \frac{\Vert w\Vert}{\vert w^2+x^2\vert};

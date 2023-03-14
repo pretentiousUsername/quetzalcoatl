@@ -13,10 +13,12 @@
 
 \usepackage{amsmath}
 \usepackage{amssymb}
+\usepackage{xparse}
 
-% I just found out about this package. Huge thanks to Sergio C. de la Barrera
-% for working on it.
-\usepackage{physics} % use the [notrig] option if you don't want trig functions
+% use the [notrig] for no new trig functions, and [italicdiff] for italic
+% differentials/derivatives
+\usepackage{physics}
+
 \usepackage{linop}
 
 \usepackage{enumerate}
@@ -405,12 +407,35 @@ $endif$
             pdfauthor={$author-meta$},
             pdftitle={$title-meta$},
             colorlinks=true,
-            citecolor=$if(citeColor)$citeColor$else$black$endif$,
-	    urlcolor=$if(urlColor)$urlColor$else$ruleColor$endif$,
-	    linkcolor=$if(linkColor)$linkColor$else$black$endif$,
-            pdfborder={0 0 0}}
+            citecolor=$if(citeColor)$ \citeColor $else$ black $endif$,
+	    urlcolor=$if(urlColor)$ \urlColor $else$ black $endif$,
+	    linkcolor=$if(linkColor)$ \linkColor $else$ black $endif$,
+            pdfborder={0 0 0},
+	    $if(title)$ pdftitle={$title$} $endif$,
+	    xetex=true,
+    }
 %\def\UrlBreaks{\do\/\do-}
 \urlstyle{same}  % don't use monospace font for urls
+
+
+%\definecolor{blockquote-border}{RGB}{221,221,221}
+% redefine footnotes to include character
+
+$if(urlMarkColor)$
+	\definecolor{urlMarkColor}{HTML}{$urlMarkColor$}
+$else$
+	\definecolor{urlMarkColor}{HTML}{ab0f0f}
+$endif$
+
+$if(urlMarkSymbol)$
+	\let\orighref\href
+	\renewcommand{\href}[2]{\orighref{#1}{#2{\color{urlMarkColor} \symbolFont{$urlMarkSymbol$}}}} % ugly as sin but it works
+$else$
+
+	\let\orighref\href
+	\renewcommand{\href}[2]{\orighref{#1}{#2{\color{urlMarkColor} \symbolFont{°}}}}
+
+$endif$
 
 \setlength{\emergencystretch}{3em}  % prevent overfull lines
 
