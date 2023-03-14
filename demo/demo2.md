@@ -8,7 +8,6 @@ abstract: This is the demo for the other set of fonts I'm using in
  heart's content, but I thought I would show them both off in one document.
  I think they're both nice, useful fonts.
 raggedLines: true
-stixFonts: true
 notoSans: true
 ---
 
@@ -91,15 +90,15 @@ have a long f. Watch---*fuck*!
 Here's some math typesetting stuff. For starters I'll just write down the
 Linblad equation, a nice bit of physics for open quantum systems,
 $$ \begin{aligned}
-\pdv{\rho(r, t)}{t} = 
-& \sum_j \gamma_j \left( L_j \rho(r, t) L_j^\dagger
-- \frac{1}{2} \acomm{L_j L_j^\dagger}{\rho(r, t)} \right) \\
-& - i \comm{H}{\rho(r, t)} \,. \end{aligned} $$ {#eq:linblad}
+\diffp{\rho(r, t)}{t} = 
+& \sum_j \gamma_j \left( \op{L}{j} \rho(r, t) \hc{L}{j}
+- \frac{1}{2} \left\{ \op{L}{j} \hc{L}{j}, \rho(r, t) \right\} \right) \\
+& - i \left[ H, \rho(r, t) \right] \,. \end{aligned} $$ {#eq:linblad}
 Does $v = \nu$? How do $g$, $u$, $v$ and *v*, $w$, and $z$ look? This is
 slightly unrelated to the Linblad equation, since it's classical, but I'm the
 God of this document, so I'll also write down the Boltzmann equation,
-$$\pdv{f}{t} + \pdv{H}{\mathbf{p}} \cdot \nabla f + \pdv{H}{\mathbf{r}} \cdot 
-\pdv{f}{\mathbf{p}} = \left( \pdv{f}{t}
+$$\diff{f}{t} + \diffp{H}{\mathbf{p}} \cdot \nabla f
++ \diffp{H}{\mathbf{r}} \cdot \diffp{f}{\mathbf{p}} = \left( \diffp{f}{t}
 \right)_{\text{coll}} \,. $$ {#eq:boltzmann}
 
 
@@ -112,11 +111,11 @@ G^<(x, t; x', t') \,.$$
 $$ A(k, \omega) = \ii \left[ G^>(k, \omega) - G^<(k, \omega) \right]$$
 Maybe there's an equation we can use from Freerick's *Transport in Multilayer
 Nanostructures*?
-$$ G_{ii} (z) = \int \frac{A_{ii}(\omega')}{z - \omega'} d\omega' \,. $$
+$$ G_{ii} (z) = \int \frac{A_{ii}(\omega')}{z - \omega'} \dl \omega' \,. $$
 $$\begin{aligned}
-\pdv{G_{i j}(\tau)}{\tau} &=  \theta(\tau) \expval{c_j^\dagger(0) \comm{\hat{\mathcal{H}} - \mu N}{c_i(\tau)} } \\
+\diffp{G_{i j}(\tau)}{\tau} &=  \theta(\tau) \expval{\hc{c}{j}(0) \comm{\op{\mathcal{H}} - \mu N}{\op{c}{i}(\tau)} } \\
 & -\theta(\tau)\expval{
-\comm{\hat{\mathcal{H}} - \mu N}{c_i(\tau)} c_j^\dagger(0) }\,.
+\comm{\op{\mathcal{H}} - \mu N}{\op{c}{i}(\tau)} \hc{c}{j}(0) }\,.
 \end{aligned}$$ {#eq:hubbardG}
 
 
@@ -137,11 +136,11 @@ $$
     = \sum_{k=1}^m n(\gamma;a_k)\oint(f;a_k)\,.
 $$
 First some large operators both in text: $\iiint_{Q}f(x,y,z)
-\dd{x} \dd{y} \dd{z}$ and 
+\dl{x} \dl{y} \dl{z}$ and 
 $\prod_{\gamma\in\Gamma_{\bar{C}}}\partial(\tilde{X}_\gamma)$; and also on 
 display
 $$
-    \iiiint_{Q}f(w,x,y,z) \dd{w} \dd{x} \dd{y} \dd{z}
+    \iiiint_{Q}f(w,x,y,z) \dl{w} \dl{x} \dl{y} \dl{z}
     \leq
     \oint_{\partial Q} f'\Biggl(\max\Biggl\{
     \frac{\Vert w\Vert}{\vert w^2+x^2\vert};

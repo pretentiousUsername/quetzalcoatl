@@ -9,6 +9,7 @@ overall it's useable.
 
 More work is needed, but, for now, it works.
 
+
 ## List of parameters
 | Parameter | Function | Value |
 |:----------|:---------|:------|
@@ -49,13 +50,22 @@ More work is needed, but, for now, it works.
 | `urlMarkSymbol` | set the mark for urls | unicode character |
 
 
+## Useful documentation
++ `diffcoeff` package
++ `braket` package
+
+
+## Custom macros
+
+
 
 ## Dependencies
 * TeXlive or MikeTeX (a full installation is expected, but not necessary)
-
 * Pandoc
-
 * XeTeX
+
+
+
 
 
 ## TODO

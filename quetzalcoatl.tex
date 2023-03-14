@@ -15,11 +15,16 @@
 \usepackage{amssymb}
 \usepackage{xparse}
 
-% use the [notrig] for no new trig functions, and [italicdiff] for italic
-% differentials/derivatives
-\usepackage{physics}
 
+% Physics stuff
+\usepackage{braket}
+\usepackage{diffcoeff}
 \usepackage{linop}
+
+%% Physics macros
+\newcommand{\expval}[1]{\left< #1 \right>}
+\newcommand{\comm}[2]{\left[ #1 , #2 \right]}
+\newcommand{\acomm}[2]{\left\{ #1, #2 \right\}}
 
 \usepackage{enumerate}
 % Keep pandoc from getting mad
@@ -108,7 +113,30 @@ $if(customType)$
 		%UprightFont = {*-Regular},
 	%]{FdSymbol}
 
-	$if(stixFonts)$
+	$if(xcharter)$
+	\setmainfont[
+		Path = {\fontDir/xcharter/},
+		Extension = {.otf},
+		UprightFont = {*-Roman},
+		ItalicFont = {*-Italic},
+		BoldFont = {*-Bold},
+		BoldItalicFont = {*-BoldItalic}
+		]
+		{XCharter}
+
+	\setmathfont[
+		Path = {\fontDir/xcharter/},
+		Extension = {.otf},
+		]
+		{XCharter-Math}
+
+	\newfontfamily\symbolFont[
+		Extension = {.otf},
+		Path = {\fontDir/xcharter/},
+	]{XCharter-Math}
+	
+	$else$
+
 	\setmainfont[
 		Path = {\fontDir/stix2/},
 		Extension = {.otf},
@@ -132,28 +160,7 @@ $if(customType)$
 		Extension = {.otf},
 		Path = {\fontDir/stix2/},
 	]{StixTwoMath-Regular}
-
-	$else$
-	\setmainfont[
-		Path = {\fontDir/xcharter/},
-		Extension = {.otf},
-		UprightFont = {*-Roman},
-		ItalicFont = {*-Italic},
-		BoldFont = {*-Bold},
-		BoldItalicFont = {*-BoldItalic}
-		]
-		{XCharter}
-
-	\setmathfont[
-		Path = {\fontDir/xcharter/},
-		Extension = {.otf},
-		]
-		{XCharter-Math}
-
-	\newfontfamily\symbolFont[
-		Extension = {.otf},
-		Path = {\fontDir/xcharter/},
-	]{XCharter-Math}
+	
 	$endif$
 	
 	$if(notoSans)$
@@ -227,7 +234,6 @@ $endif$
 \renewcommand{\labelitemiv}{\symbolFont{⟶}}
 
 \usepackage{indentfirst}
-
 
 $if(useEndnotes)$
 \usepackage{endnotes}
@@ -411,8 +417,11 @@ $endif$
 	    urlcolor=$if(urlColor)$ \urlColor $else$ black $endif$,
 	    linkcolor=$if(linkColor)$ \linkColor $else$ black $endif$,
             pdfborder={0 0 0},
-	    $if(title)$ pdftitle={$title$} $endif$,
 	    xetex=true,
+
+	    % pdf info
+	    $if(title)$ pdftitle={$title$} $endif$,
+	    $if(author)$ pdfauthor={$author$} $endif$,
     }
 %\def\UrlBreaks{\do\/\do-}
 \urlstyle{same}  % don't use monospace font for urls

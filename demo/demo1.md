@@ -74,54 +74,32 @@ and make something eyecatching and unique. This is not one of those times.
 I need the reader to actually read this.
 
 Luckily for me, there are plenty of readable typefaces. The main type for
-this document is XCharter---an extended version of Matthew Carter's
-original Bitstream Charter. Overall, it is *very* readable, and prints out
-well at just about any resolution, making it perfect for just about any
-occasion; the typeface also benefits from not being anywhere near as
-overused as, say, Times---and, unlike Computer Modern, can be read for an
+this document is StixTwo---essentially, Time Roman but not as overused---a solid
+workhorse typeface. Overall, it is *very* readable, and prints out well at just 
+about any resolution, making it perfect for just about any occasion; the 
+typeface also benefits from not being anywhere near as overused as, say, 
+Times---and, unlike Computer Modern, can be read for an
 extended period of time.
+
+I elected to change the main typeface from Charter to StixTwo for a few
+reasons---primarily because Stix is a much more modern typeface. For a while,
+I wanted to design my own typeface for this template, but that would be a
+gargantuan undertaking for one person---it would have involved making a regular 
+OTF font with a bold and italic face, plus OTF math font---and the whole thing,
+given my *excellent* project management skills, would have been a mess. So
+StixTwo it is.
+
+I actually quite like Stix. The math font is pretty nice---much better than
+XCharter's in a few ways---but not *perfect* either. I think the Greek
+letters---in particular $\theta$ and $\omega$---look a bit wonky. 
 
 In a supporting role are two other nice typefaces, \textsf{Inter} and
 \texttt{Julia Mono}.
 
-`{\sffamily`{=latex}
-
-For a while I was under the impression that I had to settle on a mediocre
-sans serif typeface, but I was wrong---I found Inter. I *love* this
-typeface so much. Even if it's not the exact design elegance of Frutiger,
-I absolutely adore this typeface's customizability and general readability.
-There are a few features in Inter that are sorely missing from other 
-typefaces, such as an optional serif in the uppercase *I*, curve in the 
-lowercase *l* (not shown here), and even configurable numbers.
-
-Inter works surprisingly well with Charter. I was actually caught off guard
-at first how well they work together. There are a few things that I would
-do differently, like give the *t* a slant, at the top, and make the dots
-on *i* and *j* square rather than round, but those aspects are negligible;
-despite the changes I would make, Inter is so perfect that I'm more than
-content to use it as-is. Honestly, I think this could be the age's new
-Frutiger---and I don't say that lightly. All it needs is a *proper italic*.
-
-
-`}`{=latex}
-
-`{\ttfamily`{=latex}
-Juilia Mono, on the other hand, is a simple---though feature rather
-complete---monospaced typeface. It has, unlike many other monospaced
-typefaces, *italic*, **bold**, and ***bold-italic*** built in, along with
-a *ton* of unicode characters. Like most other monospace typefaces, though,
-there's no full dash---while slightly disappointing, it's nothing shocking.
-
-With all of that put together, Julia Mono could be used to typeset entire
-documents---though I'm not sure if doing all that with a monospaced 
-typeface, for anything other than aesthetics, is the best idea. I don't
-know---I'll try it out some time.
-`}`{=latex}
-
 Let's go over some facts:
 
 #. I am the coolest person to *ever* live---my body temperature is just barely
-   1 K.
+   \qty{1}{\kelvin}.
 #. I am very cold. Please get me a blanket.
     #. If I don't get a blanket I will continue to be cold.
     #. If you're already grabbing me a blanket, would you get me some hot
@@ -148,12 +126,10 @@ so, without further ado, I'll get to making some stuff.
 Let's start with the Linblad master equation, a fine
 choice for starters,[@manzano_short_2020]
 $$ \begin{aligned}
-\frac{\partial \rho(r, t)}{\partial t} = 
-& \sum_j \gamma_j \left( L_j \rho(r, t) L_j^\dagger
-- \frac{1}{2} \left\{ L_j L_j^\dagger, \rho(r, t) \right\} \right) \\
+\diffp{\rho(r, t)}{t} = 
+& \sum_j \gamma_j \left( \op{L}{j} \rho(r, t) \hc{L}{j}
+- \frac{1}{2} \left\{ \op{L}{j} \hc{L}{j}, \rho(r, t) \right\} \right) \\
 & - i \left[ H, \rho(r, t) \right] \,. \end{aligned} $$ {#eq:linblad}
-As it stands now (\today), I'm not a huge fan of the sum sign, but oh
-well---that can change in the future.
 
 There's also the Laughlin wavefunction,[@laughlin_anomalous_1983] which 
 got Robert Laughlin a Nobel,
