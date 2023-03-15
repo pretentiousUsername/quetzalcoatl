@@ -410,19 +410,15 @@ $endif$
 
 \hypersetup{breaklinks=true,
             bookmarks=true,
-            pdfauthor={$author-meta$},
-            pdftitle={$title-meta$},
+            pdfauthor={$author$},
+            pdftitle={$title$},
             colorlinks=true,
             citecolor=$if(citeColor)$ \citeColor $else$ black $endif$,
 	    urlcolor=$if(urlColor)$ \urlColor $else$ black $endif$,
 	    linkcolor=$if(linkColor)$ \linkColor $else$ black $endif$,
             pdfborder={0 0 0},
 	    xetex=true,
-
-	    % pdf info
-	    $if(title)$ pdftitle={$title$} $endif$,
-	    $if(author)$ pdfauthor={$author$} $endif$,
-    }
+}
 %\def\UrlBreaks{\do\/\do-}
 \urlstyle{same}  % don't use monospace font for urls
 
