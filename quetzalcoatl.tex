@@ -201,14 +201,27 @@ $if(customType)$
 	\newfontfamily\titletype[
 		Path = {\fontDir/Inter/},
 		Extension = {.otf},
+		UprightFont = {*-ExtraBold},
+		ItalicFont = {*-ExtraBoldItalic},
+		BoldFont = {*-Black},
+		BoldItalicFont = {*-BlackItalic},
+		RawFeature = {+cv08, +cv01, +cv07, +cv10, +case, +zero},
+		Scale = 0.925,
+	]
+	{Inter}
+
+	\newfontfamily\headType[
+		Path = {\fontDir/Inter/},
+		Extension = {.otf},
 		UprightFont = {*-Bold},
 		ItalicFont = {*-BoldItalic},
 		BoldFont = {*-ExtraBold},
 		BoldItalicFont = {*-ExtraBoldItalic},
 		RawFeature = {+cv08, +cv01, +cv07, +cv10, +case, +zero},
 		Scale = 0.925,
-		]
-		{Inter}
+	]
+	{Inter}
+
 	$endif$
 
 
@@ -496,11 +509,11 @@ $if(serifSections)$
 
 $else$
 \titleformat{\section}%
-{\bfseries\large\titletype}%
+{\large\titletype}%
 {\thesection.}{0.25em}{}
 
 \titleformat{\subsection}%
-{\normalsize\bfseries\sffamily}%
+{\normalsize\headType}%
 {\thesubsection.}{0.25em}{}
 
 %\titleformat{\subsubsection}[runin]{\sffamily\bfseries\normalsize}{}{0.25em}{\periodafter}
