@@ -207,8 +207,8 @@ $if(customType)$
 		BoldItalicFont = {*-BlackItalic},
 		RawFeature = {+cv08, +cv01, +cv07, +cv10, +case, +zero},
 		Scale = 0.925,
-	]
-	{Inter}
+		]
+		{Inter}
 
 	\newfontfamily\headType[
 		Path = {\fontDir/Inter/},
@@ -219,9 +219,20 @@ $if(customType)$
 		BoldItalicFont = {*-ExtraBoldItalic},
 		RawFeature = {+cv08, +cv01, +cv07, +cv10, +case, +zero},
 		Scale = 0.925,
-	]
-	{Inter}
+		]
+		{Inter}
 
+	\newfontfamily\subsubHeadType[
+		Path = {\fontDir/Inter/},
+		Extension = {.otf},
+		UprightFont = {*-SemiBold},
+		ItalicFont = {*-SemiBoldItalic},
+		BoldFont = {*-Bold},
+		BoldItalicFont = {*-BoldItalic},
+		RawFeature = {+cv08, +cv01, +cv07, +cv10, +case, +zero},
+		Scale = 0.925,
+		]
+		{Inter}
 	$endif$
 
 
@@ -519,12 +530,15 @@ $else$
 %\titleformat{\subsubsection}[runin]{\sffamily\bfseries\normalsize}{}{0.25em}{\periodafter}
 
 \titleformat{\subsubsection}[runin]%
-{\sffamily\bfseries\normalsize}%
+{\subsubHeadType\normalsize\mdseries}%
 {\thesubsubsection.}{0.25em}{}
 
-\titleformat{\paragraph}[wrap]%
-{\sffamily\small\filright}%
-{}{0.0em}{}
+\definecolor{parColor}{HTML}{c0c0c0}
+
+% This will need to be adaptable for two-sided documents
+\titleformat{\paragraph}[leftmargin]%
+{\color{parColor}\sffamily\small\filright}%
+{}{0.0em}{\color{parColor}}[]
 
 
 $endif$
@@ -534,6 +548,7 @@ $endif$
 {3pt plus 2pt minus 2pt}
 %\titlespacing\subsubsection{-0.27em}{12pt plus 2pt minus 2pt}%
 %{4pt plus 2pt minus 2pt}
+\titlespacing\paragraph{0pt}{0pt plus 2pt minus 2pt}{0pt plus 2pt minus 2pt}
 
 
 \titlespacing\subsubsection{0em}{12pt plus 2pt minus 2pt}%
