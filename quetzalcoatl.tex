@@ -113,30 +113,7 @@ $if(customType)$
 		%UprightFont = {*-Regular},
 	%]{FdSymbol}
 
-	$if(xcharter)$
-	\setmainfont[
-		Path = {\fontDir/xcharter/},
-		Extension = {.otf},
-		UprightFont = {*-Roman},
-		ItalicFont = {*-Italic},
-		BoldFont = {*-Bold},
-		BoldItalicFont = {*-BoldItalic}
-		]
-		{XCharter}
-
-	\setmathfont[
-		Path = {\fontDir/xcharter/},
-		Extension = {.otf},
-		]
-		{XCharter-Math}
-
-	\newfontfamily\symbolFont[
-		Extension = {.otf},
-		Path = {\fontDir/xcharter/},
-	]{XCharter-Math}
-	
-	$else$
-
+	$if(stixFonts)$
 	\setmainfont[
 		Path = {\fontDir/stix2/},
 		Extension = {.otf},
@@ -160,6 +137,29 @@ $if(customType)$
 		Extension = {.otf},
 		Path = {\fontDir/stix2/},
 	]{StixTwoMath-Regular}
+
+	
+	$else$
+	\setmainfont[
+		Path = {\fontDir/xcharter/},
+		Extension = {.otf},
+		UprightFont = {*-Roman},
+		ItalicFont = {*-Italic},
+		BoldFont = {*-Bold},
+		BoldItalicFont = {*-BoldItalic}
+		]
+		{XCharter}
+
+	\setmathfont[
+		Path = {\fontDir/xcharter/},
+		Extension = {.otf},
+		]
+		{XCharter-Math}
+
+	\newfontfamily\symbolFont[
+		Extension = {.otf},
+		Path = {\fontDir/xcharter/},
+	]{XCharter-Math}
 	
 	$endif$
 	
@@ -225,10 +225,10 @@ $if(customType)$
 	\newfontfamily\subsubHeadType[
 		Path = {\fontDir/Inter/},
 		Extension = {.otf},
-		UprightFont = {*-SemiBold},
-		ItalicFont = {*-SemiBoldItalic},
-		BoldFont = {*-Bold},
-		BoldItalicFont = {*-BoldItalic},
+		UprightFont = {*-Medium},
+		ItalicFont = {*-MediumItalic},
+		BoldFont = {*-SemiBold},
+		BoldItalicFont = {*-SemiBoldItalic},
 		RawFeature = {+cv08, +cv01, +cv07, +cv10, +case, +zero},
 		Scale = 0.925,
 		]
@@ -529,11 +529,14 @@ $else$
 
 %\titleformat{\subsubsection}[runin]{\sffamily\bfseries\normalsize}{}{0.25em}{\periodafter}
 
+\definecolor{s2Color}{HTML}{a0a0a0}
+
 \titleformat{\subsubsection}[runin]%
 {\subsubHeadType\normalsize\mdseries}%
 {\thesubsubsection.}{0.25em}{}
 
-\definecolor{parColor}{HTML}{c0c0c0}
+
+\definecolor{parColor}{HTML}{a8a8a8}
 
 % This will need to be adaptable for two-sided documents
 \titleformat{\paragraph}[leftmargin]%
