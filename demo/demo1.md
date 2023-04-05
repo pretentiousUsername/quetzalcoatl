@@ -73,25 +73,13 @@ Much like in writing, the golden rule everyone teaches you is
 and make something eyecatching and unique. This is not one of those times. 
 I need the reader to actually read this.
 
-Luckily for me, there are plenty of readable typefaces. The main type for
-this document is StixTwo---essentially, Time Roman but not as overused---a solid
-workhorse typeface. Overall, it is *very* readable, and prints out well at just 
-about any resolution, making it perfect for just about any occasion; the 
-typeface also benefits from not being anywhere near as overused as, say, 
-Times---and, unlike Computer Modern, can be read for an
-extended period of time.
-
-I elected to change the main typeface from Charter to StixTwo for a few
-reasons---primarily because Stix is a much more modern typeface. For a while,
-I wanted to design my own typeface for this template, but that would be a
-gargantuan undertaking for one person---it would have involved making a regular 
-OTF font with a bold and italic face, plus OTF math font---and the whole thing,
-given my *excellent* project management skills, would have been a mess. So
-StixTwo it is.
-
-I actually quite like Stix. The math font is pretty nice---much better than
-XCharter's in a few ways---but not *perfect* either. I think the Greek
-letters---in particular $\theta$ and $\omega$---look a bit wonky. 
+I tried to gaslight myself into using StixTwo as the main font, but I realized
+that it just wasn't working for me---despite its more modern features, like
+basic ligatures, I just prefer XCharter. Charter in general is just a wonderful
+typeface, and I loathe to fully replace it. So, StixTwo is still an
+alternative---I know I'll be using it for [my hugo theme][delay] if I ever
+manage to implement an automatic PDF generation script in there---but Charter is
+still my main.
 
 In a supporting role are two other nice typefaces, \textsf{Inter} and
 \texttt{Julia Mono}.
@@ -114,6 +102,8 @@ Let's go over some facts:
 + I sometimes type things on a computer.
 + Sometimes the things I type aren't very good, and other times they're great.
 
+
+[delay]: https://github.com/pretentiousUsername/delay
 
 ## Math typesetting
 Now we can have some fun with typesetting equations. Obviously, since this

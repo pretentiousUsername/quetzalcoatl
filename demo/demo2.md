@@ -9,6 +9,7 @@ abstract: This is the demo for the other set of fonts I'm using in
  I think they're both nice, useful fonts.
 raggedLines: true
 notoSans: true
+stixFonts: true
 ---
 
 [gregg]: https://youtu.be/PRFubyO4Bp0
@@ -94,6 +95,8 @@ $$ \begin{aligned}
 & \sum_j \gamma_j \left( \op{L}{j} \rho(r, t) \hc{L}{j}
 - \frac{1}{2} \left\{ \op{L}{j} \hc{L}{j}, \rho(r, t) \right\} \right) \\
 & - i \left[ H, \rho(r, t) \right] \,. \end{aligned} $$ {#eq:linblad}
+
+#### Super deep questions
 Does $v = \nu$? How do $g$, $u$, $v$ and *v*, $w$, and $z$ look? This is
 slightly unrelated to the Linblad equation, since it's classical, but I'm the
 God of this document, so I'll also write down the Boltzmann equation,

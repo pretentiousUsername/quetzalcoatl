@@ -185,7 +185,27 @@ $if(customType)$
 		Scale = 0.925
 		]
 		{NotoSans}
-	$else$
+	\newfontfamily\headType[
+		Path = {\fontDir/notoSans/},
+		Extension = {.ttf},
+		UprightFont = {*-Bold},
+		ItalicFont = {*-BoldItalic},
+		BoldFont = {*-ExtraBold},
+		BoldItalicFont = {*-ExtraBoldItalic},
+		Scale = 0.925,
+		]
+		{NotoSans}
+	\newfontfamily\subsubHeadType[
+		Path = {\fontDir/notoSans/},
+		Extension = {.ttf},
+		UprightFont = {*-Medium},
+		ItalicFont = {*-MediumItalic},
+		BoldFont = {*-SemiBold},
+		BoldItalicFont = {*-SemiBoldItalic},
+		Scale = 0.925,
+		]
+		{NotoSans}
+$else$
 	\setsansfont[
 		Path= {\fontDir/Inter/},
 		Extension = {.otf},
@@ -456,13 +476,19 @@ $else$
 	\definecolor{urlMarkColor}{HTML}{ab0f0f}
 $endif$
 
+\usepackage{xspace}
+
 $if(urlMarkSymbol)$
 	\let\orighref\href
-	\renewcommand{\href}[2]{\orighref{#1}{#2{\color{urlMarkColor} \symbolFont{$urlMarkSymbol$}}}} % ugly as sin but it works
+	\renewcommand{\href}[2]{\orighref{#1}{#2{\color{urlMarkColor}%
+	\symbolFont{$urlMarkSymbol$}}}} % ugly as sin but it works
 $else$
 
 	\let\orighref\href
-	\renewcommand{\href}[2]{\orighref{#1}{#2{\color{urlMarkColor} \symbolFont{°}}}}
+	%\renewcommand{\href}[2]{\orighref{#1}{#2\color{urlMarkColor}%
+	%\rlap{\symbolFont{°}}}} % I wish this would work properly...
+	\renewcommand{\href}[2]{\orighref{#1}{#2\color{urlMarkColor}%
+	\symbolFont{°}}}
 
 $endif$
 
