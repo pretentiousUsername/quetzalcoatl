@@ -14,11 +14,12 @@
 \usepackage{amsmath}
 \usepackage{amssymb}
 \usepackage{xparse}
+\usepackage{xtemplate}
 
 
 % Physics stuff
 \usepackage{braket}
-\usepackage{diffcoeff}
+\usepackage[spaced=0]{diffcoeff}
 \usepackage{linop}
 
 %% Physics macros
@@ -113,7 +114,7 @@ $if(customType)$
 		%UprightFont = {*-Regular},
 	%]{FdSymbol}
 
-	$if(stixFonts)$
+	$if(stixFont)$
 	\setmainfont[
 		Path = {\fontDir/stix2/},
 		Extension = {.otf},
@@ -138,8 +139,55 @@ $if(customType)$
 		Path = {\fontDir/stix2/},
 	]{StixTwoMath-Regular}
 
-	
+
+	$elseif(erewhonFont)$
+	\setmainfont[
+		Path = {\fontDir/erewhon/},
+		Extension = {.otf},
+		UprightFont = {*-Regular},
+		ItalicFont = {*-Italic},
+		BoldFont = {*-Bold},
+		BoldItalicFont = {*-BoldItalic}
+		]
+		{Erewhon}
+
+	\setmathfont[
+		Path = {\fontDir/erewhon-math/},
+		Extension = {.otf},
+		]
+		{Erewhon-Math}
+
+	\newfontfamily\symbolFont[
+		Extension = {.otf},
+		Path = {\fontDir/erewhon-math/},
+		]{Erewhon-Math}
+
+	$elseif(kpFont)$
+	\setmainfont[
+		Path = {\fontDir/kpfonts-otf/},
+		Extension = {.otf},
+		UprightFont = {*-Regular},
+		ItalicFont = {*-Italic},
+		BoldFont = {*-Bold},
+		BoldItalicFont = {*-BoldItalic},
+		]
+		{KpRoman}
+
+	\setmathfont[
+		Path = {\fontDir/kpfonts-otf/},
+		Extension = {.otf},
+		RawFeature = {+ss15},
+		]
+		{KpMath-Regular}
+
+	% Heavenly father, forgive me, for I know not what I do.
+	\newfontfamily\symbolFont[
+		Extension = {.otf},
+		Path = {\fontDir/kpfonts-otf/},
+	]{KpMath-Regular}
+
 	$else$
+	
 	\setmainfont[
 		Path = {\fontDir/xcharter/},
 		Extension = {.otf},

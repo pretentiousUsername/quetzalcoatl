@@ -1,0 +1,736 @@
+\DocumentMetadata{pdfstandard=A-2b, lang=en-GB}
+\documentclass[a4paper,12pt]{scrartcl}
+
+\usepackage{amsmath, array, varioref}
+\usepackage[british]{babel}
+\usepackage{fourier-otf}
+\setsansfont{Cabin}[Scale=MatchLowercase]
+\setmonofont{Inconsolatazi4}[Scale=MatchLowercase,
+                             HyphenChar=None,StylisticSet={2,3}]
+\usepackage{subfig}
+\captionsetup[subtable]{position=top}
+\usepackage{realscripts}
+\usepackage{microtype}
+\usepackage{hyperref}
+\hypersetup{pdftitle={Erewhon-Math User’s Guide},
+            pdfauthor={Daniel FLIPO},
+            bookmarksopen,
+            colorlinks
+            }
+\newcommand*{\hlabel}[1]{\phantomsection\label{#1}}
+
+\newcommand*{\FGUT}{Fourier-GUT\textit{enberg}}
+\newcommand*{\FOTF}{Erewhon-Math}
+\newcommand*{\pkg}[1]{\texttt{#1}}
+\newcommand*{\file}[1]{\texttt{#1}}
+\newcommand*{\opt}[1]{\texttt{#1}}
+\newcommand*{\cmd}[1]{\texttt{\textbackslash #1}}\newcommand*{\showtchar}[1]{\cmd{#1}~\csname #1\endcsname}
+\newcommand*{\showmchar}[1]{\cmd{#1}~$(\csname #1\endcsname)$}
+\newcommand*{\showmchardollar}[1]{\texttt{\$\cmd{#1}\$}~$(\csname #1\endcsname)$}
+
+\renewcommand{\labelitemi}{\lefthand}
+
+\title{\decofourleft\,\FOTF\,\decofourright}
+\author{Daniel Flipo \\ \texttt{daniel.flipo@free.fr}}
+
+\newcommand*{\version}{0.60}
+
+\begin{document}
+\maketitle
+
+\section{What is \FOTF{}?}
+
+\FOTF{} is an Utopia based OpenType maths font.
+The maths symbols and Greek letters are borrowed or derived from
+Michel Bovani’s \FGUT, Latin letters and digits are borrowed from
+Michael Shape’s Erewhon font.
+
+It requires LuaTeX or XeTeX as engine and the \pkg{unicode-math} package%
+\footnote{Please read the documentation \file{unicode-math.pdf}.}.
+
+It is meant to be used with Utopia based OpenType text fonts like {Erewhon}.
+For \FGUT{} users who want to switch to LuaLaTeX or XeLaTeX, the
+file \file{fourier-otf.sty} can be used as a replacement of \file{fourier.sty}.
+
+Please note that the current version (\version) is \emph{experimental,
+do expect metrics and glyphs to change} until version 1.0 is reached.
+Comments, suggestions and bug reports are welcome!
+
+\section{Usage}
+
+\subsection{Calling \cmd{setmathfont}}
+
+A basic call for \FOTF{} would be:
+\begin{verbatim}
+\usepackage{unicode-math}
+\setmathfont{Erewhon-Math.otf} % Call by file name or
+\setmathfont{Erewhon Math}     % Call by font name
+\end{verbatim}
+this loads \FOTF{} as maths font%
+\footnote{Both calls work equally well with LuaTeX; with XeTeX a call by font
+  name will fail unless the font is declared as a \emph{system font}.}
+with the default options, see subsections~\vref{ssection-um},
+\vref{ssection-cv} and~\vref{ssection-ss} for customisation.
+
+Please note that the three sets of text fonts have to be chosen separately,
+f.i.:%\\[.25\baselineskip]
+
+\pagebreak[4]
+\noindent\verb+\setmainfont{erewhon}+%
+\footnote{\texttt{Erewhon} (with capital E) is fine with LuaTeX but
+  would fail with XeTeX (\file{erewhon.fontspec} not found).}%
+\hspace{62mm}\texttt{\% rm}\\
+\verb+\setsansfont{Cabin}[Scale=MatchLowercase]          % sf+\\
+\verb+\setmonofont{Inconsolatazi4}[Scale=MatchLowercase] % tt+\\[.25\baselineskip]
+otherwise you would get Latin Modern for text fonts.
+
+\subsection{Calling \pkg{fourier-otf.sty} (recommended)}
+
+As an alternative to load \FOTF{} you can type:\\[.5\baselineskip]
+\verb+\usepackage[ +\textit{options}
+\footnote{Possible \textit{options} are \opt{loose}, \opt{no-text}, \opt{Scale=}
+  or any of the options described in sections \ref{ssection-um} to
+  \ref{ssec-other-features}.}%
+\verb+ ]{fourier-otf}+\\[.5\baselineskip]
+it loads \pkg{unicode-math} with the default options, sets Erewhon-Math
+as maths font and Erewhon Text fonts as Roman fonts
+(families \textit{sf} and \textit{tt} left unchanged) but does a bit more:
+\begin{enumerate}
+\item it loads \pkg{realscripts.sty} for better superscripts and footnote calls;
+\item it loads \pkg{fourier-orns.sty}, providing many text ornaments;
+\item it checks at \verb+\begin{document}+ if packages \pkg{amssymb} or
+  \pkg{latexsym} are loaded and issues warnings in case they are;
+\item it provides aliases for glyphs named differently in Unicode, so that
+  \pkg{latexsym} or AMS names are also available;
+\item it defines specific maths characters like \showmchar{Bbbbackslash},
+  \showmchar{varemptyset}, \linebreak[4]
+  \showmchar{parallelslant},
+  \showmchar{shortparallelslant}, etc.;
+\item it reduces spacing in maths mode: \cmd{thinmuskip}, \cmd{medmuskip}
+  and \cmd{thickmuskip} are reduced as in \file{fourier.sty}.
+%  \verb+\thinmuskip=2mu+,\\
+%  \verb+\medmuskip=2.5mu plus 1mu minus 2.5mu+,\\
+%  \verb+\thickmuskip=3.5mu plus 2.5mu+.\\
+  The option \opt{loose} disables these settings.
+\end{enumerate}
+
+Apart from the \opt{loose} option mentioned above, \pkg{fourier-otf.sty}
+provides two options \opt{no-text} and \opt{Scale=}\textsl{<decimal>} meant to
+be used to load the \FOTF{} font together with roman text fonts other than
+Erewhon, while keeping the advantages 1. to 5. pointed in the preceding list,
+f.i.\quad \verb+\usepackage[no-text,Scale=0.98]{fourier-otf}+
+
+Please note that the fonts loaded by \pkg{fourier-otf.sty} are about 2\%
+larger than those loaded by \pkg{fourier.sty}: the Erewhon text fonts are
+based on Utopia reduced à 94\%, while the fourier fonts are based on
+Utopia reduced à 92\%. Option \verb+Scale=0.98+ can be used to mimic the
+output produced by the \pkg{fourier.sty} package.
+
+Option \opt{no-text} can also be useful if Erewhon is to be loaded with
+specific options, f.i. \\
+\verb+\usepackage[no-text]{fourier-otf}+\\
+\verb|\setmainfont{erewhon}[RawFeature=+onum;+ss01]|
+
+\section{What is provided?}
+
+\FOTF{} provides all glyphs supplied by \FGUT{} plus all glyphs available in
+the \pkg{amssymb} and \pkg{latexsym} packages and many more.  Therefore, these
+two packages \emph{should not} be loaded as they might override \FOTF{} glyphs.
+
+Sans-serif, typewriter and fraktur styles are borrowed from Latin Modern fonts.
+See in section~\vref{ssec-math-alphabets} how to choose
+from other maths fonts for these styles.
+
+A full list of available glyphs is shown in file \file{unimath-erewhon.pdf}.
+
+\subsection{Upright or slanted?}
+\label{ssection-um}
+
+Package \pkg{unicode-math} follows \TeX{} conventions for Latin and Greek
+letters: in maths mode, the default option (\opt{math-style=TeX}) prints
+Latin letters $a$…$z$ $A$…$Z$ and lowercase greek letters $\alpha$…$\omega$
+slanted (italic) while uppercase greek letters $\Alpha \Beta \Gamma$…$\Omega$
+are printed upright.
+This can be changed by option \opt{math-style} as shown in
+table~\vref{math-style}.
+
+\begin{table}[ht]
+  \centering
+  \caption{Effects of the \opt{math-style} package option.}
+  \hlabel{math-style}
+  \begin{tabular}{@{}>{\ttfamily}lcc@{}}
+    \hline
+      \rmfamily Package option & Latin & Greek \\
+    \hline
+      math-style=ISO & $(a,z,B,X)$ & $\symit{(\alpha,\beta,\Gamma,\Xi)}$ \\
+      math-style=TeX & $(a,z,B,X)$ & $(\symit\alpha,\symit\beta,\symup\Gamma,\symup\Xi)$ \\
+      math-style=french & $(a,z,\symup B,\symup X)$ & $(\symup\alpha,\symup\beta,\symup\Gamma,\symup\Xi)$ \\
+      math-style=upright & $(\symup a,\symup z,\symup B,\symup X)$ & $(\symup\alpha,\symup\beta,\symup\Gamma,\symup\Xi)$ \\
+    \hline
+  \end{tabular}
+\end{table}
+
+Bold letters are printed upright except lowercase Greek letters
+which are slanted (the default option is \opt{bold-style=TeX}). This can be
+changed by option \opt{bold-style} as shown in table~\vref{bold-style}.
+
+\begin{table}[ht]
+  \centering
+  \caption{Effects of the \opt{bold-style} package option.}
+  \hlabel{bold-style}
+  \begin{tabular}{@{}>{\ttfamily}lcc@{}}
+    \hline
+      \rmfamily Package option & Latin & Greek \\
+    \hline
+      bold-style=ISO & $(\symbfit a, \symbfit z, \symbfit B, \symbfit X)$ & $(\symbfit\alpha, \symbfit\beta, \symbfit\Gamma, \symbfit\Xi)$ \\
+      bold-style=TeX & $(\symbfup a,\symbfup z,\symbfup B,\symbfup X)$ & $(\symbfit\alpha, \symbfit\beta,\symbfup \Gamma,\symbfup \Xi)$ \\
+      bold-style=upright & $(\symbfup a,\symbfup z,\symbfup B,\symbfup X)$ & $(\symbfup \alpha,\symbfup \beta,\symbfup \Gamma,\symbfup \Xi)$ \\
+    \hline
+  \end{tabular}
+\end{table}
+
+Other possible customisation: $\nabla$ is printed upright and $\partial$ is
+printed slanted by default, but \opt{nabla=italic} and
+\opt{partial=upright} can change this.
+
+All these options are offered by the \pkg{unicode-math} package but they can
+be added to the \cmd{setmathfont} call%
+\footnote{IMHO it is easier to add \emph{all options} to the \cmd{setmathfont}
+  command.}, for example:
+
+\verb+\setmathfont{Erewhon-Math.otf}[math-style=french,partial=upright]+\\
+will print for the code
+\begin{verbatim}
+\[ \frac{\partial f}{\partial x} = \alpha \symbf{V} + a\nabla\Gamma
+                                 + \symbf{\beta}\symbf{M} \]
+\end{verbatim}
+\setmathfont{Erewhon-Math.otf}[math-style=french,partial=upright]
+\[\frac{\partial f}{\partial x} = \alpha \symbf{V} + a\nabla\Gamma +
+              \symbf{\beta}\symbf{M} \]
+while the default settings would print
+\setmathfont{Erewhon-Math.otf}[math-style=TeX,partial=italic]
+\[\frac{\partial f}{\partial x} = \alpha \symbf{V} + a\nabla\Gamma +
+              \symbf{\beta}\symbf{M} \]
+
+Both shapes remain available anytime: \verb+$\uppi,\itpi$+
+prints $\uppi, \itpi$.
+
+If your text editor is able to handle Greek letters or maths symbols, they can
+be entered in the code instead control sequences (i.e.
+$\symup{α}$, $\symup{β}$, $\symup{Γ}$,… for \cmd{alpha}, \cmd{beta},
+\cmd{Gamma},…).
+
+\subsection{Character variants}
+\label{ssection-cv}
+
+\FOTF{} provides fourteen ``Character Variants’’ options, listed on
+table~\vref{cv}, to choose between different glyphs for Greek characters
+and some others. Alternative calligraphic capitals have been added for E, Q
+and T in version~0.50.
+
+\begin{table}[ht]
+  \centering  \caption{Character variants.}
+  \hlabel{cv}
+  \begin{tabular}{@{}>{\ttfamily}lccl@{}}
+    \hline
+           & Default       & Variant          & Name\\
+    \hline
+      cv00 & $0$           & $\mupvarzero$    &  0 \\
+      cv01 & $\hslash$     & $\mithbar$       & \cmd{hslash} \\
+      cv02 & $\emptyset$   & $\varemptyset$   & \cmd{emptyset} \\
+      cv03 & $\epsilon$    & $\varepsilon$    & \cmd{epsilon} \\
+      cv04 & $\kappa$      & $\varkappa$      & \cmd{kappa} \\
+      cv05 & $\pi$         & $\varpi$         & \cmd{pi} \\
+      cv06 & $\phi$        & $\varphi$        & \cmd{phi} \\
+      cv07 & $\rho$        & $\varrho$        & \cmd{rho} \\
+      cv08 & $\sigma$      & $\varsigma$      & \cmd{sigma} \\
+      cv09 & $\theta$      & $\vartheta$      & \cmd{theta} \\
+      cv10 & $\Theta$      & $\varTheta$      & \cmd{Theta}\\
+      cv11 & $\mitpartial$ & $\mitvarpartial$ & \cmd{partial}\\
+      cv20 & $\symscr{E}$  & $\varsymscrE$    & \cmd{symcal\{E\}}\\
+      cv21 & $\symscr{Q}$  & $\varsymscrQ$    & \cmd{symcal\{Q\}}\\
+      cv22 & $\symscr{T}$  & $\varsymscrT$    & \cmd{symcal\{T\}}\\
+    \hline
+  \end{tabular}
+\end{table}
+
+For instance, to get \cmd{epsilon} and \cmd{phi} typeset as $\varepsilon$
+and $\varphi$ instead of $\epsilon$ and $\phi$, you can add option
+\verb+CharacterVariant={3,6}+ to the \cmd{setmathfont} call:
+\begin{verbatim}
+\setmathfont{Erewhon-Math.otf}[CharacterVariant={3,6}]
+\end{verbatim}
+
+This  works for all shapes and weights of these characters: f.i.\ %
+\verb+$\symbf{\epsilon}$+, \verb+$\symbf{\phi}$+ are output as
+\setmathfont{Erewhon-Math.otf}[CharacterVariant={3,6}]$\symbf{\epsilon}$,
+$\symbf{\phi}$ instead of
+\setmathfont{Erewhon-Math.otf}$\symbf{\epsilon}$, $\symbf{\phi}$.
+
+Similarly with \opt{math-style=french}, \verb+\epsilon+ and \verb+\phi+
+are output as $\symup{\varepsilon}$ and $\symup{\varphi}$ (upright).
+
+Please note that curly braces are mandatory whenever more than one
+``Character Variant’’ is selected.
+
+Note about \cmd{hbar} (v\,0.43): \pkg{unicode-math} defines \cmd{hbar} as
+\cmd{hslash} (U+210F) while \pkg{amsmath} provides two different glyphs
+(italic h with horizontal or diagonal stroke).\\
+\pkg{Erewhon Math} now follows \pkg{unicode-math}; the italic h with horizontal
+stroke can be printed using \cmd{hslash} or \cmd{hbar} together with character
+variant \texttt{cv01} or with \cmd{mithbar} (replacement for AMS’ command
+\cmd{hbar}).
+
+
+\subsection{Stylistic sets}
+\label{ssection-ss}
+
+\FOTF{} provides five ``Stylistic Sets’’ options to choose between different
+glyphs for families of maths symbols.
+
+\verb+StylisticSet=4+, alias%
+\footnote{These \texttt{Style} aliases are provided by \file{fourier-otf.sty}.}
+ \verb+Style=leqslant+, converts (large) inequalities into their slanted
+ variants, see table~\vref{ss04}.
+
+\verb+StylisticSet=5+, alias \verb+Style=smaller+, converts some symbols into
+their smaller variants, see table~\vref{ss05}.
+\begin{table}[ht]
+  \centering
+  \caption{Stylistic Sets 4 and 5}
+  \subfloat[\texttt{Style=leqslant\quad (+ss04)}]{\hlabel{ss04}%
+  \begin{tabular}[t]{@{}lcc@{}}
+    \hline
+      Command           & Default         & Variant \\
+    \hline
+      \cmd{leq}         & $\leq$         & $\leqslant$ \\
+      \cmd{geq}         & $\geq$         & $\geqslant$ \\
+      \cmd{nleq}        & $\nleq$        & $\nleqslant$ \\
+      \cmd{ngeq}        & $\ngeq$        & $\ngeqslant$ \\
+      \cmd{leqq}        & $\leqq$        & $\leqqslant$ \\
+      \cmd{geqq}        & $\geqq$        & $\geqqslant$ \\
+      \cmd{eqless}      & $\eqless$      & $\eqslantless$ \\
+      \cmd{eqgtr}       & $\eqgtr$       & $\eqslantgtr$ \\
+      \cmd{lesseqgtr}   & $\lesseqgtr$   & $\lesseqslantgtr$ \\
+      \cmd{gtreqless}   & $\gtreqless$   & $\gtreqslantless$ \\
+      \cmd{lesseqqgtr}  & $\lesseqqgtr$  & $\lesseqqslantgtr$ \\
+      \cmd{gtreqqless}  & $\gtreqqless$  & $\gtreqqslantless$ \\
+   \hline
+  \end{tabular}
+  }\hspace{10mm} % eof subfloat
+  \subfloat[\texttt{Style=smaller\quad (+ss05)}]{\hlabel{ss05}%
+  \begin{tabular}[t]{@{}lcc@{}}
+    \hline
+      Command                & Default             & Variant \\
+    \hline
+      \cmd{in}               & $\in$               & $\smallin$ \\
+      \cmd{ni}               & $\ni$               & $\smallni$ \\
+      \cmd{mid}              & $\mid$              & $\shortmid$ \\
+      \cmd{nmid}             & $\nmid$             & $\nshortmid$ \\
+      \cmd{parallel}         & $\parallel$         & $\shortparallel$ \\
+      \cmd{nparallel}        & $\nparallel$        & $\nshortparallel$ \\
+      \cmd{parallelslant}    & $\parallelslant$    & $\shortparallelslant$ \\
+      \cmd{nparallelslant}   & $\nparallelslant$   & $\nshortparallelslant$ \\
+   \hline
+  \end{tabular}
+  }% eof subfloat
+\end{table}
+
+\verb+StylisticSet=6+, alias \verb+Style=subsetneq+, converts some inclusion
+symbols, see table~\vref{ss06}.
+
+\verb+StylisticSet=7+, alias \verb+Style=parallelslant+, converts
+``parallel’’ symbols into their slanted variants, see table~\vref{ss07}.
+\begin{table}[ht]
+  \centering
+  \caption{Stylistic Sets 6 and 7}
+  \subfloat[\texttt{Style=subsetneq\quad (+ss06)}]{\hlabel{ss06}%
+  \begin{tabular}[t]{@{}lcc@{}}
+    \hline
+      Command           & Default         & Variant \\
+    \hline
+      \cmd{subsetneq}   & $\subsetneq$    & $\varsubsetneq$ \\
+      \cmd{supsetneq}   & $\supsetneq$    & $\varsupsetneq$ \\
+      \cmd{subsetneqq}  & $\subsetneqq$   & $\varsubsetneqq$ \\
+      \cmd{supsetneqq}  & $\supsetneqq$   & $\varsupsetneqq$ \\
+   \hline
+  \end{tabular}
+  }\hspace{10mm} % eof subfloat
+  \subfloat[\texttt{Style=parallelslant\quad (+ss07)}]{\hlabel{ss07}%
+  \begin{tabular}[t]{@{}lcc@{}}
+    \hline
+      Command               & Default            & Variant \\
+    \hline
+      \cmd{parallel}        & $\parallel$        & $\parallelslant$ \\
+      \cmd{nparallel}       & $\nparallel$       & $\nparallelslant$ \\
+      \cmd{shortparallel}   & $\shortparallel$   & $\shortparallelslant$ \\
+      \cmd{nshortparallel}  & $\nshortparallel$  & $\nshortparallelslant$ \\
+   \hline
+  \end{tabular}
+  } % eof subfloat
+\end{table}
+
+To enable Stylistic Sets 4, 6 and 7 for \FOTF{}, you should enter
+\begin{verbatim}
+\setmathfont{Erewhon-Math.otf}[StylisticSet={4,6,7}]  or
+\usepackage[Style={leqslant,subsetneq,parallelslant}]{fourier-otf}
+\end{verbatim}
+then, \verb+\[x\leq y \quad A \subsetneq B\quad D \parallel D' \]+
+will print as
+\setmathfont{Erewhon-Math.otf}[StylisticSet={4,6,7}]
+\[x\leq y \quad A \subsetneq B\quad D \parallel D' \]
+instead of
+\setmathfont{Erewhon-Math.otf}
+\[x\leq y \quad A \subsetneq B\quad D \parallel D' \]
+
+\verb+StylisticSet=3+, alias%
+\footnote{These \texttt{Style} aliases are provided by \file{fourier-otf.sty}.}
+\verb+Style=upint+, converts integrals signs into their upright
+variants, see table~\vref{ss03}.
+\begin{table}[ht]
+  \let\DS\displaystyle
+  \centering
+  \caption{Style=upint\quad  (+ss03)}\hlabel{ss03}
+  \begin{tabular}[t]{@{}l*{8}c@{}}
+    \hline
+    Command   &\cmd{int}   &\cmd{iint}  &\cmd{iiint} &\cmd{iiiint}
+                   &\cmd{oint}  &\cmd{oiint} &\cmd{oiiint} \\
+    \hline
+    Default\rule[-15pt]{0pt}{35pt}   &$\DS\int$ &$\DS\iint$ &$\DS\iiint$ &$\DS\iiiint$
+                   &$\DS\oint$ &$\DS\oiint$ &$\DS\oiint$ &$\DS\oiiint$
+    \\[\baselineskip]
+    \setmathfont{Erewhon-Math.otf}[Style=upint]
+    Upright\rule[-15pt]{0pt}{30pt}   &$\DS\int$ &$\DS\iint$  &$\DS\iiint$ &$\DS\iiiint$
+                   &$\DS\oint$ &$\DS\oiint$  &$\DS\oiint$ &$\DS\oiiint$ \\
+    \hline
+  \end{tabular}\\[\baselineskip]
+  \setmathfont{Erewhon-Math.otf}
+  \begin{tabular}[t]{@{}l*{4}c@{}}
+    \hline
+    Command  &\cmd{intclockwise}  &\cmd{awint}
+                   &\cmd{varointclockwise}  &\cmd{ointctrclockwise} \\
+    \hline
+    Default\rule[-15pt]{0pt}{35pt} &$\DS\intclockwise$ &$\DS\awint$
+                   &$\DS\varointclockwise$ &$\DS\ointctrclockwise$ \\
+    \setmathfont{Erewhon-Math.otf}[Style=upint]
+    Upright\rule[-15pt]{0pt}{30pt}  &$\DS\intclockwise$ &$\DS\awint$
+                   &$\DS\varointclockwise$  &$\DS\ointctrclockwise$ \\
+    \hline
+  \end{tabular}
+\end{table}
+\setmathfont{Erewhon-Math.otf}
+
+\subsection{Other font features}
+\label{ssec-other-features}
+
+\subsubsection{Oldstyle numbers}
+
+To get oldstyle numbers in maths, the feature \texttt{+onum} is available:
+\begin{verbatim}
+\setmathfont{Erewhon-Math.otf}[Numbers=OldStyle]  or
+\usepackage[Style=fulloldstyle]{fourier-otf}
+\end{verbatim}
+
+\setmathfont{Erewhon-Math.otf}[Numbers=OldStyle]
+$0123456789, \symbf{0123456789}$
+\setmathfont{Erewhon-Math.otf}
+
+\subsubsection{Delimiters’ size}
+
+When switching from Type\,1 to OpenType, Adobe has significantly increased%
+\footnote{Actually +21\% both in height and thickness!}
+the sizes of Utopia’s delimiters `()’, `[]’ and `\{\}’.  Erewhon-Math has been
+built from Fourier (Utopia’s Type\,1 type faces%
+\footnote{Scaled at 94\% instead of 92\% to match Erewhon text fonts.}),
+while the Erewhon text fonts have been built from the OpenType version;
+the difference was visible on examples like \verb|($P(n)$)| which has been
+typeset as%
+\setmathfont{Erewhon-Math.otf}[Style=smalldelim] ($P(n)$)
+by versions up to~0.53.%
+\setmathfont{Erewhon-Math.otf}
+
+This glitch is now fixed, you get now ($P(n)$), [$P[n]$], \{$P\{n\}$\}.
+An option \opt{Style=smalldelim} (\opt{+ss09}),
+which can be passed either to the \pkg{fourier-otf} package or to the
+\verb|\setmathfont| command, has been added in version~0.54 for backward
+compatibility: it reverts to the former behaviour.
+
+\subsection{Standard LaTeX math commands}
+\label{ssec-math-commands}
+
+All standard LaTeX maths commands, all \pkg{amssymb} commands and all
+\pkg{latexsym} commands are supported by \FOTF{}, for some of them loading
+\pkg{fourier-otf.sty} is required.
+
+Various wide accents are also supported:
+\begin{itemize}
+\item \cmd{wideoverbar} and \cmd{mathunderbar}%
+  \footnote{\cmd{overline} and \cmd{underline} are not font related,
+     they are based on \cmd{rule}.}
+  \[\wideoverbar{x}\quad \wideoverbar{xy}\quad \wideoverbar{xyz}\quad
+    \wideoverbar{A\cup B}\quad \wideoverbar{A\cup (B\cap C)\cup D}\quad
+    \mathunderbar{m+n+p}\]
+
+\item \cmd{widehat} and \cmd{widetilde}
+\[\widehat{x}\; \widehat{xx} \;\widehat{xxx} \;\widehat{xxxx}\;
+  \widehat{xxxxx} \;\widehat{xxxxxx} \;\widetilde{x}\; \widetilde{xx}\;
+  \widetilde{xxx} \;\widetilde{xxxx} \;\widetilde{xxxxx}\;
+  \widetilde{xxxxxx}\]
+
+\item \cmd{widecheck}  and \cmd{widebreve}
+  \[\widecheck{x}\quad \widecheck{xxxx}\quad \widecheck{xxxxxx}\quad
+    \widebreve{x}\quad \widebreve{xxxx}\quad \widebreve{xxxxxx}\]
+
+\item \cmd{overparen} and \cmd{underparen}
+  \[\overparen{x}\quad \overparen{xy}\quad \overparen{xyz}\quad
+    \mathring{\overparen{A\cup B}}\quad
+    \overparen{A\cup (B\cap C)\cup D}^{\smwhtcircle}\quad
+    \overparen{x+y}^{2}\quad \overparen{a+b+...+z}^{26}\]
+\[\underparen{x}\quad \underparen{xz} \quad \underparen{xyz}
+  \quad \underparen{x+z}_{2}\quad \underparen{a+b+...+z}_{26}\]
+
+\item \cmd{overbrace} and \cmd{underbrace}
+  \[\overbrace{a}\quad \overbrace{ab}\quad \overbrace{abc}\quad
+  \overbrace{abcd}\quad \overbrace{abcde}\quad
+  \overbrace{a+b+c}^{3}\quad \overbrace{ a+b+. . . +z }^{26}\]
+  \[\underbrace{a}\quad\underbrace{ab}\quad\underbrace{abc}\quad
+  \underbrace{abcd}\quad \underbrace{abcde}\quad
+  \underbrace{a+b+c}_{3}  \quad \underbrace{ a+b+...+z }_{26}\]
+
+\item \cmd{overbracket} and \cmd{underbracket}
+  \[\overbracket{a}\quad \overbracket{ab}\quad \overbracket{abc}\quad
+  \overbracket{abcd}\quad \overbracket{abcde}\quad
+  \overbracket{a+b+c}^{3}\quad \overbracket{ a+b+. . . +z }^{26}\]
+  \[\underbracket{a}\quad\underbracket{ab}\quad\underbracket{abc}\quad
+  \underbracket{abcd}\quad \underbracket{abcde}\quad
+  \underbracket{a+b+c}_{3}  \quad \underbracket{ a+b+...+z }_{26}\]
+
+\item \cmd{overrightarrow} and \cmd{overleftarrow}
+  \[\overrightarrow{v}\quad \overrightarrow{M}\quad \overrightarrow{vv}
+  \quad \overrightarrow{AB}\quad \overrightarrow{ABC}
+  \quad \overrightarrow{ABCD} \quad \overrightarrow{ABCDEFGH}.
+  \]
+  \[\overleftarrow{v}\quad \overleftarrow{M}\quad \overleftarrow{vv}
+  \quad \overleftarrow{AB}\quad \overleftarrow{ABC}
+  \quad \overleftarrow{ABCD} \quad \overleftarrow{ABCDEFGH}\]
+
+\item \cmd{overrightharpoon} and \cmd{overleftharpoon}
+  \[\overrightharpoon{v}\quad \overrightharpoon{M}\quad \overrightharpoon{vv}
+  \quad \overrightharpoon{AB}\quad \overrightharpoon{ABC}
+  \quad \overrightharpoon{ABCD} \quad \overrightharpoon{ABCDEFGH}.
+  \]
+  \[\overleftharpoon{v}\quad \overleftharpoon{M}\quad \overleftharpoon{vv}
+  \quad \overleftharpoon{AB}\quad \overleftharpoon{ABC}
+  \quad \overleftharpoon{ABCD} \quad \overleftharpoon{ABCDEFGH}\]
+
+\item \cmd{underrightarrow} and \cmd{underleftarrow}
+  \[\underrightarrow{v}\quad \underrightarrow{M}\quad \underrightarrow{vv}
+  \quad \underrightarrow{AB}\quad \underrightarrow{ABC}
+  \quad \underrightarrow{ABCD} \quad \underrightarrow{ABCDEFGH}.
+  \]
+  \[\underleftarrow{v}\quad \underleftarrow{M}\quad \underleftarrow{vv}
+  \quad \underleftarrow{AB}\quad \underleftarrow{ABC}
+  \quad \underleftarrow{ABCD} \quad \underleftarrow{ABCDEFGH}\]
+
+\item \cmd{underrightharpoon} and \cmd{underleftharpoondown}
+  \[\underrightharpoondown{v}\quad \underrightharpoondown{M}\quad
+    \underrightharpoondown{vv}\quad \underrightharpoondown{AB}\quad
+    \underrightharpoondown{ABC}\quad \underrightharpoondown{ABCD}\quad
+    \underrightharpoondown{ABCDEFGH}.
+  \]
+  \[\underleftharpoondown{v}\quad \underleftharpoondown{M}\quad
+    \underleftharpoondown{vv}\quad \underleftharpoondown{AB}\quad
+    \underleftharpoondown{ABC}\quad \underleftharpoondown{ABCD}
+    \quad \underleftharpoondown{ABCDEFGH}.
+  \]
+
+\item Finally \cmd{widearc} and \cmd{overrightarc}
+      (loading \pkg{fourier-otf.sty} is required)
+  \[\widearc{AMB}\quad \overrightarc{AMB}\]
+\end{itemize}
+
+\subsection{Mathematical alphabets}
+\label{ssec-math-alphabets}
+
+\begin{itemize}
+\item  All Latin and Greek characters are available in italic, upright, bold
+  and bold italic via the \verb+\symit{}+, \verb+\symup{}+, \verb+\symbf{}+
+  and \verb+\symbfit{}+ commands.
+
+\item Calligraphic alphabet (\cmd{symscr} or \cmd{symcal} or
+  \cmd{mathcal} command), uppercase:\\
+  $\symscr{ABCDEFGHIJKLMNOPQRSTUVWXYZ}$\\
+  also in boldface (\cmd{symbfscr},\cmd{symbfcal} or \cmd{mathbfcal} command):\\
+  $\symbfscr{ABCDEFGHIJKLMNOPQRSTUVWXYZ}$
+
+\item Blackboard-bold alphabet (\cmd{symbb} or \cmd{mathbb} command),
+  uppercase, lowercase and digits:
+
+  $\symbb{ABCDEFGHIJKLMNOPQRSTUVWXYZ}$
+
+  $\symbb{abcdefghijklmnopqrstuvwxyz\quad 0123456789}$
+
+\item Fraktur alphabet is borrowed from Latin Modern,
+
+  $\symfrak{ABCDEFGHIJKLMNOPQRSTUVWXYZ abcdefghijklmnopqrstuvwxyz}$
+
+  but this can overwritten, i.e.
+\begin{verbatim}
+\setmathfont{Asana-Math.otf}[range=frak,Scale=MatchUppercase]
+$\symfrak{ABCDEFGHIJKL...XYZ abcdefghijkl...xyz}$
+\end{verbatim}
+\setmathfont{Asana-Math.otf}[range=frak,Scale=MatchUppercase]
+$\symfrak{ABCDEFGHIJKLMNOPQRSTUVWXYZ abcdefghijklmnopqrstuvwxyz}$
+
+\item Sans serif alphabet is borrowed from Latin Modern,
+
+$\symsfup{ABCDEFGHIJKLM abcdefghijk}\quad\symsfit{NOPQRSTUVWXYZ mnopqrstuvwxyz}$
+
+  but it can be borrowed from another maths font, i.e.
+\begin{verbatim}
+\setmathfont{STIXTwoMath-Regular.otf}[range={sfup,sfit},
+                            Scale=MatchUppercase]
+$\symsfup{ABCD...klm}\quad\symsfit{NOPQ...xyz}$
+\end{verbatim}
+\setmathfont{STIXTwoMath-Regular.otf}[range={sfup,sfit},Scale=MatchUppercase]
+$\symsfup{ABCDEFGHIJKLM abcdefghijklm}\quad
+    \symsfit{NOPQRSTUVWXYZ nopqrstuvwxyz}$
+
+\item Typewriter alphabet is borrowed from Latin Modern,
+
+  $\symtt{ABCDEFGHIJKLMNOPQRSTUVWXYZ abcdefghijklmnopqrstuvwxyz}$
+
+but it can be borrowed from  another Math font, i.e.
+\begin{verbatim}
+\setmathfont{STIXTwoMath-Regular.otf}[range=tt,Scale=MatchUppercase]
+$\symtt{ABCDE...XYZ abcde...xyz}$
+\end{verbatim}
+\setmathfont{STIXTwoMath-Regular.otf}[range=tt,Scale=MatchUppercase]
+$\symtt{ABCDEFGHIJKLMNOPQRSTUVWXYZ abcdefghijklmnopqrstuvwxyz}$
+\end{itemize}
+
+Like Latin Modern, Erewhon-Math provides only four lowercase Latin letters in
+script (or calligraphic) shape:  $\mscre$, $\mscrg$, $\ell$, $\mscro$
+(\verb+\mscre+, \verb+\mscrg+, \verb+\ell+, \verb+\mscro+).
+
+All others (range \verb+"1D4B6+ to \verb+"1D4CF+) have to be borrowed
+from another maths font if needed, i.e.
+\begin{verbatim}
+\setmathfont{LibertinusMath-Regular.otf}%
+            [range="1D4B6-"1D4CF, Scale=MatchLowercase]
+\end{verbatim}
+
+\subsection{Bold variant}
+
+In case short maths formulas have to be printed in section titles,
+a \emph{limited} bold variant has been added in version~0.54. Example of usage:\\
+\verb+\setmathfont{Erewhon-Math-Bold.otf}[version=bold, +\textit{options}\verb+]+
+\\
+\verb+\section{\mathversion{bold} Einstein’s equation $E=mc^2$}+
+
+\subsection{Missing symbols}
+
+\FOTF{} does not aim at being as complete as \file{STIXTwoMath-Regular} or
+\file{Cambria}, the current glyph coverage compares with TeXGyre maths fonts.
+In case some symbols do not show up in the output file, you will see warnings
+in the \file{.log} file, for instance:
+
+\setmathfont{STIXTwoMath-Regular.otf}[range={"2964}]
+\texttt{Missing character: There is no }$⥤$%
+\texttt{ (U+2964) in font ErewhonMath}
+
+Borrowing them from a more complete font, say \file{Asana-Math},
+is a possible workaround:
+\verb+\setmathfont{Asana-Math.otf}[range={"2964},Scale=1.02]+\\
+scaling is possible, multiple character ranges are separated with commas:\\
+\verb+\setmathfont{Asana-Math.otf}[range={"294A-"2951,"2964,"2ABB-"2ABE}]+
+
+Let’s mention \pkg{albatross}, a useful tool to find out the list of fonts
+providing a given glyph: f.i. type in a terminal ``\texttt{albatross U+2964}’’,
+see the manpage or \file{albatross-manual.pdf}.
+
+\subsection{Fourier ornaments}
+
+When loaded by \verb+\usepackage{fourier-otf}+, Erewhon-Math loads
+\pkg{fourier-orns.sty} which provides all logos and ornaments available
+in \FGUT.
+
+\pkg{fourier-orns.sty} as of v2.x automatically fetches its glyphs in
+a specific OpenType font with LuaTeX or XeTeX engines and from
+a Type\,1 font otherwise (pdfTeX).
+
+\begin{raggedright}
+\begin{itemize}
+
+%%%\item \showtchar{textpertenthousand}, \textit{\textpertenthousand},
+%%%  \textbf{\textpertenthousand},  \textbf{\textit{\textpertenthousand}}.
+
+\item A variant of the euro symbol: \showtchar{eurologo}, \textit{\eurologo},
+  \textbf{\eurologo},  \textbf{\textit{\eurologo}}.
+
+\item Two ``starred'' bullets: \showtchar{starredbullet}, \showtchar{decosix}.
+
+\item Decos and logos: \showtchar{warning}, \showtchar{noway},
+  \showtchar{caution}, \showtchar{bomb},\\
+  \showtchar{decoone}, \showtchar{decotwo}, \showtchar{decothreeleft},
+    \showtchar{decothreeright},
+  \showtchar{decofourleft}, \showtchar{decofourright},
+  \showtchar{floweroneleft}, \showtchar{floweroneright},\\
+  \showtchar{lefthand}, \showtchar{righthand},
+  \showtchar{textxswup}, \showtchar{textxswdown}.
+
+\item Smileys: \showtchar{grimace}, \showtchar{textthing}.
+
+\item Leaves: \showtchar{aldineleft}, \showtchar{aldineright},
+   \showtchar{aldine}, \showtchar{aldinesmall}, %\\
+  \showtchar{leafleft}, \showtchar{leafright}, \showtchar{leafNE},
+  \showtchar{leafNW}, \showtchar{leafSE}, \showtchar{leafSW}.
+
+\item Pilcrows: \showtchar{oldpilcrowone}, \showtchar{oldpilcrowtwo},
+  \showtchar{oldpilcrowthree}, %\\
+  \showtchar{oldpilcrowfour},
+  \showtchar{oldpilcrowfive} aaaa, %\\
+  \showtchar{oldpilcrowsix} aaaaaaaaaaa.
+\end{itemize}
+\end{raggedright}
+
+All these logos and ornaments are also available as described in the
+\pkg{fournier-orns} documentation: for instance, you could type
+\verb+{\FourierOrns E 2 F}+ to get {\FourierOrns E 2 F}.
+
+\vspace{\baselineskip}
+Finally, some symbols are also provided in maths mode, with other names:
+\begin{itemize}
+\item \showmchardollar{forbidden}, \showmchardollar{beware},
+      \showmchardollar{boom},
+\item \showmchardollar{thething} is a \emph{QED symbol}
+  for a false proof. Of course, you don't need it!
+\item \showmchardollar{xswordsup} and \showmchardollar{xswordsdown} may be used
+  as tags for a debated statement, or for anything else.
+\end{itemize}
+
+\section{Acknowledgements}
+
+All glyphs in \FOTF{} are borrowed or derived either from Erewhon fonts or
+\FGUT{} package.  Many thanks to Michael Sharpe and Michel Bovani for
+providing these.
+
+I am grateful to George Williams and his co-workers for providing and
+maintaining FontForge and to Ulrik Vieth for his illuminating paper published
+in TUGboat~2009 Volume~30 about Open Type Math.
+
+Thanks to Oliver Natt for providing valuable feedback!
+
+\bigskip
+\begin{center}\Huge
+\decotwo
+\end{center}
+
+\end{document}
+
+%%% Local Variables:
+%%% mode: latex
+%%% TeX-engine: luatex
+%%% TeX-master: t
+%%% coding: utf-8
+%%% End:

@@ -1,0 +1,10 @@
+\defaultfontfeatures[erewhon]
+  {
+  Extension = .otf ,
+  SlantedFont = Erewhon-RegularSlanted,
+  BoldSlantedFont = Erewhon-BoldSlanted,
+  BoldFont = Erewhon-Bold,
+  ItalicFont = Erewhon-Italic,
+  BoldItalicFont = Erewhon-BoldItalic,
+  UprightFont = Erewhon-Regular,
+ }

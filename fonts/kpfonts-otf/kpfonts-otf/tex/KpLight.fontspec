@@ -1,0 +1,13 @@
+\defaultfontfeatures[KpLight]
+  { Extension = .otf,
+    UprightFont =    KpRoman-Light,
+    BoldFont =       KpRoman-Semibold,
+    ItalicFont =     KpRoman-LightItalic,
+    BoldItalicFont = KpRoman-SemiboldItalic,
+    SlantedFont =    KpRoman-Light,
+    SlantedFeatures = {FakeSlant=0.19},
+    BoldSlantedFont =  KpRoman-Semibold,
+    BoldSlantedFeatures = {FakeSlant=0.19},
+    SmallCapsFeatures = {Letters=PetiteCaps},
+    Ligatures={Common,RequiredOff,RareOff,HistoricOff}
+  }

@@ -1,0 +1,63 @@
+% THIS FILE WAS AUTOMATICALLY GENERATED -- DO NOT EDIT
+
+%%AutoEnc_oed5ww6wkgha64hzrgdpnh7a5d
+% Encoding created by otftotfm on Sun May 15 17:40:41 2022
+% Command line follows encoding
+/AutoEnc_oed5ww6wkgha64hzrgdpnh7a5d [
+%00
+  /Gamma /uni0394 /Theta /Lambda /Xi /Pi /Sigma /Upsilon
+  /Phi /Psi /Omega /.notdef /.notdef /.notdef /.notdef /.notdef
+%10
+  /dotlessi /uni0237 /grave /acute /caron /breve /macron /ring
+  /cedilla /germandbls /ae /oe /oslash /AE /OE /Oslash
+%20
+  /uni2423 /exclam /quotedblright /numbersign /dollar /percent /ampersand /quoteright
+  /parenleft /parenright /asterisk /plus /comma.superior /hyphen /period.superior /slash
+%30
+  /zero.superior /one.superior /two.superior /three.superior /four.superior /five.superior /six.superior /seven.superior
+  /eight.superior /nine.superior /colon /semicolon /exclamdown /equal /questiondown /question
+%40
+  /at /A /B /C /D /E /F /G
+  /H /I /J /K /L /M /N /O
+%50
+  /P /Q /R /S /T /U /V /W
+  /X /Y /Z /bracketleft.superior /quotedblleft /bracketright.superior /circumflex /dotaccent
+%60
+  /quoteleft /uniF6E9 /uniF6EA /uniE049 /uniF6EB /uniF6EC /uniE04E /uniE04C
+  /uniE048 /uniF6ED /uniE04A /uniE04B /uniF6EE /uniF6EF /uni207F /uniF6F0
+%70
+  /uniE052 /uniE053 /uniF6F1 /uniF6F2 /uniF6F3 /uniE050 /uniE054 /uniE055
+  /uniE056 /uniE057 /uniE058 /endash /emdash /hungarumlaut /tilde /dieresis
+%80
+  /.notdef /.notdef /.notdef /.notdef /.notdef /.notdef /.notdef /.notdef
+  /.notdef /.notdef /Lslash /.notdef /.notdef /.notdef /.notdef /.notdef
+%90
+  /.notdef /.notdef /.notdef /.notdef /.notdef /.notdef /.notdef /.notdef
+  /.notdef /.notdef /.notdef /.notdef /.notdef /.notdef /.notdef /.notdef
+%A0
+  /.notdef /.notdef /.notdef /.notdef /.notdef /.notdef /.notdef /.notdef
+  /.notdef /.notdef /lslash /.notdef /.notdef /.notdef /.notdef /.notdef
+%B0
+  /.notdef /.notdef /.notdef /.notdef /.notdef /.notdef /.notdef /.notdef
+  /.notdef /.notdef /.notdef /.notdef /.notdef /.notdef /.notdef /.notdef
+%C0
+  /.notdef /.notdef /.notdef /.notdef /.notdef /.notdef /.notdef /.notdef
+  /.notdef /.notdef /.notdef /.notdef /.notdef /.notdef /.notdef /.notdef
+%D0
+  /.notdef /.notdef /.notdef /.notdef /.notdef /.notdef /.notdef /.notdef
+  /.notdef /.notdef /.notdef /.notdef /.notdef /.notdef /.notdef /.notdef
+%E0
+  /.notdef /.notdef /.notdef /.notdef /.notdef /.notdef /.notdef /.notdef
+  /.notdef /.notdef /.notdef /.notdef /.notdef /.notdef /.notdef /.notdef
+%F0
+  /.notdef /.notdef /.notdef /.notdef /.notdef /.notdef /.notdef /.notdef
+  /.notdef /.notdef /.notdef /.notdef /.notdef /.notdef /.notdef /.notdef
+] def
+% Command line: 'otftotfm --automatic --encoding=fontools_ot1
+% --tfm-directory=/Users/msharpe/Library/texlive/2022/texmf-var/fonts/tfm/public/erewhon
+% --vf-directory=/Users/msharpe/Library/texlive/2022/texmf-var/fonts/vf/public/erewhon
+% --type1-directory=/Users/msharpe/Library/texlive/2022/texmf-var/fonts/type1/public/erewhon
+% --encoding-directory=/Users/msharpe/Library/texlive/2022/texmf-var/fonts/enc/dvips/erewhon
+% --map-file=/Users/msharpe/Library/texlive/2022/texmf-var/fonts/map/dvips/erewhon/erewhon.map
+% --no-updmap --force --coding-scheme=TEX TEXT --feature=sups --ligkern=*
+% {KL} * Erewhon-BoldSlanted.otf Erewhon-BoldSlanted-sup-ot1'

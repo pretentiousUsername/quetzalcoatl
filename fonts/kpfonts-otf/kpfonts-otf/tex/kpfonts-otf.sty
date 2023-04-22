@@ -1,0 +1,466 @@
+\NeedsTeXFormat{LaTeX2e}[2019-01-01]
+\def\fileversion{0.51}
+\def\filedate{2023-03-30}
+\ProvidesPackage{kpfonts-otf}[\filedate\space\fileversion]
+
+% Ensure luatex or xetex engine
+\RequirePackage{iftex}[2019-10-24]
+\RequireTUTeX
+%
+\newif\ifkp@math	\kp@mathtrue
+\newif\ifkp@text  	\kp@texttrue
+\newif\ifkp@sf      \kp@sftrue
+\newif\ifkp@tt      \kp@tttrue
+%
+\newif\ifkp@lighttext
+\newif\ifkp@largesmallcaps
+\newif\ifkp@altfligs
+\newif\ifkp@eurosym
+\newif\ifkp@germandbls
+\newif\ifkp@harfbuzz
+\newif\ifkp@osn
+\newif\ifkp@os
+\newif\ifkp@vos
+\newif\ifkp@Qtail
+%
+\newif\ifkp@lightmath
+\newif\ifkp@osnm
+\newif\ifkp@narrowiints
+\newif\ifkp@partialup
+\newif\ifkp@Dcommand    \kp@Dcommandtrue
+\newif\ifkp@sfmathbb
+\newif\ifkp@frenchstyle
+\newif\ifkp@calasscr
+\newif\ifkp@oldReIm
+\newif\ifkp@symbols     \kp@symbolstrue
+\newif\ifkp@tight
+%
+% Global options
+\DeclareOption{light}            {\kp@lighttexttrue\kp@lightmathtrue}
+\DeclareOption{nomath}           {\kp@mathfalse\kp@symbolsfalse}
+\DeclareOption{notext}           {\kp@textfalse}
+\DeclareOption{nosf}             {\kp@sffalse}
+\DeclareOption{nott}             {\kp@ttfalse}
+\DeclareOption{onlyrm}           {\kp@ttfalse\kp@sffalse}
+\DeclareOption{fulloldstylenums} {\kp@osntrue\kp@osnmtrue}
+\DeclareOption{fulloldstyle}     {\kp@ostrue\kp@Qtailtrue\kp@osntrue
+                                  \kp@osnmtrue}
+% Text options
+\DeclareOption{lighttext}        {\kp@lighttexttrue}
+\DeclareOption{oldstylenums}     {\kp@osntrue}
+\DeclareOption{oldstyle}         {\kp@ostrue\kp@osntrue\kp@Qtailtrue}
+\DeclareOption{veryoldstyle}     {\kp@vostrue\kp@osntrue\kp@Qtailtrue}
+\DeclareOption{largesmallcaps}   {\kp@largesmallcapstrue}
+\DeclareOption{altfligs}         {\kp@altfligstrue}
+\DeclareOption{germandbls}       {\kp@germandblstrue}
+\DeclareOption{eurosym}          {\kp@eurosymtrue}
+\DeclareOption{harfbuzz}         {\kp@harfbuzztrue}
+% Math options
+\DeclareOption{lightmath}        {\kp@lightmathtrue}
+\DeclareOption{bbsans}           {\kp@sfmathbbtrue}
+\DeclareOption{mathcal}          {\kp@calasscrtrue}
+\DeclareOption{narrowiints}      {\kp@narrowiintstrue}
+\DeclareOption{frenchstyle}      {\kp@frenchstyletrue}
+\DeclareOption{partialup}        {\kp@partialuptrue}
+\DeclareOption{oldstylenumsmath} {\kp@osnmtrue}
+\DeclareOption{fancyReIm}        {\kp@oldReImtrue}
+\DeclareOption{noDcommand}       {\kp@Dcommandfalse}
+\DeclareOption{tight}            {\kp@tighttrue}
+\DeclareOption{symbols}          {\kp@textfalse\kp@sffalse\kp@ttfalse
+                                  \kp@mathfalse}
+\ProcessOptions
+
+% Concatenation of Math options.
+\newtoks\KpMtoks
+\newcommand*{\Store@KP@MOption}[2]{%
+  \KpMtoks=\expandafter{\the\KpMtoks #1={#2},}}
+
+% Text fonts setup...
+\ifkp@text
+  \RequirePackage{fontspec}[2019/01/01]
+  % Style alias (text only)
+  \newopentypefeature{Style}{autolongs}{+ss12}
+  \RequirePackage{realscripts}
+  % Two candidates for \rmfamily:
+  \newfontfamily\KpRoman{KpRoman}
+  \newfontfamily\KpLight{KpLight}
+  % Euro symbol
+  \newcommand*{\kp@euro}{\ifkp@eurosym\char"E990 \else\char"20AC \fi}
+  \newcommand*{\kpeuro}[1][]{\def\@tmp{#1}%
+    \ifx\@tmp\@empty \kp@euro \else #1~\kp@euro\fi
+  }
+  % Option harfbuzz is needed with HBLuaTeX to typeset some composed chars
+  % not ready-made in the KPfonts (f.i. ċṅṁ, ạẹịụọṃ,…).
+  \ifluahbtex\ifkp@harfbuzz\defaultfontfeatures+{Renderer=HarfBuzz}\fi\fi
+  % TS1 accent in Private Area
+  \DeclareUnicodeAccent{\newtie}{TU}{"E9F0}
+  % Accents not in tuenc.def
+  \DeclareUnicodeAccent{\candra}    \UnicodeEncodingName{"0310}
+  \DeclareUnicodeAccent{\ringbelow} \UnicodeEncodingName{"0325}
+  % Long s: ſ
+  \DeclareTextCommand{\longs}{TU}{\char"17F}
+  \DeclareTextCommand{\shorts}{TU}{\char"17F\char"200B}
+  % Oldstylenums
+  \ifkp@osn
+    \ifkp@tt
+      \defaultfontfeatures+[\ttfamily]{Numbers=Lowercase}
+    \fi
+    \defaultfontfeatures+[KpRoman,KpLight,\sffamily]{Numbers=Lowercase}
+  \fi
+  %% Oldstyle
+  \ifkp@os
+    \ifkp@tt
+      \defaultfontfeatures+[\ttfamily]{Style=Swash}
+    \fi
+    \defaultfontfeatures+[KpRoman,KpLight,\sffamily]{Style=Swash,Ligatures=Rare}
+  \fi
+  %% Veryoldstyle
+  \ifkp@vos
+    \ifkp@tt
+      \defaultfontfeatures+[\ttfamily]{StylisticSet=12, Ligatures=Historic}
+    \fi
+    \defaultfontfeatures+[KpRoman,KpLight,\sffamily]{%
+            StylisticSet=12, Ligatures=Historic}
+  \fi
+  % Smallcaps
+  \ifkp@largesmallcaps
+    \defaultfontfeatures+[KpRoman,KpLight,\sffamily]{%
+            SmallCapsFeatures = {Letters=SmallCaps}}
+  \else
+    \defaultfontfeatures+[KpRoman,KpLight,\sffamily]{%
+            SmallCapsFeatures = {Letters=PetiteCaps}}
+  \fi
+  % Altfligs
+  \ifkp@altfligs
+    \defaultfontfeatures+[KpRoman,KpLight,\sffamily]{StylisticSet=1}
+  \fi
+  % Germandbls
+  \ifkp@germandbls
+    \defaultfontfeatures+[KpRoman,KpLight,\sffamily]{StylisticSet=2}
+  \fi
+  % Euro symbol
+  \ifkp@eurosym
+    \ifkp@tt
+      \defaultfontfeatures+[\ttfamily]{StylisticSet=3}
+    \fi
+    \defaultfontfeatures+[KpRoman,KpLight,\sffamily]{StylisticSet=3}
+  \fi
+  % Loading Text Serif fonts:
+  \ifkp@lighttext
+    \setmainfont{KpLight}
+    \renewfontfamily\KpLight{KpLight}
+    \renewfontfamily\KpRoman{KpRoman}
+    \newcommand*{\sbseries}{\KpRoman}
+    \newcommand*{\ebseries}{\KpRoman\bfseries}
+    \DeclareTextFontCommand{\textsb}{\sbseries}
+    \DeclareTextFontCommand{\texteb}{\ebseries}
+  \else
+    \setmainfont{KpRoman}
+    \renewfontfamily\KpRoman{KpRoman}
+    \renewfontfamily\KpLight{KpLight}
+    \newcommand*{\sbseries}{\KpLight\bfseries}
+    \newcommand*{\ltseries}{\KpLight}
+    \DeclareTextFontCommand{\textsb}{\sbseries}
+    \DeclareTextFontCommand{\textlt}{\ltseries}
+  \fi
+  % Loading Text Sans Serif fonts:
+  \ifkp@sf
+    \setsansfont{KpSans}
+  \fi
+  % Loading Text Typewriter fonts:
+  \ifkp@tt
+    \setmonofont{KpMono}
+  \fi
+  % Large/Petite smallcaps
+  \DeclareRobustCommand\lscshape{\addfontfeatures{RawFeature=+smcp}}
+  \DeclareRobustCommand\pscshape{\addfontfeatures{RawFeature=+pcap}}
+  \DeclareRobustCommand\textlsc[1]{{\lscshape #1}}
+  \DeclareRobustCommand\textpsc[1]{{\pscshape #1}}
+\fi
+
+\ifkp@symbols  % true unless "nomath"
+  \RequirePackage{unicode-math}[2019/01/01]
+  % \D close integral
+  \ifkp@Dcommand
+    \newcommand*{\D}[1]{\mathclose{\,\symup{d}}#1}%
+  \fi
+\fi
+
+% Loading Math fonts...
+\newcommand*{\KP@mathcal@Warning}{%
+  \PackageWarning{kpfonts-otf}{Option mathcal is no longer needed:\MessageBreak
+    just use \protect\mathcal{} for "calligraphic" \MessageBreak
+    and \protect\mathscr{} for "script" capitals;\MessageBreak reported
+  }%
+}
+\ifkp@math
+  \ifkp@tight
+    \thinmuskip=2mu
+    \medmuskip=2.5mu plus 1mu minus 2.5mu
+    \thickmuskip=3.5mu plus 2.5mu
+  \fi
+  \ifkp@calasscr
+    \KP@mathcal@Warning
+  \fi
+  \ifkp@sfmathbb
+    \Store@KP@MOption{RawFeature}{+ss02}
+  \fi
+  \ifkp@narrowiints
+    \Store@KP@MOption{RawFeature}{+ss03}
+  \fi
+  \ifkp@osnm
+    \Store@KP@MOption{Numbers}{Lowercase}
+  \fi
+  \ifkp@oldReIm
+    \Store@KP@MOption{RawFeature}{+cv00}
+  \fi
+  \ifkp@frenchstyle
+    \Store@KP@MOption{math-style}{french}
+  \fi
+  \ifkp@partialup
+    \Store@KP@MOption{partial}{upright}
+  \fi
+  \ifkp@lightmath
+    % Following Joseph Wright in https://tex.stackexchange.com/questions/451
+    \begingroup
+      \edef\temp{%
+        \endgroup
+        \noexpand\setmathfont{KpMath-Light.otf}%
+        [\unexpanded\expandafter{\the\KpMtoks}]%
+      }
+      \temp
+    \setmathfont{KpMath-Light.otf}[range={cal,bfcal},RawFeature=+ss01]
+  \else
+    % Following Joseph Wright in https://tex.stackexchange.com/questions/451
+    \begingroup
+      \edef\temp{%
+        \endgroup
+        \noexpand\setmathfont{KpMath-Regular.otf}%
+        [\unexpanded\expandafter{\the\KpMtoks}]%
+      }
+      \temp
+    \setmathfont{KpMath-Regular.otf}[range={cal,bfcal},RawFeature=+ss01]
+  \fi
+\fi
+
+\ifkp@symbols
+  % Style aliases (math only)
+  \newopentypefeature{Style}{mathcal}{ss01}
+  \newopentypefeature{Style}{bbsans}{ss02}
+  \newopentypefeature{Style}{narrowiints}{ss03}
+  \newopentypefeature{Style}{leqslant}{ss04}
+  \newopentypefeature{Style}{smaller}{ss05}
+  \newopentypefeature{Style}{subsetneq}{ss06}
+  \newopentypefeature{Style}{parallelslant}{ss07}
+  \AtBeginDocument{%
+    % Kpfonts specific math symbols
+    \Umathchardef\mitsanswp =            0 0 "E015 \relax
+    \Umathchardef\mitsansell =           0 0 "E019 \relax
+    \Umathchardef\varemptyset =          0 0 "E021 \relax
+    \Umathchardef\lambdaslash =          0 0 "E029 \relax
+    \Umathchardef\lambdabar =            0 0 "019B \relax
+    \Umathchardef\mbfvec =               0 0 "E044 \relax
+    \Umathchardef\mbfwp =                0 0 "E045 \relax
+    \Umathchardef\mbfdotlessi =          0 0 "E046 \relax
+    \Umathchardef\mbfdotlessj =          0 0 "E047 \relax
+    \Umathchardef\mbfell =               0 0 "E049 \relax
+    \Umathchardef\mbfimath =             0 0 "E066 \relax
+    \Umathchardef\mbfjmath =             0 0 "E067 \relax
+    \Umathchardef\mbhbar =               0 0 "E068 \relax
+    \Umathchardef\mbhslash =             0 0 "E06F \relax
+    \Umathchardef\mithbar =              0 0 "E078 \relax
+    \Umathchardef\parallelbackslant =    3 0 "E080 \relax
+    \Umathchardef\nparallelbackslant =   3 0 "E081 \relax
+    \Umathchardef\mapstochar =           3 0 "E08D \relax
+    \Umathchardef\lhook =                3 0 "E08E \relax
+    \Umathchardef\rhook =                3 0 "E08F \relax
+    \Umathchardef\parallelslant  =       3 0 "E090 \relax
+    \Umathchardef\nparallelslant =       3 0 "E091 \relax
+    \Umathchardef\nsubseteqq =           3 0 "E0AE \relax
+    \Umathchardef\nsupseteqq =           3 0 "E0AF \relax
+    \Umathchardef\@idotsint =            1 0 "E111 \relax
+    \Umathchardef\Mmapsfrom =            0 0 "E400 \relax
+    \Umathchardef\Mmapsto =              0 0 "E401 \relax
+    \Umathchardef\mmapsfrom =            0 0 "E402 \relax
+    \Umathchardef\mmapsto =              0 0 "E403 \relax
+    \Umathchardef\Longmmapsfrom =        0 0 "E404 \relax
+    \Umathchardef\Longmmapsto =          0 0 "E405 \relax
+    \Umathchardef\longmmapsfrom =        0 0 "E406 \relax
+    \Umathchardef\longmmapsto =          0 0 "E407 \relax
+    \Umathchardef\leftrightdasharrow =   0 0 "E408 \relax
+    \Umathchardef\leadsto =              0 0 "E409 \relax
+    \Umathchardef\leadstoext =           0 0 "E40A \relax
+    \Umathchardef\longleadsto =          0 0 "E40B \relax
+    \Umathchardef\colonapprox =          0 0 "E410 \relax
+    \Umathchardef\colonsim =             0 0 "E411 \relax
+    \Umathchardef\Colonapprox =          0 0 "E412 \relax
+    \Umathchardef\Colonsim =             0 0 "E413 \relax
+    \Umathchardef\colondash =            0 0 "E414 \relax
+    \Umathchardef\eqqColon =             0 0 "E415 \relax
+    \Umathchardef\Colondash =            0 0 "E416 \relax
+    \Umathchardef\dashColon =            0 0 "E417 \relax
+    \Umathchardef\strictif =             0 0 "E418 \relax
+    \Umathchardef\strictfi =             0 0 "E419 \relax
+    \Umathchardef\strictiff =            0 0 "E41A \relax
+    \Umathchardef\circledwedge =         0 0 "E41B \relax
+    \Umathchardef\circledvee =           0 0 "E41C \relax
+    \Umathchardef\circledbar =           0 0 "E41D \relax
+    \Umathchardef\multimapdot =          0 0 "E420 \relax
+    \Umathchardef\multimapdotinv =       0 0 "E421 \relax
+    \Umathchardef\multimapdotboth =      0 0 "E422 \relax
+    \Umathchardef\multimapbothvert =     0 0 "E423 \relax
+    \Umathchardef\multimapdotbothvert =  0 0 "E424 \relax
+    \Umathchardef\multimapdotbothAvert = 0 0 "E425 \relax
+    \Umathchardef\multimapdotbothBvert = 0 0 "E426 \relax
+    \Umathchardef\Wr =                   0 0 "E427 \relax
+    \Umathchardef\boxbar =               0 0 "E428 \relax
+    \Umathchardef\opentimes =            0 0 "E429 \relax
+    \Umathchardef\openJoin =             0 0 "E42A \relax
+    \Umathchardef\VvDash =               0 0 "E42B \relax
+    \Umathchardef\Diamondright =         0 0 "E430 \relax
+    \Umathchardef\Diamondleft =          0 0 "E431 \relax
+    \Umathchardef\Diamonddotright =      0 0 "E432 \relax
+    \Umathchardef\Diamonddotleft =       0 0 "E433 \relax
+    \Umathchardef\boxright =             0 0 "E434 \relax
+    \Umathchardef\boxleft =              0 0 "E435 \relax
+    \Umathchardef\boxdotright =          0 0 "E436 \relax
+    \Umathchardef\boxdotleft =           0 0 "E437 \relax
+    \Umathchardef\DiamondRight =         0 0 "E438 \relax
+    \Umathchardef\DiamondLeft =          0 0 "E439 \relax
+    \Umathchardef\DiamonddotRight =      0 0 "E43A \relax
+    \Umathchardef\DiamonddotLeft =       0 0 "E43B \relax
+    \Umathchardef\boxRight  =            0 0 "E43C \relax
+    \Umathchardef\boxLeft =              0 0 "E43D \relax
+    \Umathchardef\boxdotRight =          0 0 "E43E \relax
+    \Umathchardef\boxdotLeft =           0 0 "E43F \relax
+    \Umathchardef\circleright =          0 0 "E440 \relax
+    \Umathchardef\circleleft =           0 0 "E441 \relax
+    \Umathchardef\circledotright =       0 0 "E442 \relax
+    \Umathchardef\circledotleft =        0 0 "E443 \relax
+    \Umathchardef\capplus =              0 0 "E444 \relax
+    \Umathchardef\bigcapplus =           0 0 "E445 \relax
+    \Umathchardef\sqcapplus =            0 0 "E447 \relax
+    \Umathchardef\bigsqcapplus =         0 0 "E448 \relax
+    \Umathchardef\sqcupplus =            0 0 "E44A \relax
+    \Umathchardef\bigsqcupplus =         0 0 "E44B \relax
+    \Umathchardef\oint@cw =              1 0 "E44E \relax
+    \Umathchardef\oiint@acw =            1 0 "E450 \relax
+    \Umathchardef\varoiint@cw =          1 0 "E452 \relax
+    \Umathchardef\oiiint@acw =           1 0 "E454 \relax
+    \Umathchardef\varoiiint@cw =         1 0 "E456 \relax
+    \Umathchardef\varoiint@acw =         1 0 "E458 \relax
+    \Umathchardef\oiint@cw =             1 0 "E45A \relax
+    \Umathchardef\varoiiint@acw =        1 0 "E45C \relax
+    \Umathchardef\oiiint@cw =            1 0 "E45E \relax
+    \Umathchardef\sq@iint =              1 0 "E460 \relax
+    \Umathchardef\sq@iiint =             1 0 "E462 \relax
+    \Umathchardef\var@int =              1 0 "E464 \relax
+    \Umathchardef\var@iint =             1 0 "E466 \relax
+    \Umathchardef\var@iiint =            1 0 "E468 \relax
+    \Umathchardef\var@iiiint =           1 0 "E46A \relax
+    \Umathchardef\var@idotsint =         1 0 "E46C \relax
+    \Umathchardef\varoint@acw =          1 0 "E46E \relax
+    \DeclareRobustCommand{\ointclockwise}{\oint@cw\nolimits}%
+    \DeclareRobustCommand{\varointctrclockwise}{\varoint@acw\nolimits}%
+    \DeclareRobustCommand{\oiintclockwise}{\oiint@cw\nolimits}%
+    \DeclareRobustCommand{\oiintctrclockwise}{\oiint@acw\nolimits}%
+    \DeclareRobustCommand{\varoiintclockwise}{\varoiint@cw\nolimits}%
+    \DeclareRobustCommand{\varoiintctrclockwise}{\varoiint@acw\nolimits}%
+    \DeclareRobustCommand{\oiiintclockwise}{\oiiint@cw\nolimits}%
+    \DeclareRobustCommand{\oiiintctrclockwise}{\oiiint@acw\nolimits}%
+    \DeclareRobustCommand{\varoiiintclockwise}{\varoiiint@cw\nolimits}%
+    \DeclareRobustCommand{\varoiiintctrclockwise}{\varoiiint@acw\nolimits}%
+    \DeclareRobustCommand{\idotsint}{\@idotsint\nolimits}%
+    \DeclareRobustCommand{\sqiint}{\sq@iint\nolimits}%
+    \DeclareRobustCommand{\sqiiint}{\sq@iiint\nolimits}%
+    \DeclareRobustCommand{\varint}{\var@int\nolimits}%
+    \DeclareRobustCommand{\variint}{\var@iint\nolimits}%
+    \DeclareRobustCommand{\variiint}{\var@iiint\nolimits}%
+    \DeclareRobustCommand{\variiiint}{\var@iiiint\nolimits}%
+    \DeclareRobustCommand{\varidotsint}{\var@idotsint\nolimits}%
+    \Umathchardef\msanspartial =         0 0 "E77A \relax
+    \Umathchardef\mitsanspartial =       0 0 "E7CA \relax
+    \Umathchardef\IM =                   0 0 "E7FE \relax
+    \Umathchardef\RE =                   0 0 "E7FF \relax
+    %\widearc and\overrightarc
+    \newcommand*{\widearc}{\Umathaccent  0 0 "E540 }%
+    \newcommand*{\widearcarrow}{\Umathaccent 0 0 "20D5 }%
+    \let\overrightarc\widearcarrow
+    % amssymb
+    \@ifpackageloaded{amssymb}%
+      {\PackageWarning{kpfonts-otf}{%
+         kpfonts-otf provides all AMS symbols.\MessageBreak
+         Loading amssymb.sty is not advisable.\MessageBreak
+         Reported}%
+      }%
+      {% AMS Symbols not referenced in unicode-math-table.tex
+       % \Umathchardef\sum = <math type> <family> <slot>
+       % <math type> : \mathord=0 \mathrel=3 ; <family>=0
+       \Umathchardef\circledR =       0 0 "24C7 \relax
+       \Umathchardef\circledS =       0 0 "24C8 \relax
+       \Umathchardef\diagup =         0 0 "27CB \relax
+       \Umathchardef\diagdown =       0 0 "27CD \relax
+       \Umathchardef\shortparallelslant =  3 0 "E092 \relax
+       \Umathchardef\nshortparallelslant = 3 0 "E093 \relax
+       \Umathchardef\lesseqslantgtr =      3 0 "E094 \relax
+       \Umathchardef\gtreqslantless =      3 0 "E095 \relax
+       \Umathchardef\lesseqqslantgtr =     3 0 "E096 \relax
+       \Umathchardef\gtreqqslantless =     3 0 "E097 \relax
+       \Umathchardef\npreceq =        3 0 "E098 \relax
+       \Umathchardef\nsucceq =        3 0 "E099 \relax
+       \Umathchardef\shortmid =       3 0 "E0A2 \relax
+       \Umathchardef\shortparallel =  3 0 "E0A3 \relax
+       \Umathchardef\nshortmid =      3 0 "E0A4 \relax
+       \Umathchardef\nshortparallel = 3 0 "E0A5 \relax
+       \Umathchardef\lvertneqq =      3 0 "E0A6 \relax
+       \Umathchardef\gvertneqq =      3 0 "E0A7 \relax
+       \Umathchardef\varsubsetneq =   3 0 "E0AC \relax
+       \Umathchardef\varsupsetneq =   3 0 "E0AD \relax
+       \Umathchardef\varsubsetneqq =  3 0 "E09C \relax
+       \Umathchardef\varsupsetneqq =  3 0 "E09D \relax
+       \Umathchardef\nleqslant =      3 0 "E0A8 \relax
+       \Umathchardef\ngeqslant =      3 0 "E0A9 \relax
+       \Umathchardef\nleqq =          3 0 "E0AA \relax
+       \Umathchardef\ngeqq =          3 0 "E0AB \relax
+       \Umathchardef\leadsto =        3 0 "E409 \relax
+       \let\centerdot\cdotp                % vysmblksquare ?
+       \let\restriction\upharpoonright
+       \let\doteqdot\Doteq
+       \let\doublecup\Cup
+       \let\doublecap\Cap
+       \let\llless\lll
+       \let\gggtr\ggg
+       \let\circlearrowleft\acwopencirclearrow
+       \let\circlearrowright\cwopencirclearrow
+       \let\lozenge\diamondsuit
+       \let\blacklozenge\vardiamondsuit
+       \let\square\mdlgwhtsquare
+       \let\blacksquare\mdlgblksquare
+       \let\dashleftarrow\leftdasharrow
+       \let\dashrightarrow\rightdasharrow
+       \let\ntriangleleft\nvartriangleleft
+       \let\ntriangleright\nvartriangleright
+       \let\varpropto\propto
+       \let\thicksim\sim
+       \let\thickapprox\approx
+       \let\smallsmile\smile
+       \let\smallfrown\frown
+      }%
+    % latexsym
+    \@ifpackageloaded{latexsym}%
+      {\PackageWarning{kpfonts-otf}{%
+         kpfonts-otf provides all LaTeX symbols.\MessageBreak
+         Loading latexsym.sty is not advisable.\MessageBreak
+         Reported}%
+      }%
+      {\let\lhd\triangleleft
+       \let\rhd\triangleright
+       \let\unlhd\trianglelefteq
+       \let\unrhd\trianglerighteq
+       \let\Box\mdlgwhtsquare
+       \let\Diamond\mdwhtdiamond
+      }%
+  }
+\fi
+
+\endinput

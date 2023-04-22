@@ -1,0 +1,13 @@
+\defaultfontfeatures[KpRoman]
+  { Extension = .otf,
+    UprightFont =     KpRoman-Regular,
+    BoldFont =        KpRoman-Bold,
+    ItalicFont =      KpRoman-Italic,
+    BoldItalicFont =  KpRoman-BoldItalic,
+    SlantedFont =     KpRoman-Regular,
+    SlantedFeatures = {FakeSlant=0.19},
+    BoldSlantedFont = KpRoman-Bold,
+    BoldSlantedFeatures = {FakeSlant=0.19},
+    SmallCapsFeatures = {Letters=PetiteCaps},
+    Ligatures={Common,RequiredOff,RareOff,HistoricOff}
+}

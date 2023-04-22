@@ -13,8 +13,10 @@ More work is needed, but, for now, it works.
 ## List of parameters
 | Parameter | Function | Value |
 |:----------|:---------|:------|
-| `stixFonts` | uses StixTwo for the serif font | `true` or `false` |
+| `stixFont` | uses StixTwo for the serif font | `true` or `false` |
 | `notoSans` | uses Noto Sans for the sans-serif font | `true` or `false` |
+| `erewhonFont` | use the Erewhon font | `true` or `false` |
+| `kpFont`[^like] | use the KpSerif font | |`true` or `false` |
 | `paperSize` | changes paper size | Standard paper sizes |
 | `twoSided` | makes the page double-sided | `true` or `false` |
 | `titlepage` | adds a titlepage | `true` or `false` |
@@ -49,6 +51,8 @@ More work is needed, but, for now, it works.
 | `urlMarkColor` | set the color for the url mark | HTML color |
 | `urlMarkSymbol` | set the mark for urls | unicode character |
 
+[^like]: I don't like the font pairings to be honest, I just included KpFonts
+for use in a different template.
 
 ## Useful documentation
 + `diffcoeff` package

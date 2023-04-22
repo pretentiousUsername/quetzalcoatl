@@ -1,0 +1,47 @@
+%Filename: OT2erewhon-TLF.fd
+%Created by: tex erewhonot2-drv
+%Created using fontinst v1.933
+
+%THIS FILE SHOULD BE PUT IN A TEX INPUTS DIRECTORY
+
+\ProvidesFile{OT2erewhon-TLF.fd}
+   [2016/02/05 Fontinst v1.933 font definitions for OT2/erewhon-TLF.]
+
+\expandafter\ifx\csname erewhon@scale\endcsname\relax
+    \let\erewhon@@scale\@empty
+\else
+    \edef\erewhon@@scale{s*[\csname erewhon@scale\endcsname]}%
+\fi
+
+\expandafter\ifx\csname erewhon@sf\endcsname\relax
+ \global\let\erewhon@sf\@empty
+\fi
+\DeclareFontFamily{OT2}{erewhon-TLF}{\erewhon@sf}
+
+\DeclareFontShape{OT2}{erewhon-TLF}{m}{n}{
+   <-> \erewhon@@scale Erewhon-Regular-tlf-ot2
+}{}
+\DeclareFontShape{OT2}{erewhon-TLF}{m}{sl}{
+   <-> \erewhon@@scale Erewhon-RegularSlanted-tlf-ot2
+}{}
+
+\DeclareFontShape{OT2}{erewhon-TLF}{m}{it}{
+   <-> \erewhon@@scale Erewhon-Italic-tlf-ot2
+}{}
+
+\DeclareFontShape{OT2}{erewhon-TLF}{b}{n}{
+   <-> \erewhon@@scale Erewhon-Bold-tlf-ot2
+}{}
+\DeclareFontShape{OT2}{erewhon-TLF}{b}{sl}{
+   <-> \erewhon@@scale Erewhon-BoldSlanted-tlf-ot2
+}{}
+
+\DeclareFontShape{OT2}{erewhon-TLF}{b}{it}{
+   <-> \erewhon@@scale Erewhon-BoldItalic-tlf-ot2
+}{}
+
+\DeclareFontShape{OT2}{erewhon-TLF}{bx}{n}{<->ssub * erewhon-TLF/b/n}{}
+\DeclareFontShape{OT2}{erewhon-TLF}{bx}{it}{<->ssub * erewhon-TLF/b/it}{}
+\DeclareFontShape{OT2}{erewhon-TLF}{bx}{sl}{<->ssub * erewhon-TLF/b/sl}{}
+
+\endinput

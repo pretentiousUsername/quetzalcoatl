@@ -1,0 +1,68 @@
+% THIS FILE WAS AUTOMATICALLY GENERATED -- DO NOT EDIT
+
+%%AutoEnc_fec52xk4dwocwlpwdvot3if7gg
+% Encoding created by otftotfm on Sun May 15 17:44:44 2022
+% Command line follows encoding
+/AutoEnc_fec52xk4dwocwlpwdvot3if7gg [
+%00
+  /grave /acute /circumflex /tilde /dieresis /hungarumlaut /ring /caron
+  /breve /macron /dotaccent /cedilla /ogonek /uni04C0 /.notdef /.notdef
+%10
+  /quotedblleft /quotedblright /.notdef /.notdef /cyrbreve /endash /emdash /.notdef
+  /.notdef /I.sc /J.sc /.notdef /.notdef /.notdef /.notdef /.notdef
+%20
+  /uni2423 /exclam.sc /quotedbl /numbersign.sc /dollar.sc /percent.sc /ampersand.sc /quoteright
+  /parenleft /parenright /asterisk /plus /comma /hyphen.sc /period /slash
+%30
+  /zero.prop /one.prop /two.prop /three.prop /four.prop /five.prop /six.prop /seven.prop
+  /eight.prop /nine.prop /colon /semicolon /less /equal /greater /question.sc
+%40
+  /at /A /B /C /D /E /F /G
+  /H /I /J /K /L /M /N /O
+%50
+  /P /Q /R /S /T /U /V /W
+  /X /Y /Z /bracketleft /backslash /bracketright /asciicircum /underscore
+%60
+  /quoteleft /A.sc /B.sc /C.sc /D.sc /E.sc /F.sc /G.sc
+  /H.sc /I.sc /J.sc /K.sc /L.sc /M.sc /N.sc /O.sc
+%70
+  /P.sc /Q.sc /R.sc /S.sc /T.sc /U.sc /V.sc /W.sc
+  /X.sc /Y.sc /Z.sc /braceleft /bar /braceright /asciitilde /hyphen.sc
+%80
+  /.notdef /uni0492 /.notdef /uni0494 /uni04BA /uni0496 /.notdef /uni04E0
+  /uni0409 /uni049A /.notdef /uni04C3 /.notdef /uni04A2 /uni04A4 /uni04C7
+%90
+  /uni04E8 /.notdef /uni040E /uni04AE /.notdef /uni04B2 /.notdef /.notdef
+  /uni04B6 /uni040A /uni04D8 /.notdef /uni0401 /uni2116 /currency.sc /section
+%A0
+  /.notdef /uni0493.sc /.notdef /uni0495.sc /uni04BB.sc /uni0497.sc /.notdef /uni04E1.sc
+  /uni0459.sc /uni049B.sc /.notdef /uni04C4.sc /.notdef /uni04A3.sc /uni04A5.sc /uni04C8.sc
+%B0
+  /uni04E9.sc /.notdef /uni045E.sc /uni04AF.sc /.notdef /uni04B3.sc /.notdef /.notdef
+  /uni04B7.sc /uni045A.sc /uni04D9.sc /.notdef /uni0451.sc /quotedblbase /guillemotleft /guillemotright
+%C0
+  /uni0410 /uni0411 /uni0412 /uni0413 /uni0414 /uni0415 /uni0416 /uni0417
+  /uni0418 /uni0419 /uni041A /uni041B /uni041C /uni041D /uni041E /uni041F
+%D0
+  /uni0420 /uni0421 /uni0422 /uni0423 /uni0424 /uni0425 /uni0426 /uni0427
+  /uni0428 /uni0429 /uni042A /uni042B /uni042C /uni042D /uni042E /uni042F
+%E0
+  /uni0430.sc /uni0431.sc /uni0432.sc /uni0433.sc /uni0434.sc /uni0435.sc /uni0436.sc /uni0437.sc
+  /uni0438.sc /uni0439.sc /uni043A.sc /uni043B.sc /uni043C.sc /uni043D.sc /uni043E.sc /uni043F.sc
+%F0
+  /uni0440.sc /uni0441.sc /uni0442.sc /uni0443.sc /uni0444.sc /uni0445.sc /uni0446.sc /uni0447.sc
+  /uni0448.sc /uni0449.sc /uni044A.sc /uni044B.sc /uni044C.sc /uni044D.sc /uni044E.sc /uni044F.sc
+] def
+% Command line: 'otftotfm --automatic --encoding=T2B.enc
+% --tfm-directory=/Users/msharpe/Library/texlive/2022/texmf-var/fonts/tfm/public/erewhon
+% --vf-directory=/Users/msharpe/Library/texlive/2022/texmf-var/fonts/vf/public/erewhon
+% --type1-directory=/Users/msharpe/Library/texlive/2022/texmf-var/fonts/type1/public/erewhon
+% --encoding-directory=/Users/msharpe/Library/texlive/2022/texmf-var/fonts/enc/dvips/erewhon
+% --map-file=/Users/msharpe/Library/texlive/2022/texmf-var/fonts/map/dvips/erewhon/erewhon.map
+% --no-updmap --force --coding-scheme=TEX CYRILLIC FONT ENCODING - T2B
+% --feature=kern --feature=liga --feature=lnum --feature=pnum --feature=smcp
+% --ligkern=f i =: fi --ligkern=f l =: fl --ligkern=f f =: ff --ligkern=ff i
+% =: ffi --ligkern=ff l =: ffl --unicoding=germandbls =: SSsmall
+% --unicoding=ff =: FFsmall --unicoding=fi =: FIsmall --unicoding=ffi =:
+% FFIsmall --unicoding=fl =: FLsmall --unicoding=ffl =: FFLsmall
+% Erewhon-Bold.otf Erewhon-Bold-lf-sc-t2b'

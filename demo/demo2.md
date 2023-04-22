@@ -9,7 +9,7 @@ abstract: This is the demo for the other set of fonts I'm using in
  I think they're both nice, useful fonts.
 raggedLines: true
 notoSans: true
-stixFonts: true
+erewhonFont: true
 ---
 
 [gregg]: https://youtu.be/PRFubyO4Bp0
@@ -143,7 +143,7 @@ First some large operators both in text: $\iiint_{Q}f(x,y,z)
 $\prod_{\gamma\in\Gamma_{\bar{C}}}\partial(\tilde{X}_\gamma)$; and also on 
 display
 $$
-    \iiiint_{Q}f(w,x,y,z) \dl{w} \dl{x} \dl{y} \dl{z}
+    \iiiint_{Q}f(w,x,y,z) \dl{w, x, y, z}
     \leq
     \oint_{\partial Q} f'\Biggl(\max\Biggl\{
     \frac{\Vert w\Vert}{\vert w^2+x^2\vert};

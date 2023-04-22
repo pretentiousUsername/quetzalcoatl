@@ -17,6 +17,7 @@ tableOfContents: true
 raggedLines: false
 logo: ./img/theDude.pdf
 logoWidth: 10em
+erewhonFont: true
 ---
 
 # A manifesto (of sorts)
@@ -131,9 +132,12 @@ what paper it was, but if memory serves me right---it often
 doesn't---it appears as the wavefunction for a Tomanaga-Luttinger Liquid
 as well, which is pretty neat.
 
+The time evolution for some operator is
+$$ \diff{\op{a}}{t} = \comm{\op{H}}{\op{a}} $$
+
 The general solution to the Poisson equation is
 $$ \phi(r) = \frac{1}{4\pi\epsilon_0} \int \frac{n(r')}
-{| r - r' |} \,d^3 r \,. $$
+{| r - r' |} \dl[3] r \,. $$
 Which, all things considered, is rather useful.
 
 

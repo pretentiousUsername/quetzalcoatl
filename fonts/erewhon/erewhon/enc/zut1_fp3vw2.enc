@@ -1,0 +1,63 @@
+% THIS FILE WAS AUTOMATICALLY GENERATED -- DO NOT EDIT
+
+%%AutoEnc_fp3vw27onmfyvlqoxajuyp4s6a
+% Encoding created by otftotfm on Sun May 15 17:44:42 2022
+% Command line follows encoding
+/AutoEnc_fp3vw27onmfyvlqoxajuyp4s6a [
+%00
+  /grave /acute /circumflex /tilde /dieresis /hungarumlaut /ring /caron
+  /breve /macron /dotaccent /cedilla /ogonek /uni04C0 /.notdef /.notdef
+%10
+  /quotedblleft /quotedblright /.notdef /.notdef /cyrbreve /endash /emdash /.notdef
+  /.notdef /dotlessi /uni0237 /ff /fi /fl /ffi /ffl
+%20
+  /uni2423 /exclam.superior /quotedbl /numbersign /dollar /percent.superior /ampersand.superior /quoteright
+  /parenleft.superior /parenright.superior /asterisk /plus.superior /comma.superior /hyphen.superior /period.superior /slash.superior
+%30
+  /zero.superior /one.superior /two.superior /three.superior /four.superior /five.superior /six.superior /seven.superior
+  /eight.superior /nine.superior /colon.superior /semicolon.superior /less.superior /equal.superior /greater.superior /question.superior
+%40
+  /at.superior /A.superior /B.superior /C.superior /D.superior /E.superior /F.superior /G.superior
+  /H.superior /I.superior /J.superior /K.superior /L.superior /M.superior /N.superior /O.superior
+%50
+  /P.superior /Q.superior /R.superior /S.superior /T.superior /U.superior /V.superior /W.superior
+  /X.superior /Y.superior /Z.superior /bracketleft.superior /backslash /bracketright.superior /asciicircum /underscore
+%60
+  /quoteleft /a.superior /b.superior /c.superior /d.superior /e.superior /f.superior /g.superior
+  /h.superior /i.superior /j.superior /k.superior /l.superior /m.superior /n.superior /o.superior
+%70
+  /p.superior /q.superior /r.superior /s.superior /t.superior /u.superior /v.superior /w.superior
+  /x.superior /y.superior /z.superior /braceleft.superior /bar /braceright.superior /asciitilde /hyphen.superior
+%80
+  /.notdef /uni0492 /.notdef /uni0494 /uni04BA /uni0496 /.notdef /uni04E0
+  /uni0409 /uni049A /.notdef /uni04C3 /.notdef /uni04A2 /uni04A4 /uni04C7
+%90
+  /uni04E8 /.notdef /uni040E /uni04AE /.notdef /uni04B2 /.notdef /.notdef
+  /uni04B6 /uni040A /uni04D8 /.notdef /uni0401 /uni2116 /currency /section
+%A0
+  /.notdef /uni0493 /.notdef /uni0495 /uni04BB /uni0497 /.notdef /uni04E1
+  /uni0459 /uni049B /.notdef /uni04C4 /.notdef /uni04A3 /uni04A5 /uni04C8
+%B0
+  /uni04E9 /.notdef /uni045E /uni04AF /.notdef /uni04B3 /.notdef /.notdef
+  /uni04B7 /uni045A /uni04D9 /.notdef /uni0451 /quotedblbase /guillemotleft /guillemotright
+%C0
+  /uni0410 /uni0411 /uni0412 /uni0413 /uni0414 /uni0415 /uni0416 /uni0417
+  /uni0418 /uni0419 /uni041A /uni041B /uni041C /uni041D /uni041E /uni041F
+%D0
+  /uni0420 /uni0421 /uni0422 /uni0423 /uni0424 /uni0425 /uni0426 /uni0427
+  /uni0428 /uni0429 /uni042A /uni042B /uni042C /uni042D /uni042E /uni042F
+%E0
+  /uni0430 /uni0431 /uni0432 /uni0433 /uni0434 /uni0435 /uni0436 /uni0437
+  /uni0438 /uni0439 /uni043A /uni043B /uni043C /uni043D /uni043E /uni043F
+%F0
+  /uni0440 /uni0441 /uni0442 /uni0443 /uni0444 /uni0445 /uni0446 /uni0447
+  /uni0448 /uni0449 /uni044A /uni044B /uni044C /uni044D /uni044E /uni044F
+] def
+% Command line: 'otftotfm --automatic --encoding=T2B.enc
+% --tfm-directory=/Users/msharpe/Library/texlive/2022/texmf-var/fonts/tfm/public/erewhon
+% --vf-directory=/Users/msharpe/Library/texlive/2022/texmf-var/fonts/vf/public/erewhon
+% --type1-directory=/Users/msharpe/Library/texlive/2022/texmf-var/fonts/type1/public/erewhon
+% --encoding-directory=/Users/msharpe/Library/texlive/2022/texmf-var/fonts/enc/dvips/erewhon
+% --map-file=/Users/msharpe/Library/texlive/2022/texmf-var/fonts/map/dvips/erewhon/erewhon.map
+% --no-updmap --force --coding-scheme=TEX CYRILLIC FONT ENCODING - T2B
+% --feature=sups --ligkern=* {KL} * Erewhon-Bold.otf Erewhon-Bold-sup-t2b'
