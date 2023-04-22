@@ -9,7 +9,7 @@ abstract: This is the demo for the other set of fonts I'm using in
  I think they're both nice, useful fonts.
 raggedLines: true
 notoSans: true
-erewhonFont: true
+stixFont: true
 ---
 
 [gregg]: https://youtu.be/PRFubyO4Bp0

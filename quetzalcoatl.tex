@@ -139,28 +139,28 @@ $if(customType)$
 		Path = {\fontDir/stix2/},
 	]{StixTwoMath-Regular}
 
-
-	$elseif(erewhonFont)$
+	$elseif(charterFont)$
+	
 	\setmainfont[
-		Path = {\fontDir/erewhon/},
+		Path = {\fontDir/xcharter/},
 		Extension = {.otf},
-		UprightFont = {*-Regular},
+		UprightFont = {*-Roman},
 		ItalicFont = {*-Italic},
 		BoldFont = {*-Bold},
 		BoldItalicFont = {*-BoldItalic}
 		]
-		{Erewhon}
+		{XCharter}
 
 	\setmathfont[
-		Path = {\fontDir/erewhon-math/},
+		Path = {\fontDir/xcharter/},
 		Extension = {.otf},
 		]
-		{Erewhon-Math}
+		{XCharter-Math}
 
 	\newfontfamily\symbolFont[
 		Extension = {.otf},
-		Path = {\fontDir/erewhon-math/},
-		]{Erewhon-Math}
+		Path = {\fontDir/xcharter/},
+	]{XCharter-Math}
 
 	$elseif(kpFont)$
 	\setmainfont[
@@ -187,27 +187,28 @@ $if(customType)$
 	]{KpMath-Regular}
 
 	$else$
-	
 	\setmainfont[
-		Path = {\fontDir/xcharter/},
+		Path = {\fontDir/erewhon/},
 		Extension = {.otf},
-		UprightFont = {*-Roman},
+		UprightFont = {*-Regular},
 		ItalicFont = {*-Italic},
 		BoldFont = {*-Bold},
 		BoldItalicFont = {*-BoldItalic}
 		]
-		{XCharter}
+		{Erewhon}
 
 	\setmathfont[
-		Path = {\fontDir/xcharter/},
+		Path = {\fontDir/erewhon-math/},
 		Extension = {.otf},
 		]
-		{XCharter-Math}
+		{Erewhon-Math}
 
 	\newfontfamily\symbolFont[
 		Extension = {.otf},
-		Path = {\fontDir/xcharter/},
-	]{XCharter-Math}
+		Path = {\fontDir/erewhon-math/},
+		]{Erewhon-Math}
+
+
 	
 	$endif$
 	
@@ -581,7 +582,7 @@ $endif$
 
 % taken from https://tex.stackexchange.com/questions/523000/titlesec-right-justified-section-number-in-margin
 \newcommand{\marginsecnumber}[1]{%
-  \makebox[0pt][r]{#1\hspace{6pt}}%
+  \makebox[0pt][r]{#1\hspace{1em}}%
 }
 
 
@@ -595,11 +596,11 @@ $if(serifSections)$
 $else$
 \titleformat{\section}%
 {\large\titletype}%
-{\thesection.}{0.25em}{}
+{\marginsecnumber{\thesection.}}{0em}{}
 
 \titleformat{\subsection}%
 {\normalsize\headType}%
-{\thesubsection.}{0.25em}{}
+{\marginsecnumber{\thesubsection.}}{0em}{}
 
 %\titleformat{\subsubsection}[runin]{\sffamily\bfseries\normalsize}{}{0.25em}{\periodafter}
 
@@ -607,10 +608,10 @@ $else$
 
 \titleformat{\subsubsection}[runin]%
 {\subsubHeadType\normalsize\mdseries}%
-{\thesubsubsection.}{0.25em}{}
+{\marginsecnumber{\thesubsubsection.}}{0em}{}
 
 
-\definecolor{parColor}{HTML}{a8a8a8}
+\definecolor{parColor}{RGB}{128, 128, 128}
 
 % This will need to be adaptable for two-sided documents
 \titleformat{\paragraph}[leftmargin]%
@@ -661,7 +662,8 @@ $endif$
 %
 % blockquote
 %
-\definecolor{blockquote-border}{RGB}{221,221,221}
+%\definecolor{blockquote-border}{RGB}{221,221,221}
+\definecolor{blockquote-border}{RGB}{168,168,168}
 \definecolor{blockquote-text}{RGB}{0,0,0}
 \usepackage{mdframed}
 \newmdenv[rightline=false,bottomline=false,topline=false,linewidth=3pt,linecolor=blockquote-border,skipabove=1em,font=\sffamily\small]{customblockquote}
