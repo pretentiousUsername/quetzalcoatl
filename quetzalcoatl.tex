@@ -139,54 +139,7 @@ $if(customType)$
 		Path = {\fontDir/stix2/},
 	]{StixTwoMath-Regular}
 
-	$elseif(charterFont)$
-	
-	\setmainfont[
-		Path = {\fontDir/xcharter/},
-		Extension = {.otf},
-		UprightFont = {*-Roman},
-		ItalicFont = {*-Italic},
-		BoldFont = {*-Bold},
-		BoldItalicFont = {*-BoldItalic}
-		]
-		{XCharter}
-
-	\setmathfont[
-		Path = {\fontDir/xcharter/},
-		Extension = {.otf},
-		]
-		{XCharter-Math}
-
-	\newfontfamily\symbolFont[
-		Extension = {.otf},
-		Path = {\fontDir/xcharter/},
-	]{XCharter-Math}
-
-	$elseif(kpFont)$
-	\setmainfont[
-		Path = {\fontDir/kpfonts-otf/},
-		Extension = {.otf},
-		UprightFont = {*-Regular},
-		ItalicFont = {*-Italic},
-		BoldFont = {*-Bold},
-		BoldItalicFont = {*-BoldItalic},
-		]
-		{KpRoman}
-
-	\setmathfont[
-		Path = {\fontDir/kpfonts-otf/},
-		Extension = {.otf},
-		RawFeature = {+ss15},
-		]
-		{KpMath-Regular}
-
-	% Heavenly father, forgive me, for I know not what I do.
-	\newfontfamily\symbolFont[
-		Extension = {.otf},
-		Path = {\fontDir/kpfonts-otf/},
-	]{KpMath-Regular}
-
-	$else$
+	$elseif(erewhonFont)$
 	\setmainfont[
 		Path = {\fontDir/erewhon/},
 		Extension = {.otf},
@@ -209,6 +162,25 @@ $if(customType)$
 		]{Erewhon-Math}
 
 
+	$else$
+	\setmainfont[
+		Path = {\fontDir/xcharter/},
+		Extension = {.otf},
+		UprightFont = {*-Roman},
+		ItalicFont = {*-Italic},
+		BoldFont = {*-Bold},
+		BoldItalicFont = {*-BoldItalic}
+		]{XCharter}
+
+	\setmathfont[
+		Path = {\fontDir/xcharter/},
+		Extension = {.otf},
+		]{XCharter-Math}
+
+	\newfontfamily\symbolFont[
+		Extension = {.otf},
+		Path = {\fontDir/xcharter/},
+		]{XCharter-Math}
 	
 	$endif$
 	
