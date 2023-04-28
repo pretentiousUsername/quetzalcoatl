@@ -17,7 +17,6 @@ tableOfContents: true
 raggedLines: false
 logo: ./img/theDude.pdf
 logoWidth: 10em
-erewhonFont: true
 ---
 
 # A manifesto (of sorts)

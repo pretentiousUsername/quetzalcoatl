@@ -97,6 +97,7 @@ $endif$
 
 \usepackage[auto=true]{microtype}
 
+
 % Set main typeface
 $if(customType)$
 	$customType$
@@ -551,6 +552,7 @@ $else$
 $endif$
 
 \newcommand{\periodafter}[2]{#1{#2.}}
+\titlelabel{\thetitle.\quad}
 
 % taken from https://tex.stackexchange.com/questions/523000/titlesec-right-justified-section-number-in-margin
 \newcommand{\marginsecnumber}[1]{%
