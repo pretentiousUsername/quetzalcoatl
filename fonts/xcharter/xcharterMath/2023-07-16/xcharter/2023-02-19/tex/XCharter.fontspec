@@ -1,0 +1,11 @@
+\defaultfontfeatures[XCharter]
+  {
+  Extension = .otf ,
+  UprightFont = XCharter-Roman,
+  BoldFont = XCharter-Bold,
+  ItalicFont = XCharter-Italic,
+  BoldItalicFont = XCharter-BoldItalic,
+  SlantedFont = XCharter-Slanted,
+  BoldSlantedFont = XCharter-BoldSlanted,
+  SmallCapsFeatures =  {Letters=SmallCaps}
+  }

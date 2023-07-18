@@ -45,44 +45,12 @@ lucky, they'd call it art.
 
 ![Behold: the dude.](img/theDude.pdf)
 
-To make good typesetting, you need to know your purpose. This template is
-designed to do two things: make your information look decent, and make it 
-readable. If you're not writing "***DO YOU'rE BESt***" a thousand times, 
-you're on route to making something good. Not only is this designed to
-make whatever you're writing look good, it's also trying to make it as
-timeless as possible. I avoided design trends---I avoided those puffy
-serif fonts, such as [New Spirit][ns]. This is a pandoc template for
-typesetting documents that matter, not advertising that will wind up
-in the dustbin of history, relegated to simply being a marker of the times.
-
-This template was created for a simple reason: I'm sick and tired of
-Computer Modern and Times (New Roman). I see a lot of good scientists
-typesetting their documents in Computer Modern---and if they're using Word,
-Times New Roman---and I have to just ask *why*? The backbone of modern
-science---the [arXiv](https://arxiv.org)---puts all of its documents in
-plain `{\LaTeX}`{=latex}. (Either that, or they're horribly typeset in MS
-Word.) That's fine, but I think it can be done better. If you're going to be 
-making non-choices, then you might as well make them look nice and print well.
-
-[ns]: https://fonts.adobe.com/fonts/new-spirit
-
 
 # Modern typesetting for the modern type
-Much like in writing, the golden rule everyone teaches you is
-*readability*---many times it is a typographer's job to break that down, 
-and make something eyecatching and unique. This is not one of those times. 
+Much like in writing, the golden rule in practical typography is
+*readability*, though many times it is a typographer's job to break that down, 
+and make something eyecatching and unique---this is not one of those times. 
 I need the reader to actually read this.
-
-I tried to gaslight myself into using StixTwo as the main font, but I realized
-that it just wasn't working for me---despite its more modern features, like
-basic ligatures, I just prefer XCharter. Charter in general is just a wonderful
-typeface, and I loathe to fully replace it. So, StixTwo is still an
-alternative---I know I'll be using it for [my hugo theme][delay] if I ever
-manage to implement an automatic PDF generation script in there---but Charter is
-still my main.
-
-In a supporting role are two other nice typefaces, \textsf{Inter} and
-\texttt{Julia Mono}.
 
 Let's go over some facts:
 

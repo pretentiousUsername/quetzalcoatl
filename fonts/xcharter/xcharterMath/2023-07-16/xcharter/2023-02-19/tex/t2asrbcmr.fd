@@ -1,0 +1,21 @@
+%%
+%% This is file `t2asrbcmr.fd',
+%% adapted from t2acmr.fd
+\ProvidesFile{t2asrbcmr.fd}
+  [2001/08/11 v1.0a Computer Modern Cyrillic font definitions]
+\providecommand{\EC@family}[5]{%
+  \DeclareFontShape{#1}{#2}{#3}{#4}%
+  {<5><6><7><8><9><10><10.95><12><14.4>%
+   <17.28><20.74><24.88><29.86><35.83>genb*#5}{}}
+\DeclareFontFamily{T2ASRB}{cmr}{}
+\DeclareFontShape{T2ASRB}{cmr}{m}{n}{<-> ec-lmr10}{}
+\DeclareFontShape{T2ASRB}{cmr}{m}{sl}{<-> ec-lmro10}{}
+\DeclareFontShape{T2ASRB}{cmr}{m}{it}{<-> ec-lmri10}{}
+\DeclareFontShape{T2ASRB}{cmr}{m}{sc}{<-> ec-lmcsc}{}
+\DeclareFontShape{T2ASRB}{cmr}{bx}{n}{<-> ec-lmbx10}{}
+\DeclareFontShape{T2ASRB}{cmr}{b}{n}{<-> ec-lmb10}{}
+\DeclareFontShape{T2ASRB}{cmr}{bx}{it}{<-> ec-lmbxi10}{}
+\DeclareFontShape{T2ASRB}{cmr}{bx}{sl}{<-> ec-lmbxo10}{}
+\endinput
+%%
+%% End of file `t2asrbcmr.fd'.

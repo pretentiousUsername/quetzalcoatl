@@ -1,0 +1,44 @@
+%Filename: OT2XCharter-TLF.fd
+%Created by: tex xcharterot2-drv
+%Created using fontinst v1.933
+
+%THIS FILE SHOULD BE PUT IN A TEX INPUTS DIRECTORY
+
+\ProvidesFile{OT2XCharter-TLF.fd}
+   [2017/06/15 Fontinst v1.933 font definitions for OT2/xcharter-tlf.]
+
+\expandafter\ifx\csname XCharter@scale\endcsname\relax
+    \let\XCharter@@scale\@empty
+\else
+    \edef\XCharter@@scale{s*[\csname XCharter@scale\endcsname]}%
+\fi
+
+\DeclareFontFamily{OT2}{XCharter-TLF}{}
+
+\DeclareFontShape{OT2}{XCharter-TLF}{m}{n}{
+   <-> \XCharter@@scale XCharter-Roman-tlf-ot2
+}{}
+
+\DeclareFontShape{OT2}{XCharter-TLF}{m}{it}{
+   <-> \XCharter@@scale XCharter-Italic-tlf-ot2
+}{}
+
+\DeclareFontShape{OT2}{XCharter-TLF}{b}{n}{
+   <-> \XCharter@@scale XCharter-Bold-tlf-ot2
+}{}
+
+\DeclareFontShape{OT2}{XCharter-TLF}{b}{it}{
+   <-> \XCharter@@scale XCharter-BoldItalic-tlf-ot2
+}{}
+
+\DeclareFontShape{OT2}{XCharter-TLF}{m}{sl}{
+	<-> \XCharter@@scale XCharter-Slanted-tlf-ot2
+}{}
+
+\DeclareFontShape{OT2}{XCharter-TLF}{b}{sl}{
+   <-> \XCharter@@scale XCharter-BoldSlanted-tlf-ot2
+}{}
+\DeclareFontShape{OT2}{XCharter-TLF}{bx}{sl}{<->ssub * XCharter-TLF/b/sl}{}
+\DeclareFontShape{OT2}{XCharter-TLF}{bx}{n}{<->ssub * XCharter-TLF/b/n}{}
+\DeclareFontShape{OT2}{XCharter-TLF}{bx}{it}{<->ssub * XCharter-TLF/b/it}{}
+\endinput

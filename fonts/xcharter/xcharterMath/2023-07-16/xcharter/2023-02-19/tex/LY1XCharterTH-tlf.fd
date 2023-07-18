@@ -1,0 +1,28 @@
+\ProvidesFile{LY1XCharterTH-tlf.fd}[2021/05/28 v1.0 font definition file for LY1/XCharterTH/tlf]
+
+\expandafter\ifx\csname XCharter@scale\endcsname\relax
+  \let\XCharter@@scale\@empty%
+\else
+    \edef\XCharter@@scale{s*[\csname XCharter@scale\endcsname]}%
+\fi
+
+\DeclareFontFamily{LY1}{XCharterTH-tlf}{}
+\DeclareFontShape{LY1}{XCharterTH-tlf}{m}{it}{<-> \XCharter@@scale XCharter1TH-Italic-tlf-ly1}{}
+\DeclareFontShape{LY1}{XCharterTH-tlf}{b}{it}{<-> \XCharter@@scale XCharter1TH-BoldItalic-tlf-ly1}{}
+\DeclareFontShape{LY1}{XCharterTH-tlf}{m}{n}{<->ssub * XCharterTH-tlf/m/it}{}
+\DeclareFontShape{LY1}{XCharterTH-tlf}{m}{sc}{<->ssub * XCharterTH-tlf/m/it}{}
+\DeclareFontShape{LY1}{XCharterTH-tlf}{m}{scit}{<->ssub * XCharterTH-tlf/m/it}{}
+\DeclareFontShape{LY1}{XCharterTH-tlf}{b}{sc}{<->ssub * XCharterTH-tlf/b/it}{}
+\DeclareFontShape{LY1}{XCharterTH-tlf}{bx}{sc}{<->ssub * XCharterTH-tlf/b/it}{}
+\DeclareFontShape{LY1}{XCharterTH-tlf}{b}{n}{<->ssub * XCharterTH-tlf/b/it}{}
+\DeclareFontShape{LY1}{XCharterTH-tlf}{bx}{n}{<->ssub * XCharterTH-tlf/b/it}{}
+\DeclareFontShape{LY1}{XCharterTH-tlf}{b}{scit}{<->ssub * XCharterTH-tlf/b/it}{}
+\DeclareFontShape{LY1}{XCharterTH-tlf}{bx}{scit}{<->ssub * XCharterTH-tlf/b/it}{}
+\DeclareFontShape{LY1}{XCharterTH-tlf}{bx}{it}{<->ssub * XCharterTH-tlf/b/it}{}
+\DeclareFontShape{LY1}{XCharterTH-tlf}{m}{sl}{<->ssub * XCharterTH-tlf/m/it}{}
+\DeclareFontShape{LY1}{XCharterTH-tlf}{b}{sl}{<->ssub * XCharterTH-tlf/b/it}{}
+\DeclareFontShape{LY1}{XCharterTH-tlf}{bx}{sl}{<->ssub * XCharterTH-tlf/b/it}{}
+\DeclareFontShape{LY1}{XCharterTH-tlf}{b}{scsl}{<->ssub * XCharterTH-tlf/b/it}{}
+\DeclareFontShape{LY1}{XCharterTH-tlf}{bx}{scsl}{<->ssub * XCharterTH-tlf/b/it}{}
+\DeclareFontShape{LY1}{XCharterTH-tlf}{m}{scsl}{<->ssub * XCharterTH-tlf/m/it}{}
+\endinput

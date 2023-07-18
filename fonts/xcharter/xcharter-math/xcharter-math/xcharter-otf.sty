@@ -1,0 +1,177 @@
+\NeedsTeXFormat{LaTeX2e}[2022/06/01]
+\def\fileversion{0.42}
+\def\filedate{2023-07-07}
+\ProvidesPackage{xcharter-otf}[\filedate\space\fileversion]
+
+% Ensure luatex or xetex engine
+\RequirePackage{iftex}[2019/10/24]
+\RequireTUTeX
+\RequirePackage{unicode-math}
+
+\newopentypefeature{Style}{upint}{+ss03}
+\newopentypefeature{Style}{leqslant}{+ss04}
+\newopentypefeature{Style}{smaller}{+ss05}
+\newopentypefeature{Style}{subsetneq}{+ss06}
+\newopentypefeature{Style}{parallelslant}{+ss07}
+
+\newtoks\XCottoksT
+\newtoks\XCottoksM
+\newcommand*{\XCstore@KV@Option}[2]{%
+  \def\XCot@scale{Scale}\def\XCot@opt{#1}%
+  \ifx\XCot@opt\XCot@scale\XCottoksT={Scale={#2}}\fi
+  \XCottoksM=\expandafter{\the\XCottoksM #1={#2},}}
+
+% Package options:
+\DeclareKeys
+  {
+   no-text.if            = XCot@notext                              ,
+   tight.if              = XCot@tight                              ,
+   loose.code            = \XCot@tightfalse                         ,
+   fulloldstyle.code     = \XCstore@KV@Option{Numbers}{OldStyle}    ,
+   math-style.code       = \XCstore@KV@Option{math-style}{#1}       ,
+   bold-style.code       = \XCstore@KV@Option{bold-style}{#1}       ,
+   nabla.code            = \XCstore@KV@Option{nabla}{#1}            ,
+   partial.code          = \XCstore@KV@Option{partial}{#1}          ,
+   CharacterVariant.code = \XCstore@KV@Option{CharacterVariant}{#1} ,
+   StylisticSet.code     = \XCstore@KV@Option{StylisticSet}{#1}     ,
+   Style.code            = \XCstore@KV@Option{Style}{#1}            ,
+   Scale.code            = \XCstore@KV@Option{Scale}{#1}
+  }
+%
+\XCot@tighttrue
+\ProcessKeyOptions
+%
+% Math fonts: XCharter-Math.otf
+% Following Joseph Wright in https://tex.stackexchange.com/questions/451
+\XCstore@KV@Option{BoldFont}{XCharter-Math-Bold.otf}
+\begingroup
+  \edef\temp{%
+    \endgroup
+    \noexpand\setmathfont{XCharter-Math.otf}%
+    [\unexpanded\expandafter{\the\XCottoksM}]%
+  }
+  \temp
+%
+\ifXCot@tight
+  \thinmuskip=2mu
+  \medmuskip=2.5mu plus 1mu minus 2.5mu
+  \thickmuskip=3.5mu plus 2.5mu
+\fi
+% Text Serif fonts: XCharter with possible scaling.
+\ifXCot@notext
+\else
+  \RequirePackage{realscripts}
+  \setmainfont{XCharter}[\unexpanded\expandafter{\the\XCottoksT}]
+\fi
+
+% Text Sans Serif fonts: default (lmss unless specified)
+% Text Typewriter fonts: default (lmtt unless specified)
+
+\AtBeginDocument{%
+  % XCharter specific math
+  % \Umathchardef\<cmd> = <math type> <family> <slot>
+  % <math type> : \mathord=0 \mathrel=3 ; <family>=0
+  \Umathchardef\varemptyset =         0 0 "E021 \relax
+  \Umathchardef\mupvarzero =          0 0 "E022 \relax
+  \Umathchardef\mbfvarzero =          0 0 "E023 \relax
+  \Umathchardef\varpropto =           0 0 "E02F \relax
+  \Umathchardef\mbfdotlessi =         0 0 "E046 \relax
+  \Umathchardef\mbfdotlessj =         0 0 "E047 \relax
+  \Umathchardef\mbfimath =            0 0 "E066 \relax
+  \Umathchardef\mbfjmath =            0 0 "E067 \relax
+  \Umathchardef\mithbar =             0 0 "E078 \relax
+  \Umathchardef\mapstochar =          3 0 "E08D \relax
+  \Umathchardef\lhook =               3 0 "E08E \relax
+  \Umathchardef\rhook =               3 0 "E08F \relax
+  \Umathchardef\parallelslant  =      3 0 "E090 \relax
+  \Umathchardef\nparallelslant =      3 0 "E091 \relax
+  \Umathchardef\shortparallelslant =  3 0 "E092 \relax
+  \Umathchardef\nshortparallelslant = 3 0 "E093 \relax
+  \Umathchardef\lesseqslantgtr =      3 0 "E094 \relax
+  \Umathchardef\gtreqslantless =      3 0 "E095 \relax
+  \Umathchardef\lesseqqslantgtr =     3 0 "E096 \relax
+  \Umathchardef\gtreqqslantless =     3 0 "E097 \relax
+  \Umathchardef\nleqqslant =          3 0 "E098 \relax
+  \Umathchardef\ngeqqslant =          3 0 "E099 \relax
+  \Umathchardef\varsymscrE =          0 0 "E07D \relax
+  \Umathchardef\varsymscrQ =          0 0 "E07E \relax
+  \Umathchardef\varsymscrT =          0 0 "E07F \relax
+  \Umathchardef\varsymbfscrE =        0 0 "E06D \relax
+  \Umathchardef\varsymbfscrQ =        0 0 "E06E \relax
+  \Umathchardef\varsymbfscrT =        0 0 "E06F \relax
+ % \widearc and\overrightarc
+  \newcommand*{\widearc}{\Umathaccent 0 0 "E540 }%
+  \newcommand*{\overrightarc}{\Umathaccent 0 0 "20D5 }%
+  % amssymb
+  \@ifpackageloaded{amssymb}%
+    {\PackageWarning{xcharter-otf}{%
+       XCharter-Math provides all AMS symbols.\MessageBreak
+       Loading amssymb.sty is not advisable.\MessageBreak
+       Reported}%
+    }%
+    {% AMS Symbols not referenced in unicode-math-table.tex
+     % \Umathchardef\<cmd> = <math type> <family> <slot>
+     % <math type> : \mathord=0 \mathrel=3 ; <family>=0
+     \Umathchardef\circledR =       0 0 "24C7 \relax
+     \Umathchardef\circledS =       0 0 "24C8 \relax
+     \Umathchardef\diagup =         0 0 "27CB \relax
+     \Umathchardef\diagdown =       0 0 "27CD \relax
+     \Umathchardef\shortmid =       3 0 "E0A2 \relax
+     \Umathchardef\shortparallel =  3 0 "E0A3 \relax
+     \Umathchardef\nshortmid =      3 0 "E0A4 \relax
+     \Umathchardef\nshortparallel = 3 0 "E0A5 \relax
+     \Umathchardef\lvertneqq =      3 0 "E0A6 \relax
+     \Umathchardef\gvertneqq =      3 0 "E0A7 \relax
+     \Umathchardef\nleqslant =      3 0 "E0A8 \relax
+     \Umathchardef\ngeqslant =      3 0 "E0A9 \relax
+     \Umathchardef\nleqq =          3 0 "E0AA \relax
+     \Umathchardef\ngeqq =          3 0 "E0AB \relax
+     \Umathchardef\varsubsetneq =   3 0 "E0AC \relax
+     \Umathchardef\varsupsetneq =   3 0 "E0AD \relax
+     \Umathchardef\nsubseteqq =     3 0 "E0AE \relax
+     \Umathchardef\nsupseteqq =     3 0 "E0AF \relax
+     \Umathchardef\varsubsetneqq =  3 0 "E09C \relax
+     \Umathchardef\varsupsetneqq =  3 0 "E09D \relax
+     \Umathchardef\npreceq =        3 0 "E09E \relax
+     \Umathchardef\nsucceq =        3 0 "E09F \relax
+     \let\centerdot\cdotp
+     \let\restriction\upharpoonright
+     \let\doteqdot\Doteq
+     \let\doublecup\Cup
+     \let\doublecap\Cap
+     \let\llless\lll
+     \let\gggtr\ggg
+     \let\circlearrowleft\acwopencirclearrow
+     \let\circlearrowright\cwopencirclearrow
+     \let\lozenge\mdlgwhtlozenge
+     \let\blacklozenge\mdlgblklozenge
+     \let\square\mdlgwhtsquare
+     \let\blacksquare\mdlgblksquare
+     \let\dashleftarrow\leftdasharrow
+     \let\dashrightarrow\rightdasharrow
+     \let\ntriangleleft\nvartriangleleft
+     \let\ntriangleright\nvartriangleright
+     \let\varpropto\propto
+     \let\thicksim\sim
+     \let\thickapprox\approx
+     \let\smallsmile\smile
+     \let\smallfrown\frown
+    }%
+  % latexsym
+  \@ifpackageloaded{latexsym}%
+    {\PackageWarning{xcharter-otf}{%
+       XCharter-Math provides all LaTeX symbols.\MessageBreak
+       Loading latexsym.sty is not advisable.\MessageBreak
+       Reported}%
+    }%
+    {\let\lhd\vartriangleleft
+     \let\rhd\vartriangleright
+     \let\unlhd\trianglelefteq
+     \let\unrhd\trianglerighteq
+     \let\leadsto\rightcurvedarrow
+     \let\Box\lgwhtsquare
+     \let\Diamond\mdlgwhtdiamond
+    }%
+}
+
+\endinput

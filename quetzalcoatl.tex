@@ -115,7 +115,7 @@ $if(customType)$
 		%UprightFont = {*-Regular},
 	%]{FdSymbol}
 
-	$if(stixFont)$
+	$if(stixFonts)$
 	\setmainfont[
 		Path = {\fontDir/stix2/},
 		Extension = {.otf},
@@ -140,7 +140,7 @@ $if(customType)$
 		Path = {\fontDir/stix2/},
 	]{StixTwoMath-Regular}
 
-	$elseif(erewhonFont)$
+	$elseif(erewhonFonts)$
 	\setmainfont[
 		Path = {\fontDir/erewhon/},
 		Extension = {.otf},
@@ -162,6 +162,27 @@ $if(customType)$
 		Path = {\fontDir/erewhon-math/},
 		]{Erewhon-Math}
 
+	$elseif(erewhonFonts)$
+	\setmainfont[
+		Path = {\fontDir/erewhon/},
+		Extension = {.otf},
+		UprightFont = {*-Regular},
+		ItalicFont = {*-Italic},
+		BoldFont = {*-Bold},
+		BoldItalicFont = {*-BoldItalic}
+		]
+		{Erewhon}
+
+	\setmathfont[
+		Path = {\fontDir/erewhon-math/},
+		Extension = {.otf},
+		]
+		{Erewhon-Math}
+
+	\newfontfamily\symbolFont[
+		Extension = {.otf},
+		Path = {\fontDir/erewhon-math/},
+		]{Erewhon-Math}
 
 	$else$
 	\setmainfont[
@@ -556,7 +577,7 @@ $endif$
 
 % taken from https://tex.stackexchange.com/questions/523000/titlesec-right-justified-section-number-in-margin
 \newcommand{\marginsecnumber}[1]{%
-  \makebox[0pt][r]{#1\hspace{1em}}%
+  \makebox[0pt][r]{#1\hspace{6pt}}%
 }
 
 
@@ -805,7 +826,12 @@ $elseif(title)$
 $endif$
 
 \newmdenv[rightline=false, leftline=false]{abstractBox}
-\renewcommand\abstractname{\sffamily Abstract}
+
+$if(abstractName)$
+    \renewcommand\abstractname{\sffamily $abstractName$}
+$else$
+    \renewcommand\abstractname{\sffamily Abstract}
+$endif$
 
 $if(abstract)$
 

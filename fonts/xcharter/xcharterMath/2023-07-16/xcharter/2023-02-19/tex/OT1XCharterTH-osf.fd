@@ -1,0 +1,28 @@
+\ProvidesFile{OOT1XCharterTH-osf.fd}[2021/05/28 v1.0 font definition file for OT1/XCharterTH/osf]
+
+\expandafter\ifx\csname XCharter@scale\endcsname\relax
+  \let\XCharter@@scale\@empty%
+\else
+    \edef\XCharter@@scale{s*[\csname XCharter@scale\endcsname]}%
+\fi
+
+\DeclareFontFamily{OT1}{XCharterTH-osf}{}
+\DeclareFontShape{OT1}{XCharterTH-osf}{m}{it}{<-> \XCharter@@scale XCharter1TH-Italic-osf-ot1}{}
+\DeclareFontShape{OT1}{XCharterTH-osf}{b}{it}{<-> \XCharter@@scale XCharter1TH-BoldItalic-osf-ot1}{}
+\DeclareFontShape{OT1}{XCharterTH-osf}{m}{n}{<->ssub * XCharterTH-osf/m/it}{}
+\DeclareFontShape{OT1}{XCharterTH-osf}{m}{sc}{<->ssub * XCharterTH-osf/m/it}{}
+\DeclareFontShape{OT1}{XCharterTH-osf}{m}{scit}{<->ssub * XCharterTH-osf/m/it}{}
+\DeclareFontShape{OT1}{XCharterTH-osf}{b}{sc}{<->ssub * XCharterTH-osf/b/it}{}
+\DeclareFontShape{OT1}{XCharterTH-osf}{bx}{sc}{<->ssub * XCharterTH-osf/b/it}{}
+\DeclareFontShape{OT1}{XCharterTH-osf}{b}{n}{<->ssub * XCharterTH-osf/b/it}{}
+\DeclareFontShape{OT1}{XCharterTH-osf}{bx}{n}{<->ssub * XCharterTH-osf/b/it}{}
+\DeclareFontShape{OT1}{XCharterTH-osf}{b}{scit}{<->ssub * XCharterTH-osf/b/it}{}
+\DeclareFontShape{OT1}{XCharterTH-osf}{bx}{scit}{<->ssub * XCharterTH-osf/b/it}{}
+\DeclareFontShape{OT1}{XCharterTH-osf}{bx}{it}{<->ssub * XCharterTH-osf/b/it}{}
+\DeclareFontShape{OT1}{XCharterTH-osf}{m}{sl}{<->ssub * XCharterTH-osf/m/it}{}
+\DeclareFontShape{OT1}{XCharterTH-osf}{b}{sl}{<->ssub * XCharterTH-osf/b/it}{}
+\DeclareFontShape{OT1}{XCharterTH-osf}{bx}{sl}{<->ssub * XCharterTH-osf/b/it}{}
+\DeclareFontShape{OT1}{XCharterTH-osf}{b}{scsl}{<->ssub * XCharterTH-osf/b/it}{}
+\DeclareFontShape{OT1}{XCharterTH-osf}{bx}{scsl}{<->ssub * XCharterTH-osf/b/it}{}
+\DeclareFontShape{OT1}{XCharterTH-osf}{m}{scsl}{<->ssub * XCharterTH-osf/m/it}{}
+\endinput

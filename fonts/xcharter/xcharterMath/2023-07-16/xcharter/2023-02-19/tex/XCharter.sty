@@ -1,0 +1,750 @@
+%% XCharter is an extension of the Bitstream Charter fonts, adding osf,  
+% small caps and superior figures. Generated 2022/02/20 by Michael Sharpe.
+%%
+\NeedsTeXFormat{LaTeX2e}
+
+\def\fileversion{1.24}
+\def\filedate{2022/04/16}
+
+\ProvidesPackage{XCharter}[\filedate\space v\fileversion]
+
+\message{`XCharter' v\fileversion, \filedate\space Text macros for XCharter, an extension of Charter (msharpe)}
+
+\RequirePackage{iftex,xkeyval,etoolbox,textcomp}
+\RequirePackage{xstring,ifthen,scalefnt} % for \textfrac
+\RequirePackage{mweights,xkeyval}
+
+%KOMA check
+\newif\ifxch@KOMA
+\@ifundefined{KOMAClassName}{}{\xch@KOMAtrue}
+\@ifundefined{ver@scrextend.sty}{}{\xch@KOMAtrue}
+
+% Engine check
+\newif\ifxch@otftext
+\iftutex
+	\xch@otftexttrue
+\else
+	\RequirePackage[T1]{fontenc}
+	\RequirePackage{textcomp}
+	\DeclareEncodingSubset{TS1}{XCharter-*}{0}
+\fi 
+%\newif\ifxch@nofontspec
+\newif\ifxch@otfmath
+% newtx check
+\newif\ifntx@newtx
+\@ifundefined{ntx@otftexttrue}{% not run from newtx.sty
+  %\newif\ifntx@otftext%
+  %\newif\ifntx@otfmath % default is type1 math
+  %iftex's \iftutex returns true for LuaTeX and XeTeX, not [pdf]latex
+  %\iftutex\ntx@otftexttrue\fi % default is otf text for unicode latex
+  %\newif\ifntx@nofontspec % default is to load fontspec iftutex  
+  % might have been defined in newtx.sty
+  \def\ntx@id{12} % make it appear that newtxtext was chosen in newtx
+}{% run from newtx.sty
+  \ntx@newtxtrue%
+}
+
+%%%%%%%%%% Start Options
+\def\XCharter@altone{1}% default is to use 1, not I
+\def\XCharter@figurestyle{LF}
+\def\XCharter@figurealign{T}
+\newif\ifxch@lining\xch@liningtrue
+\newif\ifxch@tabular\xch@tabulartrue % default is tabular lining figures
+\DeclareOptionX{type1text}[true]{% use type1 packages for text 
+\@nameuse{if#1}\xch@otftextfalse\fi
+}
+\DeclareOptionX{type1}[true]{% use type1 packages for text 
+\@nameuse{if#1}\xch@otftextfalse\fi
+}
+\DeclareOptionX{nofontspec}[true]{% type1 + don't load fontspec
+%\@nameuse{if#1}\xch@nofontspectrue\fi % No effect from 1.24 onward
+}
+\def\xch@defaultfeatures{}
+\DeclareOptionX{defaultfeatures}{\def\xch@defaultfeatures{#1}}
+
+%Figure style options
+\def\xch@dfltfigurestyle{lf}
+\def\xch@dfltfigurealign{t}
+
+\DeclareOptionX{otfmath}[true]{%
+\@nameuse{xch@otfmath#1}
+}
+
+\DeclareOptionX{lining}[true]{%
+\@nameuse{xch@lining#1}
+}
+\DeclareOptionX{lf}[true]{%
+\@nameuse{xch@lining#1}
+}
+\DeclareOptionX{oldstyle}[true]{%
+\@nameuse{if#1}%
+  \xch@liningfalse
+\else
+  \xch@liningtrue
+\fi
+}
+\DeclareOptionX{osf}[true]{%
+\@nameuse{if#1}%
+  \xch@liningfalse
+ \else
+  \xch@liningtrue
+\fi
+}
+
+\DeclareOptionX{oldstyleI}[true]{%
+\@nameuse{if#1}%
+  \xch@liningfalse
+  \def\XCharter@altone{}
+\else
+  \xch@liningtrue
+\fi
+}
+\DeclareOptionX{osfI}[true]{%
+\@nameuse{if#1}%
+  \xch@liningfalse
+  \def\XCharter@altone{}
+\else
+  \xch@liningtrue
+\fi
+}
+
+\DeclareOptionX{tabular}[true]{%
+\@nameuse{xch@tabular#1}
+}
+\DeclareOptionX{t}[true]{%
+\@nameuse{xch@tabular#1}
+}
+\DeclareOptionX{proportional}[true]{%
+\@nameuse{if#1}%
+  \xch@tabularfalse
+\else
+  \xch@tabulartrue
+\fi
+}
+\DeclareOptionX{p}[true]{%
+\@nameuse{if#1}%
+  \xch@tabularfalse
+\else
+  \xch@tabulartrue
+\fi
+}
+
+%Scale
+\providecommand*{\XCharter@scale}{1}% Might have been defined in newtx
+\DeclareOptionX{Scale}{\renewcommand*{\XCharter@scale}{#1}}
+\DeclareOptionX{scale}{\renewcommand*{\XCharter@scale}{#1}}
+\DeclareOptionX{scaled}{\renewcommand*{\XCharter@scale}{#1}}
+
+%\newif\ifxch@defaultsups
+\newif\ifxch@scosf
+%\newif\ifxch@largesc % we don't use this exc. in fd, but may in future
+%\newif\ifxch@helv \xch@helvtrue % default is to load helvetica as sans serif font
+%\newif\ifxch@sl 
+
+
+\let\orig@footnote=\thefootnote
+\let\orig@makefnmark=\@makefnmark
+\def\bfseries@rm{b}
+\def\mdseries@rm{m}
+
+\def\xch@thmtab{} % default is to not change to tabular
+\def\xch@thmlin{X} % default is to not change to lining
+\def\XCharter@foresolidus{0em}
+\def\XCharter@aftsolidus{0em}
+\newif\ifxch@thrm
+\newif\ifxch@sups
+%\newif\if@XCharter@scosf
+%\newif\ifxch@altQ
+%\newif\ifxch@altJ
+%\newif\ifxch@oldSS
+\def\xch@defaultfeatures{}
+\newcount\xch@cnt \xch@cnt=0
+
+
+%\DeclareOptionX{lining}{\edef\XCharter@figurestyle{LF}}
+%\DeclareOptionX{lf}{\edef\XCharter@figurestyle{LF}}
+%\DeclareOptionX{oldstyle}{\edef\XCharter@figurestyle{OsF}}
+%\DeclareOptionX{osf}{\edef\XCharter@figurestyle{OsF}}
+%\DeclareOptionX{tabular}{\edef\XCharter@figurealign{T}}
+%\DeclareOptionX{p}{\useproportional}
+%\DeclareOptionX{proportional}{\useproportional}
+%\def\xch@fnmark{}
+%\DeclareOptionX{fnmarkerfont}{\def\xch@fnmark{#1}}
+\newif\ifxch@notextnu
+\DeclareOptionX{notextnu}{\xch@notextnutrue}
+\DeclareOptionX{defaultfeatures}{\def\xch@defaultfeatures{#1}}
+\DeclareOptionX{oldSS}{\advance\xch@cnt\@ne}
+\DeclareOptionX{theoremfont}{\xch@thrmtrue}
+%\DeclareOptionX{thmtabular}{\def\xch@thmtab{t}}
+\DeclareOptionX{thmlining}{\def\xch@thmlin{l}}
+\DeclareOptionX{sups}{\xch@supstrue}
+\DeclareOptionX{scosf}{\xch@scosftrue}
+\DeclareOptionX{foresolidus}{\gdef\XCharter@foresolidus{#1}}
+\DeclareOptionX{aftsolidus}{\gdef\XCharter@aftsolidus{#1}}
+\DeclareOptionX*{\ifxch@otfmath\PassOptionsToPackage{\CurrentOption}{xcharter-otf}\fi}
+\ExecuteOptionsX{lining,tabular}
+\ProcessOptionsX\relax
+
+%+++++++++++++++++Option consequences++++++++++++++++++++++++
+
+% Check for conflict between nofontspec and others
+%\ifxch@nofontspec
+%  \iftutex
+%	\xch@otftextfalse
+%  \fi
+%\fi
+%\edef\xch@scaled{s*[\xch@scale]}% used in fd files
+
+\iftutex
+  \ifxch@otfmath
+     \RequirePackage{fontspec}
+     \RequirePackage[Scale=\XCharter@scale]{xcharter-otf}
+     %\setmathfont{XCharter-Math.otf}
+  \else   % set up for minxcharter+newtxmath, then otf XCharter
+     \RequirePackage[no-math]{fontspec}
+     \let\ntxmath@scale=\XCharter@scale
+     
+  \fi
+\fi
+
+\ifxch@otftext%
+  \ifxetex\XeTeXtracingfonts=1\fi
+  \ifluatex  % avoid possibly uncorrected "system" fonts
+    \directlua{fonts.names.set_location_precedence{
+        "local", "texmf", "system" }}
+  \fi
+  \def\xch@base{XCharter}
+  \newcommand{\textfrac}[3][]{{%
+ \mbox{%
+    \ifthenelse{\not\equal{#1}{}}%Test for integer portion [optional #1]
+      {\textlf{#1}\kern.03em}{}%         
+    \textsu{#2\char"2044}% numerator
+\textde{\kern-.159em{\addfontfeature{RawFeature=+ss02}\char"2044}#3}% denominator
+}}}
+  \def\xch@dflt{}
+ %\xch@cnt will be 0..7 
+  \def\xch@lst{}
+  \ifnum\xch@cnt>3 \edef\xch@lst{3}\advance\xch@cnt -4 \fi
+  \ifnum\xch@cnt>1 \edef\xch@lst{2,\xch@lst}\advance\xch@cnt -2 \fi
+  \ifnum\xch@cnt>0 \edef\xch@lst{2,\xch@lst}\fi
+  \ifthenelse{\not\equal{\xch@lst}{}}
+	{\edef\xch@dflt{\xch@dflt StylisticSet={\xch@lst} , 
+	}}{}
+  \defaultfontfeatures{
+     Ligatures = TeX ,
+     Extension = .otf ,
+     SmallCapsFeatures={Letters=SmallCaps} ,
+     \xch@dflt ,
+     \xch@defaultfeatures 
+  }
+
+\else % type1
+	\RequirePackage{fontaxes}
+
+    \fa@naming@exception{figures}{{superior}{proportional}}{Sup}
+    \fa@naming@exception{figures}{{superior}{tabular}}{Sup}
+    \def\sufigures{\@nomath\sufigures
+        \fontfigurestyle{superior}\selectfont}
+    \DeclareTextFontCommand{\textsu}{\sufigures}
+    \let\textsuperior\textsu
+    
+    \fa@naming@exception{figures}{{inferior}{proportional}}{Inf}
+    \fa@naming@exception{figures}{{inferior}{tabular}}{Inf}
+    \def\infigures{\@nomath\infigures
+        \fontfigurestyle{inferior}\selectfont}
+    \DeclareTextFontCommand{\textinf}{\infigures}
+    \let\textinferior\textinf
+    
+    \fa@naming@exception{figures}{{numerators}{proportional}}{Numr}
+    \fa@naming@exception{figures}{{numerators}{tabular}}{Numr}
+    \def\nufigures{\@nomath\nufigures%
+        \fontfigurestyle{numerators}\selectfont}
+    \DeclareTextFontCommand{\textnumerator}{\nufigures}
+    %\let\textnum\textnumerator
+    
+    \fa@naming@exception{figures}{{denominators}{proportional}}{Dnom}
+    \fa@naming@exception{figures}{{denominators}{tabular}}{Dnom}
+    \def\defigures{\@nomath\defigures%
+        \fontfigurestyle{denominators}\selectfont}
+    \DeclareTextFontCommand{\textde}{\defigures}
+    \let\textdenominator\textde
+    
+    \newcommand{\textfrac}[3][]{% like \textfrac[1]{7}{8}
+      \mbox{%Test for integer portion [optional #1]
+        \ifthenelse{\not\equal{#1}{}}%          
+        {\textlf{#1}\kern.05em}{}%         
+        \textsu{#2}% numerator
+        \StrRight{#2}{1}[\@digit@]%
+        % look for  1, 2, 3, 4, 7
+        \ifcase\@digit@% 0
+        \or% 1
+        \or\kern.03em% 2
+        \or\kern-.01em% 3
+        \or%\kern-.01em% 4
+        \or%\kern.01em% 5
+        \or\kern.01em% 6
+        \or\kern-.09em% 7
+        \fi%
+\kern\XCharter@foresolidus\textfractionsolidus\kern\XCharter@aftsolidus%
+        \StrLeft{#3}{1}[\@digit@]%
+        % look for 1, 4, 5, 7
+        \ifcase\@digit@% 0
+        \or\kern -.02em% 1
+        \or\kern .01em% 2
+        \or\kern -.02em% 3
+        \or\kern -.08em% 4
+        \or\kern -.01em% 5
+        \or\kern -.03em% 6
+        \or\kern .02em% 7
+        \fi%
+\textde{#3}%       denominator [#3]
+}%
+}
+
+\DeclareRobustCommand{\tlfstyle}{%
+  \not@math@alphabet\tlfstyle\relax
+  \fontfamily{XCharter-TLF}\selectfont }
+\DeclareRobustCommand{\lfstyle}{%
+  \not@math@alphabet\lfstyle\relax
+  \fontfamily{XCharter-LF}\selectfont }
+\DeclareRobustCommand{\tosfstyle}{%
+  \not@math@alphabet\tosfstyle\relax
+  \fontfamily{XCharter-TOsF}\selectfont }
+\DeclareRobustCommand{\osfstyle}{%
+  \not@math@alphabet\osfstyle\relax
+  \fontfamily{XCharter-OsF}\selectfont }
+\fi % type1  
+
+%\DeclareRobustCommand{\textlf}[1]{%
+%  {\lfstyle #1}%
+%}% to get lf
+%\DeclareRobustCommand{\texttlf}[1]{%
+%  {\tlfstyle #1}%
+%}% to get tlf
+%\DeclareRobustCommand{\textosf}[1]{%
+%  {\osfstyle #1}%
+%}% to get osf
+%\DeclareRobustCommand{\texttosf}[1]{%
+%  {\tosfstyle #1}%
+%}% to get tosf
+
+%\newcommand*{\XCharter@scale}{1}
+%\RequirePackage{xkeyval}
+%\DeclareOptionX{scale}{\renewcommand*{\XCharter@scale}{##1}}
+%\DeclareOptionX{scaled}{\renewcommand*{\XCharter@scale}{##1}}
+%\let\orig@footnote=\thefootnote
+%\let\orig@makefnmark=\@makefnmark
+%\def\XCh@foresolidus{-.02em}
+%\def\XCh@aftsolidus{-.02em}
+%
+%\newif\if@XCh@scosf
+%\newif\if@XCh@srb
+%\def\XCharter@altone{1}% default is to use 1, not I
+%%\newif\if@XCh@sups
+%%\DeclareOptionX{foresolidus}{\gdef\XCh@foresolidus{#1}}
+%%\DeclareOptionX{aftsolidus}{\gdef\XCh@aftsolidus{#1}}
+%%\DeclareOptionX{tabular}{\def\XCharter@figurealign{T}}
+%%\DeclareOptionX{lf}{\def\XCharter@figurestyle{LF}}
+%%\DeclareOptionX{lining}{\edef\XCharter@figurestyle{LF}}
+%%\DeclareOptionX{oldstyle}{\def\XCharter@figurestyle{OsF}%\def\XCharter@figurealign{}\def\XCharter@altone{1}}
+%\DeclareOptionX{oldstyleI}{\def\XCharter@figurestyle{OsF}\def\XCharter@figurealign{}\def\XCharter@altone{}}
+%%\DeclareOptionX{osf}{\def\XCharter@figurestyle{OsF}\def\XCharter@figurealign{}\def\XCharter@altone{1}}
+%\DeclareOptionX{osfI}{\def\XCharter@figurestyle{OsF}\def\XCharter@figurealign{}\def\XCharter@altone{}}
+%\DeclareOptionX{sups}{\@XCh@supstrue}
+%\DeclareOptionX{scosf}{\@XCh@scosftrue}
+%\DeclareOptionX{serbianc}{\@XCh@srbtrue}
+%
+%\edef\bfseries@rm{b}
+%\edef\mdseries@rm{m}
+%\ExecuteOptionsX{lining,tabular}
+%\ProcessOptionsX\relax
+
+\def\useosf{\xch@liningfalse\def\XCharter@altone{1}}
+\def\useosfI{\xch@liningfalse\def\XCharter@altone{}}
+\@onlypreamble\useosf
+\@onlypreamble\useosfI
+\def\useproportional{\xch@tabularfalse}
+\@onlypreamble\useproportional
+
+%\newcommand{\textosfI}[1]{\oldstylenums{#1}}% to get XCharter osfI
+%\newcommand{\textosf}[1]{{\fontencoding{T1}\fontfamily{XCharterx}\selectfont #1}}% to get XCharter osf
+%\newcommand{\textosfI}[1]{{\fontencoding{T1}\fontfamily{XChartery}\selectfont #1}}% to get XCharter osfI
+
+%\renewcommand*{\bfdefault}{b}
+\renewcommand*{\scdefault}{sc}% for better compatibility with mathdesign
+
+% The following are provided so that we may access osf in any mode
+% osfx corresponds to small 1 rather than small I
+%\DeclareFontFamily{T1}{XCharterx}{}
+%
+%\DeclareFontShape{T1}{XCharterx}{m}{n}{
+%   <-> s*[\XCharter@scale]  XCharter1-Roman-osf-t1
+%}{}
+%\DeclareFontShape{T1}{XCharterx}{m}{it}{
+%   <-> s*[\XCharter@scale]  XCharter1-Italic-osf-t1
+%}{}
+%\DeclareFontShape{T1}{XCharterx}{m}{sl}{
+%   <-> s*[\XCharter@scale]  XCharter1-Slanted-osf-t1
+%}{}
+%\DeclareFontShape{T1}{XCharterx}{b}{n}{
+%   <-> s*[\XCharter@scale]  XCharter1-Bold-osf-t1
+%}{}
+%\DeclareFontShape{T1}{XCharterx}{b}{it}{
+%   <-> s*[\XCharter@scale]  XCharter1-BoldItalic-osf-t1
+%}{}
+%\DeclareFontShape{T1}{XCharterx}{b}{sl}{
+%   <-> s*[\XCharter@scale]  XCharter1-BoldSlanted-osf-t1
+%}{}
+%% osfy corresponds to small I rather than small 1
+%\DeclareFontFamily{T1}{XChartery}{}
+%
+%\DeclareFontShape{T1}{XChartery}{m}{n}{
+%   <-> s*[\XCharter@scale]  XCharter-Roman-osf-t1
+%}{}
+%\DeclareFontShape{T1}{XChartery}{m}{it}{
+%   <-> s*[\XCharter@scale]  XCharter-Italic-osf-t1
+%}{}
+%DeclareFontShape{T1}{XChartery}{m}{sl}{
+%   <-> s*[\XCharter@scale]  XCharter-Slanted-osf-t1
+%}{}
+%\DeclareFontShape{T1}{XChartery}{b}{n}{
+%   <-> s*[\XCharter@scale]  XCharter-Bold-osf-t1
+%}{}
+%\DeclareFontShape{T1}{XChartery}{b}{it}{
+%   <-> s*[\XCharter@scale]  XCharter-BoldItalic-osf-t1
+%}{}
+%\DeclareFontShape{T1}{XChartery}{b}{sl}{
+%   <-> s*[\XCharter@scale]  XCharter-BoldSlanted-osf-t1
+%}{}
+
+
+\renewcommand*{\rmdefault}{XCharter-TLF}
+\renewcommand*{\familydefault}{\rmdefault}
+
+\ifxch@scosf %
+\DeclareRobustCommand{\textsc}[1]{%
+{\fontfamily{XCharter-OsF}\fontshape{sc}\selectfont #1}%
+}\fi% use OsF in small caps
+
+\DeclareRobustCommand{\textruble}{\rlap{\kern.03em\rule[.258em]{.1em}{.032em}}\rlap{\kern.03em\rule[.173em]{.41em}{.032em}}{\scalefont{.966}P}}
+\let\textcircled\@nil
+%\let\csname TS1\textcircled\@nil
+\DeclareRobustCommand{\textcircled}[1]{%
+\hmode@bgroup%
+\ifnum`#1>`9\relax%
+\def\y{.3ex}\def\x{\scshape\lowercase{#1}}%
+\else%
+\def\y{.19ex}\def\x{\liningnums#1}%
+\fi%
+\mbox{%
+\ooalign{%
+\hfil\raise\y\hbox{\scalefont{.78}\x}\hfil\crcr%
+{\usefont{TS1}{XCharter-TLF}{m}{n}\char79}%\textbigcircle 
+}}%
+\egroup}
+%\expandafter\show\csname textcircled \endcsname
+
+%\DeclareTextCommand{\textcircled}{TS1}[1]{\hmode@bgroup
+%   \ooalign{%
+%      \hfil \raise .37ex\hbox {\fontencoding{T1}\fontseries{m}\fontshape{sc}\fontsize{7.2}{7.2}\selectfont \lowercase{#1}}\hfil \crcr
+%     \textbigcircle 
+%   }%
+% \egroup}
+
+\ifxch@sups %
+ \ifdefined\sufigures
+  \def\f@@tn@te{footnote}
+  \def\@makefnmark{%
+    \ifx\@mpfn\f@@tn@te%not in a minipage
+      \ifx\thefootnote\orig@footnote%
+        \hbox{\sufigures\hspace*{.04em}\@thefnmark\hspace*{.04em}}%
+      \else%
+        \orig@makefnmark%
+      \fi%
+    \else%
+      \orig@makefnmark%
+    \fi}%
+ \fi%
+\fi
+
+%%%% set the style for theoremfont---either osf or tlf
+\def\xch@thfigurestyle{\XCharter@figurestyle}
+\ifx\XCharter@figurestyle\xch@dfltfigurestyle
+  \def\xch@thfigurestyle{tlf}
+\else
+  \def\xch@thfigurestyle{osf}
+\fi
+\if l\xch@thmlin \def\xch@thfigurestyle{tlf}\fi% force lining
+
+\ifxch@otftext
+    \ifthenelse{\equal{\xch@thfigurestyle}{tlf}}{%
+    \def\xch@fa{Monospaced}\def\xch@sty{Lining}}{%
+    \def\xch@fa{Proportional}\def\xch@sty{OldStyle}}
+%	\DeclareTextFontCommand{%
+%      \slshape}{\addfontfeatures{Numbers = {\xch@nft,\xch@sty}, RawFeature=+salt}\itshape} % for theorems
+    \DeclareTextFontCommand{\textsl}{\slshape}
+   
+    \DeclareRobustCommand{\lfstyle}{%
+      \not@math@alphabet\lfstyle\relax
+      \addfontfeatures{Numbers={Proportional,Lining}}%
+    }
+    \DeclareRobustCommand{\tlfstyle}{%
+      \not@math@alphabet\tlfstyle\relax
+      \addfontfeatures{Numbers={Monospaced,Lining}}%
+    }
+    \DeclareRobustCommand{\osfstyle}{%
+      \not@math@alphabet\osfstyle\relax
+      \addfontfeatures{Numbers={Proportional,OldStyle}}%
+    }
+     \DeclareRobustCommand{\tosfstyle}{%
+      \not@math@alphabet\tosfstyle\relax
+      \addfontfeatures{Numbers={Monospaced,OldStyle}}%
+    }
+    \DeclareRobustCommand{\oldstylenums}{%
+      \not@math@alphabet\oldstylenums\relax
+      \addfontfeatures{Numbers=OldStyle}%
+    }
+    \DeclareRobustCommand{\liningnums}{%
+      \not@math@alphabet\liningnums\relax
+      \addfontfeatures{Numbers=Lining}%
+    }
+    \DeclareRobustCommand{\tabularnums}{%
+      \not@math@alphabet\tabularnums\relax
+      \addfontfeatures{Numbers=Monospaced}%
+    }
+   \DeclareRobustCommand{\proportionalnums}{%
+      \not@math@alphabet\proportionalnums\relax
+      \addfontfeatures{Numbers=Proportional}%
+    }
+
+%%  \newfontfamily\xchTLF
+%        [ %IgnoreFontspecFile ,
+%          Numbers = {Monospaced,Lining},
+%          Scale          = \XCharter@scale ,
+%          UprightFont    = *-Roman ,
+%          ItalicFont     = *-Italic ,
+%          %SlantedFont    = *-Slanted ,
+%          BoldFont       = *-Bold , 
+%          BoldItalicFont = *-BoldItalic ,
+%         % BoldSlantedFont= *-BoldSlanted ,
+%        ] {\xch@base}
+%  \newfontfamily\xchTOsF
+%        [ %IgnoreFontspecFile ,
+%          Numbers = {Monospaced,OldStyle} ,
+%          Scale          = \XCharter@scale ,
+%          UprightFont    = *-Roman ,
+%          ItalicFont     = *-Italic ,
+%          %SlantedFont    = *-Slanted ,
+%          BoldFont       = *-Bold , 
+%          BoldItalicFont = *-BoldItalic ,
+%          %BoldSlantedFont= *-BoldSlanted ,
+%        ] {\xch@base}
+% \newfontfamily\xchOsF
+%        [ %IgnoreFontspecFile ,
+%          Numbers = {Proportional,OldStyle} ,
+%          Scale          = \XCharter@scale ,
+%          UprightFont    = *-Roman ,
+%          ItalicFont     = *-Italic ,
+%          %SlantedFont    = *-Slanted ,
+%          BoldFont       = *-Bold , 
+%          BoldItalicFont = *-BoldItalic ,
+%          %BoldSlantedFont= *-BoldSlanted ,
+%        ] {\xch@base}
+%  \newfontfamily\xchLF
+%        [ %IgnoreFontspecFile ,
+%          Numbers = {Proportional,Lining} ,
+%          Scale          = \XCharter@scale ,
+%          UprightFont    = *-Roman ,
+%          ItalicFont     = *-Italic ,
+%          %SlantedFont    = *-Slanted ,
+%          BoldFont       = *-Bold , 
+%          BoldItalicFont = *-BoldItalic ,
+%          %BoldSlantedFont= *-BoldSlanted ,
+%       ] {\xch@base}
+  \providecommand\nufigures{\addfontfeatures{RawFeature=+numr}}
+  \providecommand\sufigures{\addfontfeatures{VerticalPosition=Superior}}
+  \providecommand\defigures{\addfontfeatures{RawFeature=+dnom}}
+\providecommand\infigures{\addfontfeatures{VerticalPosition=Inferior}}
+%	\let\nustyle\nufigures
+ 
+  \ifxch@sups %
+    \usepackage{realscripts}
+    %\newfontfamily\Timessu{TeXGyreTermesX}
+    
+    \ifxch@KOMA
+      \setkomafont{footnotelabel}{\normalfont}
+    \else
+      \renewcommand*{\footnotemarkfont}{\normalfont}
+    \fi
+  \fi
+%  \newcommand{\thfamily}%{\@nameuse{ntx\ntx@figurestyle}%
+%    {\itshape\addfontfeatures{%
+%    Numbers={\XCharter@figurealign,\xch@sty} ,
+%    RawFeature=+ss05}
+    %} % for theorems
+\else % type1
+	\DeclareRobustCommand{\thfamily} % new family for theorem font
+        {\not@math@alphabet\thfamily\relax
+         \fontfamily\thdefault\selectfont}
+%  \DeclareRobustCommand{\textth}[1]{%
+%    {\thfamily #1}%
+%}
+%\let\textthit\textth
+  \renewcommand*{\rmdefault}{XCharter-TLF} % always TLF in math
+  %\renewcommand*{\familydefault}{\rmdefault}
+   
+  \ifxch@sups %
+   \ifxch@KOMA %
+   \else % not KOMA
+     \ifdefined\sufigures
+      \def\f@@tn@te{footnote}
+      \def\@makefnmark{%
+        \ifx\@mpfn\f@@tn@te%
+          \ifx\thefootnote\orig@footnote%
+            \hbox{\sufigures\hspace*{.04em}\@thefnmark\hspace*{.04em}}%
+          \else%
+            \orig@makefnmark%
+          \fi
+        \else%
+          \orig@makefnmark%
+        \fi}%
+     \fi%
+    \fi
+  \fi    
+\fi % type1
+
+\ifxch@otftext
+%  \AtEndPreamble{%
+	\ifxch@lining
+      \def\xch@figurestyle{Lining}
+    \else
+      \def\xch@figurestyle{OldStyle}
+    \fi
+    \ifxch@tabular
+      \def\xch@figurealign{Monospaced} 
+    \else
+      \def\xch@figurealign{Proportional} 
+    \fi
+
+  	\setmainfont
+          [%IgnoreFontspecFile ,
+          Extension      = .otf ,
+          %Path = ./ ,
+           Numbers = {\xch@figurealign,\xch@figurestyle},
+          Scale          = \XCharter@scale ,
+          UprightFont    = *-Roman ,
+          ItalicFont     = *-Italic ,
+          SlantedFont    = *-Slanted ,
+          BoldFont       = *-Bold , 
+          BoldItalicFont = *-BoldItalic ,
+          BoldSlantedFont= *-BoldSlanted ,
+          SmallCapsFeatures={Letters=SmallCaps} ,
+          \if1\XCharter@altone CharacterVariant={1:0}\fi
+          ] {\xch@base}
+\def\xch@sty{\xch@figurestyle}\def\xch@fa{\xch@figurealign}
+  \if l\xch@thmlin\def\xch@sty{Lining}\def\xch@fa{Tabular}\fi 
+ 	\newcommand{\thfamily}%{\@nameuse{ntx\ntx@figurestyle}%
+    {\itshape\addfontfeatures{%
+    Numbers={\xch@fa,\xch@sty} ,
+    RawFeature=+ss05}
+    } % for theorems
+\newfontface\circledtxt{\xch@base-Roman}
+ 		[%IgnoreFontspecFile ,
+        Scale          = \XCharter@scale ,
+         %Numbers = {Monospaced,OldStyle} ,
+         SmallCapsFeatures={Letters=SmallCaps} ,
+         ]
+	\ifxch@scosf%
+		\edef\xch@fnt{\expandafter\csname xch\ifxch@tabular T\fi OsF\endcsname}
+		\DeclareRobustCommand{\textsc}[1]{%
+		{\xch@fnt \addfontfeatures{RawFeature=+smcp}#1}}%
+%\show\xch@fnt		
+	\fi
+\let\textthit\textth
+%}
+\else % type1
+  \AtEndPreamble{%
+	\ifxch@tabular
+	  \def\XCharter@figurealign{T}
+	\else
+	  \def\XCharter@figurealign{}
+	\fi
+	\ifxch@lining
+	  \def\XCharter@figurestyle{LF}
+	\else
+	  \def\XCharter@figurestyle{OsF}
+	\fi
+    \DeclareRobustCommand{\oldstylenums}{%
+      \not@math@alphabet\oldstylenums\relax
+      \fontfamily{XCharter-\XCharter@figurealign OsF}\selectfont }
+    \DeclareRobustCommand{\liningnums}{%
+      \not@math@alphabet\liningnums\relax
+      \fontfamily{XCharter-\XCharter@figurealign LF}\selectfont }
+    \DeclareRobustCommand{\tabularnums}{%
+      \not@math@alphabet\tabularnums\relax
+      \fontfamily{XCharter-T\XCharter@figurestyle}\selectfont }
+    \DeclareRobustCommand{\proportionalnums}{%
+      \not@math@alphabet\proportionalnums\relax
+      \fontfamily{XCharter-\XCharter@figurestyle}\selectfont }
+%    \DeclareRobustCommand{\textosfI}[1]{%
+%{\fontfamily{XCharter-OsF}\fontshape{sc}\selectfont #1}%
+%}
+	\ifxch@scosf %
+	  \DeclareRobustCommand{\textsc}[1]{%
+	  {\fontfamily{XCharter-\XCharter@figurealign%
+	  OsF}\fontshape{sc}\selectfont #1}%
+	  }\fi% use OsF in small caps	
+	\renewcommand*{\rmdefault}{XCharter-\XCharter@figurealign%
+	\XCharter@figurestyle}
+	
+    \newcommand*{\thdefault}{XCharterTH-\xch@thfigurestyle}
+    \normalfont
+	%\renewcommand*{\familydefault}{\rmdefault}
+\let\textthit\textth
+  }
+\fi
+
+%both
+\let\nustyle\nufigures
+\let\textnum\textnumerator
+\ifxch@notextnu\else\let\textnu=\textnumerator\fi
+\let\destyle\defigures
+\DeclareTextFontCommand{\textsu}{\sufigures}
+\let\textsuperior\textsu
+\DeclareTextFontCommand{\textde}{\defigures}
+\let\textdenominator\textde
+\DeclareTextFontCommand{\textinf}{\infigures}
+\let\textinferior\textinf
+\DeclareTextFontCommand{\textosf}{\osfstyle}
+\DeclareTextFontCommand{\texttosf}{\tosfstyle}
+\DeclareTextFontCommand{\texttlf}{\tlfstyle}
+\DeclareTextFontCommand{\textlf}{\lfstyle}
+
+\ifxch@thrm
+	\@ifundefined{theoremstyle}{}{%
+    \theoremstyle{plain}
+    \patchcmd{\th@plain}{\itshape}{\thfamily}{%
+    %\message{Replaced itshape by thfamily in theorem style plain.}
+    }{%
+    %\message{Unable to replace itshape by thfamily in theorem style plain.}
+    }}
+	\ifdefined\newtheoremstyle %amsthm and ntheorem, not theorem.sty
+		\@ifpackageloaded{ntheorem}\relax{%
+		\newtheoremstyle{plain}
+		{\medskipamount}   % ABOVESPACE, was \topsep
+    	{\medskipamount}   % BELOWSPACE, was \topsep
+    	{\thfamily}  % BODYFONT--\thfamily is italic with upright figures and punctuation
+    	{}       % INDENT (empty value is the same as 0pt)
+    	{\bfseries} % HEADFONT--you may want to add \tlfstyle so the number is tab lining, regardless of text figure selection
+    	{.}         % HEADPUNCT
+    	{5pt plus 1pt minus 1pt} % HEADSPACE
+    	{}          % CUSTOM-HEAD-SPEC\newtheorem{thm}{Theorem}[section]
+    	} % end @ifpackageloaded
+    \fi%
+\fi
+\DeclareRobustCommand{\textth}[1]{%
+    {\thfamily #1}%
+}
+%
+
+\endinput

@@ -1,0 +1,68 @@
+%Filename: omlzchmi.fd
+%Created by: tex ch-drv
+%Created using fontinst v1.933
+
+%THIS FILE SHOULD BE PUT IN A TEX INPUTS DIRECTORY
+
+\ProvidesFile{omlzchmi.fd}
+   [2019/11/21 Fontinst v1.933 font definitions for OML/zchmi.]
+
+\expandafter\ifx\csname ntxmath@scaled\endcsname\relax
+  \let\ntxmath@scaled\@empty%
+\fi
+
+\def\tx@donozchvw{\newif\iftx@nozchvw}
+\expandafter\ifx\csname tx@nozchvwfalse\endcsname\relax
+  \tx@donozchvw
+\fi
+
+\def\tx@doalty{\newif\iftx@XChalty}
+\expandafter\ifx\csname tx@XChaltyfalse\endcsname\relax
+  \tx@doalty
+\fi
+
+\DeclareFontFamily{OML}{zchmi}{\skewchar \font =127}
+
+\iftx@nozchvw % use original v, w in math italic
+  \iftx@XChalty % new y
+    \DeclareFontShape{OML}{zchmi}{m}{it}{
+     <-> \ntxmath@scaled zchmi3
+    }{}
+
+    \DeclareFontShape{OML}{zchmi}{b}{it}{
+       <-> \ntxmath@scaled zchbmi3
+    }{}
+  \else % orig y
+    \DeclareFontShape{OML}{zchmi}{m}{it}{
+     <-> \ntxmath@scaled zchmi0
+    }{}
+
+    \DeclareFontShape{OML}{zchmi}{b}{it}{
+       <-> \ntxmath@scaled zchbmi0
+    }{}
+  
+  \fi
+\else % rounded v, w
+  \iftx@XChalty % new y
+    \DeclareFontShape{OML}{zchmi}{m}{it}{
+     <-> \ntxmath@scaled zchmi2
+    }{}
+    \DeclareFontShape{OML}{zchmi}{b}{it}{
+       <-> \ntxmath@scaled zchbmi2
+    }{}
+  \else % orig y
+    \DeclareFontShape{OML}{zchmi}{m}{it}{
+     <-> \ntxmath@scaled zchmi
+    }{}
+    \DeclareFontShape{OML}{zchmi}{b}{it}{
+       <-> \ntxmath@scaled zchbmi
+    }{}
+  \fi
+\fi
+
+\DeclareFontShape{OML}{zchmi}{m}{sl}{<->ssub * zchmi/m/it}{}
+\DeclareFontShape{OML}{zchmi}{bx}{it}{<->ssub * zchmi/b/it}{}
+\DeclareFontShape{OML}{zchmi}{b}{sl}{<->ssub * zchmi/b/it}{}
+\DeclareFontShape{OML}{zchmi}{bx}{sl}{<->ssub * zchmi/b/sl}{}
+
+\endinput

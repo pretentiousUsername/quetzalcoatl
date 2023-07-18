@@ -13,10 +13,10 @@ More work is needed, but, for now, it works.
 ## List of parameters
 | Parameter | Function | Value |
 |:----------|:---------|:------|
-| `stixFont` | uses StixTwo for the serif font | `true` or `false` |
+| `stixFonts` | uses StixTwo for the serif font | `true` or `false` |
 | `notoSans` | uses Noto Sans for the sans-serif font | `true` or `false` |
-| `erewhonFont` | use the Erewhon font | `true` or `false` |
-| `kpFont`[^like] | use the KpSerif font | |`true` or `false` |
+| `erewhonFonts` | use the Erewhon font | `true` or `false` |
+| `kpFonts`[^like] | use the KpSerif font | |`true` or `false` |
 | `paperSize` | changes paper size | Standard paper sizes |
 | `twoSided` | makes the page double-sided | `true` or `false` |
 | `titlepage` | adds a titlepage | `true` or `false` |
