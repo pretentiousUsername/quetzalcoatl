@@ -6,10 +6,10 @@ abstract:
  This is my abstract for this document. It is a summary of
  everything in the document---though it does not *really* tell you much
  about what the whole paper is about. Good luck trying to get anything out
- of this, nerd!
+ of this, nerd! {\addfontfeature{+getfunky} °.}
 numberSections: true
 bibliography: ref.bib
-csl: /home/ian/.pandoc/csl/natureBox.csl
+csl: /home/pines/.pandoc/csl/aps_nt.csl
 reportNo: WTF-420-\LaTeX
 institution: Ducky Fooniversity
 titlepage: true
