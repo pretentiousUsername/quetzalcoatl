@@ -8,9 +8,6 @@
 		$documentClass$$else$article$endif$}
 % This is ugly, but if I have it spaced out, pandoc doesn't like it much.
 
-%\usepackage{luaotfload}
-\usepackage{luacode}
-
 % DO NOT include a slash after your fontDir is set
 \def\fontDir{/home/pines/.pandoc/quetzalcoatl/fonts}
 
@@ -28,9 +25,9 @@
 \usepackage{linop}
 
 %% Physics macros
-\newcommand{\expval}[1]{\left< #1 \right>}
-\newcommand{\comm}[2]{\left[ #1 , #2 \right]}
-\newcommand{\acomm}[2]{\left\{ #1, #2 \right\}}
+\newcommand{\expval}[1]{\left< #1 \right>} % expectation value
+\newcommand{\comm}[2]{\left[ #1 , #2 \right]} % commutator
+\newcommand{\acomm}[2]{\left\{ #1, #2 \right\}} % anticommutator
 
 \usepackage{enumerate}
 % Keep pandoc from getting mad
@@ -67,38 +64,6 @@
 
 \usepackage{siunitx}
 
-
-$if(titlepage)$
-$else$
-\usepackage[runin]{abstract}
-$endif$
-
-$if(defaultTitle)$
-$else$
-\makeatletter
-\def\@maketitle{%
-  \newpage
-  \null
-  \vskip 2em%
-  \begin{flushleft}%
-  \let \footnote \thanks
-    {\LARGE \textsf \@title \par}%
-    \vskip 0.5em%
-  \end{flushleft}
-  \begin{flushright}
-    {\large
-      \lineskip .5em%
-      \begin{tabular}[t]{r}%
-        \noindent \textsf \@author \\
-	\textsf \@date
-      \end{tabular}\par}%
-    %\vskip 1em%
-    %{\large \textsf \@date}%
-  \end{flushright}%
-  \par
-  \vskip 1.5em}
-\makeatother
-$endif$
 
 
 \usepackage[auto=true]{microtype}
@@ -165,16 +130,6 @@ $if(customType)$
 
 	$else$
 
-    \directlua{
-        fonts.handlers.otf.addfeature{
-            name = "getfunky",
-            type = "kern",
-            data = {
-                ["."] = {["°"] = -1000},
-                ["°"] = {["."] = -1000},
-                }
-        }
-    }
 	\setmainfont[
 		Path = {\fontDir/stix2/},
 		Extension = {.otf},
@@ -183,7 +138,6 @@ $if(customType)$
 		BoldFont = {*-Bold},
 		BoldItalicFont = {*-BoldItalic},
 		RawFeature = {+case},
-        Renderer = HarfBuzz,
 		]
 		{StixTwoText}
 
@@ -198,8 +152,6 @@ $if(customType)$
 	\newfontfamily\symbolFont[
 		Extension = {.otf},
 		Path = {\fontDir/stix2/},
-        %RawFeature = {+getFunky},
-        Renderer = HarfBuzz,
 	]{StixTwoMath-Regular}
 	$endif$
 	
@@ -255,7 +207,6 @@ $else$
 		BoldItalicFont = {*-BoldItalic},
 		RawFeature = {+cv08, +cv01, +cv07, +cv10, +case, +zero},
 		Scale = 0.925,
-        Renderer = HarfBuzz,
 		]
 		{Inter}
 
@@ -268,7 +219,6 @@ $else$
 		BoldItalicFont = {*-BlackItalic},
 		RawFeature = {+cv08, +cv01, +cv07, +cv10, +case, +zero},
 		Scale = 0.925,
-        Renderer = HarfBuzz,
 		]
 		{Inter}
 
@@ -281,7 +231,6 @@ $else$
 		BoldItalicFont = {*-ExtraBoldItalic},
 		RawFeature = {+cv08, +cv01, +cv07, +cv10, +case, +zero},
 		Scale = 0.925,
-        Renderer = HarfBuzz,
 		]
 		{Inter}
 
@@ -294,7 +243,6 @@ $else$
 		BoldItalicFont = {*-SemiBoldItalic},
 		RawFeature = {+cv08, +cv01, +cv07, +cv10, +case, +zero},
 		Scale = 0.925,
-        Renderer = HarfBuzz,
 		]
 		{Inter}
 	$endif$
@@ -308,13 +256,46 @@ $else$
 		BoldFont = {*-Bold},
 		BoldItalicFont = {*-BoldItalic},
 		Scale = 0.875,
-        Renderer = HarfBuzz,
 		]
 		{JuliaMono}
 
 $if(sansBody)$
 	\renewcommand{\familydefault}{\sfdefault}
 $endif$
+
+$if(titlepage)$
+$else$
+\usepackage[runin]{abstract}
+$endif$
+
+$if(defaultTitle)$
+$else$
+\makeatletter
+\def\@maketitle{%
+  \newpage
+  \null
+  \vskip 2em%
+  \begin{flushleft}%
+  \let \footnote \thanks
+    {\LARGE \textsf \@title \par}%
+    \vskip 0.5em%
+  \end{flushleft}
+  \begin{flushright}
+    {\large
+      \lineskip .5em%
+      \begin{tabular}[t]{r}%
+        \noindent \textsf \@author \\
+	\textsf \@date
+      \end{tabular}\par}%
+    %\vskip 1em%
+    %{\large \textsf \@date}%
+  \end{flushright}%
+  \par
+  \vskip 1.5em}
+\makeatother
+$endif$
+
+
 
 % Set itemize symbols
 \renewcommand{\labelitemi}{\symbolFont{▪}}
@@ -391,6 +372,7 @@ $endif$
 \usepackage{colortbl}
 \definecolor{table-row-color}{HTML}{F5F5F5}
 \definecolor{table-rule-color}{HTML}{999999}
+
 
 $if(ruleColor)$
 \definecolor{ruleColor}{HTML}{$ruleColor$}
@@ -493,10 +475,14 @@ $endif$
 
 $if(urlColor)$
 	\definecolor{urlColor}{HTML}{$urlColor$}
+$else$
+    \definecolor{urlColor}{HTML}{ab0f0f}
 $endif$
 
 $if(linkColor)$
 	\definecolor{linkColor}{HTML}{$linkColor$}
+$else$
+    \definecolor{linkColor}{HTML}{ab0f0f}
 $endif$
 
 
@@ -505,9 +491,9 @@ $endif$
             pdfauthor={$author$},
             pdftitle={$title$},
             colorlinks=true,
-            citecolor=$if(citeColor)$ \citeColor $else$ black $endif$,
-	    urlcolor=$if(urlColor)$ \urlColor $else$ black $endif$,
-	    linkcolor=$if(linkColor)$ \linkColor $else$ black $endif$,
+            citecolor=$if(citeColor)$ citeColor $else$ black $endif$,
+	    urlcolor=urlColor,
+        linkcolor=$if(linkColor)$ linkColor $else$ black $endif$,
             pdfborder={0 0 0},
 	    xetex=true,
 }
@@ -518,13 +504,18 @@ $endif$
 %\definecolor{blockquote-border}{RGB}{221,221,221}
 % redefine footnotes to include character
 
-\usepackage{stackengine} % it's time to get funky!
-
 $if(urlMarkColor)$
 	\definecolor{urlMarkColor}{HTML}{$urlMarkColor$}
 $else$
 	\definecolor{urlMarkColor}{HTML}{ab0f0f}
 $endif$
+
+% It's time to get funky!
+\let\periodGroup=.
+%\let\commaGroup=,
+%\newcommand{\superUrlMark}{
+    %\@ifnextchar.{\rlap{°}}{°}
+%}
 
 % make something that automatically kerns a urlMark. I didn't want to switch to
 % luaTeX, since XeTeX is slow enough as is.
@@ -545,8 +536,11 @@ $else$
 	%\rlap{\symbolFont{°}}}} % I wish this would work properly...
 	%\renewcommand{\href}[2]{\orighref{#1}{#2\color{urlMarkColor}%
 	%\symbolFont{°}}}
-	\renewcommand{\href}[2]{\orighref{#1}{#2\color{urlMarkColor}%
-    {\addfontfeature{RawFeature=+getfunky}°}}}
+	%\renewcommand{\href}[2]{\orighref{#1}{#2\color{urlMarkColor}%
+        %°}} % MAYBE COME BACK TO THIS
+	%\renewcommand{\href}[2]{\orighref{#1}{#2\color{urlMarkColor}%
+    %\superUrlMark}}
+
 
 $endif$
 
@@ -733,27 +727,41 @@ $endif$
 
 % Taken from the default template
 $if(csl-refs)$
+% definitions for citeproc citations
+\NewDocumentCommand\citeproctext{}{}
+\NewDocumentCommand\citeproc{mm}{%
+\begingroup\def\citeproctext{#2}\cite{#1}\endgroup}
+\makeatletter
+% allow citations to break across lines
+\let\@cite@ofmt\@firstofone
+% avoid brackets around text for \cite:
+\def\@biblabel#1{}
+\def\@cite#1#2{{#1\if@tempswa , #2\fi}}
+\makeatother
 \newlength{\cslhangindent}
 \setlength{\cslhangindent}{1.5em}
 \newlength{\csllabelwidth}
 \setlength{\csllabelwidth}{3em}
-\newenvironment{CSLReferences}[2] % #1 hanging-ident, #2 entry spacing
- {% don't indent paragraphs
-  \setlength{\parindent}{0pt}
-  % turn on hanging indent if param 1 is 1
-  \ifodd #1 \everypar{\setlength{\hangindent}{\cslhangindent}}\ignorespaces\fi
-  % set entry spacing
-  \ifnum #2 > 0
-  \setlength{\parskip}{#2\baselineskip}
-  \fi
- }%
- {}
+\newenvironment{CSLReferences}[2] % #1 hanging-indent, #2 entry-spacing
+{\begin{list}{}{%
+	\setlength{\itemindent}{0pt}
+	\setlength{\leftmargin}{0pt}
+	\setlength{\parsep}{0pt}
+	% turn on hanging indent if param 1 is 1
+	\ifodd #1
+	\setlength{\leftmargin}{\cslhangindent}
+	\setlength{\itemindent}{-1\cslhangindent}
+	\fi
+	% set entry spacing
+	\setlength{\itemsep}{#2\baselineskip}}}
+{\end{list}}
 \usepackage{calc}
-\newcommand{\CSLBlock}[1]{#1\hfill\break}
-\newcommand{\CSLLeftMargin}[1]{\parbox[t]{\csllabelwidth}{#1}}
-\newcommand{\CSLRightInline}[1]{\parbox[t]{\linewidth - \csllabelwidth}{#1}\break}
+\newcommand{\CSLBlock}[1]{\hfill\break\parbox[t]{\linewidth}{\strut\ignorespaces#1\strut}}
+\newcommand{\CSLLeftMargin}[1]{\parbox[t]{\csllabelwidth}{\strut#1\strut}}
+\newcommand{\CSLRightInline}[1]{\parbox[t]{\linewidth - \csllabelwidth}{\strut#1\strut}}
 \newcommand{\CSLIndent}[1]{\hspace{\cslhangindent}#1}
 $endif$
+
 
 % foo
 %\if\texttt1

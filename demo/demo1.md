@@ -6,7 +6,7 @@ abstract:
  This is my abstract for this document. It is a summary of
  everything in the document---though it does not *really* tell you much
  about what the whole paper is about. Good luck trying to get anything out
- of this, nerd! {\addfontfeature{+getfunky} °.}
+ of this, nerd!
 numberSections: true
 bibliography: ref.bib
 csl: /home/pines/.pandoc/csl/aps_nt.csl
@@ -179,7 +179,7 @@ Ma! I'm in an footnote!]
 
 I would like to thank all the people that have suffered through 
 `{\TeX}`{=latex}'s bullshit---from the overfull hboxes to the arcane
-syntax---you have all made this accursed template possible.
+syntax---you have all made this accursed template possible. <!--\rlap{°}.-->
 
 
 
