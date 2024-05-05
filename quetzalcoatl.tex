@@ -167,7 +167,7 @@ $if(customType)$
 		]
 		{NotoSans}
 
-	\newfontfamily\titletype[
+	\newfontfamily\headType[
 		Path = {\fontDir/notoSans/},
 		Extension = {.ttf},
 		UprightFont = {*-Bold},
@@ -177,7 +177,7 @@ $if(customType)$
 		Scale = 0.925
 		]
 		{NotoSans}
-	\newfontfamily\headType[
+	\newfontfamily\subheadType[
 		Path = {\fontDir/notoSans/},
 		Extension = {.ttf},
 		UprightFont = {*-Bold},
@@ -210,7 +210,19 @@ $else$
 		]
 		{Inter}
 
-	\newfontfamily\titletype[
+	\newfontfamily\titleType[
+		Path= {\fontDir/Inter/},
+		Extension = {.otf},
+		UprightFont = {*Display-Regular},
+		ItalicFont = {*Display-Italic},
+		BoldFont = {*Display-Bold},
+		BoldItalicFont = {*Display-BoldItalic},
+		RawFeature = {+cv08, +cv01, +cv07, +cv10, +case, +zero},
+		Scale = 0.925,
+		]
+		{Inter}
+
+	\newfontfamily\headType[
 		Path = {\fontDir/Inter/},
 		Extension = {.otf},
 		UprightFont = {*-ExtraBold},
@@ -222,7 +234,7 @@ $else$
 		]
 		{Inter}
 
-	\newfontfamily\headType[
+	\newfontfamily\subheadType[
 		Path = {\fontDir/Inter/},
 		Extension = {.otf},
 		UprightFont = {*-Bold},
@@ -277,7 +289,7 @@ $else$
   \vskip 2em%
   \begin{flushleft}%
   \let \footnote \thanks
-    {\LARGE \textsf \@title \par}%
+    {\LARGE \titleType \@title \par}%
     \vskip 0.5em%
   \end{flushleft}
   \begin{flushright}
@@ -599,11 +611,11 @@ $if(serifSections)$
 
 $else$
 \titleformat{\section}%
-{\large\titletype}%
+{\large\headType}%
 {\marginsecnumber{\thesection.}}{0em}{}
 
 \titleformat{\subsection}%
-{\normalsize\headType}%
+{\normalsize\subheadType}%
 {\marginsecnumber{\thesubsection.}}{0em}{}
 
 %\titleformat{\subsubsection}[runin]{\sffamily\bfseries\normalsize}{}{0.25em}{\periodafter}
@@ -811,7 +823,7 @@ $endif$
 	{\color{titlepageTextColor}
 	$endif$
 	\begin{flushleft}
-		{\Huge\textsf{$title$}}
+		{\Huge\titleType{$title$}}
 
 		$if(subtitle)$
 			\vspace*{0.25 cm}

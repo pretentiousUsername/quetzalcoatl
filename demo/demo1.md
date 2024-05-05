@@ -164,7 +164,8 @@ println("Hello world")
 ## Some other nifty things
 In this template I have some pretty nice looking block quotes.
 
-> He's right. These are some pretty nice looking block quotes.
+> He's right. These are some pretty nice looking block quotes. *Oh, by the way,*
+> *it looks like Inter has a fully-featured italic now!*
 >
 > ---Jeebus
 
