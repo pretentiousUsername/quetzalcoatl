@@ -16,7 +16,7 @@ logo: ./img/theDude.pdf
 logoWidth: 10em
 alternateLayout: true
 useSidenotes: true
-titlepage: false
+titlepage: true
 twoSided: false
 raggedLines: false
 ---
