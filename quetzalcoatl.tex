@@ -2,7 +2,7 @@
 	$if(language)$$language$,$else$english,$endif$%
 	$if(paperSize)$$paperSize$,$else$ a4paper,%
 	$endif$$if(classOptions)$$classOptions$,$endif$%
-	$if(twoSided)$twosided,$endif$%
+	$if(twoSided)$twoside,$endif$%
 	$if(titlepage)$titlepage,$endif$%
 	$if(centerEqs)$$else$fleqn$endif$]{$if(documentClass)$%
 		$documentClass$$else$article$endif$}
@@ -362,13 +362,6 @@ $if(lineno)$
   \linenumbers
 $endif$
 
-\usepackage{fancyhdr}
-$if(fancyHdr)$
-	$fancyHdr$
-	$else$
-	\pagestyle{plain}
-$endif$
-
 \usepackage{setspace}
 $if(lineStretch)$
 	\setstretch{$lineStretch$}
@@ -411,15 +404,40 @@ $endif$
 \usepackage{upquote}
 
 $if(alternateLayout)$
-\usepackage[lmargin=1in,
-            rmargin=3in,
-            marginparsep=0.25in,
-            marginparwidth=2.25in]{geometry}
+    \usepackage{ifthen}
+    $if(twoSided)$
+        \usepackage[inner=1in,
+                    outer=3in,
+                    marginparsep=0.25in,
+                    marginparwidth=2.25in,% asymmetric
+                    twoside=true
+                    ]{geometry}
+    $else$
+        \usepackage[inner=1in,
+                    outer=3in,
+                    marginparsep=0.25in,
+                    marginparwidth=2.25in,% asymmetric
+                    %$if(twoSided)$ twoside=true,% $endif$
+                    ]{geometry}
+    $endif$
+    \usepackage{background}
+    \backgroundsetup{contents={}}
 $elseif(geometry)$
 \usepackage[$for(geometry)$$geometry$$sep$,$endfor$]{geometry}
 $else$
 \usepackage[hmargin=2in, marginparsep=0.0 in]{geometry}
 $endif$
+
+\usepackage{fancyhdr}
+$if(fancyhdr)$
+	    $fancyhdr$
+	$elseif(alternateLayout)$
+        \pagestyle{fancy}
+    $else$
+	    \pagestyle{plain}
+$endif$
+
+
 
 % Taken from Eisvogel, ln. 312--339
 % https://github.com/Wandmalfarbe/pandoc-latex-template/blob/master/eisvogel.tex
@@ -814,50 +832,50 @@ $endif$
 \begin{document}
 
 $if(titlepage)$
-\newgeometry{hmargin=1.75in}
+    \newgeometry{hmargin=1.75in}
 
-\begin{titlepage}
+    \begin{titlepage}
 
-$if(titlepageColor)$
-	\definecolor{titlepageColor}{HTML}{$titlepageColor$}
-	\newpagecolor{titlepageColor}\afterpage{\restorepagecolor}
-$endif$
+        $if(titlepageColor)$
+	        \definecolor{titlepageColor}{HTML}{$titlepageColor$}
+	        \newpagecolor{titlepageColor}\afterpage{\restorepagecolor}
+        $endif$
 
-	$if(reportNo)$
-		{\color{ruleColor} \noindent\large\textsf{$reportNo$}}
-	$else$
-		%\vskip \heightof{\large\textsf{1234}}
-		\vspace*{\heightof{\large\textsf{1234}}}
-	$endif$
+	    $if(reportNo)$
+		    {\color{ruleColor} \noindent\large\textsf{$reportNo$}}
+	    $else$
+		    %\vskip \heightof{\large\textsf{1234}}
+		    \vspace*{\heightof{\large\textsf{1234}}}
+	    $endif$
 
-	$if(institution)$
-		{\noindent\color{ruleColor}%
-		\rule{\textwidth-\widthof{\large\textsf{$institution$}}%
-		- {1.25 em}}%
-		{\heightof{\large\textsf{$institution$}}}% 
-		\hspace{0.25 em} {\large\textsf{$institution$}}}
-	$else$
-		{\noindent\color{ruleColor}\rule{\textwidth}%
-		{\heightof{\large\textsf{1234}}}}
-	$endif$
+	    $if(institution)$
+		    {\noindent\color{ruleColor}%
+		    \rule{\textwidth-\widthof{\large\textsf{$institution$}}%
+		        - {1.25 em}}%
+		    {\heightof{\large\textsf{$institution$}}}% 
+		    \hspace{0.25 em} {\large\textsf{$institution$}}}
+	    $else$
+		    {\noindent\color{ruleColor}\rule{\textwidth}%
+		    {\heightof{\large\textsf{1234}}}}
+	    $endif$
 
-	\vspace*{5 cm}
+	    \vspace*{5 cm}
 	
-	$if(titlepageTextColor)$
-	\definecolor{titlepageTextColor}{HTML}{$titlepageTextColor$}
-	{\color{titlepageTextColor}
-	$endif$
-	\begin{flushleft}
-		{\Huge\titleType{$title$}}
+	    $if(titlepageTextColor)$
+	        \definecolor{titlepageTextColor}{HTML}{$titlepageTextColor$}
+	        {\color{titlepageTextColor}
+	    $endif$
+	    \begin{flushleft}
+		    {\Huge\titleType{$title$}}
 
-		$if(subtitle)$
-			\vspace*{0.25 cm}
-			{\Large\textsf{$subtitle$}}
-			\vspace*{\heightof{\Large\textsf{$subtitle$}}}
-		$else$
-			\vspace*{0.25 cm}
-			\vspace*{\heightof{\Large\textsf{1234}}}
-		$endif$
+		    $if(subtitle)$
+			    \vspace*{0.25 cm}
+			    {\Large\textsf{$subtitle$}}
+			    \vspace*{\heightof{\Large\textsf{$subtitle$}}}
+		    $else$
+			    \vspace*{0.25 cm}
+			    \vspace*{\heightof{\Large\textsf{1234}}}
+		    $endif$
 	\end{flushleft}
 
 
@@ -882,7 +900,31 @@ $endif$
 
 \end{titlepage}
 $elseif(title)$
+    $if(alternateLayout)$
+        \fancyhf{}
+        $if(titlepage)$
+            \restoregeometry
+        $endif$
+        \renewcommand{\headrulewidth}{0.0pt}
+        \renewcommand{\footrulewidth}{0.4pt}
+        \renewcommand{\footrule}{{\rule{\textwidth + 0.5\marginparsep}{\footrulewidth}}}
+        \fancyfoot[R]{\sffamily{\thepage}}
+        \pagestyle{fancy}
+        %\newgeometry{lmargin=1in, rmargin=3in, marginparsep=0.25in, marginparwidth=2.25in}
+        $if(twoSided)$
+        $else$
+            \SetBgContents{\color{black}\rule{.4pt}{\textheight + 2\headsep + 0.25pt - 0.5\footskip}}
+            \SetBgHshift{0.5\textwidth - 0.5\marginparwidth + \marginparsep}
+            \SetBgVshift{\headsep}
+        $endif$
+    \SetBgScale{1}
+    \SetBgAngle{0}
+    \SetBgColor{black}
+$endif$
 	\maketitle
+    $if(alternateLayout)$
+        \thispagestyle{fancy}
+    $endif$
 $endif$
 
 \newmdenv[rightline=false, leftline=false]{abstractBox}
@@ -994,10 +1036,29 @@ $if(bulletParagraphs)$
 $else$
 $endif$
 
-$if(alternateLayout)$
-\newgeometry{lmargin=1in, rmargin=3in, marginparsep=0.25in, marginparwidth=2.25in}
-$endif$
 
+%%%\SetBgContents{\rule{.4pt}{\textheight + 2\headsep}}
+%$if(alternateLayout)$
+    %\fancyhf{}
+    %$if(titlepage)$
+        %\restoregeometry
+    %$endif$
+    %\renewcommand{\headrulewidth}{0.0pt}
+    %\renewcommand{\footrulewidth}{0.4pt}
+    %\renewcommand{\footrule}{{\rule{\textwidth + 0.5\marginparsep}{\footrulewidth}}}
+    %\fancyfoot[R]{\sffamily{\thepage}}
+    %\pagestyle{fancy}
+    %%\newgeometry{lmargin=1in, rmargin=3in, marginparsep=0.25in, marginparwidth=2.25in}
+    %$if(twoSided)$
+    %$else$
+        %\SetBgContents{\color{black}\rule{.4pt}{\textheight + 2\headsep + 0.25pt - 0.5\footskip}}
+        %\SetBgHshift{0.5\textwidth - 0.5\marginparwidth + \marginparsep}
+        %\SetBgVshift{\headsep}
+    %$endif$
+    %\SetBgScale{1}
+    %\SetBgAngle{0}
+    %\SetBgColor{black}
+%$endif$
 $body$
 
 $for(include-after)$

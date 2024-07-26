@@ -9,14 +9,16 @@ abstract:
  of this, nerd!
 numberSections: true
 bibliography: ref.bib
-csl: /home/pines/.pandoc/csl/aps_nt.csl
+csl: /home/pines/.pandoc/csl/chicago_note.csl
 reportNo: WTF-420-\LaTeX
 institution: Ducky Fooniversity
 logo: ./img/theDude.pdf
 logoWidth: 10em
 alternateLayout: true
 useSidenotes: true
-titlepage: true
+titlepage: false
+twoSided: false
+raggedLines: false
 ---
 
 # A manifesto (of sorts)
@@ -45,7 +47,7 @@ lucky, they'd call it art.
 
 \begin{marginfigure}[0in]
     \includegraphics{img/theDude.pdf}
-    \caption{asdfkljasdflkjsdf}
+    \caption{Behold: the dude.}
     \label{fig:the_dude}
 \end{marginfigure}
 <!--![Behold: the dude.](img/theDude.pdf)-->
@@ -87,7 +89,7 @@ so, without further ado, I'll get to making some stuff.
 
 ### Physics.
 Let's start with the Linblad master equation, a fine
-choice for starters,[@manzano_short_2020]
+choice for starters[@manzano_short_2020],[^other_note]
 $$ \begin{aligned}
 \diffp{\rho(r, t)}{t} = 
 & \sum_j \gamma_j \left( \op{L}{j} \rho(r, t) \hc{L}{j}
@@ -113,7 +115,11 @@ $$ \phi(r) = \frac{1}{4\pi\epsilon_0} \int \frac{n(r')}
 Which, all things considered, is rather useful.
 
 
-
+[^other_note]: Consider this for the Anderson Hamiltonian [@anderson_1977]
+    $$\mathcal{H} = \sum_{\mathbf{k},~ \sigma} \varepsilon_\mathbf{k}
+        n_{\mathbf{k}\sigma}
+        + \mathcal{J} \mathbf{S} \cdot \sum_{\mathbf{k},~ \sigma,~ \sigma'} c_{\mathbf{k}\sigma}^\dagger \mathbf{s}_{\sigma\sigma'} c_{\mathbf{k}\sigma}\,.$$
+    Don't do anything else---just keep considering it.
 
 ### Synthesizer stuff.
 The transfer function for a realistic, $N$-pole Moog transistor ladder 
@@ -186,7 +192,3 @@ Ma! I'm in an footnote!]
 I would like to thank all the people that have suffered through 
 `{\TeX}`{=latex}'s bullshit---from the overfull hboxes to the arcane
 syntax---you have all made this accursed template possible. <!--\rlap{°}.-->
-
-
-
-# References
