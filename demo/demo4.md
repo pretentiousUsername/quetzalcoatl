@@ -16,7 +16,7 @@ logo: ./img/theDude.pdf
 logoWidth: 10em
 alternateLayout: true
 useSidenotes: true
-titlepage: true
+titlepage: false
 twoSided: false
 raggedLines: false
 ---
@@ -50,7 +50,7 @@ lucky, they'd call it art.
     \caption{Behold: the dude.}
     \label{fig:the_dude}
 \end{marginfigure}
-<!--![Behold: the dude.](img/theDude.pdf)-->
+<!--![You've already seen this guy, haven't you?](img/theDude.pdf)-->
 
 
 # Modern typesetting for the modern type
@@ -89,12 +89,17 @@ so, without further ado, I'll get to making some stuff.
 
 ### Physics.
 Let's start with the Linblad master equation, a fine
-choice for starters[@manzano_short_2020],[^other_note]
+choice for starters,[@manzano_short_2020]
 $$ \begin{aligned}
 \diffp{\rho(r, t)}{t} = 
 & \sum_j \gamma_j \left( \op{L}{j} \rho(r, t) \hc{L}{j}
 - \frac{1}{2} \left\{ \op{L}{j} \hc{L}{j}, \rho(r, t) \right\} \right) \\
 & - i \left[ H, \rho(r, t) \right] \,. \end{aligned} $$ {#eq:linblad}
+Wow, I love the *Lindblad* equation[^other_note]---which I certainly did not
+misspell earlier---it's so cool and useful for basically everything. I sure
+hope there's no need for Green's functions or anything later in this
+document---surely I would perish if I saw even the slightest hint of any of
+Green's nasty little functions, because I hate boundary value problems.
 
 There's also the Laughlin wavefunction,[@laughlin_anomalous_1983] which 
 got Robert Laughlin a Nobel,
