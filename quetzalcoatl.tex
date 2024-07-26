@@ -333,6 +333,12 @@ $if(useEndnotes)$
 
 $endif$
 
+$if(useSidenotes)$
+\usepackage{sidenotes}
+
+\let\footnote=\sidenote
+$endif$
+
 
 $if(language)$
 
@@ -404,7 +410,12 @@ $endif$
 
 \usepackage{upquote}
 
-$if(geometry)$
+$if(alternateLayout)$
+\usepackage[lmargin=1in,
+            rmargin=3in,
+            marginparsep=0.25in,
+            marginparwidth=2.25in]{geometry}
+$elseif(geometry)$
 \usepackage[$for(geometry)$$geometry$$sep$,$endfor$]{geometry}
 $else$
 \usepackage[hmargin=2in, marginparsep=0.0 in]{geometry}
@@ -474,6 +485,12 @@ $endif$
 % Change figure title
 \usepackage[figurename={Figure}, font={small}, labelfont={sf, bf},%
 labelsep={period}, justification={raggedright}]{caption}
+\DeclareCaptionStyle{marginfigure}{labelfont={color=mymaroon}}
+
+$if(useSidenotes)$
+\DeclareCaptionStyle{marginfigure}{labelfont={sf, bf}, labelsep={period}, justification={raggedright}, font={footnotesize}}
+\renewcommand{\sidenote}{\sidenote}
+$endif$
 
 $if(linksAsNotes)$
 	% Make links footnotes instead of hotlinks:
@@ -695,6 +712,13 @@ $endif$
 
 \usepackage{ragged2e}
 
+$if(useSidenotes)$
+    %\usepackage[raggedrightboxes]{ragged2e}
+\let\oldmarginpar\marginpar
+\renewcommand\marginpar[1]{\-\oldmarginpar[\raggedleft\footnotesize #1]%
+{\raggedright\small #1}}
+$endif$
+
 $if(parIndent)$
 		\setlength\RaggedRightParindent{$parIndent$}
 	$else$
@@ -790,7 +814,7 @@ $endif$
 \begin{document}
 
 $if(titlepage)$
-
+\newgeometry{hmargin=1.75in}
 
 \begin{titlepage}
 
@@ -882,6 +906,7 @@ $if(abstract)$
 
 % possible spaghetti incoming
 $if(titlepage)$
+    \restoregeometry
 	\begin{abstract}
 		$abstract$
 	\end{abstract}
@@ -969,6 +994,9 @@ $if(bulletParagraphs)$
 $else$
 $endif$
 
+$if(alternateLayout)$
+\newgeometry{lmargin=1in, rmargin=3in, marginparsep=0.25in, marginparwidth=2.25in}
+$endif$
 
 $body$
 
