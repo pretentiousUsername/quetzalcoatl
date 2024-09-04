@@ -277,7 +277,7 @@ $endif$
 
 $if(titlepage)$
 $else$
-\usepackage[runin]{abstract}
+    \usepackage[runin]{abstract}
 $endif$
 
 $if(defaultTitle)$
@@ -431,10 +431,10 @@ $endif$
 \usepackage{fancyhdr}
 $if(fancyhdr)$
 	    $fancyhdr$
-	$elseif(alternateLayout)$
-        \pagestyle{fancy}
+    $elseif(alternateLayout)$
+        %\pagestyle{fancy}
     $else$
-	    \pagestyle{plain}
+        \pagestyle{plain}
 $endif$
 
 
@@ -831,9 +831,9 @@ $endif$
 
 \begin{document}
 
+
 $if(titlepage)$
     \newgeometry{hmargin=1.75in}
-
     \begin{titlepage}
 
         $if(titlepageColor)$
@@ -899,32 +899,14 @@ $if(titlepage)$
 	$endif$
 
 \end{titlepage}
+\pagestyle{plain}
+
 $elseif(title)$
-    $if(alternateLayout)$
-        \fancyhf{}
-        $if(titlepage)$
-            \restoregeometry
+    	\maketitle
+        $if(alternateLayout)$
+            %\thispagestyle{fancy}
+            \thispagestyle{fancy}
         $endif$
-        \renewcommand{\headrulewidth}{0.0pt}
-        \renewcommand{\footrulewidth}{0.4pt}
-        \renewcommand{\footrule}{{\rule{\textwidth + 0.5\marginparsep}{\footrulewidth}}}
-        \fancyfoot[R]{\sffamily{\thepage}}
-        \pagestyle{fancy}
-        %\newgeometry{lmargin=1in, rmargin=3in, marginparsep=0.25in, marginparwidth=2.25in}
-        $if(twoSided)$
-        $else$
-            \SetBgContents{\color{black}\rule{.4pt}{\textheight + 2\headsep + 0.25pt - 0.5\footskip}}
-            \SetBgHshift{0.5\textwidth - 0.5\marginparwidth + \marginparsep}
-            \SetBgVshift{\headsep}
-        $endif$
-    \SetBgScale{1}
-    \SetBgAngle{0}
-    \SetBgColor{black}
-$endif$
-	\maketitle
-    $if(alternateLayout)$
-        \thispagestyle{fancy}
-    $endif$
 $endif$
 
 \newmdenv[rightline=false, leftline=false]{abstractBox}
@@ -949,6 +931,7 @@ $if(abstract)$
 % possible spaghetti incoming
 $if(titlepage)$
     \restoregeometry
+    \thispagestyle{plain}
 	\begin{abstract}
 		$abstract$
 	\end{abstract}
@@ -965,6 +948,25 @@ $else$
 
 $endif$
 $endif$
+
+$if(alternateLayout)$
+    \fancyhf{}
+   %\newgeometry{lmargin=1in, rmargin=3in, marginparsep=0.25in, marginparwidth=2.25in}
+    $if(twoSided)$
+    $else$
+        \SetBgContents{\color{black}\rule{.4pt}{\textheight + 2\headsep + 0.25pt - 0.5\footskip}}
+        \SetBgHshift{0.5\textwidth - 0.5\marginparwidth + \marginparsep}
+        \SetBgVshift{\headsep}
+    $endif$
+    \SetBgScale{1}
+    \SetBgAngle{0}
+    \SetBgColor{black}
+    \renewcommand{\headrulewidth}{0.0pt}
+    \renewcommand{\footrulewidth}{0.4pt}
+    \renewcommand{\footrule}{{\rule{\textwidth + 0.5\marginparsep}{\footrulewidth}}}
+    \fancyfoot[R]{\sffamily{\thepage}}
+$endif$
+ 
 
 $for(include-before)$
 $include-before$
@@ -987,7 +989,12 @@ $endif$
 
 $endif$
 
+
+
 $if(titlepage)$
+    $if(alternateLayout)$
+        \restoregeometry
+    $endif$
     \pagenumbering{arabic}
 $endif$
 
@@ -1037,28 +1044,15 @@ $else$
 $endif$
 
 
+$if(includeBeforeBody)$
+    $includeBeforeBody$
+$endif$
+
 %%%\SetBgContents{\rule{.4pt}{\textheight + 2\headsep}}
-%$if(alternateLayout)$
-    %\fancyhf{}
-    %$if(titlepage)$
-        %\restoregeometry
-    %$endif$
-    %\renewcommand{\headrulewidth}{0.0pt}
-    %\renewcommand{\footrulewidth}{0.4pt}
-    %\renewcommand{\footrule}{{\rule{\textwidth + 0.5\marginparsep}{\footrulewidth}}}
-    %\fancyfoot[R]{\sffamily{\thepage}}
-    %\pagestyle{fancy}
-    %%\newgeometry{lmargin=1in, rmargin=3in, marginparsep=0.25in, marginparwidth=2.25in}
-    %$if(twoSided)$
-    %$else$
-        %\SetBgContents{\color{black}\rule{.4pt}{\textheight + 2\headsep + 0.25pt - 0.5\footskip}}
-        %\SetBgHshift{0.5\textwidth - 0.5\marginparwidth + \marginparsep}
-        %\SetBgVshift{\headsep}
-    %$endif$
-    %\SetBgScale{1}
-    %\SetBgAngle{0}
-    %\SetBgColor{black}
-%$endif$
+%\pagestyle{fancy}
+$if(alternateLayout)$
+    \pagestyle{fancy}
+$endif$
 $body$
 
 $for(include-after)$
