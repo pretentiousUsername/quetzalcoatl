@@ -13,6 +13,7 @@
 
 \usepackage{amsmath}
 \usepackage{amssymb}
+\usepackage[makeroom]{cancel}
 \usepackage{xparse}
 \usepackage{xstring}
 \usepackage{xtemplate}
@@ -24,10 +25,24 @@
 \usepackage[spaced=0]{diffcoeff}
 \usepackage{linop}
 
+% Change the diffcoeff "d" to be upright.
+$if(uprightDifferentials)$
+    \difdef{ f, s, c, l }{}
+        {
+            op-symbol = d ,
+            op-order-nudge = 1 mu
+        }
+$else$
+$endif$
+
 %% Physics macros
 \newcommand{\expval}[1]{\left< #1 \right>} % expectation value
 \newcommand{\comm}[2]{\left[ #1 , #2 \right]} % commutator
 \newcommand{\acomm}[2]{\left\{ #1, #2 \right\}} % anticommutator
+
+%% Math macros
+\newcommand{\textqed}{\hfill\ensuremath{\Box}}
+\newcommand{\dlp}[2]{\partial_{#2} \, #1}
 
 \usepackage{enumerate}
 % Keep pandoc from getting mad
