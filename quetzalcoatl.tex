@@ -27,12 +27,13 @@
 
 % Change the diffcoeff "d" to be upright.
 $if(uprightDifferentials)$
+$else$
     \difdef{ f, s, c, l }{}
         {
             op-symbol = d ,
             op-order-nudge = 1 mu
         }
-$else$
+
 $endif$
 
 %% Physics macros
@@ -288,6 +289,17 @@ $else$
 
 $if(sansBody)$
 	\renewcommand{\familydefault}{\sfdefault}
+$endif$
+
+$if(authorAffiliations)$
+    \usepackage{authblk}
+    $if(authblkFormatting)$
+        $authblkFormatting$
+    $else$
+        \renewcommand\Authfont{\sffamily}
+        \renewcommand\Affilfont{\sffamily\itshape\small\raggedright}
+    $endif$
+    $authorAffiliations$
 $endif$
 
 $if(titlepage)$
