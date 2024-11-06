@@ -13,12 +13,17 @@
 
 \usepackage{amsmath}
 \usepackage{amssymb}
+\usepackage{amsthm}
 \usepackage[makeroom]{cancel}
 \usepackage{xparse}
 \usepackage{xstring}
 \usepackage{xtemplate}
 \usepackage{xspace}
+\usepackage{ragged2e}
 
+$if(marginNote)$
+\usepackage{marginnote}
+$endif$
 
 % Physics stuff
 \usepackage{braket}
@@ -38,7 +43,7 @@ $endif$
 
 %% Physics macros
 \newcommand{\expval}[1]{\left< #1 \right>} % expectation value
-\newcommand{\comm}[2]{\left[ #1 , #2 \right]} % commutator
+\newcommand{\comm}[2]{{\left[ #1 , #2 \right]}} % commutator
 \newcommand{\acomm}[2]{\left\{ #1, #2 \right\}} % anticommutator
 
 %% Math macros
@@ -83,7 +88,7 @@ $endif$
 
 
 \usepackage[auto=true]{microtype}
-
+\SetTracking{encoding={*}, shape=sc}{500}
 
 % Set main typeface
 $if(customType)$
@@ -143,6 +148,9 @@ $if(customType)$
 		Extension = {.otf},
 		Path = {\fontDir/erewhon-math/},
 		]{Erewhon-Math}
+
+    $elseif$
+        
 
 	$else$
 
@@ -229,10 +237,10 @@ $else$
 	\newfontfamily\titleType[
 		Path= {\fontDir/Inter/},
 		Extension = {.otf},
-		UprightFont = {*Display-Regular},
-		ItalicFont = {*Display-Italic},
-		BoldFont = {*Display-Bold},
-		BoldItalicFont = {*Display-BoldItalic},
+		UprightFont = {*-Regular},
+		ItalicFont = {*-Italic},
+		BoldFont = {*-Bold},
+		BoldItalicFont = {*-BoldItalic},
 		RawFeature = {+cv08, +cv01, +cv07, +cv10, +case, +zero},
 		Scale = 0.925,
 		]
@@ -430,7 +438,8 @@ $endif$
 
 \usepackage{upquote}
 
-$if(alternateLayout)$
+$if(noLayout)$ % this is in case if you need to make a standalone figure in TiKz
+$elseif(alternateLayout)$
     \usepackage{ifthen}
     $if(twoSided)$
         \usepackage[inner=1in,
@@ -755,7 +764,6 @@ $if(parIndent)$
 	\setlength{\parindent}{1.25em}
 $endif$
 
-\usepackage{ragged2e}
 
 $if(useSidenotes)$
     %\usepackage[raggedrightboxes]{ragged2e}

@@ -70,8 +70,7 @@ Let's go over some facts:
        cocoa too?
        #. Yes, with marshmallows.
 
-+ I like a few subjects:
-    + Math
++ I like a few subjects: + Math
     + Science
     + Other assorted nerd stuff
         + See *The Physics of Your Mom and Ancient Aliens*, by Michio Kaku.
@@ -122,9 +121,9 @@ Which, all things considered, is rather useful.
 
 
 [^other_note]: Consider this for the Anderson Hamiltonian [@anderson_1977]
-    $$\mathcal{H} = \sum_{\mathbf{k},~ \sigma} \varepsilon_\mathbf{k}
+    $$H = \sum_{\mathbf{k},~ \sigma} \varepsilon_\mathbf{k}
         n_{\mathbf{k}\sigma}
-        + \mathcal{J} \mathbf{S} \cdot \sum_{\mathbf{k},~ \sigma,~ \sigma'} c_{\mathbf{k}\sigma}^\dagger \mathbf{s}_{\sigma\sigma'} c_{\mathbf{k}\sigma}\,.$$
+        + \mathcal{J} \mathbf{S} \cdot \sum_{\mathbf{k},~ \sigma,~ \sigma'} c_{\mathbf{k}\sigma}^\dagger \mathbf{s}_{\sigma\sigma'} c_{\mathbf{k}\sigma} \,.$$
     Don't do anything else---just keep considering it.
 
 ### Synthesizer stuff.
