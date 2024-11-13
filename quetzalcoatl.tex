@@ -96,7 +96,7 @@ $if(customType)$
 	% This is set by manually inputting \usepackage{mathspec/fontspec},
 	% \setmainfont{foo}, etc.
 
-	$endif$
+	$else$
 	%\usepackage{mathspec}
     \usepackage{fontspec}
 	\usepackage{unicode-math}
@@ -291,6 +291,7 @@ $else$
 		Scale = 0.875,
 		]
 		{JuliaMono}
+$endif$
 
 $if(sansBody)$
 	\renewcommand{\familydefault}{\sfdefault}
