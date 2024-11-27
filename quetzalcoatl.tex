@@ -96,8 +96,70 @@ $if(customType)$
 	% This is set by manually inputting \usepackage{mathspec/fontspec},
 	% \setmainfont{foo}, etc.
 
-	$else$
-	%\usepackage{mathspec}
+    $elseif(alternateFontSet)$
+    \usepackage{fontspec}
+	\usepackage{unicode-math}
+
+
+    \usepackage[default]{fontsetup}
+
+	\setsansfont[
+		Path= {\fontDir/Jost/},
+		Extension = {.otf},
+		UprightFont = {*-400-Book},
+		ItalicFont = {*-400-BookItalic},
+		BoldFont = {*-700-Bold},
+		BoldItalicFont = {*-700-BoldItalic},
+		Scale = 0.925,
+		]
+		{Jost}
+
+	\newfontfamily\titleType[
+		Path= {\fontDir/Jost/},
+		Extension = {.otf},
+		UprightFont = {*-400-Book},
+		ItalicFont = {*-400-BookItalic},
+		BoldFont = {*-700-Bold},
+		BoldItalicFont = {*-700-BoldItalic},
+		Scale = 0.925,
+		]
+		{Jost}
+
+	\newfontfamily\headType[
+		Path = {\fontDir/Jost/},
+		Extension = {.otf},
+		UprightFont = {*-800-Hevy},
+		ItalicFont = {*-800-HevyItalic},
+		BoldFont = {*-900-Black},
+		BoldItalicFont = {*-900-BlackItalic},
+		Scale = 0.925,
+		]
+		{Jost}
+
+	\newfontfamily\subheadType[
+		Path = {\fontDir/Jost/},
+		Extension = {.otf},
+		UprightFont = {*-700-Bold},
+		ItalicFont = {*-700-BoldItalic},
+		BoldFont = {*-800-Hevy},
+		BoldItalicFont = {*-800-HevyItalic},
+		Scale = 0.925,
+		]
+		{Inter}
+
+	\newfontfamily\subsubHeadType[
+		Path = {\fontDir/Jost/},
+		Extension = {.otf},
+		UprightFont = {*-500-Medium},
+		ItalicFont = {*-500-MediumItalic},
+		BoldFont = {*-600-Semi},
+		BoldItalicFont = {*-600-SemiItalic},
+		Scale = 0.925,
+		]
+		{Inter}
+
+
+    $else$
     \usepackage{fontspec}
 	\usepackage{unicode-math}
 
@@ -106,50 +168,6 @@ $if(customType)$
 		%Path = {\fontDir/fdsymbol/},
 		%UprightFont = {*-Regular},
 	%]{FdSymbol}
-
-	$if(charterFonts)$
-	\setmainfont[
-		Path = {\fontDir/xcharter/},
-		Extension = {.otf},
-		UprightFont = {*-Roman},
-		ItalicFont = {*-Italic},
-		BoldFont = {*-Bold},
-		BoldItalicFont = {*-BoldItalic}
-		]{XCharter}
-
-	\setmathfont[
-		Path = {\fontDir/xcharter/},
-		Extension = {.otf},
-		]{XCharter-Math}
-
-	\newfontfamily\symbolFont[
-		Extension = {.otf},
-		Path = {\fontDir/xcharter/},
-		]{XCharter-Math}
-	
-	$elseif(erewhonFonts)$
-	\setmainfont[
-		Path = {\fontDir/erewhon/},
-		Extension = {.otf},
-		UprightFont = {*-Regular},
-		ItalicFont = {*-Italic},
-		BoldFont = {*-Bold},
-		BoldItalicFont = {*-BoldItalic}
-		]
-		{Erewhon}
-
-	\setmathfont[
-		Path = {\fontDir/erewhon-math/},
-		Extension = {.otf},
-		]
-		{Erewhon-Math}
-
-	\newfontfamily\symbolFont[
-		Extension = {.otf},
-		Path = {\fontDir/erewhon-math/},
-		]{Erewhon-Math}
-
-	$else$
 
 	\setmainfont[
 		Path = {\fontDir/stix2/},
@@ -176,49 +194,6 @@ $if(customType)$
 	]{StixTwoMath-Regular}
 	$endif$
 	
-	$if(notoSans)$
-	\setsansfont[
-		Path= {\fontDir/notoSans/},
-		Extension = {.ttf},
-		UprightFont = {*-Regular},
-		ItalicFont = {*-Italic},
-		BoldFont = {*-Bold},
-		BoldItalicFont = {*-BoldItalic},
-		Scale = 0.925
-		]
-		{NotoSans}
-
-	\newfontfamily\headType[
-		Path = {\fontDir/notoSans/},
-		Extension = {.ttf},
-		UprightFont = {*-Bold},
-		ItalicFont = {*-BoldItalic},
-		BoldFont = {*-ExtraBold},
-		BoldItalicFont = {*-ExtraBoldItalic},
-		Scale = 0.925
-		]
-		{NotoSans}
-	\newfontfamily\subheadType[
-		Path = {\fontDir/notoSans/},
-		Extension = {.ttf},
-		UprightFont = {*-Bold},
-		ItalicFont = {*-BoldItalic},
-		BoldFont = {*-ExtraBold},
-		BoldItalicFont = {*-ExtraBoldItalic},
-		Scale = 0.925,
-		]
-		{NotoSans}
-	\newfontfamily\subsubHeadType[
-		Path = {\fontDir/notoSans/},
-		Extension = {.ttf},
-		UprightFont = {*-Medium},
-		ItalicFont = {*-MediumItalic},
-		BoldFont = {*-SemiBold},
-		BoldItalicFont = {*-SemiBoldItalic},
-		Scale = 0.925,
-		]
-		{NotoSans}
-$else$
 	\setsansfont[
 		Path= {\fontDir/Inter/},
 		Extension = {.otf},
