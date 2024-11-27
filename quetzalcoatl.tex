@@ -145,7 +145,7 @@ $if(customType)$
 		BoldItalicFont = {*-800-HevyItalic},
 		Scale = 0.925,
 		]
-		{Inter}
+		{Jost}
 
 	\newfontfamily\subsubHeadType[
 		Path = {\fontDir/Jost/},
@@ -156,8 +156,13 @@ $if(customType)$
 		BoldItalicFont = {*-600-SemiItalic},
 		Scale = 0.925,
 		]
-		{Inter}
-
+		{Jost}
+	
+    \newfontfamily\symbolFont[
+		Extension = {.otf},
+		Path = {\fontDir/newcomputermodern/},
+	]{NewCMMath-Book}
+	
 
     $else$
     \usepackage{fontspec}
@@ -192,7 +197,6 @@ $if(customType)$
 		Extension = {.otf},
 		Path = {\fontDir/stix2/},
 	]{StixTwoMath-Regular}
-	$endif$
 	
 	\setsansfont[
 		Path= {\fontDir/Inter/},
@@ -253,8 +257,6 @@ $if(customType)$
 		Scale = 0.925,
 		]
 		{Inter}
-	$endif$
-
 
 	\setmonofont[
 	Path = {\fontDir/juliaMono/},
