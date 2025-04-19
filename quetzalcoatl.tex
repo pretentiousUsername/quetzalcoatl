@@ -173,7 +173,13 @@ $if(customType)$
 		%Path = {\fontDir/fdsymbol/},
 		%UprightFont = {*-Regular},
 	%]{FdSymbol}
-
+    $if(computerModern)$
+        \usepackage[default]{fontsetup}
+        \newfontfamily\symbolFont[
+	    	Extension = {.otf},
+	    	Path = {\fontDir/newcomputermodern/},
+	    ]{NewCMMath-Book}
+    $else$
 	\setmainfont[
 		Path = {\fontDir/stix2/},
 		Extension = {.otf},
@@ -197,6 +203,7 @@ $if(customType)$
 		Extension = {.otf},
 		Path = {\fontDir/stix2/},
 	]{StixTwoMath-Regular}
+    $endif$
 	
 	\setsansfont[
 		Path= {\fontDir/Inter/},
@@ -491,6 +498,9 @@ $endif$
 
 \usepackage{graphicx}
 \DeclareGraphicsExtensions{.png,.pdf}
+
+% Useful---I like it.
+\usepackage{subfigure}
 
 $if(graphicsPath)$
 \graphicspath{$graphicsPath$}
