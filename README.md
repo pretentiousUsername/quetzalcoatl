@@ -7,7 +7,8 @@ for myself. It's nothing fancy---there isn't any beamer functionality or
 anything built into it, and I'm yet to define a color palette for it---but
 overall it's useable.
 
-More work is needed, but, for now, it works.
+More work is needed, but, for now, it works. See the [`TODO`](TODO.md) for
+more information.
 
 
 ## List of parameters
@@ -50,50 +51,3 @@ More work is needed, but, for now, it works.
 | `sansDefault` | set the body text to a sans font | `true` or `false` |
 | `urlMarkColor` | set the color for the url mark | HTML color |
 | `urlMarkSymbol` | set the mark for urls | unicode character |
-
-[^like]: I don't like the font pairings to be honest, I just included KpFonts
-for use in a different template.
-
-## Useful documentation
-+ `diffcoeff` package
-+ `braket` package
-
-
-## Custom macros
-
-
-
-## Dependencies
-* TeXlive or MikeTeX (a full installation is expected, but not necessary)
-* Pandoc
-* XeTeX
-
-
-
-
-
-## TODO
-* ~~Make a custom titlepage.~~
-
-> That's done for now, but I'm not sure if I'm happy with the results.
-> I'll just have to see if I want to keep it or not.
-
-* ~~Fix the overall geometry of the output pdf---it feels a bit fishy for
-whatever reason.~~
-
-* ~~Work on an XCharter otf mathfont. (*Kill me.*)~~
-
-> In some good news, an [XCharter math typeface][xcMath] has *finally*
-> been made---and I didn't even have to do anything. Huge thanks to
-> Daniel Flipo for his work on the typeface. It's not perfect yet, but
-> it's a dramatic improvement from what I previously had to work with.
-
-[xcMath]: https://ctan.org/tex-archive/fonts/xcharter-math
-
-* ~~Fix spacing issues with the quotes and tables.~~
-
-> I hope that part's done.
-
-* ~~Write comprehensive documentation covering each variable/feature of the
-template.~~
-
