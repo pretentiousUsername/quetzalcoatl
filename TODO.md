@@ -37,6 +37,6 @@ ever gets a math font—Crimson Pro is *so* good.
 
 [cochineal]: https://ctan.org/pkg/cochineal
 
-[ysabeau]: https://github.com/CatharsisFonts/Ysabeau
+[ysabeau]: https://ctan.org/pkg/ysabeau
 
 [newcm]: https://www.ctan.org/pkg/newcomputermodern
