@@ -352,6 +352,7 @@ $endif$
 
 $if(useSidenotes)$
 \usepackage{sidenotes}
+%\usepackage{sidenotesplus}
 
 \let\footnote=\sidenote
 $endif$
@@ -524,10 +525,15 @@ $endif$
 % Change figure title
 \usepackage[figurename={Figure}, font={small}, labelfont={sf, bf},%
 labelsep={period}, justification={raggedright}]{caption}
-\DeclareCaptionStyle{marginfigure}{labelfont={color=mymaroon}}
+% \DeclareCaptionStyle{marginfigure}{labelfont={color=mymaroon}}
 
 $if(useSidenotes)$
 \DeclareCaptionStyle{marginfigure}{labelfont={sf, bf}, labelsep={period}, justification={raggedright}, font={footnotesize}}
+
+\DeclareCaptionStyle{margintable}{labelfont={sf, bf}, labelsep={period}, justification={raggedright}, font={footnotesize}}
+
+
+\DeclareCaptionStyle{sidecaption}{labelfont={sf, bf}, labelsep={period}, justification={raggedright}, font={footnotesize}}
 \renewcommand{\sidenote}{\sidenote}
 $endif$
 
