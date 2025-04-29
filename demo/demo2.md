@@ -5,6 +5,13 @@ date: \today
 noIndentFirst: true
 ---
 
+
+# Bras and kets
+Originally, I was using the `braket` package for this, but it was honestly
+easy to just write some macros for this.
+
+`\bra{\psi}` $\rightarrow \bra{\psi}$; `\ket{\phi}` $\rightarrow \ket{\phi}$
+
 # Expectation value
 `$\expval{a}$` $\rightarrow \expval{a}$
 

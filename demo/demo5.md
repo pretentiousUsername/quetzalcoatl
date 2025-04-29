@@ -9,28 +9,31 @@ abstract:
  of this, nerd!
 numberSections: true
 bibliography: ref.bib
-csl: /home/pines/.pandoc/csl/aps_nt.csl
+csl: /home/pines/.pandoc/csl/chicago_note.csl
 reportNo: WTF-420-\LaTeX
 institution: Ducky Fooniversity
-titlepage: true
-tableOfContents: true
-raggedLines: false
 logo: ./img/theDude.pdf
 logoWidth: 10em
+alternateLayout: true
+useSidenotes: true
+tableOfContents: true
+titlepage: true
+twoSided: false
+raggedLines: false
 alternateFontSet: true
 ---
 
 # A manifesto (of sorts)
-Typesetting is art, both in the sense that is beautiful, and that it is 
-useful. Beauty is of course in the eye of the beholder---it is derived
-from many things; while *The Fountain* is a urinal, and not a Baroque
-painting, its use in demonstrating the hypocrisy in the wider avant-garde
-art world was beautiful in and of itself. In essence, the beauty derived
-from the function of the object---that is much of art in and of itself.
-What is aesthetically beautiful---what we find easy on the eyes---is
-culturally defined.
+Oh hey look, another Tufte ripoff! Anyways,
+Typesetting bla bla bla.^[People think you're really smart when you write really
+long footnotes. $$\int x \dl{x} = \frac{x^2}{2} + C \,.$$]
 
-For most people, that works perfectly, but typesetters are not so lucky. 
+For most people, that works perfectly, but typesetters are not so lucky.^[Oh
+wow, another sidenote for you to read. Man, I love to read sidenotes---they're
+so much fun to read, and I sure love writing them too. Hey, do I look smart?
+Do my sidenotes make me smart? It's widely believed that the number and length
+of sidenotes are perfectly correlated to the writer's intelligence and/or
+attractiveness (Dude, Trust, Me, *et al.* 2024).]
 Typography's beauty doesn't derive from process, message, or raw 
 aesthetics---it is instead from how easy a document can be read, and 
 whether or not the style matches the medium and purpose. If I were to 
@@ -44,7 +47,12 @@ some bar in a gentrified part of New York or Philadelphia---and maybe throw
 in a picture of an possum---people would call it graphic design---if I'm 
 lucky, they'd call it art.
 
-![Behold: the dude.](img/theDude.pdf)
+\begin{marginfigure}[0in]
+    \includegraphics{img/theDude.pdf}
+    \caption{Behold: the dude.}
+    \label{fig:the_dude}
+\end{marginfigure}
+<!--![You've already seen this guy, haven't you?](img/theDude.pdf)-->
 
 
 # Modern typesetting for the modern type
@@ -63,8 +71,7 @@ Let's go over some facts:
        cocoa too?
        #. Yes, with marshmallows.
 
-+ I like a few subjects:
-    + Math
++ I like a few subjects: + Math
     + Science
     + Other assorted nerd stuff
         + See *The Physics of Your Mom and Ancient Aliens*, by Michio Kaku.
@@ -89,6 +96,11 @@ $$ \begin{aligned}
 & \sum_j \gamma_j \left( \op{L}{j} \rho(r, t) \hc{L}{j}
 - \frac{1}{2} \left\{ \op{L}{j} \hc{L}{j}, \rho(r, t) \right\} \right) \\
 & - i \left[ H, \rho(r, t) \right] \,. \end{aligned} $$ {#eq:linblad}
+Wow, I love the *Lindblad* equation[^other_note]---which I certainly did not
+misspell earlier---it's so cool and useful for basically everything. I sure
+hope there's no need for Green's functions or anything later in this
+document---surely I would perish if I saw even the slightest hint of any of
+Green's nasty little functions, because I hate boundary value problems.
 
 There's also the Laughlin wavefunction,[@laughlin_anomalous_1983] which 
 got Robert Laughlin a Nobel,
@@ -109,7 +121,11 @@ $$ \phi(r) = \frac{1}{4\pi\epsilon_0} \int \frac{n(r')}
 Which, all things considered, is rather useful.
 
 
-
+[^other_note]: Consider this for the Anderson Hamiltonian [@anderson_1977]
+    $$H = \sum_{\mathbf{k},~ \sigma} \varepsilon_\mathbf{k}
+        n_{\mathbf{k}\sigma}
+        + \mathcal{J} \mathbf{S} \cdot \sum_{\mathbf{k},~ \sigma,~ \sigma'} c_{\mathbf{k}\sigma}^\dagger \mathbf{s}_{\sigma\sigma'} c_{\mathbf{k}\sigma} \,.$$
+    Don't do anything else---just keep considering it.
 
 ### Synthesizer stuff.
 The transfer function for a realistic, $N$-pole Moog transistor ladder 
@@ -182,7 +198,3 @@ Ma! I'm in an footnote!]
 I would like to thank all the people that have suffered through 
 `{\TeX}`{=latex}'s bullshit---from the overfull hboxes to the arcane
 syntax---you have all made this accursed template possible. <!--\rlap{°}.-->
-
-
-
-# References

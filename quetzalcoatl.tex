@@ -8,8 +8,19 @@
 		$documentClass$$else$article$endif$}
 % This is ugly, but if I have it spaced out, pandoc doesn't like it much.
 
+% Set your local directory---*do not* include a slash after the directory
+\def\localDir{/home/pines/.pandoc/quetzalcoatl}
+
 % DO NOT include a slash after your fontDir is set
-\def\fontDir{/home/pines/.pandoc/quetzalcoatl/fonts}
+\def\fontDir{\localDir/fonts}
+\def\packageDir{\localDir/packages}
+
+% this is unfortunately necessary to prevent any annoying popups---it's way
+% too difficult to load packages locally without them being in the TeX
+% document's directory. If I find a better solution, I'll use that.
+\usepackage{silence}
+\WarningFilter{latex}{You have requested package}
+
 
 \usepackage{amsmath}
 \usepackage{amssymb}
@@ -26,7 +37,7 @@ $if(marginNote)$
 $endif$
 
 % Physics stuff
-\usepackage{braket}
+% \usepackage{braket}
 \usepackage[spaced=0]{diffcoeff}
 \usepackage{linop}
 
@@ -41,14 +52,7 @@ $else$
 
 $endif$
 
-%% Physics macros
-\newcommand{\expval}[1]{\left< #1 \right>} % expectation value
-\newcommand{\comm}[2]{{\left[ #1 , #2 \right]}} % commutator
-\newcommand{\acomm}[2]{\left\{ #1, #2 \right\}} % anticommutator
-
-%% Math macros
-\newcommand{\textqed}{\hfill\ensuremath{\Box}}
-\newcommand{\dlp}[2]{\partial_{#2} \, #1}
+\usepackage{\packageDir/my_macros}
 
 \usepackage{enumerate}
 % Keep pandoc from getting mad
@@ -63,23 +67,7 @@ $endif$
 \usepackage{calc}
 
 
-
-% NEW MATH COMMANDS
-
-% Include some ISO math symbols
-
-\newcommand\ii{\mathup{i}}
-
-\newcommand\ee{\mathup{e}}
-
-
-
-% fix spacing around \left( and \right) commands. Taken from
-% https://tex.stackexchange.com/questions/2607/spacing-around-left-and-right 
-\let\originalleft\left
-\let\originalright\right
-\renewcommand{\left}{\mathopen{}\mathclose\bgroup\originalleft}
-\renewcommand{\right}{\aftergroup\egroup\originalright}
+\usepackage{\packageDir/math_paren_spacing}
 
 \usepackage{soul}
 
@@ -333,7 +321,7 @@ $endif$
 \renewcommand{\labelitemiii}{\symbolFont{•}}
 \renewcommand{\labelitemiv}{\symbolFont{⟶}}
 
-\usepackage{indentfirst}
+% \usepackage{indentfirst}
 
 $if(useEndnotes)$
 \usepackage{endnotes}
@@ -648,7 +636,12 @@ $for(headerIncludes)$
 $headerIncludes$
 $endfor$
 
-\usepackage{titlesec}
+% Make it so that you don't indent after a section heading.
+$if(indentFirst)$
+    \usepackage[noindentafter]{titlesec}
+$else$
+    \usepackage[noindentafter]{titlesec}
+$endif$
 
 $if(numberSections)$
 	\setcounter{secnumdepth}{5}
@@ -675,11 +668,11 @@ $if(serifSections)$
 $else$
 \titleformat{\section}%
 {\large\headType}%
-{\marginsecnumber{\thesection.}}{0em}{}
+{\marginsecnumber{\thesection.}}{0em}{}[]
 
 \titleformat{\subsection}%
 {\normalsize\subheadType}%
-{\marginsecnumber{\thesubsection.}}{0em}{}
+{\marginsecnumber{\thesubsection.}}{0em}{}[]
 
 %\titleformat{\subsubsection}[runin]{\sffamily\bfseries\normalsize}{}{0.25em}{\periodafter}
 
@@ -687,7 +680,7 @@ $else$
 
 \titleformat{\subsubsection}[runin]%
 {\subsubHeadType\normalsize\mdseries}%
-{\marginsecnumber{\thesubsubsection.}}{0em}{}
+{\marginsecnumber{\thesubsubsection.}}{0em}{}[]
 
 
 \definecolor{parColor}{RGB}{128, 128, 128}

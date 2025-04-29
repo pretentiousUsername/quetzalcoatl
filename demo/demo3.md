@@ -20,7 +20,6 @@ tableOfContents: true
 titlepage: true
 twoSided: false
 raggedLines: false
-alternateFontSet: true
 ---
 
 # A manifesto (of sorts)
