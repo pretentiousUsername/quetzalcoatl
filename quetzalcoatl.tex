@@ -13,7 +13,6 @@
 
 % DO NOT include a slash after your fontDir is set
 \def\fontDir{\localDir/fonts}
-\def\packageDir{\localDir/packages}
 
 % this is unfortunately necessary to prevent any annoying popups---it's way
 % too difficult to load packages locally without them being in the TeX
@@ -52,7 +51,26 @@ $else$
 
 $endif$
 
-\usepackage{\packageDir/my_macros}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+                                     MACROS
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% The main goal is to get rid of stuff like this, but for now it can stay.
+% Physics macros
+\newcommand{\expval}[1]{\ensuremath{\left< #1 \right>}} % expectation value
+\newcommand{\comm}[2]{\ensuremath{{\left[ #1 , #2 \right]}}} % commutator
+\newcommand{\acomm}[2]{\ensuremath{\left\{ #1, #2 \right\}}} % anticommutator
+
+\newcommand{\bra}[1]{\ensuremath{\left< #1 \right|}}
+\newcommand{\ket}[1]{\ensuremath{\left| #1 \right>}}
+
+% Math macros
+\newcommand{\textqed}{\hfill\ensuremath{\Box}}
+\newcommand{\dlp}[2]{\partial_{#2} \, #1}
+%% Include some ISO math symbols
+\newcommand\ii{\mathup{i}}
+\newcommand\ee{\mathup{e}}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \usepackage{enumerate}
 % Keep pandoc from getting mad
@@ -67,8 +85,12 @@ $endif$
 \usepackage{calc}
 
 
-\usepackage{\packageDir/math_paren_spacing}
-
+% fix spacing around \left( and \right) commands. Taken from
+% https://tex.stackexchange.com/questions/2607/spacing-around-left-and-right 
+\let\originalleft\left
+\let\originalright\right
+\renewcommand{\left}{\mathopen{}\mathclose\bgroup\originalleft}
+\renewcommand{\right}{\aftergroup\egroup\originalright}
 \usepackage{soul}
 
 \usepackage{siunitx}
