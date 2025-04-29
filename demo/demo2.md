@@ -3,6 +3,7 @@ title: Custom macros
 author: Ian Mitchell
 date: \today
 noIndentFirst: true
+customType: \usepackage[knuth]{\packageDir/stylistic_sets}
 ---
 
 

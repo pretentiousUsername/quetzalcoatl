@@ -1,0 +1,356 @@
+\NeedsTeXFormat{LaTeX2e}
+\ProvidesPackage{packages/font_sets}[2025/04/28 Font sets]
+
+\RequirePackage{fontspec}
+\RequirePackage{unicode-math}
+\RequirePackage{xcolor}
+\RequirePackage[noindentafter]{titlesec}
+
+\newcommand{\marginsecnumber}[1]{%
+  \makebox[0pt][r]{#1\hspace{6pt}}%
+}
+
+
+
+\definecolor{s2Color}{HTML}{a0a0a0}
+\definecolor{parColor}{RGB}{128, 128, 128}
+
+% This will need to be adaptable for two-sided documents
+\titleformat{\paragraph}[leftmargin]%
+{\color{parColor}\sffamily\small\filright}%
+{}{0.0em}{\color{parColor}}[]
+
+
+
+\DeclareOption{regular}{
+	\setmainfont[
+		Path = {\fontDir/stix2/},
+		Extension = {.otf},
+		UprightFont = {*-Regular},
+		ItalicFont = {*-Italic},
+		BoldFont = {*-Bold},
+		BoldItalicFont = {*-BoldItalic},
+		RawFeature = {+case},
+		]
+		{StixTwoText}
+
+	\setmathfont[
+		Path = {\fontDir/stix2/},
+		Extension = {.otf},
+		RawFeature = {+ss15},
+		]
+		{StixTwoMath-Regular}
+
+	% Heavenly father, forgive me, for I know not what I do.
+	\newfontfamily\symbolFont[
+		Extension = {.otf},
+		Path = {\fontDir/stix2/},
+	]{StixTwoMath-Regular}
+	
+	\setsansfont[
+		Path = {\fontDir/Inter/},
+		Extension = {.otf},
+		UprightFont = {*-Regular},
+		ItalicFont = {*-Italic},
+		BoldFont = {*-Bold},
+		BoldItalicFont = {*-BoldItalic},
+		RawFeature = {+cv08, +cv01, +cv07, +cv10, +case, +zero},
+		Scale = 0.925,
+		]
+		{Inter}
+
+	\newfontfamily\titleType[
+		Path = {\fontDir/Inter/},
+		Extension = {.otf},
+		UprightFont = {*-Regular},
+		ItalicFont = {*-Italic},
+		BoldFont = {*-Bold},
+		BoldItalicFont = {*-BoldItalic},
+		RawFeature = {+cv08, +cv01, +cv07, +cv10, +case, +zero},
+		Scale = 0.925,
+		]
+		{Inter}
+
+	\newfontfamily\headType[
+		Path = {\fontDir/Inter/},
+		Extension = {.otf},
+		UprightFont = {*-ExtraBold},
+		ItalicFont = {*-ExtraBoldItalic},
+		BoldFont = {*-Black},
+		BoldItalicFont = {*-BlackItalic},
+		RawFeature = {+cv08, +cv01, +cv07, +cv10, +case, +zero},
+		Scale = 0.925,
+		]
+		{Inter}
+
+	\newfontfamily\subheadType[
+		Path = {\fontDir/Inter/},
+		Extension = {.otf},
+		UprightFont = {*-Bold},
+		ItalicFont = {*-BoldItalic},
+		BoldFont = {*-ExtraBold},
+		BoldItalicFont = {*-ExtraBoldItalic},
+		RawFeature = {+cv08, +cv01, +cv07, +cv10, +case, +zero},
+		Scale = 0.925,
+		]
+		{Inter}
+
+	\newfontfamily\subsubHeadType[
+		Path = {\fontDir/Inter/},
+		Extension = {.otf},
+		UprightFont = {*-Medium},
+		ItalicFont = {*-MediumItalic},
+		BoldFont = {*-SemiBold},
+		BoldItalicFont = {*-SemiBoldItalic},
+		RawFeature = {+cv08, +cv01, +cv07, +cv10, +case, +zero},
+		Scale = 0.925,
+		]
+		{Inter}
+
+	\setmonofont[
+	Path = {\fontDir/juliaMono/},
+		Extension = {.ttf},
+		UprightFont = {*-Regular},
+		ItalicFont = {*-RegularItalic},
+		BoldFont = {*-Bold},
+		BoldItalicFont = {*-BoldItalic},
+		Scale = 0.875,
+		]
+		{JuliaMono}
+
+    \titleformat{\section}%
+    {\large\headType}%
+    {\marginsecnumber{\thesection.}}{0em}{}[]
+    
+    \titleformat{\subsection}%
+    {\normalsize\subheadType}%
+    {\marginsecnumber{\thesubsection.}}{0em}{}[]
+    
+    
+    \titleformat{\subsubsection}[runin]%
+    {\subsubHeadType\normalsize\mdseries}%
+    {\marginsecnumber{\thesubsubsection.}}{0em}{}[]
+    
+    % This will need to be adaptable for two-sided documents
+    \titleformat{\paragraph}[leftmargin]%
+    {\color{parColor}\sffamily\small\filright}%
+    {}{0.0em}{\color{parColor}}[]
+
+
+
+}
+
+%            Font = {NewCM10-Book},
+%               SizeFeatures={%
+%                   {Size=-8, Font=NewCM08-Book,
+%     	        	ItalicFont=NewCM08-BookItalic,%
+%     	        		    BoldFont=NewCM10-Bold,%
+%     	        		    BoldItalicFont=NewCM10-BoldItalic,%
+%     	        		    SlantedFont=NewCM08-Book,%
+%     	        		    BoldSlantedFont=NewCM10-Bold,%
+%     	        		    SmallCapsFeatures={Numbers=OldStyle}},
+%   	           {Size=8, Font=NewCM08-Book,
+%     	        	   	    ItalicFont=NewCM08-BookItalic,%
+%     	        		    BoldFont=NewCM10-Bold,%
+%     	        		    BoldItalicFont=NewCM10-BoldItalic,%
+%     	        		    SlantedFont=NewCM08-Book,%
+%     	        		    BoldSlantedFont=NewCM10-Bold,%
+%     	        		    SmallCapsFeatures={Numbers=OldStyle}},
+%   	         {Size= 9-, Font = NewCM10-Book,
+%     	        	 	    ItalicFont=NewCM10-BookItalic,%
+%     	        		    BoldFont=NewCM10-Bold,%
+%     	        		    BoldItalicFont=NewCM10-BoldItalic,%
+%     	        		    SlantedFont=NewCM10-Book,%
+%     	        		    BoldSlantedFont=NewCM10-Bold,%
+%     	        		    SmallCapsFeatures={Numbers=OldStyle}}%
+%                   },
+%           },
+%        ]{NewCM10}
+
+
+
+\DeclareOption{knuth}{
+    \setmainfont[
+        Path = {\fontDir/newcomputermodern/},
+        extension = {.otf},
+        UprightFont = {NewCM10-Book},
+        ItalicFont = {NewCM10-BookItalic},
+        BoldFont = {NewCM10-Bold},
+        BoldItalicFont = {NewCM10-BoldItalic},
+        SlantedFont = {NewCM10-Book},
+        BoldSlantedFont = {NewCM10-Bold},
+        SmallCapsFeatures = {Numbers=OldStyle, LetterSpace=5.0}
+        ]{NewCM10-Book}
+
+    \defaultfontfeatures[NewCM10-Book]
+       {
+        Path = {\fontDir/newcomputermodern/},
+        Extension      = .otf ,
+        SizeFeatures={%
+                      {Size=-8, Font=NewCM08-Book,
+          		  	    ItalicFont=NewCM08-BookItalic,%
+          			    BoldFont=NewCM10-Bold,%
+          			    BoldItalicFont=NewCM10-BoldItalic,%
+          			    SlantedFont=NewCM08-Book,%
+          			    BoldSlantedFont=NewCM10-Bold,%
+          			    SmallCapsFeatures={Numbers=OldStyle}},
+    		   {Size=8, Font=NewCM08-Book,
+          		   	    ItalicFont=NewCM08-BookItalic,%
+          			    BoldFont=NewCM10-Bold,%
+          			    BoldItalicFont=NewCM10-BoldItalic,%
+          			    SlantedFont=NewCM08-Book,%
+          			    BoldSlantedFont=NewCM10-Bold,%
+          			    SmallCapsFeatures={Numbers=OldStyle}},
+    		 {Size= 9-, Font = NewCM10-Book,
+          		 	    ItalicFont=NewCM10-BookItalic,%
+          			    BoldFont=NewCM10-Bold,%
+          			    BoldItalicFont=NewCM10-BoldItalic,%
+          			    SlantedFont=NewCM10-Book,%
+          			    BoldSlantedFont=NewCM10-Bold,%
+          			    SmallCapsFeatures={Numbers=OldStyle}}%
+    	}}
+
+    \setsansfont[
+        Path = {\fontDir/newcomputermodern/},
+        Extension = {.otf},
+        UprightFont = {NewCMSans10-Book},
+        ItalicFont = {NewCMSans10-Oblique},
+        BoldFont = {NewCMSans10-Bold},
+        BoldItalicFont = {NewCMSans10-BoldOblique},
+    ]{NewCMSans10-Book}
+
+    \defaultfontfeatures[NewCMSans10-Book]
+       {
+        Extension      = .otf ,
+        SizeFeatures={%
+                      {Size= -8, Font=NewCMSans08-Book,%
+               	  	     ItalicFont=NewCMSans08-BookOblique,%
+               		     BoldFont=NewCMSans10-Bold,%
+               		     BoldItalicFont=NewCMSans10-BoldOblique,%
+               		     SmallCapsFeatures={Numbers=OldStyle}},
+    		   {Size= 8, Font=NewCMSans08-Book,%
+              	   	     ItalicFont=NewCMSans08-BookOblique,%
+              		     BoldFont=NewCMSans10-Bold,%
+              		     BoldItalicFont=NewCMSans10-BoldOblique,%
+             		     SmallCapsFeatures={Numbers=OldStyle}},
+    		  {Size= 9-, Font=NewCMSans10-Book,%
+               	  	     ItalicFont=NewCMSans10-BookOblique,%
+               		     BoldFont=NewCMSans10-Bold,%
+               		     BoldItalicFont=NewCMSans10-BoldOblique,%
+               		     SmallCapsFeatures={Numbers=OldStyle}}
+    			     }
+    }
+
+
+	\setmathfont[
+		Path = {\fontDir/newcomputermodern/},
+		Extension = {.otf},
+		]{NewCMMath-Book}
+
+    \setmonofont[
+        Path = {\fontDir/newcomputermodern/},
+        Extension = {.otf},
+        UprightFont = {*-Book},
+        ItalicFont = {*-BookItalic},
+        BoldFont = {*-Bold},
+        BoldItalicFont = {*-BoldOblique},
+    ]{NewCMMono10}
+
+	\newfontfamily\titleType[
+		Path = {\fontDir/newcomputermodern/},
+		Extension = {.otf},
+		UprightFont = {NewCMSans10-Book},
+		ItalicFont = {NewCMSans10-BookOblique},
+		BoldFont = {NewCMSans10-Bold},
+		BoldItalicFont = {NewCMSans10-BoldOblique},
+        SmallCapsFeatures = {Numbers=OldStyle, LetterSpace=5.0}
+		]
+		{NewCMSans10-Book}
+
+	\newfontfamily\headType[
+		Path = {\fontDir/newcomputermodern/},
+		Extension = {.otf},
+		UprightFont = {NewCMSans10-Book},
+		ItalicFont = {NewCMSans10-BookOblique},
+		BoldFont = {NewCMSans10-Bold},
+		BoldItalicFont = {NewCMSans10-BoldOblique},
+        SmallCapsFeatures = {LetterSpace=5.0}
+		]
+		{NewCMSans10-Book}
+
+	\newfontfamily\subheadType[
+		Path = {\fontDir/newcomputermodern/},
+		Extension = {.otf},
+		UprightFont = {NewCMSans10-Regular},
+		ItalicFont = {NewCMSans10-Oblique},
+		BoldFont = {NewCMSans10-Bold},
+		BoldItalicFont = {NewCMSans10-BoldOblique},
+        SmallCapsFeatures = {LetterSpace=5.0}
+		]
+		{NewCMSans10-Regular}
+
+	\newfontfamily\subsubHeadType[
+		Path = {\fontDir/newcomputermodern/},
+		Extension = {.otf},
+		UprightFont = {NewCMSans10-Book},
+		ItalicFont = {NewCMSans10-BookOblique},
+		BoldFont = {NewCMSans10-Bold},
+		BoldItalicFont = {NewCMSans10-BoldOblique},
+        SmallCapsFeatures = {LetterSpace=5.0}
+		]
+		{NewCMSans10-Book}
+
+
+    \titleformat{\section}%
+    {\Large\bfseries\headType}%
+    {\marginsecnumber{\thesection.}}{0em}{}[]
+    
+    \titleformat{\subsection}%
+    {\large\subheadType\mdseries}%
+    {\marginsecnumber{\thesubsection.}}{0em}{}[]
+    
+    
+    \titleformat{\subsubsection}[runin]%
+    {\subsubHeadType\normalsize\mdseries\scshape}%
+    {\marginsecnumber{\thesubsubsection.}}{0em}{}[]
+    
+    % This will need to be adaptable for two-sided documents
+    \titleformat{\paragraph}[leftmargin]%
+    {\color{parColor}\sffamily\small\filright}%
+    {}{0.0em}{\color{parColor}}[]
+
+
+
+%    \newfontfamily\symbolFont[
+%		Extension = {.otf},
+%		Path = {\fontDir/newcomputermodern/},
+%	]{NewCMMath-Book}
+}
+
+
+\titlespacing\section{0pt}{12pt plus 2pt minus 2pt}{3pt plus 2pt minus 2pt}
+
+\titlespacing\subsection{0pt}{12pt plus 2pt minus 2pt}%
+{3pt plus 2pt minus 2pt}
+%\titlespacing\subsubsection{-0.27em}{12pt plus 2pt minus 2pt}%
+%{4pt plus 2pt minus 2pt}
+\titlespacing\paragraph{0pt}{0pt plus 2pt minus 2pt}{0pt plus 2pt minus 2pt}
+    
+    
+\titlespacing\subsubsection{0em}{12pt plus 2pt minus 2pt}%
+{4pt plus 2pt minus 2pt}
+
+\titlespacing\paragraph{8em}{8pt plus 2pt minus 2pt}%
+{4pt plus 2pt minus 2pt}
+
+% \ExecuteOptions{regular}
+
+\ProcessOptions\relax
+
+% Set itemize symbols
+\renewcommand{\labelitemi}{\symbolFont{▪}}
+\renewcommand{\labelitemii}{\symbolFont{▹}}
+\renewcommand{\labelitemiii}{\symbolFont{•}}
+\renewcommand{\labelitemiv}{\symbolFont{⟶}}
+
+\endinput

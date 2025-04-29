@@ -73,7 +73,9 @@ $endif$
 
 \usepackage{siunitx}
 
-
+\usepackage{fontspec}
+\usepackage{unicode-math}
+\usepackage[noindentafter]{titlesec}
 
 \usepackage[auto=true]{microtype}
 \SetTracking{encoding={*}, shape=sc}{500}
@@ -83,7 +85,7 @@ $if(customType)$
 	$customType$
 	% This is set by manually inputting \usepackage{mathspec/fontspec},
 	% \setmainfont{foo}, etc.
-
+    
     $elseif(alternateFontSet)$
     \usepackage{fontspec}
 	\usepackage{unicode-math}
@@ -635,102 +637,8 @@ $endif$
 $for(headerIncludes)$
 $headerIncludes$
 $endfor$
-
-% Make it so that you don't indent after a section heading.
-$if(indentFirst)$
-    \usepackage[noindentafter]{titlesec}
-$else$
-    \usepackage[noindentafter]{titlesec}
-$endif$
-
-$if(numberSections)$
-	\setcounter{secnumdepth}{5}
-$else$
-	\setcounter{secnumdepth}{0}
-$endif$
-
-\newcommand{\periodafter}[2]{#1{#2.}}
-\titlelabel{\thetitle.\quad}
-
-% taken from https://tex.stackexchange.com/questions/523000/titlesec-right-justified-section-number-in-margin
-\newcommand{\marginsecnumber}[1]{%
-  \makebox[0pt][r]{#1\hspace{6pt}}%
-}
-
-
-\titleformat{\chapter}{\huge\sffamily}{{\color{ruleColor}\thechapter \hspace{0.75pt}  \rule{1.5pt}{\heightof{\sffamily{1234}}}} \hspace{0.5pt}}{0.0em}{}
-
-$if(serifSections)$
-\titleformat{\section}{\bfseries\large\rmfamily}{\thesection.}{0.25em}{}
-\titleformat{\subsection}{\normalsize\rmfamily}{\thesubsection.}{0.25em}{}
-\titleformat{\subsubsection}[runin]{\rmfamily\bfseries\normalsize}{}{0.25em}{\periodafter}
-
-$else$
-\titleformat{\section}%
-{\large\headType}%
-{\marginsecnumber{\thesection.}}{0em}{}[]
-
-\titleformat{\subsection}%
-{\normalsize\subheadType}%
-{\marginsecnumber{\thesubsection.}}{0em}{}[]
-
-%\titleformat{\subsubsection}[runin]{\sffamily\bfseries\normalsize}{}{0.25em}{\periodafter}
-
-\definecolor{s2Color}{HTML}{a0a0a0}
-
-\titleformat{\subsubsection}[runin]%
-{\subsubHeadType\normalsize\mdseries}%
-{\marginsecnumber{\thesubsubsection.}}{0em}{}[]
-
-
-\definecolor{parColor}{RGB}{128, 128, 128}
-
-% This will need to be adaptable for two-sided documents
-\titleformat{\paragraph}[leftmargin]%
-{\color{parColor}\sffamily\small\filright}%
-{}{0.0em}{\color{parColor}}[]
-
-
-$endif$
-\titlespacing\section{0pt}{12pt plus 2pt minus 2pt}{3pt plus 2pt minus 2pt}
-
-\titlespacing\subsection{0pt}{12pt plus 2pt minus 2pt}%
-{3pt plus 2pt minus 2pt}
-%\titlespacing\subsubsection{-0.27em}{12pt plus 2pt minus 2pt}%
-%{4pt plus 2pt minus 2pt}
-\titlespacing\paragraph{0pt}{0pt plus 2pt minus 2pt}{0pt plus 2pt minus 2pt}
-
-
-\titlespacing\subsubsection{0em}{12pt plus 2pt minus 2pt}%
-{4pt plus 2pt minus 2pt}
-
-\titlespacing\paragraph{8em}{8pt plus 2pt minus 2pt}%
-{4pt plus 2pt minus 2pt}
-
-%\titlespacing*{\subsubsection}{-\marginparsep}{*3.25}{*1.5}%
-
-$if(journalSections)$
-%\titleformat{\section}{\centering\bfseries\normalsize}{\thesection.}{0.5em}{}
-
-%\titleformat{\section}{\bfseries\Large}{\thesection.}{0.5em}{}
-\titleformat{\section}{\bfseries\normalsize\centering}{\thesection.}{0.25em}{}
-
-%\titleformat{\subsection}{\bfseries\normalsize}{\thesubsection.}{0.5em}{}
-\titleformat{\subsection}{\bfseries\normalsize}{\thesubsection.}{0.25em}{}
-
-%\titleformat{\subsubsection}[runin]{\sffamily\bfseries\normalsize}{\thesubsubsection.}{0.5em}{\periodafter}
-%\titleformat{\subsubsection}[runin]{\sffamily\bfseries\normalsize}{\thesubsubsection. }{0.25em}{}[~ \textsf{|}]
-\titleformat{\subsubsection}[runin]{\sffamily\bfseries\normalsize}{\thesubsubsection.}{0.25em}{\periodafter}
-
-\titleformat{\paragraph}{\bfseries\small}{\theparagraph}{1em}{}
-
-\titleformat{\subparagraph}{\sffamily\bfseries\small}{\thesubparagraph}{1em}{}
-
-\titleformat{\subsubparagraph}{\bfseries\sffamily\itshape\small}{\thesubsubparagraph}{1em}{}
-
-$endif$
-
 \definecolor{caption-color}{HTML}{777777}
+
 %
 % blockquote
 %
