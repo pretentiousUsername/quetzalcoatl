@@ -6,13 +6,12 @@ customType: \usepackage[knuth]{\packageDir/stylistic_sets}
 # Hello world
 
 ## This is my document
+this is my cool document!!!!!---oh yeah
 
-this is my cool document!!!!!------------oh yeah
+This is so important---look at this!
 
-\textsc{This is so important---look at this!}
-
-### With many different headings.
-\textbf{this} is getting \textit{good}---------I can write *so* much here
+### My amazing and fun time.
+\textbf{this} is getting \textit{good}---I can write *so* much here
 
 `asdf`
 

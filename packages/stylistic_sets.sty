@@ -5,6 +5,7 @@
 \RequirePackage{unicode-math}
 \RequirePackage{xcolor}
 \RequirePackage[noindentafter]{titlesec}
+\RequirePackage{relsize}
 
 \newcommand{\marginsecnumber}[1]{%
   \makebox[0pt][r]{#1\hspace{6pt}}%
@@ -119,7 +120,7 @@
 		{JuliaMono}
 
     \titleformat{\section}%
-    {\large\headType}%
+    {\relsize{2}\headType}%
     {\marginsecnumber{\thesection.}}{0em}{}[]
     
     \titleformat{\subsection}%
@@ -302,11 +303,11 @@
 
 
     \titleformat{\section}%
-    {\Large\bfseries\headType}%
+    {\relsize{4}\bfseries\headType}%
     {\marginsecnumber{\thesection.}}{0em}{}[]
     
     \titleformat{\subsection}%
-    {\large\subheadType\mdseries}%
+    {\relsize{2}\subheadType}%
     {\marginsecnumber{\thesubsection.}}{0em}{}[]
     
     
