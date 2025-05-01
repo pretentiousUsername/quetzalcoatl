@@ -1,0 +1,20 @@
+\NeedsTeXFormat{LaTeX2e}
+\ProvidesPackage{packages/headers/regular}[2025/05/01 Regular header style]
+
+\titleformat{\section}%
+{\relsize{2}\headType}%
+{\marginsecnumber{\thesection.}}{0em}{}[]
+
+\titleformat{\subsection}%
+{\normalsize\subheadType}%
+{\marginsecnumber{\thesubsection.}}{0em}{}[]
+
+
+\titleformat{\subsubsection}[runin]%
+{\subsubHeadType\normalsize\mdseries}%
+{\marginsecnumber{\thesubsubsection.}}{0em}{}[]
+
+% This will need to be adaptable for two-sided documents
+\titleformat{\paragraph}[leftmargin]%
+{\color{parColor}\sffamily\small\filright}%
+{}{0.0em}{\color{parColor}}[]
