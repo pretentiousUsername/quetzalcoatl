@@ -7,6 +7,7 @@
 \RequirePackage{relsize}
 \RequirePackage{xkeyval}
 \RequirePackage{titlesec}
+\RequirePackage{ifthen}
 
 
 \newcommand{\marginsecnumber}[1]{%
@@ -16,6 +17,7 @@
 
 % thank you @lockstep on the TeX stack exchange for this.
 % https://tex.stackexchange.com/a/13275
+
 
 \DeclareOptionX{style}[regular]{%
     \input{\packageDir/fonts/#1}%
@@ -31,7 +33,7 @@
 {\color{parColor}\sffamily\small\filright}%
 {}{0.0em}{\color{parColor}}[]
 
-%\ExecuteOptionsX{style=regular}
+% \ExecuteOptionsX{style}
 
 \ProcessOptionsX\relax
 
