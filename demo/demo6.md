@@ -1,12 +1,12 @@
 ---
-customType: \usepackage[style=utopia]{\packageDir/stylistic_sets}
+customType: \usepackage[style=regular]{\packageDir/stylistic_sets}
 ---
 
 
 # Hello world
 
 ## This is my document
-this is my cool document!!!!!---oh yeah
+this is my cool document!!!!!---oh yeah dorp *dorp*
 
 This is so important---look at this!
 

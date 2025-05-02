@@ -1,11 +1,28 @@
-% I need to find a way to kit-bash Crimson Pro with a similar math font in
-% `unicode-math.`
+% I'll settle for EB Garamond for now, but *man* do I want to use Crimson Pro.
+
+\setmainfont[
+	Path = {\fontDir/ebgaramond/},
+	Extension = {.otf},
+	UprightFont = {*-Regular},
+	ItalicFont = {*-Italic},
+	BoldFont = {*-Bold},
+	BoldItalicFont = {*-BoldItalic},
+	RawFeature = {+case},
+	]
+	{EBGaramond}
+
+\setmathfont[
+	Path = {\fontDir/garamond-math/},
+	Extension = {.otf},
+	]
+	{Garamond-Math}
+
 
 % Heavenly father, forgive me, for I know not what I do.
 \newfontfamily\symbolFont[
 	Extension = {.otf},
-	Path = {\fontDir/stix2/},
-]{StixTwoMath-Regular}
+	Path = {\fontDir/garamond-math/},
+    ]{Garamond-Math}
 
 \setsansfont[
 	Path = {\fontDir/ysabeau/},
@@ -14,7 +31,7 @@
 	ItalicFont = {*-Italic},
 	BoldFont = {*-Bold},
 	BoldItalicFont = {*-BoldItalic},
-    SmallCapsFont = {*SC}
+    SmallCapsFont = {*SC-Regular},
 	Scale = 0.925,
 	]
 	{Ysabeau}
