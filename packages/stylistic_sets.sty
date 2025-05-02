@@ -58,23 +58,31 @@
 
 % Oh yeah, it turns out we need those booleans.
 \ifthenelse{\boolean{regularStyle}}{
-    \RequirePackage{\packageDir/fonts/regular}%
-    \RequirePackage{\packageDir/headers/regular}%
+    \AtEndOfPackage{
+        \usepackage{\packageDir/fonts/regular}%
+        \usepackage{\packageDir/headers/regular}%
+    }
 }{}
 
 \ifthenelse{\boolean{knuthStyle}}{
-    \RequirePackage{\packageDir/fonts/knuth}
-    \RequirePackage{\packageDir/headers/knuth}
+    \AtEndOfPackage{
+        \usepackage{\packageDir/fonts/knuth}
+        \usepackage{\packageDir/headers/knuth}
+    }
 }{}
 
 \ifthenelse{\boolean{utopiaStyle}}{
-    \RequirePackage{\packageDir/fonts/utopia}
-    \RequirePackage{\packageDir/headers/utopia}
+    \AtEndOfPackage{
+        \usepackage{\packageDir/fonts/utopia}
+        \usepackage{\packageDir/headers/utopia}
+    }
 }{}
 
 \ifthenelse{\boolean{pretentiousStyle}}{
-    \RequirePackage{\packageDir/fonts/pretentious}
-    \RequirePackage{\packageDir/headers/pretentious}
+    \AtEndOfPackage{
+        \usepackage{\packageDir/fonts/pretentious}
+        \usepackage{\packageDir/headers/pretentious}
+    }
 }{}
 
 
