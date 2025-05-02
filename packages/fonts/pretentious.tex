@@ -1,0 +1,75 @@
+% I need to find a way to kit-bash Crimson Pro with a similar math font in
+% `unicode-math.`
+
+% Heavenly father, forgive me, for I know not what I do.
+\newfontfamily\symbolFont[
+	Extension = {.otf},
+	Path = {\fontDir/stix2/},
+]{StixTwoMath-Regular}
+
+\setsansfont[
+	Path = {\fontDir/ysabeau/},
+	Extension = {.otf},
+	UprightFont = {*-Regular},
+	ItalicFont = {*-Italic},
+	BoldFont = {*-Bold},
+	BoldItalicFont = {*-BoldItalic},
+    SmallCapsFont = {*SC}
+	Scale = 0.925,
+	]
+	{Ysabeau}
+
+\newfontfamily\titleType[
+	Path = {\fontDir/ysabeau/},
+	Extension = {.otf},
+	UprightFont = {*-Regular},
+	ItalicFont = {*-Italic},
+	BoldFont = {*-Bold},
+	BoldItalicFont = {*-BoldItalic},
+	Scale = 0.925,
+	]
+	{Ysabeau}
+
+\newfontfamily\headType[
+	Path = {\fontDir/ysabeau/},
+	Extension = {.otf},
+	UprightFont = {*-ExtraBold},
+	ItalicFont = {*-ExtraBoldItalic},
+	BoldFont = {*-Black},
+	BoldItalicFont = {*-BlackItalic},
+	Scale = 0.925,
+	]
+	{Ysabeau}
+
+\newfontfamily\subheadType[
+	Path = {\fontDir/ysabeau/},
+	Extension = {.otf},
+	UprightFont = {*-Bold},
+	ItalicFont = {*-BoldItalic},
+	BoldFont = {*-ExtraBold},
+	BoldItalicFont = {*-ExtraBoldItalic},
+	Scale = 0.925,
+	]
+	{Ysabeau}
+
+\newfontfamily\subsubHeadType[
+	Path = {\fontDir/ysabeau/},
+	Extension = {.otf},
+	UprightFont = {*-Medium},
+	ItalicFont = {*-MediumItalic},
+	BoldFont = {*-SemiBold},
+	BoldItalicFont = {*-SemiBoldItalic},
+	Scale = 0.925,
+	]
+	{Ysabeau}
+
+\setmonofont[
+    Path = {\fontDir/juliaMono/},
+	Extension = {.ttf},
+	UprightFont = {*-Regular},
+	ItalicFont = {*-RegularItalic},
+	BoldFont = {*-Bold},
+	BoldItalicFont = {*-BoldItalic},
+	Scale = 0.875,
+	]
+	{JuliaMono}
