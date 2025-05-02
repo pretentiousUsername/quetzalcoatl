@@ -1,0 +1,25 @@
+%Filename: uzcochmia.fd
+%Created by: tex coch-mia-drv
+%Created using fontinst v1.933
+
+%THIS FILE SHOULD BE PUT IN A TEX INPUTS DIRECTORY
+
+\ProvidesFile{uzcochmia.fd}
+   [2015/06/23 Fontinst v1.933 font definitions for U/zcochmia.]
+
+\DeclareFontFamily{U}{zcochmia}{\skewchar \font =127}
+
+\DeclareFontShape{U}{zcochmia}{m}{it}{
+   <-> \ntxmath@scaled zcochmia
+}{}
+
+\DeclareFontShape{U}{zcochmia}{b}{it}{
+   <-> \ntxmath@scaled zcochbmia
+}{}
+
+\DeclareFontShape{U}{zcochmia}{m}{sl}{<->ssub * zcochmia/m/it}{}
+\DeclareFontShape{U}{zcochmia}{bx}{it}{<->ssub * zcochmia/b/it}{}
+\DeclareFontShape{U}{zcochmia}{b}{sl}{<->ssub * zcochmia/b/it}{}
+\DeclareFontShape{U}{zcochmia}{bx}{sl}{<->ssub * zcochmia/b/sl}{}
+
+\endinput

@@ -1,0 +1,57 @@
+% THIS FILE WAS AUTOMATICALLY GENERATED -- DO NOT EDIT
+
+%%AutoEnc_vagwxdbqczcvvhiozw2nto2hph
+% Encoding created by otftotfm on Sat Nov 11 13:39:06 2023
+% Command line follows encoding
+/AutoEnc_vagwxdbqczcvvhiozw2nto2hph [
+%00
+  /.notdef /.notdef /.notdef /.notdef /.notdef /.notdef /.notdef /.notdef
+  /.notdef /.notdef /.notdef /cedilla /ogonek /quotesinglbase /C /degree
+%10
+  /bar /exclamdown /quotedblbase /questiondown /.notdef /twelveudash /threequartersemdash /.notdef
+  /arrowleft /arrowright /tieaccentlowercase /tieaccentcapital /newtieaccentlowercase /newtieaccentcapital /.notdef /.notdef
+%20
+  /blank /.notdef /.notdef /.notdef /dollar /.notdef /.notdef /quotesingle
+  /.notdef /.notdef /asteriskcentered /.notdef /comma /hyphendbl /period /fraction
+%30
+  /zero.onum /one.onum /two.onum /three.onum /four.onum /five.onum /six.onum /seven.onum
+  /eight.onum /nine.onum /Q /Q.alt01 /.notdef /minus /.notdef /.notdef
+%40
+  /.notdef /.notdef /.notdef /.notdef /.notdef /.notdef /.notdef /.notdef
+  /.notdef /.notdef /.notdef /.notdef /.notdef /Omegainv /.notdef /bigcircle
+%50
+  /.notdef /.notdef /.notdef /.notdef /.notdef /.notdef /.notdef /uni03A9
+  /.notdef /.notdef /.notdef /openbracketleft /.notdef /openbracketright /arrowup /arrowdown
+%60
+  /.notdef /.notdef /born /divorced /died /.notdef /.notdef /.notdef
+  /.notdef /.notdef /.notdef /.notdef /leaf /married /musicalnote /.notdef
+%70
+  /.notdef /.notdef /.notdef /.notdef /.notdef /.notdef /.notdef /.notdef
+  /.notdef /.notdef /.notdef /.notdef /.notdef /.notdef /tildelow /.notdef
+%80
+  /.notdef /.notdef /.notdef /.notdef /dagger /daggerdbl /.notdef /perthousand
+  /bullet /.notdef /.notdef /.notdef /florin /colonmonetary /won /naira
+%90
+  /guarani /peso /.notdef /.notdef /interrobang /interrobangdown /dong /trademark
+  /pertenthousand /pilcrow /baht /.notdef /discount /estimated /openbullet /servicemark
+%A0
+  /quillbracketleft /quillbracketright /cent /sterling /currency /yen /brokenbar /section
+  /.notdef /copyright /ordfeminine /copyleft /logicalnot /circledP /registered /.notdef
+%B0
+  /degree /plusminus /uni00B2 /uni00B3 /.notdef /mu /paragraph /periodcentered
+  /referencemark /uni00B9 /ordmasculine /radical /onequarter /onehalf /threequarters /Euro
+%C0
+  /.notdef /.notdef /.notdef /.notdef /.notdef /.notdef /.notdef /.notdef
+  /.notdef /.notdef /.notdef /.notdef /.notdef /.notdef /.notdef /.notdef
+%D0
+  /.notdef /.notdef /.notdef /.notdef /.notdef /.notdef /multiply /.notdef
+  /.notdef /.notdef /.notdef /.notdef /.notdef /.notdef /.notdef /.notdef
+%E0
+  /.notdef /.notdef /.notdef /.notdef /.notdef /.notdef /.notdef /.notdef
+  /.notdef /.notdef /.notdef /.notdef /.notdef /.notdef /.notdef /.notdef
+%F0
+  /.notdef /.notdef /.notdef /.notdef /.notdef /.notdef /divide /.notdef
+  /.notdef /.notdef /.notdef /.notdef /.notdef /.notdef /.notdef /.notdef
+] def
+% Command line: 'otftotfm -e coch_ts1.enc Cochineal-Italic.otf -fonum -fpnum
+% --space-factor=1.06635 Cochineal-Italic-ts1'

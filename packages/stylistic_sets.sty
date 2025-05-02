@@ -5,31 +5,8 @@
 \RequirePackage{unicode-math}
 \RequirePackage{xcolor}
 \RequirePackage{xkeyval}
-\RequirePackage{ifthen}
+\RequirePackage{titlesec}
 
-\newboolean{regularStyle}
-\newboolean{knuthStyle}
-\newboolean{utopiaStyle}
-\newboolean{pretentiousStyle}
-
-\setboolean{regularStyle}{false}
-\setboolean{knuthStyle}{false}
-\setboolean{utopiaStyle}{false}
-\setboolean{pretentiousStyle}{false}
-
-
-
-
-
-\DeclareOptionX{indent-after}[false]{%
-    \def\parindentafter{noindentafter}
-    }
-
-\DeclareOptionX{indent-after}[true]{%
-    \def\parindentafter{indentafter}
-    }
-
-\RequirePackage[\parindentafter]{titlesec}
 
 \newcommand{\marginsecnumber}[1]{%
   \makebox[0pt][r]{#1\hspace{6pt}}%
@@ -39,53 +16,25 @@
 % thank you @lockstep on the TeX stack exchange for this.
 % https://tex.stackexchange.com/a/13275
 
-\DeclareOptionX{style}[regular]{%
-    \setboolean{regularStyle}{true}
+\DeclareOptionX{style}{regular}{%
+    \input{\packageDir/fonts/regular}%
+    \input{\packageDir/headers/regular}%
 }
 
-\DeclareOptionX{style}[knuth]{%
-    \setboolean{knuthStyle}{true}
+\DeclareOptionX{style}{knuth}{%
+    \input{\packageDir/fonts/knuth}%
+    \input{\packageDir/headers/knuth}%
 }
 
-\DeclareOptionX{style}[utopia]{%
-    \setboolean{utopiaStyle}{true}
+\DeclareOptionX{style}{utopia}{%
+    \input{\packageDir/fonts/utopia}%
+    \input{\packageDir/headers/utopia}%
 }
 
-\DeclareOptionX{style}[pretentious]{%
-    \setboolean{pretentiousStyle}{true}
+\DeclareOptionX{style}{pretentious}{%
+    \input{\packageDir/fonts/pretentious}%
+    \input{\packageDir/headers/pretentious}%
 }
-
-
-% Oh yeah, it turns out we need those booleans.
-\ifthenelse{\boolean{regularStyle}}{
-    \AtEndOfPackage{
-        \usepackage{\packageDir/fonts/regular}%
-        \usepackage{\packageDir/headers/regular}%
-    }
-}{}
-
-\ifthenelse{\boolean{knuthStyle}}{
-    \AtEndOfPackage{
-        \usepackage{\packageDir/fonts/knuth}
-        \usepackage{\packageDir/headers/knuth}
-    }
-}{}
-
-\ifthenelse{\boolean{utopiaStyle}}{
-    \AtEndOfPackage{
-        \usepackage{\packageDir/fonts/utopia}
-        \usepackage{\packageDir/headers/utopia}
-    }
-}{}
-
-\ifthenelse{\boolean{pretentiousStyle}}{
-    \AtEndOfPackage{
-        \usepackage{\packageDir/fonts/pretentious}
-        \usepackage{\packageDir/headers/pretentious}
-    }
-}{}
-
-
 
 
 \definecolor{s2Color}{HTML}{a0a0a0}
@@ -96,7 +45,7 @@
 {\color{parColor}\sffamily\small\filright}%
 {}{0.0em}{\color{parColor}}[]
 
-\ExecuteOptionsX{style=regular, indent-after=none}
+\ExecuteOptionsX{style=regular}
 
 \ProcessOptionsX\relax
 

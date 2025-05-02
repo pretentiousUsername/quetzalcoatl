@@ -1,0 +1,236 @@
+This package provides LaTeX support files for the Erewhon fonts, made up of fonts files and LaTeX support files for a family based on Andrey V. Panov's Heuristica fonts, version 1.0.1, which were in turn a substantial extension of the free Utopia font family making available Cyrillic glyphs, Small Caps in regular weight, upright shape, and oldstyle fixed-width figures in all styles. Erewhon adds small caps in all styles, slanted shapes distinct from italic, superior letters and figures in all styles, as well as inferior, numerator and denominator figures in all styles. The six font files in this package are in otf and pfb format, licensed under the SIL OFL. All other support files are subject to the LaTeX Project Public License. See 
+http://www.ctan.org/license/lppl1.3
+for the details of that license. 
+
+Current version: 1.122, 2024-03-24
+
+Changes in version 1.122
+Reversed the changes made in 1.121---those files should have been in newtx.
+
+Changes in version 1.121
+Modified the zut[b]mi[a].{tfm,vf} files so that Gothic alphabets behave
+as expected.
+
+Changes in version 1.12
+1. Added the minerewhon fd files, needed for loading from newtx.
+2. Corrected missing small caps in Bold weights of T2A encoded tfm files.
+3. Added a minus.superior glyph, u+207B, to prevent an issue with realscripts and siunitx.
+4. Added full complement of OT1 encoded tfm files.
+
+Changes in version 1.119
+Added definitions of \nustyle and \destyle to erewhon.sty.
+
+Changes in version 1.118
+Corrected the errors introduced in version 1.117.
+
+Changes in version 1.117
+1. Added official Euro symbols as an alternative to the Erewhon Euro symbols. Available only in unicode tex using ss03.
+2. Added proper pertentousand symbols to all faces other than Regular.
+(Thanks for both the above to Daniel Flipo.)
+
+Changes in version 1.116
+Corrected what appears to be a corrupted smcp lookup table in Erewhon-Regular.otf which caused improper rendering of the default small cap rendering of germandbls.
+
+Changes in version 1.115
+Brought math blackboard bold alphabets into conformance with additions to newtxmath. See the documentation to newtx for details.
+
+Changes in version 1.114
+A number of bold small cap tfm files and map entries were omitted due to a fault in my generating script. Now fixed.
+
+Changes in version 1.113
+Added missing Cyrillic small cap vf files in Regular weights. These were inadvertently deleted in version 1.112.
+
+Changes in version 1.112
+1. Corrected some kernings following quoteright.
+2. Added Cyrillic small caps in all styles. (They were previously available only in Regular and RegularSlanted.)
+3. Modified erewhon.fontspec so that bold weights of small caps (Latin and Cyrillic) work as expected in Xe and Lua as well as pdf latex.
+4. Added new German sharp s glyphs for use only in Xe and Lua latex. To use traditional SS forms, set ss02.
+5. Corrected code for \textcircled in erewhon.sty.
+
+Changes in version 1.111
+Reworked the \textfrac macro to make better kerning around the solidus.
+
+Changes in version 1.110
+1. Latest otf files now included---those in 1.109 were inadvertently copied from the wrong source.
+2. Corrected a bug in the sty file handling of option looser. (Thanks Denis Ryabov.)
+
+Changes in version 1.109
+Modified the sizes of the ruble glyphs to match those of other currencies and adjusted the \textruble macro accordingly. (Thanks Dmitry Ustalov.)
+
+Changes in version 1.108
+1. Added Russian ruble glyph (U+20BD) and thin space (U+202F) to each style, sourced from Heuristica. These are accessible only from Xe[La]TeX and Lua[La]TeX.
+2. Added a macro \textruble to erewhon.sty so that LaTeX users can access an approximation to the ruble glyph as a text composite.
+
+Changes in version 1.107
+1. More additions to the TS1 encoded symbols so that erewhon now has an almost full complement.
+2. Improved \textfrac and a new \textcircled macro.
+3. Added many new symbols to superiors, and corrected inconsistencies in previous superior and numerator baselines and heights.
+4. Increased the height of parens, braces and brackets which were, IMO, much too short, topping out at Cap-height.
+
+Changes in version 1.106
+1. Added a number of glyphs mainly affecting TS1 so that as far as textcomp is concerned, erewhon is now in a much higher sub-encoding. In particular, \textfraction now works correctly.
+2. Added the erewhon math files that were inadvertently missing from version 1.05.
+3. Corrected the map file, adding the erewhon math references.
+
+Changes in version 1.105
+1. Corrected a bad entry in the numr table. (Thanks Gwenaël Jouvin.)
+2. Added table ss01 to substitute the .alt form of one.oldstyle.
+
+Changes in version 1.104
+Corrected some jumbled upper-case Greek italic glyphs.
+
+Changes in version 1.103
+Added Fourier Greek symbols to the opentype fonts.
+
+Changes in version 1.102
+Corrected date string in erewhon.sty.
+
+Changes in version 1.101
+1. Removed untxmia.fd from erewhon package an placed it where it belongs, in newtx package.
+2. Corrected version number and date in erewhon.sty.
+3. Renamed newtx-utopia-subs.tex to newtx-erewhon-subs.tex.
+
+Changes in version 1.10
+1. Math mode under option utopia to newtxmath was modified to generate pdf output complying with the PDF/A-1b standard, so that utopia now qualifies as an enhanced option to newtxmath. 
+2. Math mode Greek was modified to use mainly glyphs from the fourier package rather than modified txfonts Greek.
+
+Changes in version 1.093
+Corrected an error in the last correction to the fd file. (Thanks, Frank Mittelbach.)
+
+Changes in version 1.092
+Corrected an error in the fd files. The use of \providecommand in the fd could cause problems for users who did not load erewhon.sty.
+
+Changes in version 1.091
+Added the file erewhon.fontspec, which was inadvertently omitted from version 1.09.
+
+Changes in version 1.09
+Corrected some missing or malformed small cap accented glyphs. (Thanks, Sebastian Wasiuta.)
+
+Changes in version 1.08
+Added options to give the user complete control of all word-spacing parameters.
+
+Changes in version 1.075
+Modified the sty file so that Erewhon text figure styles are selected always in the \AtEndPreamble hook. (Formerly, using babel would prevent this.)
+
+Changes in version 1.074
+Modified some metadata in the otf files, correcting some misbehaviors in some programs and platforms.
+
+Changes in version 1.073
+Corrected the problem of some currency glyphs inappropriately rendering at small cap sizes. (Thanks Ricard Torres.)
+
+Changes in version 1.072
+Modified erewhon.sty to not require any T2 encodings. Cyrillic users will have to load the appropriate encoding themselves.
+
+Changes in version 1.071
+Added two entries to smcp table so that dotlessi and dotlessj map to correct small cap glyph.
+
+Changes in version 1.07
+Recreated the package to add some tfm files in T2A, T2B, T2C that were missing in v.1.06. 
+
+Changes in version 1.06
+1. Small changes to spacing and kerning tables.
+2. Added uni2016 glyph.----required by some footnote macros.
+
+Changes in version 1.05
+1. Changed the subfamily names in RegularSlanted and BoldSlanted to Oblique and BoldOblique. The otfs now cooperate much better with fontspec, and show up properly in Windows and Linux font menus.
+2. Added small caps to Italic and BoldItalic, copying the Oblique versions. These are not yet well kerned.
+3. Added a number of small caps glyphs so that all small caps in T1 encoding are really small caps.
+4. Added an OT2 encoded version with TLF figures only.
+5. The T2A, T2B and T2C encodings are much improved---otftotfm seems to require a lot of help to get good encoding files.
+
+Changes in version 1.04
+1. Changed \Erewhon@scale in erewhon.sty to \erewhon@scale, in accordance with .fd files. (Thanks Marco Zunino.)
+2. Added a new macro, \useproportional, to erewhon.sty. It works analogously to \useosf, and may be useful if working with babel, where the option proportional to newtxtext should not be used if loading a math font.
+
+Changes in version 1.03
+Brought erewhon.sty more into conformance with newtxtext.sty with respect to handling babel, osf and figure commands like \osfstyle.
+
+Changes in version 1.02
+1. Added a visiblespace (uni2423) glyph to all fonts.
+2. Changed erewhon.fontspec so it provides by default correct upright shapes for {upright, sc} when using fontspec. (I am not able to make this work with {bold,sc}. You can make it work with {italic,sc} and {bolditalic,sc} using, e.g.,
+\setmainfont{Erewhon}[
+ItalicFeatures={SmallCapsFont={Erewhon-RegularSlanted},  SmallCapsFeatures={Letters=SmallCaps}},
+BoldItalicFeatures={ SmallCapsFont={Erewhon-BoldSlanted},SmallCapsFeatures={Letters=SmallCaps}}
+]
+If you use any similar settings for SlantedFeatures, you will not get upright small caps in upright mode. I believe this is most likely a fontspec bug.
+
+Changes in version 1.01a
+Corrected folder hierarchy names for afm files in tds.
+
+Changes in version 1.01
+1. Corrected spacing errors in italic and bold italic fonts.
+2. Minor corrections to some italic and bold italic superior letters.
+
+Changes in version 1.001
+1. Modified BlueValues of fonts to correct problems with t1lint, though t1lint still provokes warnings.
+2. Added afm files to distribution.
+
+The otf fonts contain all the kerning and other tables. Should you wish to modify these yourself, the LaTeX support files may be re-created using the command
+
+/usr/texbin/autoinst  --inferiors --fractions --verbose --noupdmap  --noswash --notitling --noornaments --target=./texmf --encoding=TS1,LY1,T2A,T2B,T2C,T1 --vendor=public --typeface=erewhon *.otf
+
+after cding to the folder containing just the modified otf fonts and a subfolder named texmf. You should replace the newly generated erewhon.sty with the one from the distribution in order to preserve its functionality. The names of the encoding files should also be modified appropriately from those assigned by autoinst. I used the following bash shell script, which assumed you are in the directory holding the otf files and a texmf subfolder:
+
+#!/bin/bash
+pushd texmf/fonts/map/dvips/erewhon
+sed -i '' 's/<\[a_/<\[zut1_/g' erewhon.map
+popd
+pushd texmf/fonts/enc/dvips/erewhon
+for f in *.enc; do mv ${f} zut1${f:1}; done
+popd
+
+Installation:
+
+Mac OS X: To install, open a Terminal window and cd to inside the downloaded TDS folder.
+
+Method A (recommended): type
+
+sudo /bin/cp -Rfp * /usr/local/texlive/texmf-local
+
+then
+
+sudo mktexlsr
+
+then
+
+sudo -H updmap-sys --enable Map=erewhon.map
+
+Method B: If you insist on making your font installations in your home folder, potentially making your personal installation become out of sync with updates to TeXLive, use instead
+
+(i) if you checked Update for All Users in TeXLive utility
+
+/bin/cp -Rfp * ~/Library/texmf
+
+then
+
+updmap --enable Map=erewhon.map
+
+(ii) otherwise
+
+/bin/cp -Rfp * ~/Library/texmf
+
+then
+
+sudo updmap-sys --enable Map=erewhon.map
+
+Linux: Very similar to Mac OS X.
+
+MikTeX: Copy erewhon.tds.zip to the root of the folder you use for personal additions to the TeX trees, open a command window, chdir to that folder, and type
+
+unzip erewhon.tds.zip
+initexmf --update-fndb
+initexmf --edit-config-file updmap
+
+The latter command should open updmap.cfg in your default editor, commonly Notepad. Add the line 
+
+Map erewhon.map 
+
+to updmap.cfg, save and close. Then, in the command window, type
+
+initexmf --mkmaps
+
+You can ignore error messages that may occur here. This should result in a properly enabled erewhon.
+
+Please send comments and bug reports or suggestions for improvement to
+
+msharpe at ucsd dot edu

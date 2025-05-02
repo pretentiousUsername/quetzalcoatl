@@ -1,0 +1,85 @@
+% File cochalph.enc  
+%
+% Encodes alphabetic characters in oml slots.
+/cochalphEncoding [
+ /Gamma /uni0394 /Theta /Lambda
+ /Xi /Pi /Sigma /Upsilon1 
+ /Phi.alt /Psi.alt /uni03A9 /alpha
+ /beta /gamma /delta /uni03F5
+% 0x10
+ /zeta /eta /theta /iota
+ /kappa /lambda /uni03BC /nu
+ /xi /pi /rho /sigma
+ /tau /upsilon /phi1 /chi
+% 0x20
+ /psi /omega /epsilon /theta1
+ /omega1 /uni03F1 /sigma1 /phi
+ /uni03F0 /.notdef /.notdef /.notdef
+ /.notdef /.notdef /.notdef /.notdef
+% 0x30
+ /.notdef /.notdef /.notdef /.notdef
+ /.notdef /.notdef /.notdef /.notdef
+ /.notdef /.notdef /.notdef /.notdef
+ /.notdef /.notdef /.notdef /.notdef
+% 0x40
+ /.notdef /A /B /C
+ /D /E /F /G
+ /H /I /J /K
+ /L /M /N /O
+% 0x50
+ /P /Q /R /S
+ /T /U /V /W
+ /X /Y /Z /.notdef
+ /.notdef /.notdef /.notdef /.notdef
+% 0x60
+ /uni2113 /a /b /c
+ /d /e /f.alt /g
+ /h /i /j /k
+ /l /m /n /o
+% 0x70
+ /p /q /r /s
+ /t /u /v.alt /w.alt
+ /x /y /z /dotlessi 
+ /uni0237 /.notdef /.notdef /.notdef
+% 0x80
+ /.notdef /.notdef /.notdef /.notdef
+ /.notdef /.notdef /.notdef /.notdef
+ /.notdef /.notdef /.notdef /.notdef
+ /.notdef /.notdef /.notdef /.notdef
+% 0x90
+ /.notdef /.notdef /.notdef /.notdef
+ /.notdef /.notdef /.notdef /.notdef
+ /.notdef /.notdef /.notdef /.notdef
+ /.notdef /.notdef /.notdef /.notdef
+% 0xA0
+ /.notdef /.notdef /.notdef /.notdef
+ /.notdef /.notdef /.notdef /.notdef
+ /.notdef /.notdef /.notdef /.notdef
+ /.notdef /.notdef /.notdef /.notdef
+% 0xB0
+ /.notdef /.notdef /.notdef /.notdef
+ /.notdef /.notdef /.notdef /.notdef
+ /.notdef /.notdef /.notdef /.notdef
+ /.notdef /.notdef /.notdef /.notdef
+% 0xC0
+  /.notdef /.notdef /.notdef /.notdef
+ /.notdef /.notdef /.notdef /.notdef
+ /.notdef /.notdef /.notdef /.notdef
+ /.notdef /.notdef /.notdef /.notdef
+% 0xD0
+ /.notdef /.notdef /.notdef /.notdef
+ /.notdef /.notdef /.notdef /.notdef
+ /.notdef /.notdef /.notdef /.notdef
+ /.notdef /.notdef /.notdef /.notdef
+% 0xE0
+ /.notdef /.notdef /.notdef /.notdef
+ /.notdef /.notdef /.notdef /.notdef
+ /.notdef /.notdef /.notdef /.notdef
+ /.notdef /.notdef /.notdef /.notdef
+% 0xF0
+ /.notdef /.notdef /.notdef /.notdef
+ /.notdef /.notdef /.notdef /.notdef
+ /.notdef /.notdef /.notdef /.notdef 
+ /.notdef /.notdef /.notdef /.notdef
+] def
+

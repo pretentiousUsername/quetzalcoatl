@@ -1,0 +1,68 @@
+% THIS FILE WAS AUTOMATICALLY GENERATED -- DO NOT EDIT
+
+%%AutoEnc_irhbzm3swf3zrndxnlpem3yuad
+% Encoding created by otftotfm on Sat Nov 11 13:38:34 2023
+% Command line follows encoding
+/AutoEnc_irhbzm3swf3zrndxnlpem3yuad [
+%00
+  /Gamma /Delta /Theta /Lambda /Xi /Pi /Sigma /Upsilon
+  /Phi /Psi /uni03A9 /uniFB00.sc /uniFB01.sc /uniFB02.sc /uniFB03.sc /uniFB04.sc
+%10
+  /i.sc /dotlessj.sc /grave /acute /caron /breve /macron /ring
+  /cedilla /.notdef /ae.sc /oe.sc /oslash.sc /AE /OE /Oslash
+%20
+  /space /exclam /quotedblright /numbersign /dollar /percent /ampersand /quoteright
+  /parenleft /parenright /asterisk /plus /comma /hyphen /period /slash
+%30
+  /zero.prop /one.prop /two.prop /three.prop /four.prop /five.prop /six.prop /seven.prop
+  /eight.prop /nine.prop /colon /semicolon /exclamdown /equal /questiondown /question
+%40
+  /at /A /B /C /D /E /F /G
+  /H /I /J /K /L /M /N /O
+%50
+  /P /Q /R /S /T /U /V /W
+  /X /Y /Z /bracketleft /quotedblleft /bracketright /circumflex /dotaccent
+%60
+  /quoteleft /a.sc /b.sc /c.sc /d.sc /e.sc /f.sc /g.sc
+  /h.sc /i.sc /j.sc /k.sc /l.sc /m.sc /n.sc /o.sc
+%70
+  /p.sc /q.sc /r.sc /s.sc /t.sc /u.sc /v.sc /w.sc
+  /x.sc /y.sc /z.sc /endash /emdash /hungarumlaut /tilde /dieresis
+%80
+  /s.sc /.notdef /.notdef /.notdef /.notdef /.notdef /.notdef /.notdef
+  /.notdef /.notdef /.notdef /.notdef /.notdef /.notdef /.notdef /.notdef
+%90
+  /.notdef /.notdef /.notdef /.notdef /.notdef /.notdef /.notdef /.notdef
+  /.notdef /.notdef /.notdef /.notdef /.notdef /.notdef /.notdef /.notdef
+%A0
+  /.notdef /.notdef /.notdef /.notdef /.notdef /.notdef /.notdef /.notdef
+  /.notdef /.notdef /.notdef /.notdef /.notdef /.notdef /.notdef /.notdef
+%B0
+  /.notdef /.notdef /.notdef /.notdef /.notdef /.notdef /.notdef /.notdef
+  /.notdef /.notdef /.notdef /.notdef /.notdef /.notdef /.notdef /.notdef
+%C0
+  /.notdef /.notdef /.notdef /.notdef /.notdef /.notdef /.notdef /.notdef
+  /.notdef /.notdef /.notdef /.notdef /.notdef /.notdef /.notdef /.notdef
+%D0
+  /.notdef /.notdef /.notdef /.notdef /.notdef /.notdef /.notdef /.notdef
+  /.notdef /.notdef /.notdef /.notdef /.notdef /.notdef /.notdef /.notdef
+%E0
+  /.notdef /.notdef /.notdef /.notdef /.notdef /.notdef /.notdef /.notdef
+  /.notdef /.notdef /.notdef /.notdef /.notdef /.notdef /.notdef /.notdef
+%F0
+  /.notdef /.notdef /.notdef /.notdef /.notdef /.notdef /.notdef /.notdef
+  /.notdef /.notdef /.notdef /.notdef /.notdef /.notdef /.notdef /.notdef
+] def
+% Command line: 'otftotfm --automatic --encoding=fontools_ot1
+% --tfm-directory=/Users/msharpe/Library/texlive/2023/texmf-var/fonts/tfm/public/cochineal
+% --vf-directory=/Users/msharpe/Library/texlive/2023/texmf-var/fonts/vf/public/cochineal
+% --type1-directory=/Users/msharpe/Library/texlive/2023/texmf-var/fonts/type1/public/cochineal
+% --encoding-directory=/Users/msharpe/Library/texlive/2023/texmf-var/fonts/enc/dvips/cochineal
+% --map-file=/Users/msharpe/Library/texlive/2023/texmf-var/fonts/map/dvips/cochineal/Cochineal.map
+% --no-updmap --force --coding-scheme=TEX TEXT --feature=kern --feature=liga
+% --feature=lnum --feature=pnum --feature=smcp --ligkern=f i =: fi
+% --ligkern=f l =: fl --ligkern=f f =: ff --ligkern=ff i =: ffi --ligkern=ff
+% l =: ffl --unicoding=germandbls =: SSsmall --unicoding=ff =: FFsmall
+% --unicoding=fi =: FIsmall --unicoding=ffi =: FFIsmall --unicoding=fl =:
+% FLsmall --unicoding=ffl =: FFLsmall --space-factor=1.06635
+% Cochineal-BoldItalic.otf Cochineal-BoldItalic-lf-sc-ot1'

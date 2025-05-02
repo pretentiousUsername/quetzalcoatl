@@ -1,0 +1,57 @@
+FONTLOG for the Ysabeau font family
+
+
+This file provides detailed information on the Ysabeau Font Software (formerly known as Eau de Garamond). This information should be distributed along with the Ysabeau fonts and any derivative works.
+
+Basic Font Information
+
+Ysabeau is a Unicode sans-serif typeface aiming to encompass the Adobe Latin 4 range of characters as well as the Cyrillic script.  It is inspired by Claude Garamont's timeless designs.  A series of weights spanning from Hairline to Bold are going to be offered, and true Italics are foreseen for all weights.  The ChangeLog below indicates the degree of completion of the current build.
+
+Ysabeau combines the robustness of a low-contrast sans with the time-honored legible shapes of the Garamond typefaces, allowing it to perform equally well at large sizes and for running text at reasonable sizes. Note that since the adherence to the Garamond flavor and its generous proportions is the main design goal, this typeface is not optimized for small font sizes or low-resolution screens.
+  
+Documentation can be found at the Ysabeau GitHub page:
+https://github.com/CatharsisFonts/EauDeGaramond
+
+To contribute to the project, contact Christian Thalmann (see below).
+
+
+
+ChangeLog
+
+2025-03-25 (v2.006)
+Expanded glyph coverage to include the Pan-African and IPA glyph sets in Glyphs app, as well as all symbols offered on ipa.type.it.
+
+2023-02-02 (v2.000)
+Had to change the weight class values and instance names again because the v1.004 ones did not, in fact, conform to Google Fonts guidelines. The lightest two weights are now called ExtraThin and Thin and assigned to weight classes 1 and 50, whereas the heaviest weight is called ExtraBlack and assigned to weight class 1000.
+
+2023-01-01 (v1.004)
+Changed the weight class values to conform to Google Fonts guidelines. The heaviest 9 weights have been assigned to weight classes 100--900, whereas the lightest three were arbitrarily called 1, 25, and 50. While this prohibits the latter from being ingested into Google Fonts as instances, they can still be accessed via the variable font, or downloaded from GitHub.
+
+2019-11-15 (v0.008)
+Noted inconsistency in vertical metrics between Upright and Italic, so added some vertical metric info into the masters as per the Glyphs tutorial.  
+
+### WARNING: This has changed the line separation of Ysabeau and thus may impact the formating of existing documents using Ysabeau. ###
+
+Renamed the Semilight weight to Book.
+
+2019-01-06:
+Changed typeface name to Ysabeau (the given name of Claude Garamond's second wife).
+Romans and Italics are now complete in the Hairline and Bold masters. Work on an additional Black master is progressing, with the core Latin set already in workable condition in the Romans.
+(Christian Thalmann)
+
+2016-07-12: First work-in-progress release on GitHub.
+First version of the Roman cut in 2.5 masters (Hairline, Bold, intermediate layer where necessary) including small caps completed. No Cyrillic or Italics yet.
+(Christian Thalmann)
+
+
+
+Acknowledgements
+
+If you make modifications be sure to add your name (N), email (E), web-address
+(if you have one) (W) and description (D). This list is in alphabetical order.
+
+N: Christian Thalmann (Catharsis Fonts)
+E: christian.d.thalmann@gmail.com
+W: http://www.myfonts.com/foundry/Catharsis_Fonts/
+D: Creator of the Eau de Garamond type family
+

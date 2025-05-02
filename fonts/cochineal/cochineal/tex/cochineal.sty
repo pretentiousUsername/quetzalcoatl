@@ -1,0 +1,599 @@
+%% cochineal.sty
+%%
+\NeedsTeXFormat{LaTeX2e}
+\def\fileversion{1.08}
+\def\filedate{2023/11/13}
+\ProvidesPackage{cochineal}
+    [\filedate\space v\fileversion.]
+
+\RequirePackage{iftex,xkeyval,etoolbox,textcomp,mweights}
+\RequirePackage{xstring,ifthen,scalefnt} % for \textfrac
+\DeclareEncodingSubset{TS1}{Cochineal-*}{0}
+%\iftrue
+%KOMA check
+\newif\ifcoch@KOMA
+\@ifundefined{KOMAClassName}{}{\coch@KOMAtrue}
+\@ifundefined{ver@scrextend.sty}{}{\coch@KOMAtrue}
+
+% Engine check
+\newif\ifcoch@otftext
+\iftutex\coch@otftexttrue
+\else
+	\RequirePackage[T1]{fontenc}
+	\renewcommand*{\familydefault}{\rmdefault}
+\fi 
+\newif\ifcoch@otfmath
+
+%\newif\ifcoch@nofontspec
+
+% newtx check
+\newif\ifntx@newtx
+\@ifpackageloaded{newtx}{% run from newtx.sty
+\ntx@newtxtrue
+\let\ifcoch@otfmath=\ifntx@otfmath}%
+{% not run from newtx.sty
+  %\newif\ifntx@otftext%
+  %\newif\ifntx@otfmath % default is type1 math
+  %iftex's \iftutex returns true for LuaTeX and XeTeX, not [pdf]latex
+  %\iftutex\ntx@otftexttrue\fi % default is otf text for unicode latex
+  %\newif\ifntx@nofontspec % default is to load fontspec iftutex  
+  % might have been defined in newtx.sty
+  \def\ntx@id{5} % make it appear that newtxtext was chosen in newtx
+}
+
+%\let\coch@otftext\ntx@otftext
+%\iftrue
+%%%%%%%%%% Start Options
+\newif\ifcoch@lining\coch@liningtrue
+\newif\ifcoch@tabular\coch@tabulartrue % default is tabular lining figures
+%\DeclareOptionX{type1text}[true]{}% use type1 packages for text 
+%\@nameuse{if#1}\coch@otftextfalse\fi
+%}
+\DeclareOptionX{type1}[true]{}% use type1 packages for text 
+%\@nameuse{if#1}\coch@otftextfalse\fi
+%}
+\DeclareOptionX{nofontspec}[true]{% not used any more
+%\@nameuse{if#1}\coch@nofontspectrue\fi
+}
+\def\coch@defaultfeatures{}
+\DeclareOptionX{defaultfeatures}{\def\coch@defaultfeatures{#1}}
+
+%Figure style options
+\def\coch@dfltfigurestyle{lf}
+\def\coch@dfltfigurealign{t}
+
+\DeclareOptionX{lining}[true]{%
+\@nameuse{coch@lining#1}
+}
+\DeclareOptionX{lf}[true]{%
+\@nameuse{coch@lining#1}
+}
+\DeclareOptionX{oldstyle}[true]{%
+\@nameuse{if#1}%
+  \coch@liningfalse
+\else
+  \coch@liningtrue
+\fi
+}
+
+\DeclareOptionX{osf}[true]{%
+\@nameuse{if#1}%
+  \coch@liningfalse
+\else
+  \coch@liningtrue
+\fi
+}
+\DeclareOptionX{tabular}[true]{%
+\@nameuse{coch@tabular#1}
+}
+\DeclareOptionX{t}[true]{%
+\@nameuse{coch@tabular#1}
+}
+\DeclareOptionX{proportional}[true]{%
+\@nameuse{if#1}%
+  \coch@tabularfalse
+\else
+  \coch@tabulartrue
+\fi
+}
+\DeclareOptionX{p}[true]{%
+\@nameuse{if#1}%
+  \coch@tabularfalse
+\else
+  \coch@tabulartrue
+\fi
+}
+
+%Scale
+\providecommand*{\Cochineal@scale}{1}% Might have been defined in newtx
+\DeclareOptionX{scale}{\renewcommand*{\Cochineal@scale}{#1}}
+\DeclareOptionX{scaled}{\renewcommand*{\Cochineal@scale}{#1}}
+
+%\newif\ifcoch@defaultsups
+\newif\ifcoch@scosf
+%\newif\ifcoch@largesc % we don't use this exc. in fd, but may in future
+%\newif\ifcoch@helv \coch@helvtrue % default is to load helvetica as sans serif font
+%\newif\ifcoch@sl 
+
+
+\let\orig@footnote=\thefootnote
+\let\orig@makefnmark=\@makefnmark
+\def\bfseries@rm{b}
+\def\mdseries@rm{m}
+
+%\newif\if@Cochineal@swashQ
+\def\Cochineal@@swashQ{}
+\def\Cochineal@@thmtab{} % default is to not change to tabular
+\def\Cochineal@@thmlin{X} % default is to not change to lining
+\def\Cochineal@foresolidus{0em}
+\def\Cochineal@aftsolidus{0em}
+\newif\if@Cochineal@thrm
+\newif\if@Cochineal@sups
+\newif\if@Cochineal@scosf
+%\newif\ifcoch@altQ
+%\newif\ifcoch@altJ
+%\newif\ifcoch@oldSS
+\newif\ifcoch@swashQ
+\def\coch@defaultfeatures{}
+\newcount\coch@cnt \coch@cnt=0
+
+%\DeclareOptionX{lining}{\edef\Cochineal@figurestyle{LF}}
+%\DeclareOptionX{lf}{\edef\Cochineal@figurestyle{LF}}
+%\DeclareOptionX{oldstyle}{\edef\Cochineal@figurestyle{OsF}}
+%\DeclareOptionX{osf}{\edef\Cochineal@figurestyle{OsF}}
+%\DeclareOptionX{tabular}{\edef\Cochineal@figurealign{T}}
+%\DeclareOptionX{p}{\useproportional}
+%\DeclareOptionX{proportional}{\useproportional}
+%\def\coch@fnmark{}
+%\DeclareOptionX{fnmarkerfont}{\def\coch@fnmark{#1}}
+\DeclareOptionX{defaultfeatures}{\def\coch@defaultfeatures{#1}}
+\DeclareOptionX{altQ}{\advance\coch@cnt 4 }
+\DeclareOptionX{altJ}{\advance\coch@cnt\tw@}
+\DeclareOptionX{oldSS}{\advance\coch@cnt\@ne}
+\DeclareOptionX{theoremfont}{\@Cochineal@thrmtrue}
+\DeclareOptionX{otfmath}{\coch@otfmathtrue}
+\DeclareOptionX{thmtabular}{\def\Cochineal@@thmtab{t}}
+\DeclareOptionX{thmlining}{\def\Cochineal@@thmlin{l}}
+\DeclareOptionX{swashQ}{\def\Cochineal@@swashQ{-swash}\coch@swashQtrue}
+\DeclareOptionX{sups}{\@Cochineal@supstrue}
+\DeclareOptionX{scosf}{\@Cochineal@scosftrue}
+\DeclareOptionX{bold}{\def\bfseries@rm{b}}
+\DeclareOptionX{regular}{\def\mdseries@rm{m}}
+\DeclareOptionX{foresolidus}{\gdef\Cochineal@foresolidus{#1}}
+\DeclareOptionX{aftsolidus}{\gdef\Cochineal@aftsolidus{#1}}
+\ExecuteOptionsX{lining,tabular}
+\ProcessOptionsX\relax
+
+% Check for conflict between nofontspec and others
+%\ifcoch@nofontspec
+%  \iftutex
+%	\coch@otftextfalse
+%  \fi
+%\fi
+%\edef\coch@scaled{s*[\coch@scale]}% used in fd files
+
+\iftutex
+  \ifcoch@otfmath
+    \RequirePackage{fontspec}
+  \else
+	\RequirePackage[no-math]{fontspec}
+  \fi
+%  %\ifxetex\XeTeXtracingfonts=1\fi
+  \ifluatex  % avoid possibly uncorrected "system" fonts
+    \directlua{fonts.names.set_location_precedence{
+        "local", "texmf", "system" }}
+  \fi
+  \def\coch@base{Cochineal}
+%  
+  \newcommand{\textfrac}[3][]{{%
+ \mbox{%
+    \ifthenelse{\not\equal{#1}{}}%Test for integer portion [optional #1]
+      {\textlf{#1}\kern.02em}{}%         
+    \textsu{#2\char"2044}% numerator
+   \textde{\kern-.154em\char"2044 #3}% denominator
+}}}
+
+\else % type1
+	\RequirePackage{fontaxes}
+    \fa@naming@exception{figures}{{superior}{proportional}}{Sup}
+    \fa@naming@exception{figures}{{superior}{tabular}}{Sup}
+%    \def\sufigures{\@nomath\sufigures
+%        \fontfigurestyle{superior}\selectfont}
+%    \DeclareTextFontCommand{\textsu}{\sufigures}
+%    \let\textsuperior\textsu
+%    \let\nustyle\sufigures
+%	\let\sustyle\sufigures
+   \DeclareRobustCommand{\sustyle}{%
+   \not@math@alphabet\sustyle\relax
+   \fontfamily{Cochineal-Sup}\selectfont}
+   \DeclareTextFontCommand{\textsu}{\sustyle}
+   \let\sufigures=\sustyle
+   \let\nustyle=\sustyle
+   \let\nufigures=\sustyle
+
+    \fa@naming@exception{figures}{{inferior}{proportional}}{Inf}
+    \fa@naming@exception{figures}{{inferior}{tabular}}{Inf}
+    \def\infigures{\@nomath\infigures
+        \fontfigurestyle{inferior}\selectfont}
+    \DeclareTextFontCommand{\textinf}{\infigures}
+    \let\textinferior\textinf
+
+    \fa@naming@exception{figures}{{denominators}{proportional}}{Dnom}
+    \fa@naming@exception{figures}{{denominators}{tabular}}{Dnom}
+    \def\defigures{\@nomath\defigures
+        \fontfigurestyle{denominators}\selectfont}
+    \DeclareTextFontCommand{\textde}{\defigures}
+    \let\textdenominators\textde
+    \let\destyle\defigures
+
+   \newcommand{\textfrac}[3][]{% like \textfrac[1]{7}{8}
+  \mbox{%
+    \ifthenelse{\not\equal{#1}{}}%Test for integer portion [optional #1]
+      {\textlf{#1}\kern.05em}{}%         
+    \textsu{#2}% numerator
+    \StrRight{#2}{1}[\@digit@]%
+    % look for  1, 2, 6, 7
+    \ifcase\@digit@% 0
+    \or\kern.03em% 1
+    \or\kern.02em% 2
+    \or%\kern-.01em% 3
+    \or%\kern-.01em% 4
+    \or%\kern.01em% 5
+    \or\kern.01em% 6
+    \or\kern-.08em% 7
+    \fi%
+    \kern\Cochineal@foresolidus{\fontencoding{TS1}\selectfont\char"2F}%
+    \kern\Cochineal@aftsolidus%
+    \StrLeft{#3}{1}[\@digit@]%
+    % look for 1, 4, 7
+    \ifcase\@digit@% 0
+    \or%\kern -.02em% 1
+    \or% 2
+    \or% 3
+    \or\kern -.03em% 4
+    \or% 5
+    \or% 6
+    \or\kern .02em% 7
+    \fi%
+    \textde{#3}%       denominator [#3]
+  }%mbox
+} % textfrac
+\fi
+
+
+\ifcoch@otftext
+  \def\coch@dflt{}
+  \ifcoch@swashQ
+    \edef\coch@dflt{Style = Swash ,
+  }\fi
+ %\coch@cnt will be 0..7 
+  \edef\coch@lst{}
+  \ifnum\coch@cnt>3 \edef\coch@lst{3}\advance\coch@cnt -4 \fi
+  \ifnum\coch@cnt>1 \edef\coch@lst{2,\coch@lst}\advance\coch@cnt -2 \fi
+  \ifnum\coch@cnt>0 \edef\coch@lst{2,\coch@lst}\fi
+  \ifthenelse{\not\equal{\coch@lst}{}}
+	{\edef\coch@dflt{\coch@dflt StylisticSet={\coch@lst} , 
+	}}{}
+  \defaultfontfeatures{
+     Ligatures = TeX ,
+     Extension = .otf ,
+     SmallCapsFeatures={Letters=SmallCaps} ,
+     \coch@dflt ,
+     \coch@defaultfeatures 
+  }
+
+\fi
+
+\def\useosf{\coch@liningfalse}
+\@onlypreamble\useosf
+\def\useproportional{\coch@tabularfalse}
+\@onlypreamble\useproportional
+
+\if@Cochineal@thrm
+	\ifdefined\newtheoremstyle
+	\newtheoremstyle{plain}
+	{\topsep}   % ABOVESPACE
+    {\topsep}   % BELOWSPACE
+    {\slshape}  % BODYFONT--\slshape is defined to be \itshape with upright figures and punctuation
+    {}       % INDENT (empty value is the same as 0pt)
+    {\bfseries} % HEADFONT--you may want to add \tlfstyle so the number is tab lining, regardless of text figure selection
+    {.}         % HEADPUNCT
+    {5pt plus 1pt minus 1pt} % HEADSPACE
+    {}          % CUSTOM-HEAD-SPEC\newtheorem{thm}{Theorem}[section]
+    \fi%
+\fi
+
+%    \DeclareRobustCommand{\textlf}[1]{%
+%      {\lfstyle #1}%
+%    }% to get lf
+%    \DeclareRobustCommand{\texttlf}[1]{%
+%      {\tlfstyle #1}%
+%    }% to get tlf
+%    \DeclareRobustCommand{\textosf}[1]{%
+%      {\osfstyle #1}%
+%    }% to get osf
+%    \DeclareRobustCommand{\texttosf}[1]{%
+%      {\tosfstyle #1}%
+%    }% to get tosf
+
+
+\DeclareRobustCommand{\textlf}[1]{%
+  {\lfstyle #1}%
+}% to get lf
+\DeclareRobustCommand{\texttlf}[1]{%
+  {\tlfstyle #1}%
+}% to get tlf
+\DeclareRobustCommand{\textosf}[1]{%
+  {\osfstyle #1}%
+}% to get osf
+\DeclareRobustCommand{\texttosf}[1]{%
+  {\tosfstyle #1}%
+}% to get tosf
+
+\ifcoch@otftext
+
+	\def\coch@nft{\if t\Cochineal@thmtab Monospaced%
+	\else Proportional\fi}
+	\def\coch@sty{\if l\Cochineal@thmlin Lining%
+	\else OldStyle\fi}   
+	\DeclareTextFontCommand{%
+      \slshape}{\addfontfeatures{Numbers = {\coch@nft,\coch@sty}, RawFeature=+salt}\itshape} % for theorems
+    \DeclareTextFontCommand{\textsl}{\slshape}
+   
+    \DeclareRobustCommand{\lfstyle}{%
+      \not@math@alphabet\lfstyle\relax
+      \addfontfeatures{Numbers={Proportional,Lining}}%
+    }
+    \DeclareRobustCommand{\tlfstyle}{%
+      \not@math@alphabet\tlfstyle\relax
+      \addfontfeatures{Numbers={Monospaced,Lining}}%
+    }
+    \DeclareRobustCommand{\osfstyle}{%
+      \not@math@alphabet\osfstyle\relax
+      \addfontfeatures{Numbers={Proportional,OldStyle}}%
+    }
+    \DeclareRobustCommand{\tosfstyle}{%
+      \not@math@alphabet\tosfstyle\relax
+      \addfontfeatures{Numbers={Monospaced,OldStyle}}%
+    }
+    \DeclareRobustCommand{\oldstylenums}{%
+      \not@math@alphabet\oldstylenums\relax
+      \addfontfeatures{Numbers=OldStyle}%
+    }
+    \DeclareRobustCommand{\liningnums}{%
+      \not@math@alphabet\liningnums\relax
+      \addfontfeatures{Numbers=Lining}%
+    }
+    \DeclareRobustCommand{\tabularnums}{%
+      \not@math@alphabet\tabularnums\relax
+      \addfontfeatures{Numbers=Monospaced}%
+    }
+   \DeclareRobustCommand{\proportionalnums}{%
+      \not@math@alphabet\proportionalnums\relax
+      \addfontfeatures{Numbers=Proportional}%
+    }
+  \newfontfamily\cochTLF
+        [ %IgnoreFontspecFile ,
+          Numbers = {Monospaced,Lining},
+          Scale          = \Cochineal@scale ,
+          UprightFont    = *-Roman ,
+          ItalicFont     = *-Italic ,
+          %SlantedFont    = *-Slanted ,
+          BoldFont       = *-Bold , 
+          BoldItalicFont = *-BoldItalic ,
+         % BoldSlantedFont= *-BoldSlanted ,
+        ] {\coch@base}
+  \newfontfamily\cochTOsF
+        [ %IgnoreFontspecFile ,
+          Numbers = {Monospaced,OldStyle} ,
+          Scale          = \Cochineal@scale ,
+          UprightFont    = *-Roman ,
+          ItalicFont     = *-Italic ,
+          %SlantedFont    = *-Slanted ,
+          BoldFont       = *-Bold , 
+          BoldItalicFont = *-BoldItalic ,
+          %BoldSlantedFont= *-BoldSlanted ,
+        ] {\coch@base}
+ \newfontfamily\cochOsF
+        [ %IgnoreFontspecFile ,
+          Numbers = {Proportional,OldStyle} ,
+          Scale          = \Cochineal@scale ,
+          UprightFont    = *-Roman ,
+          ItalicFont     = *-Italic ,
+          %SlantedFont    = *-Slanted ,
+          BoldFont       = *-Bold , 
+          BoldItalicFont = *-BoldItalic ,
+          %BoldSlantedFont= *-BoldSlanted ,
+        ] {\coch@base}
+  \newfontfamily\cochLF
+        [ %IgnoreFontspecFile ,
+          Numbers = {Proportional,Lining} ,
+          Scale          = \Cochineal@scale ,
+          UprightFont    = *-Roman ,
+          ItalicFont     = *-Italic ,
+          %SlantedFont    = *-Slanted ,
+          BoldFont       = *-Bold , 
+          BoldItalicFont = *-BoldItalic ,
+          %BoldSlantedFont= *-BoldSlanted ,
+       ] {\coch@base}
+  \providecommand\sufigures{\addfontfeatures{VerticalPosition=Superior}}
+  \providecommand\defigures{\addfontfeatures{RawFeature=+dnom}}
+\providecommand\infigures{\addfontfeatures{VerticalPosition=ScientificInferior}}
+	\let\destyle\defigures
+	\let\nustyle\sufigures
+	\let\sustyle\sufigures
+    \DeclareTextFontCommand{\textsu}{\sufigures}
+    \let\textsuperior\textsu
+    \let\textnu\textsu
+    \DeclareTextFontCommand{\textde}{\defigures}
+    \let\textdenominator\textde
+    \DeclareTextFontCommand{\textinf}{\infigures}
+    \let\textinferior\textinf
+ 
+    \renewcommand*{\textcircled}[1]{\hmode@bgroup
+       \ooalign{%
+\hfil \raise .37ex\hbox {{\cochTOsF\addfontfeatures{RawFeature=+smcp}\def\x{\lowercase{#1}}\scalefont{.72}\x}}\hfil \crcr \symbol{"25EF}}%
+\egroup}
+     \newcommand{\Qswash}{{\addfontfeatures{RawFeature=+swsh}Q}}
+     \newcommand{\Qnoswash}{{\addfontfeatures{RawFeature=-swsh}Q}}
+%     \newcommand{\coch@altQ}{{\addfontfeatures{RawFeature=+ss03}}}
+%     \newcommand{\coch@altJ}{{\addfontfeatures{RawFeature=+ss02}}}
+%     \newcommand{\coch@oldSS}{{\addfontfeatures{RawFeature=+ss01}}}
+   \ifcoch@KOMA
+        \setkomafont{footnotelabel}{\normalfont}
+        \setkomafont{footnotereference}{\normalfont}
+   \else
+      %\DeclareRobustCommand*\textsuperscript[1]{%
+ % {\@textsuperscript#1}}
+      \def\@textsuperscript#1{{\normalfont\sustyle #1}}
+  %\renewcommand{\footnotemarkfont}{\normalfont}
+   \fi
+   %\if@Cochineal@sups %
+   %\else
+      \RequirePackage{realscripts}
+   %\fi
+%  \if@Cochineal@sups %
+%    \usepackage{realscripts}
+%    %\newfontfamily\Timessu{TeXGyreTermesX}
+%    
+%    \ifcoch@KOMA
+%      \setkomafont{footnotelabel}{\normalfont}
+%    \else
+%      \renewcommand\footnotemarkfont{\normalfont}
+%    \fi
+%  \fi
+
+\else % type1
+%  \DeclareRobustCommand\thfamily % new family for theorem font
+%        {\not@math@alphabet\thfamily\relax
+%         \fontfamily\thdefault\selectfont}
+%  \DeclareRobustCommand{\textth}[1]{%
+%    {\thfamily #1}%
+%}
+%\let\textthit\textth
+ \renewcommand*{\rmdefault}{Cochineal-TLF} % always TLF in math
+    \renewcommand*{\familydefault}{\rmdefault}
+    \newcommand{\Qswash}{{\fontencoding{TS1}\fontfamily{Cochineal-LF}\selectfont \char59 }}
+    \newcommand{\Qnoswash}{{\fontencoding{TS1}\fontfamily{Cochineal-LF}\selectfont \char58 }}
+    \DeclareRobustCommand{\lfstyle}{%
+      \not@math@alphabet\lfstyle\relax
+      \fontfamily{Cochineal-LF}\selectfont %
+    }% to get lf
+    \DeclareRobustCommand{\tlfstyle}{%
+      \not@math@alphabet\tlfstyle\relax
+      \fontfamily{Cochineal-TLF}\selectfont %
+    }% to get tlf
+    \DeclareRobustCommand{\osfstyle}{%
+      \not@math@alphabet\osfstyle\relax
+      \fontfamily{Cochineal-OsF}\selectfont %
+    }% to get osf
+    \DeclareRobustCommand{\tosfstyle}{%
+      \not@math@alphabet\tosfstyle\relax
+      \fontfamily{Cochineal-TOsF}\selectfont %
+    }% to get tosf
+   
+  \if@Cochineal@sups %
+   \ifcoch@KOMA %
+   \else % not KOMA
+     \ifdefined\sufigures
+      \def\f@@tn@te{footnote}
+      \def\@makefnmark{%
+        \ifx\@mpfn\f@@tn@te%
+          \ifx\thefootnote\orig@footnote%
+            \hbox{\sufigures\hspace*{.04em}\@thefnmark\hspace*{.04em}}%
+          \else%
+            \orig@makefnmark%
+          \fi
+        \else%
+          \orig@makefnmark%
+        \fi}%
+     \fi%
+    \fi
+  \fi
+
+    \DeclareTextCommand{\textcircled}{TS1}[1]{\hmode@bgroup
+       \ooalign{%
+          \hfil \raise .37ex\hbox {\fontencoding{T1}\fontfamily{Cochineal-TOsF}\fontseries{m}\fontshape{sc}\selectfont\scalefont{.72}%
+    \lowercase{#1}}\hfil \crcr
+         \char 79 %\textbigcircle 
+       }%
+     \egroup}
+    
+\fi
+
+\AtEndPreamble{%
+  \ifcoch@otftext
+    \ifcoch@lining
+      \def\coch@figurestyle{Lining}
+    \else
+      \def\coch@figurestyle{OldStyle}
+    \fi
+    \ifcoch@tabular
+      \def\coch@figurealign{Monospaced} 
+    \else
+      \def\coch@figurealign{Proportional} 
+    \fi
+
+  \setmainfont
+          [%IgnoreFontspecFile ,
+          Extension      = .otf ,
+          %Path = ./ ,
+           Numbers = {\coch@figurealign,\coch@figurestyle},
+          Scale          = \Cochineal@scale ,
+          UprightFont    = Cochineal-Roman ,
+          ItalicFont     = Cochineal-Italic ,
+         % SlantedFont    = *-Slanted ,
+          BoldFont       = Cochineal-Bold , 
+          BoldItalicFont = Cochineal-BoldItalic ,
+          %BoldSlantedFont= *-BoldSlanted ,
+         %SmallCapsFeatures={Letters=SmallCaps} ,
+          ] {\coch@base}
+ \newfontface\circledtxt{\coch@base-Roman}
+ 		[%IgnoreFontspecFile ,
+        Scale          = \Cochineal@scale ,
+         %Numbers = {Monospaced,OldStyle} ,
+         SmallCapsFeatures={Letters=SmallCaps} ,
+         ]
+		\if@Cochineal@scosf
+		\edef\coch@fnt{\expandafter\csname coch\ifcoch@tabular T\fi OsF\endcsname}
+			\DeclareRobustCommand{\textsc}[1]{%
+	{\coch@fnt \addfontfeatures{RawFeature=+smcp}#1}}%
+%\show\coch@fnt		
+		\fi
+  \else % type1
+	\ifcoch@tabular
+	  \def\Cochineal@figurealign{T}
+	\else
+	  \def\Cochineal@figurealign{}
+	\fi
+	\ifcoch@lining
+	  \def\Cochineal@figurestyle{LF}
+	\else
+	  \def\Cochineal@figurestyle{OsF}
+	\fi
+    \DeclareTextFontCommand{%
+      \oldstylenums}{\fontfamily{Cochineal-\Cochineal@figurealign OsF}\selectfont}
+    \DeclareTextFontCommand{%
+      \liningnums}{\fontfamily{Cochineal-\Cochineal@figurealign LF}\selectfont}
+    \DeclareTextFontCommand{%
+      \tabularnums}{\fontfamily{Cochineal-T\Cochineal@figurestyle}\selectfont}
+    \DeclareTextFontCommand{%
+      \proportionalnums}{\fontfamily{Cochineal-\Cochineal@figurestyle}\selectfont}
+      \if@Cochineal@scosf %
+	\DeclareRobustCommand{\textsc}[1]{%
+	{\fontfamily{Cochineal-\Cochineal@figurealign%
+	OsF}\fontshape{sc}\selectfont #1}%
+	}\fi% use OsF in small caps	
+	\renewcommand*{\rmdefault}{Cochineal-\Cochineal@figurealign%
+	\Cochineal@figurestyle}
+	\normalfont
+	
+%    \ifCochineal@thrm
+%        \theoremstyle{plain}
+%        \patchcmd{\th@plain}{\itshape}{\slshape}{\message{Replaced itshape by slshape in theorem style plain.}}{\message{Unable to replace itshape by slshape in theorem style plain.}}
+%    \fi
+  \fi
+}
+%\fi
+
+\endinput

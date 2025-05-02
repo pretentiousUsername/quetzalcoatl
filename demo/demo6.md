@@ -1,5 +1,5 @@
 ---
-customType: \usepackage[knuth]{\packageDir/stylistic_sets}
+customType: \usepackage[style=knuth]{\packageDir/stylistic_sets}
 ---
 
 
