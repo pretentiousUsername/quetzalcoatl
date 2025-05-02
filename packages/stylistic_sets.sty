@@ -6,10 +6,46 @@
 \RequirePackage{xcolor}
 \RequirePackage[noindentafter]{titlesec}
 \RequirePackage{relsize}
+\RequirePackage{ifthen}
 
 \newcommand{\marginsecnumber}[1]{%
   \makebox[0pt][r]{#1\hspace{6pt}}%
 }
+
+\newboolean{\regularStyle}\setboolean{\regularStyle}{false}
+\newboolean{\knuthStyle}\setboolean{\knuthStyle}{false}
+\newboolean{\utopiaStyle}\setboolean{\utopiaStyle}{false}
+\newboolean{\pretentiousStyle}\setboolean{\pretentiousStyle}{false}
+
+\DeclareOption{style}{
+    \ifthenelse{\equal{style}{regular}}{\setboolean{\regularStyle}{true}}{}
+    \ifthenelse{\equal{style}{knuth}}{\setboolean{\knuthStyle}{true}}{}
+    \ifthenelse{\equal{style}{utopia}}{\setboolean{\utopiaStyle}{true}}{}
+    \ifthenelse{\equal{style}{knuth}}{\setboolean{\pretentiousStyle}{true}}{}
+}
+
+
+\ifthenelse{\regularStyle}{
+    \RequirePackage{\packageDir/fonts/regular}
+    \RequirePackage{\packageDir/headers/regular}
+}{}
+
+\ifthenelse{\regularStyle}{
+    \RequirePackage{\packageDir/fonts/knuth}
+    \RequirePackage{\packageDir/headers/knuth}
+}{}
+
+\ifthenelse{\regularStyle}{
+    \RequirePackage{\packageDir/fonts/utopia}
+    \RequirePackage{\packageDir/headers/utopia}
+}{}
+
+\ifthenelse{\regularStyle}{
+    \RequirePackage{\packageDir/fonts/pretentious}
+    \RequirePackage{\packageDir/headers/pretentious}
+}{}
+
+
 
 
 
@@ -20,184 +56,6 @@
 \titleformat{\paragraph}[leftmargin]%
 {\color{parColor}\sffamily\small\filright}%
 {}{0.0em}{\color{parColor}}[]
-
-
-
-\DeclareOption{knuth}{
-    \setmainfont[
-        Path = {\fontDir/newcomputermodern/},
-        extension = {.otf},
-        UprightFont = {NewCM10-Book},
-        ItalicFont = {NewCM10-BookItalic},
-        BoldFont = {NewCM10-Bold},
-        BoldItalicFont = {NewCM10-BoldItalic},
-        SlantedFont = {NewCM10-Book},
-        BoldSlantedFont = {NewCM10-Bold},
-        SmallCapsFeatures = {Numbers=OldStyle, LetterSpace=5.0}
-        ]{NewCM10-Book}
-
-    \defaultfontfeatures[NewCM10-Book]
-       {
-        Path = {\fontDir/newcomputermodern/},
-        Extension      = .otf ,
-        SizeFeatures={%
-                      {Size=-8, Font=NewCM08-Book,
-          		  	    ItalicFont=NewCM08-BookItalic,%
-          			    BoldFont=NewCM10-Bold,%
-          			    BoldItalicFont=NewCM10-BoldItalic,%
-          			    SlantedFont=NewCM08-Book,%
-          			    BoldSlantedFont=NewCM10-Bold,%
-          			    SmallCapsFeatures={Numbers=OldStyle}},
-    		   {Size=8, Font=NewCM08-Book,
-          		   	    ItalicFont=NewCM08-BookItalic,%
-          			    BoldFont=NewCM10-Bold,%
-          			    BoldItalicFont=NewCM10-BoldItalic,%
-          			    SlantedFont=NewCM08-Book,%
-          			    BoldSlantedFont=NewCM10-Bold,%
-          			    SmallCapsFeatures={Numbers=OldStyle}},
-    		 {Size= 9-, Font = NewCM10-Book,
-          		 	    ItalicFont=NewCM10-BookItalic,%
-          			    BoldFont=NewCM10-Bold,%
-          			    BoldItalicFont=NewCM10-BoldItalic,%
-          			    SlantedFont=NewCM10-Book,%
-          			    BoldSlantedFont=NewCM10-Bold,%
-          			    SmallCapsFeatures={Numbers=OldStyle}}%
-    	}}
-
-    \setsansfont[
-        Path = {\fontDir/newcomputermodern/},
-        Extension = {.otf},
-        UprightFont = {NewCMSans10-Book},
-        ItalicFont = {NewCMSans10-Oblique},
-        BoldFont = {NewCMSans10-Bold},
-        BoldItalicFont = {NewCMSans10-BoldOblique},
-    ]{NewCMSans10-Book}
-
-    \defaultfontfeatures[NewCMSans10-Book]
-       {
-        Extension      = .otf ,
-        SizeFeatures={%
-                      {Size= -8, Font=NewCMSans08-Book,%
-               	  	     ItalicFont=NewCMSans08-BookOblique,%
-               		     BoldFont=NewCMSans10-Bold,%
-               		     BoldItalicFont=NewCMSans10-BoldOblique,%
-               		     SmallCapsFeatures={Numbers=OldStyle}},
-    		   {Size= 8, Font=NewCMSans08-Book,%
-              	   	     ItalicFont=NewCMSans08-BookOblique,%
-              		     BoldFont=NewCMSans10-Bold,%
-              		     BoldItalicFont=NewCMSans10-BoldOblique,%
-             		     SmallCapsFeatures={Numbers=OldStyle}},
-    		  {Size= 9-, Font=NewCMSans10-Book,%
-               	  	     ItalicFont=NewCMSans10-BookOblique,%
-               		     BoldFont=NewCMSans10-Bold,%
-               		     BoldItalicFont=NewCMSans10-BoldOblique,%
-               		     SmallCapsFeatures={Numbers=OldStyle}}
-    			     }
-    }
-
-
-	\setmathfont[
-		Path = {\fontDir/newcomputermodern/},
-		Extension = {.otf},
-		]{NewCMMath-Book}
-
-    \setmonofont[
-        Path = {\fontDir/newcomputermodern/},
-        Extension = {.otf},
-        UprightFont = {*-Book},
-        ItalicFont = {*-BookItalic},
-        BoldFont = {*-Bold},
-        BoldItalicFont = {*-BoldOblique},
-    ]{NewCMMono10}
-
-	\newfontfamily\titleType[
-		Path = {\fontDir/newcomputermodern/},
-		Extension = {.otf},
-		UprightFont = {NewCMSans10-Book},
-		ItalicFont = {NewCMSans10-BookOblique},
-		BoldFont = {NewCMSans10-Bold},
-		BoldItalicFont = {NewCMSans10-BoldOblique},
-        SmallCapsFeatures = {Numbers=OldStyle, LetterSpace=5.0}
-		]
-		{NewCMSans10-Book}
-
-	\newfontfamily\headType[
-		Path = {\fontDir/newcomputermodern/},
-		Extension = {.otf},
-		UprightFont = {NewCMSans10-Book},
-		ItalicFont = {NewCMSans10-BookOblique},
-		BoldFont = {NewCMSans10-Bold},
-		BoldItalicFont = {NewCMSans10-BoldOblique},
-        SmallCapsFeatures = {LetterSpace=5.0}
-		]
-		{NewCMSans10-Book}
-
-	\newfontfamily\subheadType[
-		Path = {\fontDir/newcomputermodern/},
-		Extension = {.otf},
-		UprightFont = {NewCMSans10-Regular},
-		ItalicFont = {NewCMSans10-Oblique},
-		BoldFont = {NewCMSans10-Bold},
-		BoldItalicFont = {NewCMSans10-BoldOblique},
-        SmallCapsFeatures = {LetterSpace=5.0}
-		]
-		{NewCMSans10-Regular}
-
-	\newfontfamily\subsubHeadType[
-		Path = {\fontDir/newcomputermodern/},
-		Extension = {.otf},
-		UprightFont = {NewCMSans10-Book},
-		ItalicFont = {NewCMSans10-BookOblique},
-		BoldFont = {NewCMSans10-Bold},
-		BoldItalicFont = {NewCMSans10-BoldOblique},
-        SmallCapsFeatures = {LetterSpace=5.0}
-		]
-		{NewCMSans10-Book}
-
-
-    \titleformat{\section}%
-    {\relsize{4}\bfseries\headType}%
-    {\marginsecnumber{\thesection.}}{0em}{}[]
-    
-    \titleformat{\subsection}%
-    {\relsize{2}\subheadType}%
-    {\marginsecnumber{\thesubsection.}}{0em}{}[]
-    
-    
-    \titleformat{\subsubsection}[runin]%
-    {\subsubHeadType\normalsize\mdseries\scshape}%
-    {\marginsecnumber{\thesubsubsection.}}{0em}{}[]
-    
-    % This will need to be adaptable for two-sided documents
-    \titleformat{\paragraph}[leftmargin]%
-    {\color{parColor}\sffamily\small\filright}%
-    {}{0.0em}{\color{parColor}}[]
-
-
-
-%    \newfontfamily\symbolFont[
-%		Extension = {.otf},
-%		Path = {\fontDir/newcomputermodern/},
-%	]{NewCMMath-Book}
-}
-
-
-\titlespacing\section{0pt}{12pt plus 2pt minus 2pt}{3pt plus 2pt minus 2pt}
-
-\titlespacing\subsection{0pt}{12pt plus 2pt minus 2pt}%
-{3pt plus 2pt minus 2pt}
-%\titlespacing\subsubsection{-0.27em}{12pt plus 2pt minus 2pt}%
-%{4pt plus 2pt minus 2pt}
-\titlespacing\paragraph{0pt}{0pt plus 2pt minus 2pt}{0pt plus 2pt minus 2pt}
-    
-    
-\titlespacing\subsubsection{0em}{12pt plus 2pt minus 2pt}%
-{4pt plus 2pt minus 2pt}
-
-\titlespacing\paragraph{8em}{8pt plus 2pt minus 2pt}%
-{4pt plus 2pt minus 2pt}
-
-% \ExecuteOptions{regular}
 
 \ProcessOptions\relax
 

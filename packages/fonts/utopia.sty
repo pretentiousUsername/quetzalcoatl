@@ -1,89 +1,82 @@
 \RequiresTeXFormat{LaTeX2e}
-\ProvidesPackage{packages/fonts/regular}[2025/05/01 Regular font set]
+\ProvidesPackage{packages/fonts/utopia}[2025-05-01 Utopia fonts]
 
 \setmainfont[
-	Path = {\fontDir/stix2/},
+	Path = {\fontDir/erewhon/},
 	Extension = {.otf},
 	UprightFont = {*-Regular},
 	ItalicFont = {*-Italic},
 	BoldFont = {*-Bold},
 	BoldItalicFont = {*-BoldItalic},
-	RawFeature = {+case},
 	]
-	{StixTwoText}
+	{Erewhon}
 
 \setmathfont[
-	Path = {\fontDir/stix2/},
+	Path = {\fontDir/erewhon-math/},
 	Extension = {.otf},
-	RawFeature = {+ss15},
 	]
-	{StixTwoMath-Regular}
+	{Erewhon-Math}
 
 % Heavenly father, forgive me, for I know not what I do.
 \newfontfamily\symbolFont[
 	Extension = {.otf},
-	Path = {\fontDir/stix2/},
-]{StixTwoMath-Regular}
+	Path = {\fontDir/erewhon-math/},
+    ]{Erewhon-Math}
 
 \setsansfont[
-	Path = {\fontDir/Inter/},
-	Extension = {.otf},
+	Path = {\fontDir/merriweather-sans/},
+	Extension = {.ttf},
 	UprightFont = {*-Regular},
 	ItalicFont = {*-Italic},
 	BoldFont = {*-Bold},
 	BoldItalicFont = {*-BoldItalic},
-	RawFeature = {+cv08, +cv01, +cv07, +cv10, +case, +zero},
 	Scale = 0.925,
 	]
 	{Inter}
 
 \newfontfamily\titleType[
-	Path = {\fontDir/Inter/},
-	Extension = {.otf},
+	Path = {\fontDir/merriweather-sans/},
+	Extension = {.ttf},
 	UprightFont = {*-Regular},
 	ItalicFont = {*-Italic},
 	BoldFont = {*-Bold},
 	BoldItalicFont = {*-BoldItalic},
-	RawFeature = {+cv08, +cv01, +cv07, +cv10, +case, +zero},
 	Scale = 0.925,
 	]
-	{Inter}
+    {MerriweatherSans}
 
 \newfontfamily\headType[
-	Path = {\fontDir/Inter/},
-	Extension = {.otf},
+	Path = {\fontDir/merriweather-sans/},
+	Extension = {.ttf},
 	UprightFont = {*-ExtraBold},
 	ItalicFont = {*-ExtraBoldItalic},
 	BoldFont = {*-Black},
 	BoldItalicFont = {*-BlackItalic},
-	RawFeature = {+cv08, +cv01, +cv07, +cv10, +case, +zero},
 	Scale = 0.925,
 	]
-	{Inter}
+    {MerriweatherSans}
 
 \newfontfamily\subheadType[
-	Path = {\fontDir/Inter/},
-	Extension = {.otf},
+	Path = {\fontDir/merriweather-sans/},
+	Extension = {.ttf},
 	UprightFont = {*-Bold},
 	ItalicFont = {*-BoldItalic},
 	BoldFont = {*-ExtraBold},
 	BoldItalicFont = {*-ExtraBoldItalic},
-	RawFeature = {+cv08, +cv01, +cv07, +cv10, +case, +zero},
 	Scale = 0.925,
 	]
-	{Inter}
+    {MerriweatherSans}
 
 \newfontfamily\subsubHeadType[
-	Path = {\fontDir/Inter/},
-	Extension = {.otf},
+	Path = {\fontDir/merriweather-sans/},
+	Extension = {.ttf},
 	UprightFont = {*-Medium},
 	ItalicFont = {*-MediumItalic},
 	BoldFont = {*-SemiBold},
 	BoldItalicFont = {*-SemiBoldItalic},
-	RawFeature = {+cv08, +cv01, +cv07, +cv10, +case, +zero},
 	Scale = 0.925,
 	]
-	{Inter}
+    {MerriweatherSans}
 
 \setmonofont[
     Path = {\fontDir/juliaMono/},

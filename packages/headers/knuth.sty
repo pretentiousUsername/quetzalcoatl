@@ -1,17 +1,17 @@
 \NeedsTeXFormat{LaTeX2e}
-\ProvidesPackage{packages/headers/regular}[2025/05/01 Regular header style]
+\ProvidesPackage{packages/headers/knuth}[2025/05/01 Knuth headers]
 
 \titleformat{\section}%
-{\relsize{2}\headType}%
+{\relsize{4}\bfseries\headType}%
 {\marginsecnumber{\thesection.}}{0em}{}[]
 
 \titleformat{\subsection}%
-{\normalsize\subheadType}%
+{\relsize{2}\subheadType}%
 {\marginsecnumber{\thesubsection.}}{0em}{}[]
 
 
 \titleformat{\subsubsection}[runin]%
-{\subsubHeadType\normalsize\mdseries}%
+{\subsubHeadType\normalsize\mdseries\scshape}%
 {\marginsecnumber{\thesubsubsection.}}{0em}{}[]
 
 % This will need to be adaptable for two-sided documents
