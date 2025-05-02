@@ -22,10 +22,10 @@
 + [ ] Page layout types
   - [ ] Make single *and* double sided layouts
   - [ ] Ripoff Tufte–styled layout
-+ [ ] Stylistic sets
-  - [ ] *regular* – [STIX2][stix2] + [Inter][inter]
-  - [ ] *knuth* – [New Computer Modern][newcm], plus my own twists
-  - [ ] *classical* – [Cochineal][cochineal][^crimson] and [Ysabeau][ysabeau]
++ [ ] Stylistic sets `(More work is needed, but the fonts have been chosen.)`
+  - [X] *regular* – [STIX2][stix2] + [Inter][inter]
+  - [X] *knuth* – [New Computer Modern][newcm], plus my own twists
+  - [X] *classical* – [Cochineal][cochineal][^crimson] and [Ysabeau][ysabeau]
 
 
 [^crimson]: Or [Crimson Pro](https://github.com/Fonthausen/CrimsonPro) if that
