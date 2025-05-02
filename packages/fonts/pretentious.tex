@@ -48,15 +48,15 @@
 	{Ysabeau}
 
 \newfontfamily\headType[
-	Path = {\fontDir/ysabeau/},
+	Path = {\fontDir/ebgaramond/},
 	Extension = {.otf},
-	UprightFont = {*-ExtraBold},
-	ItalicFont = {*-ExtraBoldItalic},
-	BoldFont = {*-Black},
-	BoldItalicFont = {*-BlackItalic},
-	Scale = 0.925,
+	UprightFont = {*-Regular},
+	ItalicFont = {*-Italic},
+	BoldFont = {*-Bold},
+	BoldItalicFont = {*-BoldItalic},
+    SmallCapsFeatures = {LetterSpace=5.0}
 	]
-	{Ysabeau}
+	{EBGaramond}
 
 \newfontfamily\subheadType[
 	Path = {\fontDir/ysabeau/},
@@ -81,12 +81,17 @@
 	{Ysabeau}
 
 \setmonofont[
-    Path = {\fontDir/juliaMono/},
+    Path = {\fontDir/ibm-plex-mono/},
 	Extension = {.ttf},
 	UprightFont = {*-Regular},
-	ItalicFont = {*-RegularItalic},
+	ItalicFont = {*-Italic},
 	BoldFont = {*-Bold},
 	BoldItalicFont = {*-BoldItalic},
 	Scale = 0.875,
-	]
-	{JuliaMono}
+	]{IBMPlexMono}
+
+\newfontfamily\lettrineType[
+    Path = {\fontDir/ebgaramond/},
+    Extension = {.otf},
+    UprightFont = {*-Initials},
+    ]{EBGaramond}

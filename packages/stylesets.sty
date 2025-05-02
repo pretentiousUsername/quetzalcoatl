@@ -1,0 +1,46 @@
+\NeedsTeXFormat{LaTeX2e}
+\ProvidesPackage{packages/font_sets}[2025/04/28 Font sets]
+
+\RequirePackage{fontspec}
+\RequirePackage{unicode-math}
+\RequirePackage{xcolor}
+\RequirePackage{relsize}
+\RequirePackage{xkeyval}
+\RequirePackage{titlesec}
+\RequirePackage{ifthen}
+
+
+\newcommand{\marginsecnumber}[1]{%
+  \makebox[0pt][r]{#1\hspace{6pt}}%
+}
+
+
+% thank you @lockstep on the TeX stack exchange for this.
+% https://tex.stackexchange.com/a/13275
+
+
+\DeclareOptionX{style}[regular]{%
+    \input{\packageDir/fonts/#1}%
+    \input{\packageDir/headers/#1}%
+}
+
+
+\definecolor{s2Color}{HTML}{a0a0a0}
+\definecolor{parColor}{RGB}{128, 128, 128}
+
+% This will need to be adaptable for two-sided documents
+\titleformat{\paragraph}[leftmargin]%
+{\color{parColor}\sffamily\small\filright}%
+{}{0.0em}{\color{parColor}}[]
+
+% \ExecuteOptionsX{style}
+
+\ProcessOptionsX\relax
+
+% Set itemize symbols
+\renewcommand{\labelitemi}{\symbolFont{▪}}
+\renewcommand{\labelitemii}{\symbolFont{▹}}
+\renewcommand{\labelitemiii}{\symbolFont{•}}
+\renewcommand{\labelitemiv}{\symbolFont{⟶}}
+
+\endinput

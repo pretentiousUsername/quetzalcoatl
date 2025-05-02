@@ -1,0 +1,21 @@
+\NeedsTeXFormat{LaTeX2e}
+\ProvidesPackage{packages/my_macros}[2025/04/28 My macros]
+
+\RequirePackage{amsmath}
+
+% Physics macros
+\newcommand{\expval}[1]{\ensuremath{\left< #1 \right>}} % expectation value
+\newcommand{\comm}[2]{\ensuremath{{\left[ #1 , #2 \right]}}} % commutator
+\newcommand{\acomm}[2]{\ensuremath{\left\{ #1, #2 \right\}}} % anticommutator
+
+\newcommand{\bra}[1]{\ensuremath{\left< #1 \right|}}
+\newcommand{\ket}[1]{\ensuremath{\left| #1 \right>}}
+
+% Math macros
+\newcommand{\textqed}{\hfill\ensuremath{\Box}}
+\newcommand{\dlp}[2]{\partial_{#2} \, #1}
+%% Include some ISO math symbols
+\newcommand\ii{\mathup{i}}
+\newcommand\ee{\mathup{e}}
+
+\endinput

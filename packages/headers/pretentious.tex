@@ -1,9 +1,16 @@
+% The header sizes should be done according to the formula
+% size(header) = exp(header/2)
+% where each the headers are ranked from bottom to top.
+
+% \newcommand{\makeTheTextLowercase}[1]{\MakeLowercase{\so{#1}}}
+\newcommand{\makeTheTextLowercase}[1]{\MakeLowercase{#1}}
+
 \titleformat{\section}%
-{\relsize{2}\headType}%
-{\marginsecnumber{\thesection.}}{0em}{}[]
+{\relsize{2.718281828459045}\headType\scshape}%
+{\marginsecnumber{\thesection.}}{0em}{\makeTheTextLowercase}[]
 
 \titleformat{\subsection}%
-{\normalsize\subheadType}%
+{\relsize{1.6487212707001282}\normalsize\subheadType}%
 {\marginsecnumber{\thesubsection.}}{0em}{}[]
 
 

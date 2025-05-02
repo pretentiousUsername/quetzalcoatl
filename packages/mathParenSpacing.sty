@@ -1,0 +1,11 @@
+\NeedsTeXFormat{LaTeX2e}
+\ProvidesPackage{packages/math_paren_spacing}[2025/04/28 Math parenthesis spacing]
+
+% fix spacing around \left( and \right) commands. Taken from
+% https://tex.stackexchange.com/questions/2607/spacing-around-left-and-right 
+\let\originalleft\left
+\let\originalright\right
+\renewcommand{\left}{\mathopen{}\mathclose\bgroup\originalleft}
+\renewcommand{\right}{\aftergroup\egroup\originalright}
+
+\endinput

@@ -52,7 +52,7 @@ $else$
 
 $endif$
 
-\usepackage{\packageDir/my_macros}
+\usepackage{\packageDir/mymacros}
 
 \usepackage{enumerate}
 % Keep pandoc from getting mad
@@ -67,7 +67,7 @@ $endif$
 \usepackage{calc}
 
 
-\usepackage{\packageDir/math_paren_spacing}
+\usepackage{\packageDir/mathParenSpacing}
 
 \usepackage{soul}
 
@@ -80,191 +80,10 @@ $endif$
 \usepackage[auto=true]{microtype}
 \SetTracking{encoding={*}, shape=sc}{500}
 
-% Set main typeface
-$if(customType)$
-	$customType$
-	% This is set by manually inputting \usepackage{mathspec/fontspec},
-	% \setmainfont{foo}, etc.
-    
-    $elseif(alternateFontSet)$
-    \usepackage{fontspec}
-	\usepackage{unicode-math}
-
-
-    \usepackage[default]{fontsetup}
-
-	\setsansfont[
-		Path= {\fontDir/Jost/},
-		Extension = {.otf},
-		UprightFont = {*-400-Book},
-		ItalicFont = {*-400-BookItalic},
-		BoldFont = {*-700-Bold},
-		BoldItalicFont = {*-700-BoldItalic},
-		Scale = 0.925,
-		]
-		{Jost}
-
-	\newfontfamily\titleType[
-		Path= {\fontDir/Jost/},
-		Extension = {.otf},
-		UprightFont = {*-400-Book},
-		ItalicFont = {*-400-BookItalic},
-		BoldFont = {*-700-Bold},
-		BoldItalicFont = {*-700-BoldItalic},
-		Scale = 0.925,
-		]
-		{Jost}
-
-	\newfontfamily\headType[
-		Path = {\fontDir/Jost/},
-		Extension = {.otf},
-		UprightFont = {*-800-Hevy},
-		ItalicFont = {*-800-HevyItalic},
-		BoldFont = {*-900-Black},
-		BoldItalicFont = {*-900-BlackItalic},
-		Scale = 0.925,
-		]
-		{Jost}
-
-	\newfontfamily\subheadType[
-		Path = {\fontDir/Jost/},
-		Extension = {.otf},
-		UprightFont = {*-700-Bold},
-		ItalicFont = {*-700-BoldItalic},
-		BoldFont = {*-800-Hevy},
-		BoldItalicFont = {*-800-HevyItalic},
-		Scale = 0.925,
-		]
-		{Jost}
-
-	\newfontfamily\subsubHeadType[
-		Path = {\fontDir/Jost/},
-		Extension = {.otf},
-		UprightFont = {*-500-Medium},
-		ItalicFont = {*-500-MediumItalic},
-		BoldFont = {*-600-Semi},
-		BoldItalicFont = {*-600-SemiItalic},
-		Scale = 0.925,
-		]
-		{Jost}
-	
-    \newfontfamily\symbolFont[
-		Extension = {.otf},
-		Path = {\fontDir/newcomputermodern/},
-	]{NewCMMath-Book}
-	
-
-    $else$
-    \usepackage{fontspec}
-	\usepackage{unicode-math}
-
-	%\newfontfamily\symbolFont[
-		%Extension = {.otf},
-		%Path = {\fontDir/fdsymbol/},
-		%UprightFont = {*-Regular},
-	%]{FdSymbol}
-    $if(computerModern)$
-        \usepackage[default]{fontsetup}
-        \newfontfamily\symbolFont[
-	    	Extension = {.otf},
-	    	Path = {\fontDir/newcomputermodern/},
-	    ]{NewCMMath-Book}
-    $else$
-	\setmainfont[
-		Path = {\fontDir/stix2/},
-		Extension = {.otf},
-		UprightFont = {*-Regular},
-		ItalicFont = {*-Italic},
-		BoldFont = {*-Bold},
-		BoldItalicFont = {*-BoldItalic},
-		RawFeature = {+case},
-		]
-		{StixTwoText}
-
-	\setmathfont[
-		Path = {\fontDir/stix2/},
-		Extension = {.otf},
-		RawFeature = {+ss15},
-		]
-		{StixTwoMath-Regular}
-
-	% Heavenly father, forgive me, for I know not what I do.
-	\newfontfamily\symbolFont[
-		Extension = {.otf},
-		Path = {\fontDir/stix2/},
-	]{StixTwoMath-Regular}
-    $endif$
-	
-	\setsansfont[
-		Path= {\fontDir/Inter/},
-		Extension = {.otf},
-		UprightFont = {*-Regular},
-		ItalicFont = {*-Italic},
-		BoldFont = {*-Bold},
-		BoldItalicFont = {*-BoldItalic},
-		RawFeature = {+cv08, +cv01, +cv07, +cv10, +case, +zero},
-		Scale = 0.925,
-		]
-		{Inter}
-
-	\newfontfamily\titleType[
-		Path= {\fontDir/Inter/},
-		Extension = {.otf},
-		UprightFont = {*-Regular},
-		ItalicFont = {*-Italic},
-		BoldFont = {*-Bold},
-		BoldItalicFont = {*-BoldItalic},
-		RawFeature = {+cv08, +cv01, +cv07, +cv10, +case, +zero},
-		Scale = 0.925,
-		]
-		{Inter}
-
-	\newfontfamily\headType[
-		Path = {\fontDir/Inter/},
-		Extension = {.otf},
-		UprightFont = {*-ExtraBold},
-		ItalicFont = {*-ExtraBoldItalic},
-		BoldFont = {*-Black},
-		BoldItalicFont = {*-BlackItalic},
-		RawFeature = {+cv08, +cv01, +cv07, +cv10, +case, +zero},
-		Scale = 0.925,
-		]
-		{Inter}
-
-	\newfontfamily\subheadType[
-		Path = {\fontDir/Inter/},
-		Extension = {.otf},
-		UprightFont = {*-Bold},
-		ItalicFont = {*-BoldItalic},
-		BoldFont = {*-ExtraBold},
-		BoldItalicFont = {*-ExtraBoldItalic},
-		RawFeature = {+cv08, +cv01, +cv07, +cv10, +case, +zero},
-		Scale = 0.925,
-		]
-		{Inter}
-
-	\newfontfamily\subsubHeadType[
-		Path = {\fontDir/Inter/},
-		Extension = {.otf},
-		UprightFont = {*-Medium},
-		ItalicFont = {*-MediumItalic},
-		BoldFont = {*-SemiBold},
-		BoldItalicFont = {*-SemiBoldItalic},
-		RawFeature = {+cv08, +cv01, +cv07, +cv10, +case, +zero},
-		Scale = 0.925,
-		]
-		{Inter}
-
-	\setmonofont[
-	Path = {\fontDir/juliaMono/},
-		Extension = {.ttf},
-		UprightFont = {*-Regular},
-		ItalicFont = {*-RegularItalic},
-		BoldFont = {*-Bold},
-		BoldItalicFont = {*-BoldItalic},
-		Scale = 0.875,
-		]
-		{JuliaMono}
+$if(style)$
+    \usepackage[style=$style$]{\packageDir/stylesets}
+$else$
+    \usepackage[style=regular]{\packageDir/stylesets}
 $endif$
 
 $if(sansBody)$
