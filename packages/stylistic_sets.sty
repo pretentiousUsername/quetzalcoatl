@@ -7,32 +7,63 @@
 \RequirePackage[noindentafter]{titlesec}
 \RequirePackage{relsize}
 \RequirePackage{ifthen}
+\RequirePackage{xkeyval}
 
 \newcommand{\marginsecnumber}[1]{%
   \makebox[0pt][r]{#1\hspace{6pt}}%
 }
 
-\newboolean{\regularStyle}\setboolean{\regularStyle}{false}
+% thank you @lockstep on the TeX stack exchange for this.
+% https://tex.stackexchange.com/a/13273
+
+\makeatletter
+    \define@key{style}{regular}{%
+        \RequirePackage{\packageDir/fonts/regular}%
+        \RequirePackage{\packageDir/headers/regular}%
+        }
+    \define@key{style}{knuth}{%
+        \RequirePackage{\packageDir/fonts/knuth}
+        \RequirePackage{\packageDir/headers/knuth}
+        }
+    \define@key{style}{utopia}{%
+        \RequirePackage{\packageDir/fonts/utopia}
+        \RequirePackage{\packageDir/headers/utopia}
+        }
+    \define@key{style}{knuth}{%
+        \RequirePackage{\packageDir/fonts/pretentious}
+        \RequirePackage{\packageDir/headers/pretentious}
+        }
+\makeatother
+
+
+\newboolean{\regularStyle}\setboolean{\regularStyle}{true}
 \newboolean{\knuthStyle}\setboolean{\knuthStyle}{false}
 \newboolean{\utopiaStyle}\setboolean{\utopiaStyle}{false}
 \newboolean{\pretentiousStyle}\setboolean{\pretentiousStyle}{false}
 
 \DeclareOption{style}{
-    \ifthenelse{\equal{style}{regular}}{\setboolean{\regularStyle}{true}}{}
-    \ifthenelse{\equal{style}{knuth}}{\setboolean{\knuthStyle}{true}}{}
-    \ifthenelse{\equal{style}{utopia}}{\setboolean{\utopiaStyle}{true}}{}
-    \ifthenelse{\equal{style}{knuth}}{\setboolean{\pretentiousStyle}{true}}{}
+    % The `regular` style is on by default.
+    %\ifthenelse{\equal{style}{regular}}{%
+    %    \setboolean{\regularStyle}{true}%
+    %    \setboolean{\regularStyle}{false}}{}
+    \ifthenelse{\equal{style}{knuth}}{%
+        \setboolean{\knuthStyle}{true}%
+        \setboolean{\regularStyle}{false}}{}
+    \ifthenelse{\equal{style}{utopia}}{%
+        \setboolean{\utopiaStyle}{true}%
+        \setboolean{\regularStyle}{false}}{}
+    \ifthenelse{\equal{style}{pretentious}}{%
+        \setboolean{\pretentiousStyle}{true}%
+        \setboolean{\regularStyle}{false}}{}
 }
 
 
 \ifthenelse{\regularStyle}{
-    \RequirePackage{\packageDir/fonts/regular}
-    \RequirePackage{\packageDir/headers/regular}
+
 }{}
 
 \ifthenelse{\regularStyle}{
-    \RequirePackage{\packageDir/fonts/knuth}
-    \RequirePackage{\packageDir/headers/knuth}
+
 }{}
 
 \ifthenelse{\regularStyle}{
@@ -44,9 +75,6 @@
     \RequirePackage{\packageDir/fonts/pretentious}
     \RequirePackage{\packageDir/headers/pretentious}
 }{}
-
-
-
 
 
 \definecolor{s2Color}{HTML}{a0a0a0}
