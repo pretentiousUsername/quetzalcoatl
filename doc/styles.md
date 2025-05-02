@@ -6,12 +6,12 @@ section headings and other various things. The
 
 
 ## Table of styles
-| **Name** | **Serif font** | **Sans font** | **Monospaced font** | **mood** | **Description** |
+| **Name** | **Serif font** | **Sans font** | **Monospaced font** | **mood** | **Demo** |
 |:---------|:---------------|:--------------|:--------------------|:---------|:----------------|
-| `regular` | STIX 2 | Inter | Julia Mono | standard | Workhorse styleset. I think it blends a fair amount of things together while not be too terribly boring; it's modern, and can say a lot, but is not intrusive. |
-| `knuth` | New Computer Modern Serif | New  Computer Modern Sans  | New Computer Modern Monospace | learneded | Use this if you want that nice default LaTeX look—I did my best to give this some of my own flair. |
-| `utopia` | Utopia | Merriweather Sans | ??? | alright |  Sometimes, you need something different—I get that. This styleset is for those times when you need something a bit different—your white pizza after a few rounds of pepperoni. |
-| `pretentious` | EBGaramond/Garamond-Math | Ysabeau | ??? | something like old books | What, you think you're better than me? Ok, ok, you're not actually pretentious for using this styleset, but keep in mind that humanist fonts are not for the feint of heart—while Computer Modern has a lot of power over people that browse the `arXiv` and know what a TeX is, humanist fonts, like these ones, can easily sway the general public. |
+| `regular` | STIX 2 | Inter | Julia Mono | standard | [—](../demos/styles/regular.pdf) |
+| `knuth` | New Computer Modern Serif | New  Computer Modern Sans  | New Computer Modern Monospace | learneded | [—](../demos/styles/knuth.pdf) |
+| `utopia` | Utopia | Merriweather Sans | ??? | alright | [—](../demos/styles/utopia.pdf) |
+| `pretentious` | EBGaramond/Garamond-Math | Ysabeau | ??? | something like old books | [—](../demos/styles/pretentious.pdf) |
 | `dvdnormal` | mesagess | **dracaula** | ??? | my name is dvd normal | 10m ago |
 
 

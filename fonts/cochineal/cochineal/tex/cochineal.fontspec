@@ -1,8 +1,0 @@
-\defaultfontfeatures[cochineal]
-  {
-  Extension = .otf ,
-  UprightFont = Cochineal-Roman,
-  BoldFont = Cochineal-Bold,
-  ItalicFont = Cochineal-Italic,
-  BoldItalicFont = Cochineal-BoldItalic
-  }
