@@ -4,77 +4,80 @@
 \RequirePackage{fontspec}
 \RequirePackage{unicode-math}
 \RequirePackage{xcolor}
-\RequirePackage[noindentafter]{titlesec}
-\RequirePackage{relsize}
-\RequirePackage{ifthen}
 \RequirePackage{xkeyval}
+\RequirePackage{ifthen}
+
+\newboolean{regularStyle}
+\newboolean{knuthStyle}
+\newboolean{utopiaStyle}
+\newboolean{pretentiousStyle}
+
+\setboolean{regularStyle}{false}
+\setboolean{knuthStyle}{false}
+\setboolean{utopiaStyle}{false}
+\setboolean{pretentiousStyle}{false}
+
+
+
+
+
+\DeclareOptionX{indent-after}[false]{%
+    \def\parindentafter{noindentafter}
+    }
+
+\DeclareOptionX{indent-after}[true]{%
+    \def\parindentafter{indentafter}
+    }
+
+\RequirePackage[\parindentafter]{titlesec}
 
 \newcommand{\marginsecnumber}[1]{%
   \makebox[0pt][r]{#1\hspace{6pt}}%
 }
 
+
 % thank you @lockstep on the TeX stack exchange for this.
-% https://tex.stackexchange.com/a/13273
+% https://tex.stackexchange.com/a/13275
 
-\makeatletter
-    \define@key{style}{regular}{%
-        \RequirePackage{\packageDir/fonts/regular}%
-        \RequirePackage{\packageDir/headers/regular}%
-        }
-    \define@key{style}{knuth}{%
-        \RequirePackage{\packageDir/fonts/knuth}
-        \RequirePackage{\packageDir/headers/knuth}
-        }
-    \define@key{style}{utopia}{%
-        \RequirePackage{\packageDir/fonts/utopia}
-        \RequirePackage{\packageDir/headers/utopia}
-        }
-    \define@key{style}{knuth}{%
-        \RequirePackage{\packageDir/fonts/pretentious}
-        \RequirePackage{\packageDir/headers/pretentious}
-        }
-\makeatother
+\DeclareOptionX{style}[regular]{%
+    \setboolean{regularStyle}{true}
+}
 
+\DeclareOptionX{style}[knuth]{%
+    \setboolean{knuthStyle}{true}
+}
 
-\newboolean{\regularStyle}\setboolean{\regularStyle}{true}
-\newboolean{\knuthStyle}\setboolean{\knuthStyle}{false}
-\newboolean{\utopiaStyle}\setboolean{\utopiaStyle}{false}
-\newboolean{\pretentiousStyle}\setboolean{\pretentiousStyle}{false}
+\DeclareOptionX{style}[utopia]{%
+    \setboolean{utopiaStyle}{true}
+}
 
-\DeclareOption{style}{
-    % The `regular` style is on by default.
-    %\ifthenelse{\equal{style}{regular}}{%
-    %    \setboolean{\regularStyle}{true}%
-    %    \setboolean{\regularStyle}{false}}{}
-    \ifthenelse{\equal{style}{knuth}}{%
-        \setboolean{\knuthStyle}{true}%
-        \setboolean{\regularStyle}{false}}{}
-    \ifthenelse{\equal{style}{utopia}}{%
-        \setboolean{\utopiaStyle}{true}%
-        \setboolean{\regularStyle}{false}}{}
-    \ifthenelse{\equal{style}{pretentious}}{%
-        \setboolean{\pretentiousStyle}{true}%
-        \setboolean{\regularStyle}{false}}{}
+\DeclareOptionX{style}[pretentious]{%
+    \setboolean{pretentiousStyle}{true}
 }
 
 
-\ifthenelse{\regularStyle}{
-
+% Oh yeah, it turns out we need those booleans.
+\ifthenelse{\boolean{regularStyle}}{
+    \RequirePackage{\packageDir/fonts/regular}%
+    \RequirePackage{\packageDir/headers/regular}%
 }{}
 
-\ifthenelse{\regularStyle}{
-
+\ifthenelse{\boolean{knuthStyle}}{
+    \RequirePackage{\packageDir/fonts/knuth}
+    \RequirePackage{\packageDir/headers/knuth}
 }{}
 
-\ifthenelse{\regularStyle}{
+\ifthenelse{\boolean{utopiaStyle}}{
     \RequirePackage{\packageDir/fonts/utopia}
     \RequirePackage{\packageDir/headers/utopia}
 }{}
 
-\ifthenelse{\regularStyle}{
+\ifthenelse{\boolean{pretentiousStyle}}{
     \RequirePackage{\packageDir/fonts/pretentious}
     \RequirePackage{\packageDir/headers/pretentious}
 }{}
+
+
 
 
 \definecolor{s2Color}{HTML}{a0a0a0}
@@ -85,7 +88,9 @@
 {\color{parColor}\sffamily\small\filright}%
 {}{0.0em}{\color{parColor}}[]
 
-\ProcessOptions\relax
+\ExecuteOptionsX{style=regular, indent-after=none}
+
+\ProcessOptionsX\relax
 
 % Set itemize symbols
 \renewcommand{\labelitemi}{\symbolFont{▪}}
