@@ -4,6 +4,7 @@
 \RequirePackage{fontspec}
 \RequirePackage{unicode-math}
 \RequirePackage{xcolor}
+\RequirePackage{relsize}
 \RequirePackage{xkeyval}
 \RequirePackage{titlesec}
 
@@ -16,24 +17,9 @@
 % thank you @lockstep on the TeX stack exchange for this.
 % https://tex.stackexchange.com/a/13275
 
-\DeclareOptionX{style}{regular}{%
-    \input{\packageDir/fonts/regular}%
-    \input{\packageDir/headers/regular}%
-}
-
-\DeclareOptionX{style}{knuth}{%
-    \input{\packageDir/fonts/knuth}%
-    \input{\packageDir/headers/knuth}%
-}
-
-\DeclareOptionX{style}{utopia}{%
-    \input{\packageDir/fonts/utopia}%
-    \input{\packageDir/headers/utopia}%
-}
-
-\DeclareOptionX{style}{pretentious}{%
-    \input{\packageDir/fonts/pretentious}%
-    \input{\packageDir/headers/pretentious}%
+\DeclareOptionX{style}[regular]{%
+    \input{\packageDir/fonts/#1}%
+    \input{\packageDir/headers/#1}%
 }
 
 
@@ -45,7 +31,7 @@
 {\color{parColor}\sffamily\small\filright}%
 {}{0.0em}{\color{parColor}}[]
 
-\ExecuteOptionsX{style=regular}
+%\ExecuteOptionsX{style=regular}
 
 \ProcessOptionsX\relax
 
