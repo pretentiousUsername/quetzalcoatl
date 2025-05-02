@@ -8,10 +8,10 @@ section headings and other various things. The
 ## Table of styles
 | **Name** | **Serif font** | **Sans font** | **Monospaced font** | **mood** | **Demo** |
 |:---------|:---------------|:--------------|:--------------------|:---------|:----------------|
-| `regular` | STIX 2 | Inter | Julia Mono | standard | [—](../demos/styles/regular.pdf) |
-| `knuth` | New Computer Modern Serif | New  Computer Modern Sans  | New Computer Modern Monospace | learneded | [—](../demos/styles/knuth.pdf) |
-| `utopia` | Utopia | Merriweather Sans | ??? | alright | [—](../demos/styles/utopia.pdf) |
-| `pretentious` | EBGaramond/Garamond-Math | Ysabeau | ??? | something like old books | [—](../demos/styles/pretentious.pdf) |
+| `regular` | STIX 2 | Inter | Julia Mono | standard | [—](../demo/styles/regular.pdf) |
+| `knuth` | New Computer Modern Serif | New  Computer Modern Sans  | New Computer Modern Monospace | learneded | [—](../demo/styles/knuth.pdf) |
+| `utopia` | Utopia | Merriweather Sans | ??? | alright | [—](../demo/styles/utopia.pdf) |
+| `pretentious` | EBGaramond/Garamond-Math | Ysabeau | ??? | something like old books | [—](../demo/styles/pretentious.pdf) |
 | `dvdnormal` | mesagess | **dracaula** | ??? | my name is dvd normal | 10m ago |
 
 

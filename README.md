@@ -7,6 +7,8 @@ for myself. It's nothing fancy---there isn't any beamer functionality or
 anything built into it, and I'm yet to define a color palette for it---but
 overall it's useable.
 
+See the [documentation](doc/README.md) for more information on this template.
+
 More work is needed, but, for now, it works. See the [`TODO`](TODO.md) for
 more information.
 
