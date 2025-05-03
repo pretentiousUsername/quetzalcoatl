@@ -1,0 +1,67 @@
+\NeedsTeXFormat{LaTeX2e}
+\ProvidesPackage{packages/mycolors}[2025/05/03 My colors]
+\RequirePackage[dvipsnames]{xcolor}
+\RequirePackage{pagecolor}
+\RequirePackage{colortbl}
+
+% You can use this package to create colorschemes for your documents.
+\definecolor{table-row-color}{HTML}{F5F5F5}
+\definecolor{table-rule-color}{HTML}{999999}
+
+
+$if(ruleColor)$
+\definecolor{ruleColor}{HTML}{$ruleColor$}
+$else$
+%\definecolor{ruleColor}{HTML}{2c5dbf}
+\definecolor{ruleColor}{RGB}{0, 86, 255}
+$endif$
+
+%\arrayrulecolor{black!40}
+\arrayrulecolor{table-rule-color}     % color of \toprule, \midrule, \bottomrule
+
+
+$if(citeColor)$
+	\definecolor{citeColor}{HTML}{$citeColor$}
+$endif$
+
+$if(urlColor)$
+	\definecolor{urlColor}{HTML}{$urlColor$}
+$else$
+    \definecolor{urlColor}{HTML}{ab0f0f}
+$endif$
+
+$if(linkColor)$
+	\definecolor{linkColor}{HTML}{$linkColor$}
+$else$
+    \definecolor{linkColor}{HTML}{ab0f0f}
+$endif$
+
+
+$if(urlMarkColor)$
+	\definecolor{urlMarkColor}{HTML}{$urlMarkColor$}
+$else$
+	\definecolor{urlMarkColor}{HTML}{ab0f0f}
+$endif$
+
+
+\definecolor{caption-color}{HTML}{777777}
+
+
+%
+% blockquote
+%
+%\definecolor{blockquote-border}{RGB}{221,221,221}
+\definecolor{blockquote-border}{RGB}{168,168,168}
+\definecolor{blockquote-text}{RGB}{0,0,0}
+
+
+
+        $if(titlepageColor)$
+	        \definecolor{titlepageColor}{HTML}{$titlepageColor$}
+	        \newpagecolor{titlepageColor}\afterpage{\restorepagecolor}
+        $endif$
+
+
+	        \definecolor{titlepageTextColor}{HTML}{$titlepageTextColor$}
+	        {\color{titlepageTextColor}
+
