@@ -597,9 +597,10 @@ $if(titlepage)$
 		$if(logoWidth)$[width=$logoWidth$]$endif${$logo$}
 		\end{figure}
 	$endif$
-
 \end{titlepage}
 \pagestyle{plain}
+
+\restoregeometry
 
 $elseif(title)$
     	\maketitle
@@ -607,6 +608,7 @@ $elseif(title)$
             %\thispagestyle{fancy}
             \thispagestyle{fancy}
         $endif$
+
 $endif$
 
 \newmdenv[rightline=false, leftline=false]{abstractBox}

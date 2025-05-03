@@ -10,24 +10,6 @@
     \input{\packageDir/colors/#1}%
 }
 
-% \ExplSyntaxOn
-% \NewDocumentCommand{\getNth}{mmm}
-%   {
-%     % #1 string, #2 separator, #3 index
-%     \seq_set_split:Nnx \l_tmpa_seq { #2 } { #1 }
-%     \seq_item:Nn \l_tmpa_seq { #3 }
-%   }
-% 
-% \NewDocumentCommand \countItems { m } {
-%     \clist_count:N #1
-% }
-% 
-% \NewDocumentCommand \countInlineItems { m } {
-%     \clist_count:n {#1}
-% }
-% 
-% \ExplSyntaxOff
-
 \ProcessOptionsX\relax
 
 

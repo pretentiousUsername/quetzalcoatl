@@ -4,6 +4,7 @@ author: Ian Mitchell
 date: \today
 style: utopia
 numberSections: true
+titlepage: true
 ---
 
 # Introduction
