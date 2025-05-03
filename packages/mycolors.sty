@@ -3,65 +3,32 @@
 \RequirePackage[dvipsnames]{xcolor}
 \RequirePackage{pagecolor}
 \RequirePackage{colortbl}
-
-% You can use this package to create colorschemes for your documents.
-\definecolor{table-row-color}{HTML}{F5F5F5}
-\definecolor{table-rule-color}{HTML}{999999}
+\RequirePackage{xkeyval}
 
 
-$if(ruleColor)$
-\definecolor{ruleColor}{HTML}{$ruleColor$}
-$else$
-%\definecolor{ruleColor}{HTML}{2c5dbf}
-\definecolor{ruleColor}{RGB}{0, 86, 255}
-$endif$
+\DeclareOptionX{palette}[default]{%
+    \input{\packageDir/colors/#1}%
+}
 
-%\arrayrulecolor{black!40}
-\arrayrulecolor{table-rule-color}     % color of \toprule, \midrule, \bottomrule
+% \ExplSyntaxOn
+% \NewDocumentCommand{\getNth}{mmm}
+%   {
+%     % #1 string, #2 separator, #3 index
+%     \seq_set_split:Nnx \l_tmpa_seq { #2 } { #1 }
+%     \seq_item:Nn \l_tmpa_seq { #3 }
+%   }
+% 
+% \NewDocumentCommand \countItems { m } {
+%     \clist_count:N #1
+% }
+% 
+% \NewDocumentCommand \countInlineItems { m } {
+%     \clist_count:n {#1}
+% }
+% 
+% \ExplSyntaxOff
 
-
-$if(citeColor)$
-	\definecolor{citeColor}{HTML}{$citeColor$}
-$endif$
-
-$if(urlColor)$
-	\definecolor{urlColor}{HTML}{$urlColor$}
-$else$
-    \definecolor{urlColor}{HTML}{ab0f0f}
-$endif$
-
-$if(linkColor)$
-	\definecolor{linkColor}{HTML}{$linkColor$}
-$else$
-    \definecolor{linkColor}{HTML}{ab0f0f}
-$endif$
+\ProcessOptionsX\relax
 
 
-$if(urlMarkColor)$
-	\definecolor{urlMarkColor}{HTML}{$urlMarkColor$}
-$else$
-	\definecolor{urlMarkColor}{HTML}{ab0f0f}
-$endif$
-
-
-\definecolor{caption-color}{HTML}{777777}
-
-
-%
-% blockquote
-%
-%\definecolor{blockquote-border}{RGB}{221,221,221}
-\definecolor{blockquote-border}{RGB}{168,168,168}
-\definecolor{blockquote-text}{RGB}{0,0,0}
-
-
-
-        $if(titlepageColor)$
-	        \definecolor{titlepageColor}{HTML}{$titlepageColor$}
-	        \newpagecolor{titlepageColor}\afterpage{\restorepagecolor}
-        $endif$
-
-
-	        \definecolor{titlepageTextColor}{HTML}{$titlepageTextColor$}
-	        {\color{titlepageTextColor}
-
+\endinput
