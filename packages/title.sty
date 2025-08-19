@@ -1,23 +1,45 @@
+\RequirePackage{setspace}
+\makeatletter
+    \@ifpackageloaded{authblk}{
+        % \let\oldauthnote\AB@authnote
+        % \let\oldaffilnote\AB@affilnote
+        % 
+        % % \renewcommand\AB@authnote[1]{\textsuperscript{\sffamily#1}}
+        % % \renewcommand\AB@affilnote[1]{\textsuperscript{\sffamily#1}}
+        % 
+        % \renewcommand\AB@authnote[1]{eat fuck #1}
+        % \renewcommand\AB@affilnote[1]{#1}
+        
+        \let\oldaffillist\AB@affillist
+        \renewcommand{\AB@affillist}{%
+            \begin{raggedleft}
+                \begin{spacing}{1.0}
+                    \oldaffillist
+                \end{spacing}
+            \end{raggedleft}}
+    }
+\makeatother
+
 \makeatletter
 \def\@maketitle{%
   \newpage
   \null
   \vskip 2em%
-  \begin{flushleft}%
-   \let \footnote \thanks
-    {\LARGE \titleType \@title \par}%
-    \vskip 0.5em%
-  \end{flushleft}
-  \begin{flushright}
-    {\large
-      \lineskip .5em%
-      \begin{tabular}[t]{r}%
-        \noindent \textsf \@author \\
-	\textsf \@date
-      \end{tabular}\par}%
-    %\vskip 1em%
-    %{\large \textsf \@date}%
-  \end{flushright}%
-  \par
+  \begin{parbox}{\linewidth}%
+   %\let \footnote \thanks
+    {\LARGE \titleType \@title}% %\par}%
+    \vspace{1.0em}%
+  \end{parbox}
+          \begin{minipage}{\linewidth}
+            {\raggedleft \noindent \large \textsf \@author \par}
+          \end{minipage}
+          \begin{parbox}{\linewidth}
+            {\large \raggedleft
+              % \lineskip .5em%
+            \textsf \@date}
+          \end{parbox}
+        %\vskip 1em%
+        %{\large \textsf \@date}%
+      \par
   \vskip 1.5em}
 \makeatother
