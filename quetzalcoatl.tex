@@ -15,12 +15,9 @@
 \def\fontDir{\localDir/fonts}
 \def\packageDir{\localDir/packages}
 
-% this is unfortunately necessary to prevent any annoying popups---it's way
-% too difficult to load packages locally without them being in the TeX
-% document's directory. If I find a better solution, I'll use that.
-\usepackage{silence}
-\WarningFilter{latex}{You have requested package}
-
+% I used to use the `silence` package here, but I found that you can get rid
+% of the annoying popups by simply \emph{not} including the `\ProvidesPackage`
+% command.
 
 \usepackage{amsmath}
 \usepackage{amssymb}
@@ -109,29 +106,7 @@ $endif$
 
 $if(defaultTitle)$
 $else$
-\makeatletter
-\def\@maketitle{%
-  \newpage
-  \null
-  \vskip 2em%
-  \begin{flushleft}%
-   \let \footnote \thanks
-    {\LARGE \titleType \@title \par}%
-    \vskip 0.5em%
-  \end{flushleft}
-  \begin{flushright}
-    {\large
-      \lineskip .5em%
-      \begin{tabular}[t]{r}%
-        \noindent \textsf \@author \\
-	\textsf \@date
-      \end{tabular}\par}%
-    %\vskip 1em%
-    %{\large \textsf \@date}%
-  \end{flushright}%
-  \par
-  \vskip 1.5em}
-\makeatother
+\usepackage{\packageDir/title}
 $endif$
 
 
