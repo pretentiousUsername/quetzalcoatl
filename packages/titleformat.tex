@@ -1,0 +1,29 @@
+\makeatletter
+\def\@maketitle{%
+  \newpage
+  \null
+  \vskip 2em%
+  % For some reason, I need to use a `\noindent` keyword here.
+  \noindent\begin{minipage}{\textwidth}%
+   %\let \footnote \thanks
+    {\LARGE \titleType \noindent \@title}% %\par}%
+    \vspace{1.0em}%
+  \end{minipage}
+    \begin{minipage}{\linewidth}
+          \begin{minipage}{0.325\linewidth}
+              ~
+          \end{minipage}
+          \begin{minipage}{0.675\linewidth}
+            {\raggedleft \noindent \large \textsf \@author \par}
+          \end{minipage}
+    \end{minipage}
+          \begin{parbox}{\linewidth}
+            {\raggedleft \large \noindent 
+              % \lineskip .5em%
+            \textsf \@date}
+        \end{parbox}
+        %\vskip 1em%
+        %{\large \textsf \@date}%
+      \par
+  \vskip 1.5em}
+\makeatother

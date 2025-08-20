@@ -19,6 +19,8 @@
 % of the annoying popups by simply \emph{not} including the `\ProvidesPackage`
 % command.
 
+%\usepackage{authblk}
+
 \usepackage{amsmath}
 \usepackage{amssymb}
 \usepackage{amsthm}
@@ -94,12 +96,20 @@ $if(authorAffiliations)$
         $authblkFormatting$
     $else$
         \renewcommand\Authfont{\sffamily}
-        \renewcommand\Affilfont{\sffamily\itshape\small\raggedright}
+        \renewcommand\Affilfont{\sffamily\itshape\small}
     $endif$
     $authorAffiliations$
 $endif$
 
 $if(titlepage)$
+    % \input{\packageDir/titlepage}
+
+    $elseif(title)$
+    	\maketitle
+        $if(alternateLayout)$
+            %\thispagestyle{fancy}
+            \thispagestyle{fancy}
+    $endif$
 $else$
     \usepackage[runin]{abstract}
 $endif$
@@ -511,71 +521,8 @@ $endif$
 
 
 $if(titlepage)$
-    \newgeometry{hmargin=1.75in}
-    \begin{titlepage}
 
-	    \newpagecolor{titlepageColor}\afterpage{\restorepagecolor}
-
-	    $if(reportNo)$
-		    {\color{ruleColor} \noindent\large\textsf{$reportNo$}}
-	    $else$
-		    %\vskip \heightof{\large\textsf{1234}}
-		    \vspace*{\heightof{\large\textsf{1234}}}
-	    $endif$
-
-	    $if(institution)$
-		    {\noindent\color{ruleColor}%
-		    \rule{\textwidth-\widthof{\large\textsf{$institution$}}%
-		        - {1.25 em}}%
-		    {\heightof{\large\textsf{$institution$}}}% 
-		    \hspace{0.25 em} {\large\textsf{$institution$}}}
-	    $else$
-		    {\noindent\color{ruleColor}\rule{\textwidth}%
-		    {\heightof{\large\textsf{1234}}}}
-	    $endif$
-
-	    \vspace*{5 cm}
-	
-	    $if(titlepageTextColor)$
-	        \definecolor{titlepageTextColor}{HTML}{$titlepageTextColor$}
-	        {\color{titlepageTextColor}
-	    $endif$
-	    \begin{flushleft}
-		    {\Huge\titleType{$title$}}
-
-		    $if(subtitle)$
-			    \vspace*{0.25 cm}
-			    {\Large\textsf{$subtitle$}}
-			    \vspace*{\heightof{\Large\textsf{$subtitle$}}}
-		    $else$
-			    \vspace*{0.25 cm}
-			    \vspace*{\heightof{\Large\textsf{1234}}}
-		    $endif$
-	\end{flushleft}
-
-
-	\begin{flushright}
-		{\Large \textsf{$author$}} \\
-
-		\vspace{0.5cm}
-
-		{\Large\textsf{$date$}}
-	\end{flushright}
-
-	$if(titlepageTextColor)$
-	}
-	$endif$
-
-	$if(logo)$
-		\begin{figure}[b]
-		\includegraphics%
-		$if(logoWidth)$[width=$logoWidth$]$endif${$logo$}
-		\end{figure}
-	$endif$
-\end{titlepage}
-\pagestyle{plain}
-
-\restoregeometry
+\input{\packageDir/titlepage}
 
 $elseif(title)$
     	\maketitle
