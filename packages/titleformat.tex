@@ -9,19 +9,17 @@
     {\LARGE \titleType \noindent \@title}% %\par}%
     \vspace{1.0em}%
   \end{minipage}
-    \begin{minipage}{\linewidth}
+    \noindent\begin{minipage}{\linewidth}
           \begin{minipage}{0.325\linewidth}
               ~
-          \end{minipage}
+          \end{minipage}\hfill
           \begin{minipage}{0.675\linewidth}
-            {\raggedleft \noindent \large \textsf \@author \par}
-          \end{minipage}
+            {\flushright \noindent \large \textsf \@author \par}
+          \end{minipage}\hfill
     \end{minipage}
-          \begin{parbox}{\linewidth}
-            {\raggedleft \large \noindent 
-              % \lineskip .5em%
-            \textsf \@date}
-        \end{parbox}
+          \noindent\begin{minipage}{\linewidth}
+            {\flushright \large \noindent \textsf \@date \par}
+        \end{minipage}
         %\vskip 1em%
         %{\large \textsf \@date}%
       \par
