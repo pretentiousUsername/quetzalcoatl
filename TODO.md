@@ -17,8 +17,8 @@
 + [ ] Make better titles
   - [ ] Make a better title page.
     * Make it more modular, or at least make different title pages.
-  - [ ] Make the title *not* a tabular.
-  - [ ] Make it easier to include affiliations with the `authblk` package.
+  - [X] Make the title *not* a tabular.
+  - [X] Make it easier to include affiliations with the `authblk` package.
 + [ ] Page layout types
   - [ ] Make single *and* double sided layouts
   - [ ] Ripoff Tufte–styled layout
