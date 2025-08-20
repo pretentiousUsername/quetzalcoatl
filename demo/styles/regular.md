@@ -7,6 +7,11 @@ numberSections: true
 ---
 
 # Introduction
+\ifthenelse{\equal{hello}{hello}}{true}{false}
+
+<!--\ifthenelse{\equal{\QuetzalTitleFormat}{hello}}{true}{false}-->
+<!--\QuetzalTitleFormat-->
+
 This is the standard. If you're not going to pick anything else, you're
 getting this. Don't worry, I don't think you're boring for using this style.
 You have three outfits with statement pieces in them, but not this style.
