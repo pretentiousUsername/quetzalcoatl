@@ -1,3 +1,8 @@
++ [ ] **Consider a full rewrite**
+    - There are just *so many* layers of jank and kludges here.
+    - A full rewrite would take a lot of time, but would fix up a lot of the
+      minor mistakes and things that have been nagging at me. Case and point,
+      the `titlepage`.
 + [ ] Refactor code into multiple different TeX files.
   - The code at present is in one big TeX file, which makes changes very
     precarious—I should refactor the many different aspects of this code into
