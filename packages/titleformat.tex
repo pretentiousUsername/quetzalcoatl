@@ -1,4 +1,25 @@
 \makeatletter
+    \@ifpackageloaded{authblk}{
+        % \let\oldauthnote\AB@authnote
+        % \let\oldaffilnote\AB@affilnote
+        % 
+        % % \renewcommand\AB@authnote[1]{\textsuperscript{\sffamily#1}}
+        % % \renewcommand\AB@affilnote[1]{\textsuperscript{\sffamily#1}}
+        % 
+        % \renewcommand\AB@authnote[1]{eat fuck #1}
+        % \renewcommand\AB@affilnote[1]{#1}
+        
+        \let\oldaffillist\AB@affillist
+        \renewcommand{\AB@affillist}{%
+            \begin{raggedleft}
+                \begin{spacing}{1.0}
+                    \oldaffillist
+                \end{spacing}
+            \end{raggedleft}}
+    }
+\makeatother
+
+\makeatletter
 \def\@maketitle{%
   \newpage
   \null

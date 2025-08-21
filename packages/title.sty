@@ -1,23 +1,23 @@
 \RequirePackage{setspace}
-\makeatletter
-    \@ifpackageloaded{authblk}{
-        % \let\oldauthnote\AB@authnote
-        % \let\oldaffilnote\AB@affilnote
-        % 
-        % % \renewcommand\AB@authnote[1]{\textsuperscript{\sffamily#1}}
-        % % \renewcommand\AB@affilnote[1]{\textsuperscript{\sffamily#1}}
-        % 
-        % \renewcommand\AB@authnote[1]{eat fuck #1}
-        % \renewcommand\AB@affilnote[1]{#1}
-        
-        \let\oldaffillist\AB@affillist
-        \renewcommand{\AB@affillist}{%
-            \begin{raggedleft}
-                \begin{spacing}{1.0}
-                    \oldaffillist
-                \end{spacing}
-            \end{raggedleft}}
-    }
-\makeatother
+\RequirePackage{xkeyval}
+\RequirePackage{ifthen}
 
-\input{\packageDir/titleformat}
+% I'm opening this up to future expansion, e.g. choosing your own title
+% format, outside of the one I've made and the LaTeX style.
+
+% You need to define \@QuetzalTitleFormat before changing it, since defining
+% it in the package option leads to some pretty screwy results---it will just
+% straight up *not* define the macro, for some reason.
+\newcommand{\@QuetzalTitleFormat}{regular}
+
+\DeclareOptionX{style}[regular]{%
+    \renewcommand\@QuetzalTitleFormat{#1}
+}
+\ProcessOptionsX\relax
+
+% Consider making this a switch statement in the future.
+\ifthenelse{\not\equal{\@QuetzalTitleFormat}{tex}}{
+    \input{\packageDir/titleformat}
+}
+
+\endinput

@@ -1,25 +1,18 @@
 \newgeometry{hmargin=1.75in}
+
+
 \begin{titlepage}
 	\newpagecolor{titlepageColor}\afterpage{\restorepagecolor}
-    \ifx\QuetzalReportNo\undefined
-        ~
-    \else
-		    {\color{ruleColor} \noindent\large\textsf{\QuetzalReportNo}}
-		    \vspace*{\heightof{\large\textsf{1234}}}
-    \fi
+	{\color{ruleColor} \noindent\large\textsf{\@QuetzalTitlePageReportNo}}%
+	\vspace*{\heightof{\large\textsf{1234}}}
 
-    \ifx\QuetzalInstitution\undefined
-		    {\noindent\color{ruleColor}\rule{\textwidth}%
-		    {\heightof{\large\textsf{1234}}}}
-        \else
-		    {\noindent\color{ruleColor}%
-		    \rule{\textwidth-\widthof{\large\textsf{\QuetzalInstitution}}%
-		        - {1.25 em}}%
-		    {\heightof{\large\textsf{\QuetzalInstitution}}}% 
-		    \hspace{0.25 em} {\large\textsf{\QuetzalInstitution}}}
-        \fi
-
-	    \vspace*{5 cm}
+	{\noindent\color{ruleColor}%
+	\rule{\textwidth-\widthof{\large\textsf{\@QuetzalTitlePageInstitution}}%
+		- {1.25 em}}%
+	{\heightof{\large\textsf{\@QuetzalTitlePageInstitution}}}% 
+	\hspace{0.25 em} {\large\textsf{\@QuetzalTitlePageInstitution}}}
+	
+    \vspace*{5 cm}
 	
     % \ifx\@QuetzalTitlepageTextColor\undefined
     %     \let\titlepageTextColor\color{black}
@@ -39,23 +32,22 @@
 % 		    $endif$
 % 	\end{flushleft}
 
-
 	\begin{flushright}
-		{\color{titlepageTextColor} \Large \textsf{\@author}} \\
+    	{\color{titlepageTextColor} \Large \textsf{\@author}} \\
 
-		\vspace{0.5cm}
+    	\vspace{0.5cm}
 
-		{\color{titlepageTextColor} \Large\textsf{\@date}}
-	\end{flushright}
+    	{\color{titlepageTextColor} \Large\textsf{\@date}}
+    \end{flushright}
 
-    \ifx\QuetzalLogo\undefined
-        ~
-    \else
-		% \begin{figure}[b]
-		% \includegraphics%
-		% \ifx\@QuetzalLogoWidth\undefined ~\else[width=\@QuetzalLogoWidth]\fi{\@QuetzalLogo}
-		% \end{figure}
-    \fi
+    % \ifx\QuetzalLogo\undefined
+    %     ~
+    % \else
+	% 	% \begin{figure}[b]
+	% 	% \includegraphics%
+	% 	% \ifx\@QuetzalLogoWidth\undefined ~\else[width=\@QuetzalLogoWidth]\fi{\@QuetzalLogo}
+	% 	% \end{figure}
+    % \fi
 \end{titlepage}
 \pagestyle{plain}
 

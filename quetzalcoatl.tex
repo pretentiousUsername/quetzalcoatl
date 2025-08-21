@@ -101,20 +101,21 @@ $if(authorAffiliations)$
     $authorAffiliations$
 $endif$
 
-$if(titlepage)$
-    % \input{\packageDir/titlepage}
+% $if(titlepage)$
+%     % \input{\packageDir/titlepage}
+% 
+%     $elseif(title)$
+%     	\maketitle
+%         $if(alternateLayout)$
+%             %\thispagestyle{fancy}
+%             \thispagestyle{fancy}
+%     $endif$
+% $else$
+%     \usepackage[runin]{abstract}
+% $endif$
 
-    $elseif(title)$
-    	\maketitle
-        $if(alternateLayout)$
-            %\thispagestyle{fancy}
-            \thispagestyle{fancy}
-    $endif$
-$else$
-    \usepackage[runin]{abstract}
-$endif$
-
-$if(defaultTitle)$
+$if(titleFormat)$
+\usepackage[style=$titleFormat$]{\packageDir/title}
 $else$
 \usepackage{\packageDir/title}
 $endif$
@@ -154,15 +155,11 @@ $endif$
 
 
 $if(language)$
-
 	\usepackage{polyglossia}
 	\setmainlanguage{$language$}
-
 $else$
-
 	\usepackage{polyglossia}
 	\setmainlanguage{english}
-
 $endif$
 
 

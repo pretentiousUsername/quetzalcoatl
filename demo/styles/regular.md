@@ -4,6 +4,7 @@ author: Ian Mitchell
 date: \today
 style: regular
 numberSections: true
+titlepage: true
 ---
 
 # Introduction
