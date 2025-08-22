@@ -1,10 +1,14 @@
 ---
 title: Testing the titles
 subtitle: subtitles galore
-author: Ian Mitchell
+authorAffiliations:
+ - \author[1]{Ian Mitchell}
+ - \author[2]{Other Author}
+ - \affil[1]{Workplace Laboratories Inc.™}
+ - \affil[2]{Another Fun Place}
 institution: Workplace Laboratories Inc.™
 reportNo: FOO-1234
-titlepage: true
+titlepage: false
 abstract: This is my fun abstract!
 style: regular
 ---
