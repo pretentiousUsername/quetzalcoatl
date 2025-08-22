@@ -90,16 +90,6 @@ $if(sansBody)$
 	\renewcommand{\familydefault}{\sfdefault}
 $endif$
 
-$if(authorAffiliations)$
-    \usepackage{authblk}
-    $if(authblkFormatting)$
-        $authblkFormatting$
-    $else$
-        \renewcommand\Authfont{\sffamily}
-        \renewcommand\Affilfont{\sffamily\itshape\small}
-    $endif$
-    $authorAffiliations$
-$endif$
 
 % $if(titlepage)$
 %     % \input{\packageDir/titlepage}
@@ -113,6 +103,54 @@ $endif$
 % $else$
 %     \usepackage[runin]{abstract}
 % $endif$
+
+
+$if(title)$
+	\title{$title$$if(subtitle)$\\\vspace{-0.5em}{\large $subtitle$}$endif$}
+$endif$
+
+$if(author)$
+	\author{$for(author)$$author$$sep$ \and $endfor$}
+$endif$
+
+$if(authorAffiliations)$
+    \usepackage{authblk}
+    $if(authblkFormatting)$
+        $authblkFormatting$
+    $else$
+        \renewcommand\Authfont{\sffamily}
+        \renewcommand\Affilfont{\sffamily\itshape\small}
+    $endif$
+    $authorAffiliations$
+$endif$
+
+$if(date)$
+	\date{$date$}
+$endif$
+
+% Title formatting
+$if(titlepage)$
+    \usepackage{\packageDir/titlepageoptions}
+    $if(reportNo)$
+        \renewcommand\QuetzalTitlePageReportNo{$reportNo$}
+    $endif$
+    
+    $if(institution)$
+        \renewcommand\QuetzalTitlePageInstitution{$institution$}
+    $endif$
+    
+    $if(logo)$
+        \renewcommand\QuetzalTitlePageLogo{$logo$}
+    $endif$
+    
+    $if(logoWidth)$
+        \renewcommand\QuetzalTitlePageLogoWidth{$logoWidth$}
+    $endif$
+    
+    $if(titlepageTextColor)$
+        \renewcommand\QuetzalTitlePageTextColor{$titlepageTextColor$}
+    $endif$
+$endif$
 
 $if(titleFormat)$
 \usepackage[style=$titleFormat$]{\packageDir/title}
@@ -387,17 +425,6 @@ $if(verbatimInNote)$
 \VerbatimFootnotes % allows verbatim text in footnotes
 $endif$
 
-$if(title)$
-	\title{$title$$if(subtitle)$\\\vspace{-0.5em}{\large $subtitle$}$endif$}
-$endif$
-
-$if(author)$
-	\author{$for(author)$$author$$sep$ \and $endfor$}
-$endif$
-
-$if(date)$
-	\date{$date$}
-$endif$
 
 $for(headerIncludes)$
 $headerIncludes$
@@ -518,7 +545,6 @@ $endif$
 
 
 $if(titlepage)$
-
 \input{\packageDir/titlepage}
 
 $elseif(title)$

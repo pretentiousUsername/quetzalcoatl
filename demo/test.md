@@ -1,14 +1,12 @@
 ---
 title: Testing the titles
 subtitle: subtitles galore
-authorAffiliations:
- - \author[1]{Ian Mitchell\thanks{\texttt{my email address!}}}
- - \author[1,2]{Other Author}
- - \author[3]{Yet Another}
- - \affil[1]{My University}
- - \affil[2]{Another University}
- - \affil[3]{US Army DEVCOM Blowing Stuff Up and ACRONYM Research Center, Springfield Division}
+author: Ian Mitchell
+institution: Workplace Laboratories Inc.™
+reportNo: FOO-1234
 titlepage: true
+abstract: This is my fun abstract!
+style: regular
 ---
 
 Unfortunately, I can't change the font on the `authblk` superscripts because

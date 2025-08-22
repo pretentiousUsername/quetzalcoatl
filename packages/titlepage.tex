@@ -1,54 +1,36 @@
+\makeatletter
+    \@ifpackageloaded{authblk}{
+        % \let\oldauthnote\AB@authnote
+        % \let\oldaffilnote\AB@affilnote
+        % 
+        % % \renewcommand\AB@authnote[1]{\textsuperscript{\sffamily#1}}
+        % % \renewcommand\AB@affilnote[1]{\textsuperscript{\sffamily#1}}
+        % 
+        % \renewcommand\AB@authnote[1]{eat fuck #1}
+        % \renewcommand\AB@affilnote[1]{#1}
+        
+        \let\oldaffillist\AB@affillist
+        \renewcommand{\AB@affillist}{%
+            \begin{raggedright}
+                \begin{spacing}{1.0}
+                    \oldaffillist
+                \end{spacing}
+            \end{raggedright}}
+    }
+\makeatother
+
 \newgeometry{hmargin=1.75in}
 
-
+\makeatletter
 \begin{titlepage}
-	\newpagecolor{titlepageColor}\afterpage{\restorepagecolor}
-	{\color{ruleColor} \noindent\large\textsf{\@QuetzalTitlePageReportNo}}%
-	\vspace*{\heightof{\large\textsf{1234}}}
+    \vspace*{\fill}
 
-	{\noindent\color{ruleColor}%
-	\rule{\textwidth-\widthof{\large\textsf{\@QuetzalTitlePageInstitution}}%
-		- {1.25 em}}%
-	{\heightof{\large\textsf{\@QuetzalTitlePageInstitution}}}% 
-	\hspace{0.25 em} {\large\textsf{\@QuetzalTitlePageInstitution}}}
-	
-    \vspace*{5 cm}
-	
-    % \ifx\@QuetzalTitlepageTextColor\undefined
-    %     \let\titlepageTextColor\color{black}
-    % \else
-	%     \definecolor{titlepageTextColor}{HTML}{\@QuetzalTitlepageTextColor}
-    % \fi
-% 	\begin{flushleft}
-% 		    {\Huge\titleType{$title$}}
-% 
-% 		    $if(subtitle)$
-% 			    \vspace*{0.25 cm}
-% 			    {\Large\textsf{$subtitle$}}
-% 			    \vspace*{\heightof{\Large\textsf{$subtitle$}}}
-% 		    $else$
-% 			    \vspace*{0.25 cm}
-% 			    \vspace*{\heightof{\Large\textsf{1234}}}
-% 		    $endif$
-% 	\end{flushleft}
-
-	\begin{flushright}
-    	{\color{titlepageTextColor} \Large \textsf{\@author}} \\
-
-    	\vspace{0.5cm}
-
-    	{\color{titlepageTextColor} \Large\textsf{\@date}}
-    \end{flushright}
-
-    % \ifx\QuetzalLogo\undefined
-    %     ~
-    % \else
-	% 	% \begin{figure}[b]
-	% 	% \includegraphics%
-	% 	% \ifx\@QuetzalLogoWidth\undefined ~\else[width=\@QuetzalLogoWidth]\fi{\@QuetzalLogo}
-	% 	% \end{figure}
-    % \fi
+    \input{\packageDir/titlepage/title}
+    \vspace*{\fill}
+    \input{\packageDir/titlepage/institution}
 \end{titlepage}
+\makeatother
+
 \pagestyle{plain}
 
 \restoregeometry

@@ -1,7 +1,7 @@
 ---
 title: "Typeset testing"
 author: "Ian Mitchell"
-date: \today
+date: 2024-10-18
 abstract:
  This is my abstract for this document. It is a summary of
  everything in the document---though it does not *really* tell you much
