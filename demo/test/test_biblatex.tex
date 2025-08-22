@@ -1,0 +1,408 @@
+\documentclass[%
+	english,%
+	 a4paper,%
+	%
+	%
+	titlepage,%
+	fleqn]{article}
+% This is ugly, but if I have it spaced out, pandoc doesn't like it much.
+
+% Set your local directory---*do not* include a slash after the directory
+\def\localDir{/home/pines/.pandoc/quetzalcoatl}
+
+% DO NOT include a slash after your fontDir is set
+\def\fontDir{\localDir/fonts}
+\def\packageDir{\localDir/packages}
+
+% I used to use the `silence` package here, but I found that you can get rid
+% of the annoying popups by simply \emph{not} including the `\ProvidesPackage`
+% command.
+
+%\usepackage{authblk}
+
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{amsthm}
+\usepackage[makeroom]{cancel}
+\usepackage{xparse}
+\usepackage{xstring}
+\usepackage{xtemplate}
+\usepackage{xspace}
+\usepackage{ragged2e}
+\usepackage[palette=default]{\packageDir/mycolors}
+\usepackage{\packageDir/subtitle}
+
+
+% Physics stuff
+% \usepackage{braket}
+\usepackage[spaced=0]{diffcoeff}
+\usepackage{linop}
+
+% Change the diffcoeff "d" to be upright.
+    \difdef{ f, s, c, l }{}
+        {
+            op-symbol = d ,
+            op-order-nudge = 1 mu
+        }
+
+
+\usepackage{\packageDir/mymacros}
+
+\usepackage{enumerate}
+% Keep pandoc from getting mad
+\providecommand{\tightlist}{%
+  \setlength{\itemsep}{0pt}\setlength{\parskip}{0pt}}
+
+\renewcommand{\labelenumii}{\arabic{enumi}.\arabic{enumii}.}
+\renewcommand{\labelenumiii}{\arabic{enumi}.\arabic{enumii}.\arabic{enumiii}.}
+\renewcommand{\labelenumiv}{%
+    \arabic{enumi}.\arabic{enumii}.\arabic{enumiii}.\arabic{enumiv}.}
+
+\usepackage{calc}
+
+
+\usepackage{\packageDir/mathParenSpacing}
+
+\usepackage{soul}
+
+\usepackage{siunitx}
+
+\usepackage{fontspec}
+\usepackage{unicode-math}
+\usepackage[noindentafter]{titlesec}
+
+\usepackage[auto=true]{microtype}
+\SetTracking{encoding={*}, shape=sc}{500}
+
+    \usepackage[style=regular]{\packageDir/stylesets}
+
+
+
+% %     % \input{\packageDir/titlepage}
+% 
+%     
+
+	\title{Abscence of diffusion in certain random lattices}
+
+    \subtitle{testing out titles and stuff}
+
+	\author{P.W. Anderson}
+
+
+	\date{1957-10-10}
+
+    \newcommand{\QuetzalAbstract}{{This paper presents a simple model
+for such processes as spin diffusion or conduction in the ``impurity
+band.'' These processes involve transport in a lattice which is in some
+sense random, and in them diffusion is expected to take place via
+quantum jumps between localized sites. In this simple model the
+essential randomness is introduced by requiring the energy to vary
+randomly from site to site. It is shown that at low enough densities no
+diffusion at all can take place, and the criteria for transport to occur
+are given.}}
+
+\usepackage[runin]{abstract}
+\setlength{\absparindent}{0 pt}
+\renewcommand{\abstractnamefont}{\sffamily\small\bfseries}
+    \renewcommand\abstractname{\sffamily Abstract}
+
+% Title formatting
+    \usepackage[%
+     abstract %
+    ]{\packageDir/titlepageoptions}
+            \renewcommand\QuetzalTitlePageReportNo{FOO-1234}
+        
+            \renewcommand\QuetzalTitlePageInstitution{Bell Telephone
+Laboratories}
+        
+        
+        
+    
+\usepackage{\packageDir/title}
+
+
+
+
+% Set itemize symbols
+\renewcommand{\labelitemi}{\symbolFont{▪}}
+\renewcommand{\labelitemii}{\symbolFont{▹}}
+\renewcommand{\labelitemiii}{\symbolFont{•}}
+\renewcommand{\labelitemiv}{\symbolFont{⟶}}
+
+% \usepackage{indentfirst}
+
+
+
+
+	\usepackage{polyglossia}
+	\setmainlanguage{english}
+
+
+
+
+\usepackage{setspace}
+	\setstretch{1.25}
+
+
+\usepackage{longtable,booktabs,array}
+\usepackage{multirow}
+
+\usepackage{afterpage}
+
+
+\setlength\heavyrulewidth{0.3ex}      % thickness of \toprule, \bottomrule
+\renewcommand{\arraystretch}{1.3}     % spacing (padding)
+
+
+% \usepackage{bm}
+
+\usepackage{upquote}
+
+\usepackage[hmargin=2in, marginparsep=0.0 in]{geometry}
+
+
+\usepackage{fancyhdr}
+        \pagestyle{plain}
+
+
+
+% Taken from Eisvogel, ln. 312--339
+% https://github.com/Wandmalfarbe/pandoc-latex-template/blob/master/eisvogel.tex
+
+
+
+
+
+% Also taken from Eisvogel
+
+\usepackage{graphicx}
+\DeclareGraphicsExtensions{.png,.pdf}
+
+% Useful---I like it.
+\usepackage{subcaption}
+
+
+\makeatletter
+\def\maxwidth{\ifdim\Gin@nat@width>\linewidth\linewidth\else\Gin@nat@width\fi}
+\def\maxheight{\ifdim\Gin@nat@height>\textheight\textheight\else\Gin@nat@height\fi}
+\makeatother
+% Scale images if necessary, so that they will not overflow the page
+% margins by default, and it is still possible to overwrite the defaults
+% using explicit options in \includegraphics[width, height, ...]{}
+\setkeys{Gin}{width=\maxwidth,height=\maxheight,keepaspectratio}
+%% Set default figure placement to htbp
+% Set default figure placement to t
+\makeatletter
+%\def\fps@figure{htbp}
+\def\fps@figure{t}
+\makeatother
+
+% Change figure title
+\usepackage[figurename={Figure}, font={small}, labelfont={sf, bf},%
+labelsep={period}, justification={raggedright}]{caption}
+% \DeclareCaptionStyle{marginfigure}{labelfont={color=mymaroon}}
+
+
+
+\usepackage[unicode=true]{hyperref}
+
+
+\hypersetup{breaklinks=true,
+            bookmarks=true,
+            pdfauthor={P.W. Anderson},
+            pdftitle={Abscence of diffusion in certain random lattices},
+            colorlinks=true,
+            citecolor= black ,
+	        urlcolor=urlColor,
+            linkcolor= black ,
+            pdfborder={0 0 0},
+}
+%\def\UrlBreaks{\do\/\do-}
+\urlstyle{same}  % don't use monospace font for urls
+
+
+%\definecolor{blockquote-border}{RGB}{221,221,221}
+% redefine footnotes to include character
+
+% It's time to get funky!
+\let\periodGroup=.
+%\let\commaGroup=,
+%\newcommand{\superUrlMark}{
+    %\@ifnextchar.{\rlap{°}}{°}
+%}
+
+% make something that automatically kerns a urlMark. I didn't want to switch to
+% luaTeX, since XeTeX is slow enough as is.
+%
+% Check a `\url` command, and see if the character next to the hyperlink is a
+% period, or see if the last character of a hyperlink is a period or comma.
+%
+%\dots\stackengine{0pt}{.}{}{O}{l}{F}{F}{L}
+
+
+	\let\orighref\href
+	%\renewcommand{\href}[2]{\orighref{#1}{#2\color{urlMarkColor}%
+	%\rlap{\symbolFont{°}}}} % I wish this would work properly...
+	%\renewcommand{\href}[2]{\orighref{#1}{#2\color{urlMarkColor}%
+	%\symbolFont{°}}}
+	%\renewcommand{\href}[2]{\orighref{#1}{#2\color{urlMarkColor}%
+        %°}} % MAYBE COME BACK TO THIS
+	%\renewcommand{\href}[2]{\orighref{#1}{#2\color{urlMarkColor}%
+    %\superUrlMark}}
+
+
+
+\setlength{\emergencystretch}{3em}  % prevent overfull lines
+
+% No clue why I put in numberSections twice
+%%\setcounter{secnumdepth}{0}
+%
+
+
+
+\usepackage{mdframed}
+\newmdenv[rightline=false, leftline=false, linecolor=ruleColor]{abstractBox}
+
+\newmdenv[rightline=false,bottomline=false,topline=false,linewidth=3pt,linecolor=blockquote-border,skipabove=1em,font=\sffamily\small]{customblockquote}
+\renewenvironment{quote}{\begin{customblockquote}\vspace{-0.5cm}{\rightmargin=0em\leftmargin=0em}%
+\item\relax\color{blockquote-text}\ignorespaces}{\unskip\unskip\end{customblockquote}}
+
+	\setlength{\parindent}{1.25em}
+
+
+
+		\setlength\RaggedRightParindent{1.25em}
+	
+
+\newcommand{\dinkus}{\begin{center}* * *\end{center}}
+
+\widowpenalty=2000
+\clubpenalty=2000
+
+	\setlength{\parskip}{0cm plus 1mm minus 1mm}
+
+\usepackage{lipsum}
+
+\usepackage{datetime2}
+
+\usepackage{tikz}
+
+
+\usetikzlibrary{positioning}
+\usetikzlibrary{shapes.geometric}
+
+\usepackage{multicol}
+
+% Taken from the default template
+\usepackage[style=numeric,]{biblatex}
+\addbibresource{ref.bib}
+
+
+% foo
+%\if\texttt1
+	%\let\emdash{\emdash\emdash}
+%\fi
+
+% !!!ALWAYS MAKE SURE THIS IS LOADED *LAST*!!!
+
+
+\begin{document}
+
+
+\input{\packageDir/titlepage}
+
+
+
+
+
+% 
+
+    %    %\renewcommand\abstractname{\sffamily Abstract}
+    %
+%\setlength{\absparindent}{0.51em}
+
+% possible spaghetti incoming
+% %     \restoregeometry
+%     \thispagestyle{plain}
+% 	\begin{abstract}
+% 		abstract  % surround this in dollar signs when you want it to work with pandoc again
+% 	\end{abstract}
+% \saythanks
+
+ 
+
+{
+\hypersetup{linkcolor=black}
+\setcounter{tocdepth}{3}
+\tableofcontents
+}
+
+\noindent\rule{\linewidth}{0.05em}
+
+\pagenumbering{gobble}
+\newpage
+
+
+
+
+
+        \pagenumbering{arabic}
+
+% TODO: work on developing this more
+
+
+
+%%%\SetBgContents{\rule{.4pt}{\textheight + 2\headsep}}
+%\pagestyle{fancy}
+\section{Introduction}\label{introduction}
+
+A number of physical phenomena seem to involve quantum-mechanical
+motion, without any particular thermal activation, among sites at which
+the mobile entities (spins or electrons, for example) may be localized.
+The clearest case is that of spin diffusion''
+\cite{bloembergen1949,portis1956}; another might be the so-called
+impurity band conduction at low concentrations of impurities. In such
+situations we suspect that transport occurs not by motion of free
+carriers (or spin waves), scattered as they move through a medium, but
+in some sense by quantum-mechanical jumps of the mobile entities from
+site to site. A second common feature of these phenomena is randomness:
+random spacings of impurities, random interactions with the
+``atmosphere'' of other impurities, random arrangements of electronic or
+nuclear spins, etc.
+
+Our eventual purpose in this work will be to lay the foundation for a
+quantum-mechanical theory of transport problems of this type. Therefore,
+we must start with simple theoretical models rather than with the
+complicated experimental situations on spin diffusion or impurity
+conduction. In this paper, in fact, we attempt only to construct, for
+such a system, the simplest model we can think of which still has some
+expectation of representing a real physical situation reasonably well,
+and to prove a theorem about the model. The theorem is that at
+sufficiently low densities, transport does not take place; the exact
+wave functions are localized in a small region of space. We also obtain
+a fairly good estimate of the critical density at which the theorem
+fails. An additional criterion is that the forces be of sufficiently
+short range---actually, falling off as \(r \rightarrow \infty\) faster
+than \(1/r^3\)---and we derive a rough estimate of the rate of transport
+in the \(V \propto 1/r^3\) case.
+
+\ldots{}
+
+\section{Summary of the reasoning}\label{summary-of-the-reasoning}
+
+Since the mathematical development is fairly complicated and involves
+lengthy consideration of each of a number of points, we should like to
+summarize the reasoning rather fully in this section, leaving the proofs
+and details to later sections. First, then, let us set up the simple
+model which we study. The equation for the time-dependence of the
+probability amplitude \(a\), that a particle is on the site \(j\) is:
+\begin{equation}\phantomsection\label{eq:1}{i \, \dot{a}_j = E_j \, a_j + \sum_{k \neq j} V_{j k} \, a_k \,.}\end{equation}
+
+
+
+
+
+
+\printbibliography
+
+\end{document}
