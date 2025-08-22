@@ -27,7 +27,8 @@
   % For some reason, I need to use a `\noindent` keyword here.
   \noindent\begin{minipage}{\textwidth}%
    %\let \footnote \thanks
-    {\LARGE \titleType \noindent \@title}% %\par}%
+        {\LARGE \titleType \noindent \@title} \\ % \par}%
+        {\Large \titleType \noindent \@subtitle}
     \vspace{1.0em}%
   \end{minipage}
     \noindent\begin{minipage}{\linewidth}
@@ -36,6 +37,7 @@
           \end{minipage}\hfill
           \begin{minipage}{0.675\linewidth}
             {\flushright \noindent \large \textsf \@author \par}
+            % {\hfill \noindent \large \textsf \@author \par}
           \end{minipage}\hfill
     \end{minipage}
           \noindent\begin{minipage}{\linewidth}

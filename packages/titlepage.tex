@@ -27,6 +27,11 @@
 
     \input{\packageDir/titlepage/title}
     \vspace*{\fill}
+    \ifthenelse{\QuetzalTitlePageAbstract = 1}{
+        \input{\packageDir/titlepage/abstract}
+    }{}
+
+    \vspace*{\fill}
     \input{\packageDir/titlepage/institution}
 \end{titlepage}
 \makeatother
@@ -34,3 +39,14 @@
 \pagestyle{plain}
 
 \restoregeometry
+
+
+\ifthenelse{\QuetzalTitlePageAbstract = 0 \and \not\isundefined{\QuetzalAbstract}}{
+    \restoregeometry
+    \thispagestyle{plain}
+    \begin{abstract}
+        \begin{abstractBox}
+    	    \QuetzalAbstract
+        \end{abstractBox}
+    \end{abstract}
+}{}

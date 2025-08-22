@@ -31,6 +31,7 @@
 \usepackage{xspace}
 \usepackage{ragged2e}
 \usepackage[palette=default]{\packageDir/mycolors}
+\usepackage{\packageDir/subtitle}
 
 $if(marginNote)$
 \usepackage{marginnote}
@@ -106,7 +107,11 @@ $endif$
 
 
 $if(title)$
-	\title{$title$$if(subtitle)$\\\vspace{-0.5em}{\large $subtitle$}$endif$}
+	\title{$title$}
+$endif$
+
+$if(subtitle)$
+    \subtitle{$subtitle$}
 $endif$
 
 $if(author)$
@@ -128,9 +133,24 @@ $if(date)$
 	\date{$date$}
 $endif$
 
+$if(abstract)$
+    \newcommand{\QuetzalAbstract}{{$abstract$}}
+$endif$
+
+\usepackage[runin]{abstract}
+\setlength{\absparindent}{0 pt}
+\renewcommand{\abstractnamefont}{\sffamily\small\bfseries}
+$if(abstractName)$
+    \renewcommand\abstractname{\sffamily $abstractName$}
+$else$
+    \renewcommand\abstractname{\sffamily Abstract}
+$endif$
+
 % Title formatting
 $if(titlepage)$
-    \usepackage{\packageDir/titlepageoptions}
+    \usepackage[%
+    $if(titlepageAbstract)$ abstract $endif$%
+    ]{\packageDir/titlepageoptions}
     $if(reportNo)$
         \renewcommand\QuetzalTitlePageReportNo{$reportNo$}
     $endif$
@@ -150,6 +170,8 @@ $if(titlepage)$
     $if(titlepageTextColor)$
         \renewcommand\QuetzalTitlePageTextColor{$titlepageTextColor$}
     $endif$
+$else$
+    % \usepackage[runin]{abstract}
 $endif$
 
 $if(titleFormat)$
@@ -431,6 +453,8 @@ $headerIncludes$
 $endfor$
 
 \usepackage{mdframed}
+\newmdenv[rightline=false, leftline=false, linecolor=ruleColor]{abstractBox}
+
 \newmdenv[rightline=false,bottomline=false,topline=false,linewidth=3pt,linecolor=blockquote-border,skipabove=1em,font=\sffamily\small]{customblockquote}
 \renewenvironment{quote}{\begin{customblockquote}\vspace{-0.5cm}{\rightmargin=0em\leftmargin=0em}%
 \item\relax\color{blockquote-text}\ignorespaces}{\unskip\unskip\end{customblockquote}}
@@ -556,15 +580,20 @@ $elseif(title)$
 
 $endif$
 
-\newmdenv[rightline=false, leftline=false]{abstractBox}
 
-$if(abstractName)$
-    \renewcommand\abstractname{\sffamily $abstractName$}
+$if(titlePage)$
 $else$
-    \renewcommand\abstractname{\sffamily Abstract}
+    $if(abstract)$
+        \begin{abstract}
+            \begin{abstractBox}
+                $abstract$
+            \end{abstractBox}
+        \end{abstract}
+    $endif$
 $endif$
 
-$if(abstract)$
+
+% $if(abstract)$
 
 
     %$if(titlepage)$
@@ -576,25 +605,26 @@ $if(abstract)$
 %\setlength{\absparindent}{0.51em}
 
 % possible spaghetti incoming
-$if(titlepage)$
-    \restoregeometry
-    \thispagestyle{plain}
-	\begin{abstract}
-		$abstract$
-	\end{abstract}
-$else$
-\setlength{\absparindent}{0.51em}
+% $if(titlepage)$
+%     \restoregeometry
+%     \thispagestyle{plain}
+% 	\begin{abstract}
+% 		abstract  % surround this in dollar signs when you want it to work with pandoc again
+% 	\end{abstract}
+% $else$
+% \setlength{\absparindent}{0.51em}
 
 
-	\begin{abstract}
-	\begin{abstractBox} % sometimes we have happy little accidents
-		$abstract$
-	\end{abstractBox}
-	\end{abstract}
+%	\begin{abstract}
+%	\begin{abstractBox} % sometimes we have happy little accidents
+%		abstract  % surround this in dollar signs when you want it to work with pandoc again
+%	\end{abstractBox}
+%	\end{abstract}
 
 
+% $endif$
 $endif$
-$endif$
+\saythanks
 
 $if(alternateLayout)$
     \fancyhf{}
