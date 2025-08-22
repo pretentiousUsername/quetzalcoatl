@@ -2,6 +2,7 @@
 title: Abscence of diffusion in certain random lattices
 subtitle: testing out titles and stuff
 author: P.W. Anderson
+date: 1957-10-10
 abstract:
  This paper presents a simple model for such processes as spin diffusion or
  conduction in the "impurity band." These processes involve transport in a
@@ -13,10 +14,19 @@ abstract:
 institution: Bell Telephone Laboratories
 reportNo: FOO-1234
 titlepage: true
-titlepageAbstract: false
+titlepageAbstract: true
 style: regular
-numberSections: true
+tableOfContents: true
+bibliography: ref.bib
+csl: /home/pines/.pandoc/csl/chicago-author-date.csl
 ---
+
+<!--
+csl: /home/pines/.pandoc/csl/chicago-author-date.csl
+-->
+<!--
+numberSections: false
+-->
 
 <!--
 subtitle: testing out titles and stuff
@@ -51,7 +61,7 @@ A number of physical phenomena seem to involve
 quantum-mechanical motion, without any particular thermal activation, among
 sites at which the
 mobile entities (spins or electrons, for example) may be
-localized. The clearest case is that of spin diffusion";
+localized. The clearest case is that of spin diffusion" [@bloembergen_1949; @portis_1956];
 another might be the so-called impurity band conduction
 at low concentrations of impurities. In such
 situations we suspect that transport occurs not by
@@ -94,3 +104,6 @@ sections. First, then, let us set up the simple model which we study. The
 equation for the time-dependence of the probability amplitude $a$, that a
 particle is on the site $j$ is:
 $$i \, \dot{a}_j = E_j \, a_j + \sum_{k \neq j} V_{j k} \, a_k \,.$$ {#eq:1}
+
+
+# References {-}
