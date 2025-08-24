@@ -45,3 +45,4 @@ keeps me from exercising my normal typesetting panache (or lack thereof).
 
 
 # Standard demo
+\input{./standardDemo/demo}

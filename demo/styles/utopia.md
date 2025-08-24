@@ -41,3 +41,4 @@ ed. Point Roberts, WA: Hartley & Marks, Publishers, 2004, 15.
 
 
 # Standard demo
+\input{./standardDemo/demo}

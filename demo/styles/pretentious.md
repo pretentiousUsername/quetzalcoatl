@@ -52,3 +52,7 @@ and tights, primarily because you would look very silly while doing so.
 
 
 # Standard demo
+
+
+# Standard demo
+\input{./standardDemo/demo}

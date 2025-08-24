@@ -41,3 +41,4 @@ document and therefore most people won't give it a second thought.
 
 
 # Standard demo
+\input{./standardDemo/demo}
