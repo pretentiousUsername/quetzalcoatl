@@ -8,7 +8,7 @@ titlepage: false
 ---
 
 # Introduction
-\ifthenelse{\equal{hello}{hello}}{true}{false}
+<!--\ifthenelse{\equal{hello}{hello}}{true}{false}-->
 
 <!--\ifthenelse{\equal{\QuetzalTitleFormat}{hello}}{true}{false}-->
 <!--\QuetzalTitleFormat-->
