@@ -1,7 +1,9 @@
 ---
 title: Abscence of diffusion in certain random lattices
 subtitle: testing out titles and stuff
-author: P.W. Anderson
+authorAffiliations:
+ - \author{P.W. Anderson}
+ - \affil{Bell Telephone Laboratories}
 date: 1957-10-10
 abstract:
  This paper presents a simple model for such processes as spin diffusion or
@@ -11,15 +13,24 @@ abstract:
  essential randomness is introduced by requiring the energy to vary randomly
  from site to site. It is shown that at low enough densities no diffusion at
  all can take place, and the criteria for transport to occur are given.
-institution: Bell Telephone Laboratories
-reportNo: FOO-1234
+style: regular
 titlepage: true
 titlepageAbstract: true
-style: regular
-tableOfContents: true
+tableOfContents: false
 bibliography: ref.bib
 csl: /home/pines/.pandoc/csl/chicago-author-date.csl
+eqnPrefix: equation
+includeAtPreamble:
+ - \definecolor{titlepageTextColor}{HTML}{4f6cad}
+institution: Bell Telephone Laboratories
+reportNo: 1234-FOO-AAAA
 ---
+
+<!--
+reportNo: 1234-FOO-AAAA
+logo: ./img/bell_edit.pdf
+logoWidth: 0.25in
+-->
 
 <!--
 csl: /home/pines/.pandoc/csl/chicago-author-date.csl
@@ -104,6 +115,17 @@ sections. First, then, let us set up the simple model which we study. The
 equation for the time-dependence of the probability amplitude $a$, that a
 particle is on the site $j$ is:
 $$i \, \dot{a}_j = E_j \, a_j + \sum_{k \neq j} V_{j k} \, a_k \,.$$ {#eq:1}
+Here we measure energies in frequency units, so we can
+set $\hbar = 1$. Equation [-@eq:1] simply restates the assumptions
+about the model made in the Introduction.
+We study the Laplace transform of the equation
+([-@eq:1]): let
+$$ f_j(s) = \int_{0}^{\infty} e^{-s \, t} a_j(t) \dl{t} \,, $$ {#eq:2}
+and then
+$$ i \left[ s \, f_j(s) - a_j(0) \right] = E_j \, f_j + \sum_{k \neq j} V_{j k} \, f_k \,.$$ {#eq:3}
+The variables $s$ must be as an arbitrary complex frequency with positive or
+zero real part.
 
+`Now this is being written on a typewriter.`
 
 # References {-}
