@@ -1,6 +1,6 @@
 ---
-title: A bunch of text that I didn't write, except for the abstract, which I
- wrote
+title: A bunch of text that I didn't write, except for the abstract (which I
+ wrote)
 subtitle: testing out titles and stuff
 author: Not Me 
 date: \today
@@ -13,7 +13,7 @@ abstract:
  pharaohmagnetism, brought about by using an Ankh on a slab of iron. We also
  develop new theoretical methods for analyzing pharaohmagnetic materials using
  Anubis--Ma'at statistics, predicting a secondary class of *anti*pharaohmagnetic
- materials.
+ materials. I will surely win the nūb-el prize for this research.
 style: regular
 titlepage: true
 titlepageAbstract: true
