@@ -5,7 +5,7 @@ Mattis (2004/1961).[^citation] Please, go read the actual paper, it's great.
 ## Formulation
 The first model consists of $N$ spin $1/2$'s ($N$ even) arranged in a row and
 having only the nearest neighbor interactions. It is
-$$H_{\gamma} = \sum_{i} \left[ \left( 1 + \gamma\right) S_i^x \, S_{i + 1}^x + \left(1 - \gamma\right) S_i^y \, S_{i + 1}^y \right] \,,$$
+$$H_{\gamma} = \sum_{i} \left[ \left( 1 + \gamma\right) \,\, S_i^x \, S_{i + 1}^x + \left(1 - \gamma\right) \,\, S_i^y \, S_{i + 1}^y \right] \,,$$
 where $\gamma$ is a parameter characterizing the usual degree of anisotropy in
 the $xy$-plane. Because the Hamiltonian only involves the $x$- and $y$-
 components of the spin operators, we call this model the $XY$ model.
