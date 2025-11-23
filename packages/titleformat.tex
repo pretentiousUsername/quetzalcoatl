@@ -28,7 +28,7 @@
   \noindent\begin{minipage}{\textwidth}%
    %\let \footnote \thanks
         {\LARGE \titleType \noindent \@title} \\ % \par}%
-        {\Large \titleType \noindent \@subtitle}
+        \ifthenelse{\isundefined{\@subtitle}}{}{{\Large \titleType \noindent \@subtitle}}
     \vspace{1.0em}%
   \end{minipage}
     \noindent\begin{minipage}{\linewidth}

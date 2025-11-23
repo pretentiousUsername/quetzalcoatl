@@ -1,3 +1,5 @@
-\noindent\begin{minipage}{\linewidth}
-    {\flushright \sffamily \noindent \QuetzalTitlePageInstitution}
-\end{minipage}
+\ifthenelse{\equal{\QuetzalTitlePageInstitution}{~}}{\relax}{
+        \noindent\begin{minipage}{\linewidth}
+            {\color{titlepageTextColor} \flushright \sffamily \noindent {\QuetzalTitlePageInstitution}}
+        \end{minipage}
+}

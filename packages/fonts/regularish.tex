@@ -1,100 +1,99 @@
-% I'll settle for EB Garamond for now, but *man* do I want to use Crimson Pro.
-\input{\packageDir/fonts/serif/ebgaramond}
-\input{\packageDir/fonts/sans/ysabeau}
-\input{\packageDir/fonts/monospace/ibmplex}
+\input{\packageDir/fonts/serif/stix2}
+\input{\packageDir/fonts/sans/arimo}
+\input{\packageDir/fonts/monospace/julia}
 
 % \setmainfont[
-% 	Path = {\fontDir/ebgaramond/},
+% 	Path = {\fontDir/stix2/},
 % 	Extension = {.otf},
 % 	UprightFont = {*-Regular},
 % 	ItalicFont = {*-Italic},
 % 	BoldFont = {*-Bold},
 % 	BoldItalicFont = {*-BoldItalic},
-%     SmallCapsFeatures = {LetterSpace=3.0}
+% 	RawFeature = {+case},
 % 	]
-% 	{EBGaramond}
+% 	{StixTwoText}
 % 
 % \setmathfont[
-% 	Path = {\fontDir/garamond-math/},
+% 	Path = {\fontDir/stix2/},
 % 	Extension = {.otf},
+% 	RawFeature = {+ss15},
 % 	]
-% 	{Garamond-Math}
-% 
+% 	{StixTwoMath-Regular}
 % 
 % % Heavenly father, forgive me, for I know not what I do.
 % \newfontfamily\symbolFont[
 % 	Extension = {.otf},
-% 	Path = {\fontDir/garamond-math/},
-%     ]{Garamond-Math}
+% 	Path = {\fontDir/stix2/},
+% ]{StixTwoMath-Regular}
 % 
 % \setsansfont[
-% 	Path = {\fontDir/ysabeau/},
+% 	Path = {\fontDir/Inter/},
 % 	Extension = {.otf},
 % 	UprightFont = {*-Regular},
 % 	ItalicFont = {*-Italic},
 % 	BoldFont = {*-Bold},
 % 	BoldItalicFont = {*-BoldItalic},
-%     SmallCapsFont = {*SC-Regular},
+% 	RawFeature = {+cv08, +cv01, +cv07, +cv10, +case, +zero, +ss08, +ss07},
 % 	Scale = 0.925,
 % 	]
-% 	{Ysabeau}
+% 	{Inter}
+% 
 % 
 % \newfontfamily\titleType[
-% 	Path = {\fontDir/ysabeau/},
+% 	Path = {\fontDir/Inter/},
 % 	Extension = {.otf},
 % 	UprightFont = {*-Regular},
 % 	ItalicFont = {*-Italic},
 % 	BoldFont = {*-Bold},
 % 	BoldItalicFont = {*-BoldItalic},
+% 	RawFeature = {+cv08, +cv01, +cv07, +cv10, +case, +zero, +ss08, +ss07},
 % 	Scale = 0.925,
 % 	]
-% 	{Ysabeau}
+% 	{Inter}
 % 
 % \newfontfamily\headType[
-% 	Path = {\fontDir/ebgaramond/},
+% 	Path = {\fontDir/Inter/},
 % 	Extension = {.otf},
-% 	UprightFont = {*-Regular},
-% 	ItalicFont = {*-Italic},
-% 	BoldFont = {*-Bold},
-% 	BoldItalicFont = {*-BoldItalic},
-%     SmallCapsFeatures = {LetterSpace=5.0}
+% 	UprightFont = {*-ExtraBold},
+% 	ItalicFont = {*-ExtraBoldItalic},
+% 	BoldFont = {*-Black},
+% 	BoldItalicFont = {*-BlackItalic},
+% 	RawFeature = {+cv08, +cv01, +cv07, +cv10, +case, +zero, +ss08, +ss07},
+% 	Scale = 0.925,
 % 	]
-% 	{EBGaramond}
+% 	{Inter}
 % 
 % \newfontfamily\subheadType[
-% 	Path = {\fontDir/ysabeau/},
+% 	Path = {\fontDir/Inter/},
 % 	Extension = {.otf},
 % 	UprightFont = {*-Bold},
 % 	ItalicFont = {*-BoldItalic},
 % 	BoldFont = {*-ExtraBold},
 % 	BoldItalicFont = {*-ExtraBoldItalic},
+% 	RawFeature = {+cv08, +cv01, +cv07, +cv10, +case, +zero, +ss08, +ss07},
 % 	Scale = 0.925,
 % 	]
-% 	{Ysabeau}
+% 	{Inter}
 % 
 % \newfontfamily\subsubHeadType[
-% 	Path = {\fontDir/ysabeau/},
+% 	Path = {\fontDir/Inter/},
 % 	Extension = {.otf},
 % 	UprightFont = {*-Medium},
 % 	ItalicFont = {*-MediumItalic},
 % 	BoldFont = {*-SemiBold},
 % 	BoldItalicFont = {*-SemiBoldItalic},
+% 	RawFeature = {+cv08, +cv01, +cv07, +cv10, +case, +zero, +ss08, +ss07},
 % 	Scale = 0.925,
 % 	]
-% 	{Ysabeau}
+% 	{Inter}
 % 
 % \setmonofont[
-%     Path = {\fontDir/ibm-plex-mono/},
+%     Path = {\fontDir/juliaMono/},
 % 	Extension = {.ttf},
 % 	UprightFont = {*-Regular},
-% 	ItalicFont = {*-Italic},
+% 	ItalicFont = {*-RegularItalic},
 % 	BoldFont = {*-Bold},
 % 	BoldItalicFont = {*-BoldItalic},
 % 	Scale = 0.875,
-% 	]{IBMPlexMono}
-% 
-% \newfontfamily\lettrineType[
-%     Path = {\fontDir/ebgaramond/},
-%     Extension = {.otf},
-%     UprightFont = {*},
-%     ]{EBGaramond-Initials}
+% 	]
+% 	{JuliaMono}

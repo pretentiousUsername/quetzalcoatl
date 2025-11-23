@@ -1,38 +1,57 @@
-\makeatletter
-    \@ifpackageloaded{authblk}{
-        % \let\oldauthnote\AB@authnote
-        % \let\oldaffilnote\AB@affilnote
-        % 
-        % % \renewcommand\AB@authnote[1]{\textsuperscript{\sffamily#1}}
-        % % \renewcommand\AB@affilnote[1]{\textsuperscript{\sffamily#1}}
-        % 
-        % \renewcommand\AB@authnote[1]{eat fuck #1}
-        % \renewcommand\AB@affilnote[1]{#1}
-        
-        \let\oldaffillist\AB@affillist
-        \renewcommand{\AB@affillist}{%
-            \begin{raggedright}
-                \begin{spacing}{1.0}
-                    \oldaffillist
-                \end{spacing}
-            \end{raggedright}}
-    }
-\makeatother
+% \makeatletter
+%     \@ifpackageloaded{authblk}{
+%         % \let\oldauthnote\AB@authnote
+%         % \let\oldaffilnote\AB@affilnote
+%         % 
+%         % % \renewcommand\AB@authnote[1]{\textsuperscript{\sffamily#1}}
+%         % % \renewcommand\AB@affilnote[1]{\textsuperscript{\sffamily#1}}
+%         % 
+%         % \renewcommand\AB@authnote[1]{eat fuck #1}
+%         % \renewcommand\AB@affilnote[1]{#1}
+%         
+%         \let\oldaffillist\AB@affillist
+%         \renewcommand{\AB@affillist}{%
+%             \begin{raggedright}
+%                 \begin{spacing}{1.0}
+%                     \oldaffillist
+%                 \end{spacing}
+%             \end{raggedright}}
+%     }
+% \makeatother
 
 \newgeometry{hmargin=1.75in}
 
 \makeatletter
 \begin{titlepage}
+
+    \input{\packageDir/titlepage/reportNo}
+
     \vspace*{\fill}
 
     \input{\packageDir/titlepage/title}
+
     \vspace*{\fill}
-    \ifthenelse{\QuetzalTitlePageAbstract = 1}{
+
+    \ifthenelse{\QuetzalTitlePageAbstract=1}{
         \input{\packageDir/titlepage/abstract}
     }{}
 
     \vspace*{\fill}
-    \input{\packageDir/titlepage/institution}
+    {\color{ruleColor} \noindent\rule{\linewidth}{0.01cm}}
+    \noindent\begin{minipage}{\linewidth}
+        \begin{minipage}{0.25\linewidth}
+        \hfill
+        %     \input{\packageDir/titlepage/logo}
+        \end{minipage}
+
+        \begin{minipage}{0.75\linewidth}
+            {
+                \hfill\ifthenelse{\equal{\QuetzalTitlePageInstitution}{~}}{\relax}{
+                    \input{\packageDir/titlepage/institution}
+                }
+            }
+        \end{minipage}
+    \end{minipage}
 \end{titlepage}
 \makeatother
 

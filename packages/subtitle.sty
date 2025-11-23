@@ -2,4 +2,8 @@
 
 \DeclareRobustCommand*{\subtitle}[1]{\gdef\@subtitle{#1}}
 
+
+% TeX freaks out if you don't give this an initial value.
+\subtitle{\relax}
+
 \endinput

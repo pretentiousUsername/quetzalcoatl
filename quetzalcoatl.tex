@@ -170,12 +170,18 @@ $if(titlepage)$
     $if(titlepageTextColor)$
         \renewcommand\QuetzalTitlePageTextColor{$titlepageTextColor$}
     $endif$
+    $if(titlepageAbstract)$
+        \renewcommand\QuetzalTitlePageAbstract{1}
+    $else$
+        \renewcommand\QuetzalTitlePageAbstract{0}
+    $endif$
 $else$
     % \usepackage[runin]{abstract}
 $endif$
 
 $if(titleFormat)$
 \usepackage[style=$titleFormat$]{\packageDir/title}
+$elseif(titlepage)$
 $else$
 \usepackage{\packageDir/title}
 $endif$
@@ -337,6 +343,22 @@ $endif$
 
 \usepackage{graphicx}
 \DeclareGraphicsExtensions{.png,.pdf}
+
+
+% Necessary to let pandoc use images.
+\makeatletter
+\newsavebox\pandoc@box
+
+\newcommand*\pandocbounded[1]{% scales image to fit in text height/width
+  \sbox\pandoc@box{#1}%
+  \Gscale@div\@tempa{\textheight}{\dimexpr\ht\pandoc@box+\dp\pandoc@box\relax}%
+  \Gscale@div\@tempb{\linewidth}{\wd\pandoc@box}%
+  \ifdim\@tempb\p@<\@tempa\p@\let\@tempa\@tempb\fi% select the smaller of both
+  \ifdim\@tempa\p@<\p@\scalebox{\@tempa}{\usebox\pandoc@box}%
+  \else\usebox{\pandoc@box}%
+  \fi%
+}
+\makeatother
 
 % Useful---I like it.
 \usepackage{subcaption}
@@ -552,6 +574,12 @@ $if(csl-refs)$
 \newcommand{\CSLRightInline}[1]{\parbox[t]{\linewidth - \csllabelwidth}{\strut#1\strut}}
 \newcommand{\CSLIndent}[1]{\hspace{\cslhangindent}#1}
 $endif$
+$if(biblatex)$
+\usepackage[$if(biblio-style)$style=$biblio-style$,$endif$$for(biblatexoptions)$$biblatexoptions$$sep$,$endfor$]{biblatex}
+$for(bibliography)$
+\addbibresource{$bibliography$}
+$endfor$
+$endif$
 
 
 % foo
@@ -581,16 +609,21 @@ $elseif(title)$
 $endif$
 
 
-$if(titlePage)$
-$else$
-    $if(abstract)$
-        \begin{abstract}
-            \begin{abstractBox}
-                $abstract$
-            \end{abstractBox}
-        \end{abstract}
+$if(titlepage)$
+    $if(titlepageAbstract)$
     $endif$
+$elseif(abstract)$
+    \begin{abstract}
+        \begin{abstractBox}
+            \QuetzalAbstract
+        \end{abstractBox}
+    \end{abstract}
+$else$
 $endif$
+
+% $if(abstract)$  % Maybe I could get rid of this?
+%     \let\QuetzalAbstract\relax
+% $endif$
 
 
 % $if(abstract)$
@@ -754,6 +787,11 @@ $if(useEndnotes)$
 \def\enotesize{\normalsize}
 \theendnotes
 %\endgroup
+$endif$
+
+
+$if(biblatex)$
+\printbibliography$if(biblioTitle)$[title=$biblioTitle$]$endif$
 $endif$
 
 \end{document}
