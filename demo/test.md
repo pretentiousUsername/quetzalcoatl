@@ -14,18 +14,21 @@ abstract:
  develop new theoretical methods for analyzing pharaohmagnetic materials using
  Anubis--Ma'at statistics, predicting a secondary class of *anti*pharaohmagnetic
  materials. I will surely win the nūb-el prize for this research.
-style: regular
+style: utopianish
 titlepage: true
 titlepageAbstract: true
 tableOfContents: false
 bibliography: ref_test.bib
 csl: /home/pines/.pandoc/csl/chicago-author-date.csl
 eqnPrefix: equation
-includeAtPreamble:
- - \definecolor{titlepageTextColor}{HTML}{4f6cad}
 institution: The University of Life
 reportNo: 1234-FOO-AAAA
+colorPalette: bauhaus
 ---
+
+<!--
+colorPalette: bauhaus
+-->
 
 # Hey, I didn't write this
 \input{./styles/standardDemo/demo}

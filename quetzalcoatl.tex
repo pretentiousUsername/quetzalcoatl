@@ -30,7 +30,7 @@
 \usepackage{xtemplate}
 \usepackage{xspace}
 \usepackage{ragged2e}
-\usepackage[palette=default]{\packageDir/mycolors}
+\usepackage[palette=$if(colorPalette)$$colorPalette$$else$default$endif$]{\packageDir/mycolors}
 \usepackage{\packageDir/subtitle}
 
 $if(marginNote)$
