@@ -18,18 +18,22 @@
 % I used to use the `silence` package here, but I found that you can get rid
 % of the annoying popups by simply \emph{not} including the `\ProvidesPackage`
 % command.
+\usepackage{silence}
+\WarningFilter{latex}{Command \showhyphens has changed.}
 
 %\usepackage{authblk}
 
 \usepackage{amsmath}
 \usepackage{amssymb}
 \usepackage{amsthm}
+\usepackage{\packageDir/theorems}
 \usepackage[makeroom]{cancel}
 \usepackage{xparse}
 \usepackage{xstring}
 \usepackage{xtemplate}
 \usepackage{xspace}
 \usepackage{ragged2e}
+\usepackage{hyphenat}
 \usepackage[palette=$if(colorPalette)$$colorPalette$$else$default$endif$]{\packageDir/mycolors}
 \usepackage{\packageDir/subtitle}
 
@@ -238,7 +242,8 @@ $if(lineno)$
   \linenumbers
 $endif$
 
-\usepackage{setspace}
+% \usepackage{setspace}
+\usepackage[nodisplayskipstretch]{setspace}
 $if(lineStretch)$
 	\setstretch{$lineStretch$}
 	$else$
@@ -384,7 +389,7 @@ $endif$
 
 % Change figure title
 \usepackage[figurename={Figure}, font={small}, labelfont={sf, bf},%
-labelsep={period}, justification={raggedright}]{caption}
+labelsep={period}, justification={RaggedRight}]{caption}
 % \DeclareCaptionStyle{marginfigure}{labelfont={color=mymaroon}}
 
 $if(useSidenotes)$
@@ -502,8 +507,6 @@ $if(parIndent)$
 	$endif$
 
 $if(raggedLines)$
-	\usepackage[none]{hyphenat}
-	%\usepackage{ragged2e}
 	\RaggedRight	
 $endif$
 
@@ -531,6 +534,10 @@ $if(circuitDiagrams)$
 	$else$
 		\usepackage[siunitx, european]{circuitikz}
 	$endif$
+$endif$
+
+$if(opticalDiagrams)$
+    \usepackage{optikz}
 $endif$
 
 \usetikzlibrary{positioning}

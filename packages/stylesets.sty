@@ -19,8 +19,13 @@
 
 
 \DeclareOptionX{style}[regular]{%
+    \newcommand{\docstyle}{#1}
     \input{\packageDir/fonts/#1}%
     \input{\packageDir/headers/#1}%
+}
+
+\DeclareOptionX{numberSections}[true]{
+
 }
 
 
@@ -34,7 +39,11 @@
 
 % \ExecuteOptionsX{style}
 
-\ProcessOptionsX\relax
+\ProcessOptionsX%\relax
+
+\ifthenelse{\equal{\docstyle}{dezando}}{\RequirePackage{notomath}}{\relax}
+
+\relax
 
 % Set itemize symbols
 \renewcommand{\labelitemi}{\symbolFont{▪}}

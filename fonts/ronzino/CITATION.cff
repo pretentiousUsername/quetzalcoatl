@@ -1,0 +1,29 @@
+cff-version: 1.2.0
+title: Workhorse
+message: >-
+  If you use this software, please cite it using the
+  metadata from this file.
+type: software
+authors:
+  - given-names: Luigi
+    family-names: Gorlero
+    email: gorliluigi@gmail.com
+    affiliation: Collletttivo
+  - given-names: Annunziato
+    name-particle: Pio
+    family-names: Mazzaferro
+    email: nnzmzz@icloud.com
+    affiliation: Collletttivo
+identifiers:
+  - type: url
+    value: 'https://www.collletttivo.it/'
+    description: Type Foundry website
+repository-code: 'https://github.com/luigigorlero/workhorse'
+url: 'https://www.collletttivo.it/typefaces/workhorse'
+abstract: An open source Arial alternative.
+keywords:
+  - typeface
+  - font
+license: OFL-1.1-RFN
+version: 1.000
+date-released: '2023-12-31'
